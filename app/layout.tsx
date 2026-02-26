@@ -10,7 +10,7 @@ const onest = Onest({
 });
 
 const benzin = localFont({
-  src: "../public/fonts/Benzin-Regular.woff2",
+  src: "../public/fonts/Benzin-Semibold.woff2",
   variable: "--font-benzin",
 });
 

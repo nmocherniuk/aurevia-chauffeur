@@ -1,9 +1,28 @@
 @import "tailwindcss";
 
+@theme {
+  --font-family-benzin: var(--font-benzin);
+  --font-family-onest: var(--font-onest);
+
+  --color-background: var(--background);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-primary: var(--primary);
+  --color-white: var(--white);
+  --color-black: var(--black);
+  --color-grey: var(--grey);
+  --color-grey-light: var(--grey-light);
+
+  --radius-lg: var(--radius-lg);
+  --radius-md: var(--radius-md);
+}
+
 :root {
   --background: #06070a;
   --text-primary: #6c7689;
   --text-secondary: #e9e7e2;
+  --radius-lg: 20px;
+  --radius-md: 12px;
 
   --primary: #ba8c5a;
 
@@ -18,7 +37,12 @@ body {
   font-family: var(--font-onest), sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-benzin), sans-serif;
 }
 
