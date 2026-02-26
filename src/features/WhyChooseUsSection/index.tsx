@@ -20,7 +20,7 @@ const WhyChooseUsSection: FC = () => {
                 <Icon className="h-full w-full" />
               </div>
               <div className="flex flex-col items-center justify-center gap-3 sm:items-start sm:gap-2">
-                <h3 className="text-white text-xl font-onest text-center sm:text-left">
+                <h3 className="text-text-secondary text-xl font-onest text-center sm:text-left">
                   {value.title}
                 </h3>
                 <p className="text-base text-text-primary text-center sm:text-left font-light">
