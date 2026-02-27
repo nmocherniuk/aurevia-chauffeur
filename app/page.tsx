@@ -6,6 +6,7 @@ import ServicesSection from "@/src/features/ServicesSection";
 import FleetSection from "@/src/features/FleetSection";
 import PopularRoutesSection from "@/src/features/PopularRoutesSection";
 import FAQSection from "@/src/features/FAQSection";
+import CTABlock from "@/src/components/CTABlock";
 
 export default function Home() {
   return (
@@ -14,9 +15,11 @@ export default function Home() {
       <MainContainer>
         <WhyChooseUsSection />
         <ServicesSection />
+        <CTABlock title="Réservez Votre Chauffeur en Toute Simplicité" description="Organisez votre transfert en quelques clics et profitez d’un voyage élégant, ponctuel et discret." buttonText="Book Now" buttonLink="/book" />
         <FleetSection />
         <PopularRoutesSection />
         <FAQSection />
+        <CTABlock title="Réservez Votre Chauffeur en Toute Simplicité" description="Organisez votre transfert en quelques clics et profitez d’un voyage élégant, ponctuel et discret." buttonText="Book Now" buttonLink="/book" />
       </MainContainer>
     </Fragment>
   );
