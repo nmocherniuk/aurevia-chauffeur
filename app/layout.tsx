@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import Footer from "@/src/components/Footer";
 
 const onest = Onest({
   variable: "--font-onest",
@@ -27,7 +28,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${onest.variable} ${benzin.variable} antialiased`}>
-        {children}
+        <main>
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

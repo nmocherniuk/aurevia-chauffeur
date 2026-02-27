@@ -18,7 +18,7 @@ const CTABlock: React.FC<CTABlockProps> = ({ title, description, buttonText, but
                     <Link className='shrink-0' />
                     <div className='flex flex-col gap-3 sm:gap-2'>
                         <h3 className='text-text-secondary text-xl text-center sm:text-left'>{title}</h3>
-                        <p className='text-text-primary text-base text-center sm:text-left'>{description}</p>
+                        <p className='text-text-primary text-base text-center sm:text-left font-light'>{description}</p>
                     </div>
                 </div>
                 <Button variant='primary' className='w-full sm:max-w-[220px]'>{buttonText}</Button>
