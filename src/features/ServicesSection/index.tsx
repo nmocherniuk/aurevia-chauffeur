@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import ServiceCard from "@/src/components/Layouts/ServiceCard";
-import { services } from "@/src/components/Layouts/ServiceCard/data";
+import { services } from "@/src/features/ServicesSection/data";
 
 const ServicesSection: FC = () => {
   return (

@@ -6,7 +6,7 @@ export const Bagage: FC<
     height?: number;
     fill?: string;
   }
-> = ({ width = 17, height = 17, fill = "#E9E7E2", ...props }) => {
+> = ({ width = 17, height = 17, fill = "#BB9B78", ...props }) => {
   return (
     <svg
       width={width}

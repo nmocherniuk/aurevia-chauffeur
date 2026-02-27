@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import { Service } from "./data";
+import { Service } from "../../../features/ServicesSection/data";
 import { cn } from "@/src/lib/utils";
 
 interface ServiceProps {
