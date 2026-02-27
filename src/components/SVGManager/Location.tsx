@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-export const Bagage: FC<
+export const Location: FC<
   React.SVGProps<SVGSVGElement> & {
     width?: number;
     height?: number;

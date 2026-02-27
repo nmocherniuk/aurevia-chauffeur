@@ -6,7 +6,7 @@ export const ArrowsHorizontal: FC<
     height?: number;
     fill?: string;
   }
-> = ({ width = 22, height = 22, fill = "#E9E7E2", ...props }) => {
+> = ({ width = 22, height = 22, fill = "#BB9B78", ...props }) => {
   return (
     <svg
       width={width}

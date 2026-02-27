@@ -4,6 +4,7 @@ import { Fragment } from "react/jsx-runtime";
 import WhyChooseUsSection from "@/src/features/WhyChooseUsSection";
 import ServicesSection from "@/src/features/ServicesSection";
 import FleetSection from "@/src/features/FleetSection";
+import PopularRoutesSection from "@/src/features/PopularRoutesSection";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <WhyChooseUsSection />
         <ServicesSection />
         <FleetSection />
+        <PopularRoutesSection />
       </MainContainer>
     </Fragment>
   );
