@@ -8,11 +8,12 @@ interface CTABlockProps {
     description: string
     buttonText: string
     buttonLink: string
+    id?: string
 }
 
-const CTABlock: React.FC<CTABlockProps> = ({ title, description, buttonText, buttonLink }) => {
+const CTABlock: React.FC<CTABlockProps> = ({ title, description, buttonText, buttonLink, id }) => {
     return (
-        <section>
+        <section id={id}>
             <CardOutline className='py-8 px-6 flex flex-col items-center gap-7 sm:justify-center sm:px-8 md:flex-row md:justify-between'>
                 <div className='flex flex-col items-center gap-6 sm:flex-row sm:max-w-[535px]'>
                     <Link className='shrink-0' />

@@ -25,3 +25,17 @@ export const FOOTER_ROUTE_IDS: RouteId[] = [
     "route-4-legal",
     "route-5-cookies",
 ]
+
+export interface NavLink {
+    name: string
+    href: string
+}
+
+export const NAV_LINKS_MAIN_PAGE: NavLink[] = [
+    { name: "Accueil", href: "/#accueil" },
+    { name: "Pourquoi Nous", href: "/#pourquoi-nous" },
+    { name: "Prestations", href: "/#prestations" },
+    { name: "Flotte", href: "/#flotte" },
+    { name: "Réserver", href: "/#reserver" },
+    { name: "FAQ", href: "/#faq" },
+]

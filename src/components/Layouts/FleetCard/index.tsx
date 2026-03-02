@@ -2,7 +2,7 @@
 
 import React, { FC, memo } from "react";
 import { Fleet } from "@/src/features/FleetSection/data";
-import { useFleetCarousel } from "./hooks/useFleetCarousel";
+import { useFleetCarousel } from "../../../hooks/useFleetCarousel";
 import { FleetCardImage } from "./components/FleetCardImage";
 import { FleetCardNavigation } from "./components/FleetCardNavigation";
 import { FleetCardContent } from "./components/FleetCardContent";

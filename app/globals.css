@@ -58,3 +58,27 @@ h2 {
 .animate-fade-in {
   animation: fadeIn 0.35s ease-out forwards;
 }
+
+/* react-scroll active nav link (spy) */
+.nav-link-active {
+  color: var(--text-secondary);
+}
+
+.nav-link-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 9999px;
+}
+.nav-link-active-mobile.nav-link-active {
+  color: var(--text-secondary);
+}
+
+/* desktop: active = only color (same as hover), no underline */
+.nav-link-active-desktop {
+  color: var(--primary);
+}

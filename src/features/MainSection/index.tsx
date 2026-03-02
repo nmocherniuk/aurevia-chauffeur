@@ -6,7 +6,7 @@ import SocialIcons from "@/src/components/SocialIcons";
 
 const MainSection: React.FC = () => {
   return (
-    <section id="main" className="mb-28 w-full">
+    <section id="accueil" className="mb-28 w-full">
       <div className="relative flex h-[700px] w-full flex-col items-center justify-center overflow-hidden md:h-[900px] md:items-start xl:h-dvh">
         <Image
           className="bg-fit-cover absolute top-0 -z-1 w-full bg-center bg-no-repeat object-cover object-center "
@@ -34,7 +34,7 @@ const MainSection: React.FC = () => {
               precision.
             </p>
           </article>
-          <SocialIcons className="hidden sm:flex mb-4" />
+          <SocialIcons classNameContainer="hidden sm:flex mb-4" />
           <Button variant="primary" className="w-full max-w-[220px]">
             Book Now
           </Button>
