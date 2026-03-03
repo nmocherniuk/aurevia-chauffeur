@@ -7,6 +7,7 @@
   --color-background: var(--background);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
+  --color-text-error: var(--text-error);
   --color-primary: var(--primary);
   --color-white: var(--white);
   --color-black: var(--black);
@@ -21,6 +22,7 @@
   --background: #06070a;
   --text-primary: #6c7689;
   --text-secondary: #e9e7e2;
+  --text-error: #ef4444;
   --radius-lg: 20px;
   --radius-md: 12px;
 
@@ -59,6 +61,17 @@ h2 {
   animation: fadeIn 0.35s ease-out forwards;
 }
 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* react-scroll active nav link (spy) */
 .nav-link-active {
   color: var(--text-secondary);
@@ -81,4 +94,85 @@ h2 {
 /* desktop: active = only color (same as hover), no underline */
 .nav-link-active-desktop {
   color: var(--primary);
+}
+
+.mantine-DatePickerInput-wrapper,
+.mantine-TimePicker-root,
+.mantine-TimePicker-wrapper {
+  width: 100%;
+  transition: border-color 160ms ease;
+}
+
+.mantine-DatePickerInput-wrapper,
+.mantine-TimePicker-root {
+  display: flex;
+}
+
+.mantine-DatePickerInput-wrapper[data-invalid="true"],
+.mantine-TimePicker-root[data-invalid="true"] {
+  border-color: var(--text-error);
+}
+
+[data-error="true"] .mantine-DatePickerInput-wrapper,
+[data-error="true"] .mantine-TimePicker-root,
+[data-error="true"] .mantine-TimePicker-wrapper {
+  border-color: var(--text-error);
+}
+
+.mantine-DatePickerInput-input,
+.mantine-TimePicker-input,
+.mantine-Input-input {
+  width: 100%;
+  min-height: 50px !important;
+  padding: 12px 42px 12px 16px !important;
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  border: 1px solid var(--grey) !important;
+  border-radius: 12px !important;
+  font-size: 14px !important;
+  font-family: var(--font-onest) !important;
+  height: 44px !important;
+}
+
+/* TimePicker inner fields (hours/minutes) — same text and placeholder as other inputs */
+.mantine-TimePicker-fieldsRoot {
+  width: 100%;
+  border-radius: 0;
+}
+
+.mantine-TimePicker-field {
+  color: var(--text-secondary) !important;
+  font-size: 14px !important;
+  font-family: var(--font-onest) !important;
+  background: transparent !important;
+  border: none !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.mantine-TimePicker-field::placeholder {
+  color: var(--grey) !important;
+  opacity: 1;
+}
+
+[data-open="true"] .mantine-DatePickerInput-input,
+[data-open="true"] .mantine-TimePicker-input,
+[data-open="true"] .mantine-Input-input {
+  border-color: var(--primary) !important;
+}
+
+[data-error="true"] .mantine-TimePicker-input {
+  border-color: var(--text-error) !important;
+}
+
+.mantine-InputPlaceholder-placeholder,
+.mantine-DatePickerInput-placeholder,
+.mantine-TimePicker-placeholder {
+  color: var(--grey) !important;
+}
+
+.mantine-DatePickerInput-section {
+  padding: 0 12px;
+}
+.mantine-Popover-dropdown {
+  animation: slideDown 0.2s ease-out;
 }

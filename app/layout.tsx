@@ -3,6 +3,8 @@ import { Onest } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/src/components/Footer";
+import Header from "@/src/components/Header";
+import StyledMantaineProvider from "@/src/providers/StyledMantaineProvider";
 
 const onest = Onest({
   variable: "--font-onest",
@@ -28,10 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${onest.variable} ${benzin.variable} antialiased`}>
-        <main>
-          {children}
-        </main>
-        <Footer />
+        <StyledMantaineProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </StyledMantaineProvider>
       </body>
     </html>
   );
