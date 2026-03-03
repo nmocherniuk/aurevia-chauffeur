@@ -26,7 +26,7 @@ function SelectOptionItem({
   return (
     <li
       className={cn(
-        "flex cursor-pointer items-center py-2.5 px-3 text-sm text-black transition-colors",
+        "flex cursor-pointer items-center justify-between gap-2 py-2.5 px-3 text-sm text-black transition-colors",
         "hover:bg-black/5",
         isFocused && "bg-black/5",
         isSelected && "bg-primary/10 font-medium",
@@ -39,7 +39,12 @@ function SelectOptionItem({
       onMouseEnter={() => !isDisabled && onFocus()}
       onMouseLeave={onMouseLeaveFocus}
     >
-      {option.label}
+      <span className="min-w-0 truncate">{option.label}</span>
+      {option.detail ? (
+        <span className="shrink-0 text-grey text-xs whitespace-nowrap">
+          {option.detail}
+        </span>
+      ) : null}
     </li>
   );
 }

@@ -60,7 +60,11 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
     }, [value]);
 
     const selectedOption = options.find((opt) => opt.value === selectedValue);
-    const displayText = selectedOption ? selectedOption.label : placeholder ?? "";
+    const displayText = selectedOption
+      ? selectedOption.detail
+        ? `${selectedOption.label} · ${selectedOption.detail}`
+        : selectedOption.label
+      : placeholder ?? "";
 
     const enabledOptions = useMemo(
       () => options.filter((opt) => !opt.disabled),

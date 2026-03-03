@@ -80,9 +80,9 @@ const TimePickerWithError: React.FC<TimePickerWithErrorProps> = ({
       <div className="relative w-full" data-open={isOpen ? "true" : undefined}>
         {mounted ? (
           <TimePicker
-            id={inputId}
             name={name}
             withDropdown
+            hoursInputProps={{ id: inputId }}
             popoverProps={{
               onOpen: () => setIsOpen(true),
               onClose: () => setIsOpen(false),

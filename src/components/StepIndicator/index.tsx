@@ -3,6 +3,8 @@ import React from "react";
 import { cn } from "@/src/lib/utils";
 import { StepItem } from "./components/StepItem";
 import type { StepIndicatorProps } from "./types";
+import { ConnectorLine } from "./components/ConnectorLine";
+import { CIRCLE_SIZE } from "./constants";
 
 export function StepIndicator({
   steps,
@@ -10,20 +12,31 @@ export function StepIndicator({
   className,
 }: StepIndicatorProps) {
   if (!steps.length) return null;
+  const showConnector = steps.length > 1;
 
   return (
     <nav
-      className={cn("flex w-full gap-x-2", className)}
+      className={cn("flex w-full gap-x-1.5", className)}
       aria-label="Progress"
     >
       {steps.map((step, index) => (
-        <StepItem
-          key={step.id ?? index}
-          step={step}
-          index={index}
-          totalSteps={steps.length}
-          defaultStepIcon={defaultStepIcon}
-        />
+        <React.Fragment key={step.id ?? index}>
+          <StepItem
+            step={step}
+            index={index}
+            totalSteps={steps.length}
+            defaultStepIcon={defaultStepIcon}
+          />
+          {showConnector && index < steps.length - 1 && (
+            <div
+              className="flex min-w-0 flex-1 items-center"
+              style={{ height: CIRCLE_SIZE }}
+              aria-hidden
+            >
+              <ConnectorLine isCompleted={step.status === "completed"} />
+            </div>
+          )}
+        </React.Fragment>
       ))}
     </nav>
   );
