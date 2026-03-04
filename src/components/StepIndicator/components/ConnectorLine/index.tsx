@@ -11,7 +11,7 @@ export function ConnectorLine({ isCompleted = false }: ConnectorLineProps) {
     <div
       className={cn(
         "min-w-6 flex-1 shrink-0 rounded-full",
-        isCompleted ? "bg-primary" : "bg-(--grey)"
+        isCompleted ? "bg-primary" : "bg-(--grey) opacity-60",
       )}
       style={{ height: CONNECTOR_HEIGHT }}
       aria-hidden

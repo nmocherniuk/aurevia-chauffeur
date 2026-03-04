@@ -6,11 +6,13 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   variant: "primary" | "secondary" | "muted" | "tab" | "tabActive";
   className?: string;
+  withArrow?: boolean;
 }
 
 export const Button: FC<ButtonProps> = ({
   children,
   variant,
+  withArrow = true,
   className,
   ...props
 }) => {
@@ -29,7 +31,9 @@ export const Button: FC<ButtonProps> = ({
   return (
     <button className={cn(variants[variant], className)} {...props}>
       {children}
-      {variant === "primary" && <Arrow className="w-4 h-4" fill="white" />}
+      {variant === "primary" && withArrow && (
+        <Arrow className="w-4 h-4" fill="white" />
+      )}
     </button>
   );
 };

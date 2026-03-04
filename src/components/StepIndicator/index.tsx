@@ -1,4 +1,3 @@
-
 import React from "react";
 import { cn } from "@/src/lib/utils";
 import { StepItem } from "./components/StepItem";
@@ -10,6 +9,8 @@ export function StepIndicator({
   steps,
   defaultStepIcon,
   className,
+  onStepClick,
+  maxReachableStepIndex,
 }: StepIndicatorProps) {
   if (!steps.length) return null;
   const showConnector = steps.length > 1;
@@ -26,6 +27,8 @@ export function StepIndicator({
             index={index}
             totalSteps={steps.length}
             defaultStepIcon={defaultStepIcon}
+            onStepClick={onStepClick}
+            maxReachableStepIndex={maxReachableStepIndex}
           />
           {showConnector && index < steps.length - 1 && (
             <div
@@ -33,7 +36,12 @@ export function StepIndicator({
               style={{ height: CIRCLE_SIZE }}
               aria-hidden
             >
-              <ConnectorLine isCompleted={step.status === "completed"} />
+              <ConnectorLine
+                isCompleted={
+                  step.status === "completed" ||
+                  index < (maxReachableStepIndex ?? 0)
+                }
+              />
             </div>
           )}
         </React.Fragment>
@@ -42,5 +50,10 @@ export function StepIndicator({
   );
 }
 
-export type { StepIndicatorProps, Step, StepStatus, StepIconProps } from "./types";
+export type {
+  StepIndicatorProps,
+  Step,
+  StepStatus,
+  StepIconProps,
+} from "./types";
 export { getStepsFromIndex } from "./types";

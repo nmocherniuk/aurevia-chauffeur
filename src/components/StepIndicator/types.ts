@@ -13,25 +13,32 @@ export type Step = {
   label: string;
   status: StepStatus;
   icon?: ComponentType<StepIconProps>;
+  iconSize?: number;
 };
 
 export type StepIndicatorProps = {
   steps: Step[];
   defaultStepIcon?: ComponentType<StepIconProps>;
   className?: string;
+  onStepClick?: (index: number) => void;
+  maxReachableStepIndex?: number;
 };
 
 export function getStepsFromIndex(
   labels: string[],
-  activeStepIndex: number
+  activeStepIndex: number,
+  maxStepReached: number,
 ): Step[] {
-  return labels.map((label, index) => ({
-    label,
-    status:
-      index < activeStepIndex
-        ? "completed"
-        : index === activeStepIndex
-          ? "current"
-          : "notStarted",
-  }));
+  const current = Math.max(0, Number(activeStepIndex) || 0);
+  const maxReached = Math.max(0, Number(maxStepReached) || 0);
+
+  return labels.map((label, index): Step => {
+    const status: StepStatus =
+      index === current
+        ? "current"
+        : index <= maxReached
+          ? "completed"
+          : "notStarted";
+    return { label, status };
+  });
 }
