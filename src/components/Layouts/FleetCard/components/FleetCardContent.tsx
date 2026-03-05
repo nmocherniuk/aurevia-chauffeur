@@ -9,11 +9,13 @@ import { Button } from "../../../Button";
 interface FleetCardContentProps {
   classLabel: string;
   car: Fleet;
+  onDetailsClick: () => void;
 }
 
 export const FleetCardContent: FC<FleetCardContentProps> = ({
   classLabel,
   car,
+  onDetailsClick,
 }) => {
   return (
     <div
@@ -50,7 +52,12 @@ export const FleetCardContent: FC<FleetCardContentProps> = ({
         </div>
       </div>
       <div className="flex gap-3 flex-col sm:flex-row md:gap-5 lg:flex-col lg:gap-3 xl:flex-row xl:gap-4">
-        <Button variant="secondary" className="sm:flex-1">
+        <Button
+          type="button"
+          variant="secondary"
+          className="sm:flex-1"
+          onClick={onDetailsClick}
+        >
           Voir les détails
         </Button>
         <Button variant="primary" className="sm:flex-1">

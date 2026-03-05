@@ -1,11 +1,12 @@
 "use client";
 
-import React, { FC, memo } from "react";
+import React, { FC, memo, useState, useCallback } from "react";
 import { Fleet } from "@/src/features/FleetSection/data";
 import { useFleetCarousel } from "../../../hooks/useFleetCarousel";
 import { FleetCardImage } from "./components/FleetCardImage";
 import { FleetCardNavigation } from "./components/FleetCardNavigation";
 import { FleetCardContent } from "./components/FleetCardContent";
+import { FleetCarDetailModal } from "./components/FleetCarDetailModal";
 
 interface FleetCardProps {
   cars: Fleet[];
@@ -22,6 +23,22 @@ const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
     handleTouchStart,
     handleTouchEnd,
   } = useFleetCarousel(cars);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalCar, setModalCar] = useState<Fleet | null>(null);
+
+  const handleDetailsClick = useCallback(() => {
+    setModalCar(car);
+    setModalOpen(true);
+  }, [car]);
+
+  const handleModalClose = useCallback(() => {
+    setModalOpen(false);
+  }, []);
+
+  const handleModalCloseComplete = useCallback(() => {
+    setModalCar(null);
+  }, []);
 
   return (
     <article className="flex flex-col py-6 sm:flex-row gap-4 sm:gap-7 sm:items-stretch md:gap-12 lg:flex-col lg:gap-4 lg:px-2">
@@ -40,7 +57,18 @@ const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
           onGoTo={goTo}
         />
       </div>
-      <FleetCardContent classLabel={classLabel} car={car} />
+      <FleetCardContent
+        classLabel={classLabel}
+        car={car}
+        onDetailsClick={handleDetailsClick}
+      />
+      <FleetCarDetailModal
+        car={modalCar}
+        classLabel={classLabel}
+        isOpen={modalOpen}
+        onClose={handleModalClose}
+        onCloseComplete={handleModalCloseComplete}
+      />
     </article>
   );
 };
