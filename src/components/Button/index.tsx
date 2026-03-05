@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { cn } from "@/src/lib/utils";
 import { Arrow } from "../SVGManager/Arrow";
 
-interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   variant: "primary" | "secondary" | "muted" | "tab" | "tabActive";
   className?: string;

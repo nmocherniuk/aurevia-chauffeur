@@ -32,6 +32,7 @@ export const PaymentStep: FC<FormStepProps> = ({
   getValue,
   setValue,
   errors,
+  handleBlur,
 }) => {
   const from = (getValue("from", false) as string) || "";
   const to = (getValue("to", false) as string) || "";
@@ -144,6 +145,7 @@ export const PaymentStep: FC<FormStepProps> = ({
           ]}
           value={(getValue("paymentMethod", false) as string) || ""}
           onChange={(e) => setValue("paymentMethod", e.target.value)}
+          onBlur={handleBlur("paymentMethod")}
           error={errors["paymentMethod"]}
         />
         {/* Placeholder for card fields (number, expiry, CVC, etc.) */}

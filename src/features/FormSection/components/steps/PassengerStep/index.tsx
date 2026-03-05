@@ -8,9 +8,10 @@ export const PassengerStep: FC<FormStepProps> = ({
   setValue,
   errors,
   handleBlur,
+  handleFocus,
 }) => {
   return (
-    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
+    <div className="grid gap-y-2.5 gap-x-4 grid-cols-1 sm:grid-cols-2">
       <InputWithError
         name="firstName"
         label="Nom"
@@ -18,6 +19,7 @@ export const PassengerStep: FC<FormStepProps> = ({
         value={(getValue("firstName", false) as string) || ""}
         onChange={(e) => setValue("firstName", e.target.value)}
         onBlur={handleBlur("firstName")}
+        onFocus={handleFocus("firstName")}
         error={errors["firstName"]}
       />
       <InputWithError
@@ -27,6 +29,7 @@ export const PassengerStep: FC<FormStepProps> = ({
         value={(getValue("lastName", false) as string) || ""}
         onChange={(e) => setValue("lastName", e.target.value)}
         onBlur={handleBlur("lastName")}
+        onFocus={handleFocus("lastName")}
         error={errors["lastName"]}
       />
       <InputWithError
@@ -36,6 +39,7 @@ export const PassengerStep: FC<FormStepProps> = ({
         value={(getValue("email", false) as string) || ""}
         onChange={(e) => setValue("email", e.target.value)}
         onBlur={handleBlur("email")}
+        onFocus={handleFocus("email")}
         error={errors["email"]}
       />
       <InputWithError
@@ -45,6 +49,7 @@ export const PassengerStep: FC<FormStepProps> = ({
         value={(getValue("phone", false) as string) || ""}
         onChange={(e) => setValue("phone", e.target.value)}
         onBlur={handleBlur("phone")}
+        onFocus={handleFocus("phone")}
         error={errors["phone"]}
       />
       <div className="sm:col-span-2">
@@ -55,6 +60,7 @@ export const PassengerStep: FC<FormStepProps> = ({
           value={(getValue("notesForChauffeur", false) as string) || ""}
           onChange={(e) => setValue("notesForChauffeur", e.target.value)}
           onBlur={handleBlur("notesForChauffeur")}
+          onFocus={handleFocus("notesForChauffeur")}
           error={errors["notesForChauffeur"]}
         />
       </div>

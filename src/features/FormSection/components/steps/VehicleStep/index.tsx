@@ -8,14 +8,16 @@ export const VehicleStep: FC<FormStepProps> = ({
   getValue,
   setValue,
   errors,
+  handleBlur,
+  handleFocus,
 }) => {
   const selectedCar = (getValue("car", false) as string) || "";
-  const price = selectedCar ? CAR_PRICES[selectedCar] ?? "—" : "—";
+  const price = selectedCar ? (CAR_PRICES[selectedCar] ?? "—") : "—";
 
   return (
     <div>
       <div className="grid md:grid-cols-[1.2fr_1fr] gap-2">
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-col gap-y-2.5 gap-x-4 ">
           <SelectWithError
             name="carType"
             label="Car type"
@@ -27,6 +29,9 @@ export const VehicleStep: FC<FormStepProps> = ({
             ]}
             value={(getValue("carType", false) as string) || ""}
             onChange={(e) => setValue("carType", e.target.value)}
+            onBlur={handleBlur("carType")}
+            onFocus={handleFocus("carType")}
+            error={errors["carType"]}
           />
           <SelectWithError
             name="car"
@@ -42,6 +47,9 @@ export const VehicleStep: FC<FormStepProps> = ({
             ]}
             value={(getValue("car", false) as string) || ""}
             onChange={(e) => setValue("car", e.target.value)}
+            onBlur={handleBlur("car")}
+            onFocus={handleFocus("car")}
+            error={errors["car"]}
           />
         </div>
 
@@ -59,6 +67,7 @@ export const VehicleStep: FC<FormStepProps> = ({
         label="Bodyguard service (Availability and pricing will be confirmed via email after your request.)"
         checked={!!getValue("bodyguardService", true)}
         onChange={(e) => setValue("bodyguardService", e.target.checked)}
+        onFocus={handleFocus("bodyguardService")}
         error={errors["bodyguardService"]}
         className="pl-1 mt-8"
       />

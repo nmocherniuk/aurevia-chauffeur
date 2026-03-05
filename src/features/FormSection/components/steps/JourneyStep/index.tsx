@@ -10,9 +10,10 @@ export const JourneyStep: FC<FormStepProps> = ({
   setValue,
   errors,
   handleBlur,
+  handleFocus,
 }) => {
   return (
-    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
+    <div className="grid gap-y-2.5 gap-x-4 grid-cols-1 sm:grid-cols-2">
       <div className="sm:col-span-2">
         <SelectWithError
           name="tripType"
@@ -25,6 +26,9 @@ export const JourneyStep: FC<FormStepProps> = ({
           ]}
           value={(getValue("tripType", false) as string) || ""}
           onChange={(e) => setValue("tripType", e.target.value)}
+          onBlur={handleBlur("tripType")}
+          error={errors["tripType"]}
+          onFocus={handleFocus("tripType")}
         />
       </div>
       <InputWithError
@@ -34,6 +38,7 @@ export const JourneyStep: FC<FormStepProps> = ({
         value={(getValue("from", false) as string) || ""}
         onChange={(e) => setValue("from", e.target.value)}
         onBlur={handleBlur("from")}
+        onFocus={handleFocus("from")}
         error={errors["from"]}
       />
       <InputWithError
@@ -43,6 +48,7 @@ export const JourneyStep: FC<FormStepProps> = ({
         value={(getValue("to", false) as string) || ""}
         onChange={(e) => setValue("to", e.target.value)}
         onBlur={handleBlur("to")}
+        onFocus={handleFocus("to")}
         error={errors["to"]}
       />
       <DatePickerWithError
@@ -59,6 +65,7 @@ export const JourneyStep: FC<FormStepProps> = ({
         }}
         onBlur={handleBlur("date")}
         error={errors["date"]}
+        onFocus={handleFocus("date")}
       />
       <TimePickerWithError
         name="time"
@@ -74,6 +81,7 @@ export const JourneyStep: FC<FormStepProps> = ({
         }}
         onBlur={handleBlur("time")}
         error={errors["time"]}
+        onFocus={handleFocus("time")}
       />
     </div>
   );

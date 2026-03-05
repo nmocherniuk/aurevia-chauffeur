@@ -37,9 +37,10 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
       defaultValue,
       onChange,
       onBlur,
+      onFocus,
       ...props
     },
-    ref
+    ref,
   ) => {
     const autoId = useId();
     const selectId = id ?? (name ? `field-${name}` : autoId);
@@ -47,7 +48,7 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string>(
-      value?.toString() || defaultValue?.toString() || ""
+      value?.toString() || defaultValue?.toString() || "",
     );
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
@@ -64,11 +65,11 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
       ? selectedOption.detail
         ? `${selectedOption.label} · ${selectedOption.detail}`
         : selectedOption.label
-      : placeholder ?? "";
+      : (placeholder ?? "");
 
     const enabledOptions = useMemo(
       () => options.filter((opt) => !opt.disabled),
-      [options]
+      [options],
     );
 
     const closeDropdown = useCallback(() => {
@@ -91,10 +92,12 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
             currentTarget: { name: name ?? "", value: optionValue },
           } as React.ChangeEvent<HTMLSelectElement>;
           onChange?.(syntheticEvent);
-          hiddenSelectRef.current.dispatchEvent(new Event("change", { bubbles: true }));
+          hiddenSelectRef.current.dispatchEvent(
+            new Event("change", { bubbles: true }),
+          );
         }
       },
-      [name, onChange]
+      [name, onChange],
     );
 
     const handleKeyDown = useSelectKeyboard({
@@ -112,7 +115,9 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
       if (disabled) return;
       setIsOpen((prev) => {
         if (!prev) {
-          const idx = enabledOptions.findIndex((opt) => opt.value === selectedValue);
+          const idx = enabledOptions.findIndex(
+            (opt) => opt.value === selectedValue,
+          );
           setFocusedIndex(idx >= 0 ? idx : 0);
         }
         return !prev;
@@ -121,7 +126,10 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
 
     const handleTriggerBlur = useCallback(
       (e: React.FocusEvent<HTMLButtonElement>) => {
-        if (!containerRef.current?.contains(e.relatedTarget as Node) && onBlur) {
+        if (
+          !containerRef.current?.contains(e.relatedTarget as Node) &&
+          onBlur
+        ) {
           const syntheticEvent = {
             target: { name: name ?? "", value: selectedValue },
             currentTarget: { name: name ?? "", value: selectedValue },
@@ -129,11 +137,12 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
           onBlur(syntheticEvent);
         }
       },
-      [name, onBlur, selectedValue]
+      [name, onBlur, selectedValue],
     );
 
     const describedBy =
-      [props["aria-describedby"], hintId].filter(Boolean).join(" ") || undefined;
+      [props["aria-describedby"], hintId].filter(Boolean).join(" ") ||
+      undefined;
 
     return (
       <div
@@ -141,14 +150,14 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
         className={cn(
           "relative flex flex-col gap-1",
           disabled && "opacity-90",
-          className
+          className,
         )}
       >
         <label
           className={cn(
             "pl-1 text-sm text-text-primary transition-colors",
             "focus-within:text-primary",
-            isOpen && "text-primary"
+            isOpen && "text-primary",
           )}
           htmlFor={selectId}
         >
@@ -161,7 +170,10 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
             ref={(node) => {
               hiddenSelectRef.current = node;
               if (typeof ref === "function") ref(node);
-              else if (ref) (ref as React.MutableRefObject<HTMLSelectElement | null>).current = node;
+              else if (ref)
+                (
+                  ref as React.MutableRefObject<HTMLSelectElement | null>
+                ).current = node;
             }}
             id={selectId}
             name={name}
@@ -174,7 +186,9 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
             {...props}
           >
             {placeholder ? (
-              <option value="" disabled>{placeholder}</option>
+              <option value="" disabled>
+                {placeholder}
+              </option>
             ) : null}
             {options.map((opt) => (
               <option key={opt.value} value={opt.value} disabled={opt.disabled}>
@@ -195,6 +209,7 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
             onToggle={handleToggle}
             onKeyDown={handleKeyDown}
             onBlur={handleTriggerBlur}
+            onFocus={onFocus ? () => (onFocus as () => void)() : undefined}
           />
 
           <SelectDropdown
@@ -211,16 +226,18 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
         </div>
 
         {hint ? (
-          <p id={hintId} className="pl-1 text-xs leading-normal text-text-primary">
+          <p
+            id={hintId}
+            className="pl-1 text-xs leading-normal text-text-primary"
+          >
             {hint}
           </p>
         ) : null}
       </div>
     );
-  }
+  },
 );
 
 CustomSelect.displayName = "CustomSelect";
 
 export default memo(CustomSelect);
-

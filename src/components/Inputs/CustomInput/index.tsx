@@ -84,7 +84,7 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
             id={inputId}
             name={name}
             className={cn(
-              "min-h-11 w-full flex-1 border-none bg-transparent py-3 px-4 text-sm text-text-secondary outline-none placeholder:text-grey leading-0"
+              "h-[46px] max-h-[46px] w-full flex-1 border-none bg-transparent py-3 px-4 text-sm text-text-secondary outline-none placeholder:text-grey leading-0"
             )}
             disabled={disabled}
             aria-describedby={describedBy}

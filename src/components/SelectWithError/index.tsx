@@ -30,18 +30,17 @@ const SelectWithError = forwardRef<HTMLSelectElement, SelectWithErrorProps>(
           {...props}
         />
 
-        {error ? (
-          <span
-            id={errorId}
-            role="alert"
-            className="min-h-[17px] pl-1 text-xs leading-normal text-text-error"
-          >
-            {error}
-          </span>
-        ) : null}
+        <div
+          id={errorId}
+          role="alert"
+          className="h-[14px] pl-1 text-xs leading-normal text-text-error"
+          aria-live="polite"
+        >
+          {error ?? null}
+        </div>
       </div>
     );
-  }
+  },
 );
 
 SelectWithError.displayName = "SelectWithError";

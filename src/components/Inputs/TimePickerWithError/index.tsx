@@ -13,6 +13,7 @@ export type TimePickerWithErrorProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   error?: string | null;
   required?: boolean;
   id?: string;
@@ -28,6 +29,7 @@ const TimePickerWithError: React.FC<TimePickerWithErrorProps> = ({
   value,
   onChange,
   onBlur,
+  onFocus,
   error,
   required,
   id,
@@ -69,7 +71,7 @@ const TimePickerWithError: React.FC<TimePickerWithErrorProps> = ({
           htmlFor={inputId}
           className={cn(
             "flex items-center gap-1 pl-1 text-sm text-text-primary transition-colors",
-            isOpen && "text-primary"
+            isOpen && "text-primary",
           )}
         >
           {label}
@@ -84,7 +86,10 @@ const TimePickerWithError: React.FC<TimePickerWithErrorProps> = ({
             withDropdown
             hoursInputProps={{ id: inputId }}
             popoverProps={{
-              onOpen: () => setIsOpen(true),
+              onOpen: () => {
+                setIsOpen(true);
+                onFocus?.({ target: { name } } as React.FocusEvent<HTMLInputElement>);
+              },
               onClose: () => setIsOpen(false),
             }}
             value={value || undefined}
@@ -98,7 +103,7 @@ const TimePickerWithError: React.FC<TimePickerWithErrorProps> = ({
             clearable={false}
           />
         ) : (
-          <div className="flex min-h-[50px] w-full items-center rounded-md border border-grey bg-transparent px-4 py-3 pr-10">
+          <div className="flex h-[46px] w-full items-center rounded-md border border-grey bg-transparent px-4 py-3 pr-10">
             <input
               id={inputId}
               name={name}
@@ -123,15 +128,14 @@ const TimePickerWithError: React.FC<TimePickerWithErrorProps> = ({
         </span>
       </div>
 
-      {error ? (
-        <span
-          id={errorId}
-          role="alert"
-          className="min-h-[17px] pl-1 text-xs leading-normal text-text-error"
-        >
-          {error}
-        </span>
-      ) : null}
+      <div
+        id={errorId}
+        role="alert"
+        className="h-[14px] pl-1 text-xs leading-normal text-text-error"
+        aria-live="polite"
+      >
+        {error ?? null}
+      </div>
     </div>
   );
 };

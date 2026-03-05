@@ -15,7 +15,7 @@ export type CheckboxProps = Omit<
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
     { label, id, hint, error, className, disabled, required, name, ...props },
-    ref
+    ref,
   ) => {
     const autoId = useId();
     const inputId = id ?? (name ? `field-${name}` : autoId);
@@ -48,7 +48,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             "peer-focus-visible:[&_.box]:border-primary",
             "peer-checked:[&_.box]:border-primary peer-checked:[&_.box]:bg-primary peer-checked:[&_.box]:after:opacity-100 peer-checked:[&_.box]:after:delay-100",
             "peer-aria-invalid:[&_.box]:border-text-error",
-            "peer-aria-invalid:peer-checked:[&_.box]:border-text-error peer-aria-invalid:peer-checked:[&_.box]:bg-text-error"
+            "peer-aria-invalid:peer-checked:[&_.box]:border-text-error peer-aria-invalid:peer-checked:[&_.box]:bg-text-error",
           )}
         >
           <span
@@ -56,7 +56,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             className={cn(
               "box relative flex h-[19px] w-[19px] min-h-[19px] min-w-[19px] shrink-0 rounded-sm border-[1.6px] border-grey bg-transparent transition-colors duration-150 ease-out",
               "grid place-items-center",
-              "after:absolute after:left-1/2 after:top-1/2 after:h-[5px] after:w-2.5 after:border-b-2 after:border-l-2 after:border-white after:opacity-0 after:content-[''] after:transform-[translate(-51%,-75%)_rotate(-45deg)] after:transition-opacity after:duration-150 after:ease-out"
+              "after:absolute after:left-1/2 after:top-1/2 after:h-[5px] after:w-2.5 after:border-b-2 after:border-l-2 after:border-white after:opacity-0 after:content-[''] after:transform-[translate(-51%,-75%)_rotate(-45deg)] after:transition-opacity after:duration-150 after:ease-out",
             )}
           />
           <span className="min-w-0 flex-1 text-sm leading-normal text-text-primary [&_a]:text-primary [&_a]:underline">
@@ -66,23 +66,25 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         </label>
 
         {!error && hint ? (
-          <p id={hintId} className="pl-[34px] text-xs leading-normal text-text-primary">
+          <p
+            id={hintId}
+            className="pl-[34px] text-xs leading-normal text-text-primary"
+          >
             {hint}
           </p>
         ) : null}
 
-        {error ? (
-          <span
-            id={errorId}
-            role="alert"
-            className="min-h-[17px] pl-[34px] text-xs leading-normal text-text-error"
-          >
-            {error}
-          </span>
-        ) : null}
+        <div
+          id={errorId}
+          role="alert"
+          className="h-[14px] pl-[34px] text-xs leading-normal text-text-error"
+          aria-live="polite"
+        >
+          {error ?? null}
+        </div>
       </div>
     );
-  }
+  },
 );
 
 Checkbox.displayName = "Checkbox";

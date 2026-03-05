@@ -16,6 +16,7 @@ type SelectTriggerProps = {
   onToggle: () => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
   onBlur: (e: React.FocusEvent<HTMLButtonElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLButtonElement>) => void;
 };
 
 function SelectTrigger({
@@ -30,21 +31,23 @@ function SelectTrigger({
   onToggle,
   onKeyDown,
   onBlur,
+  onFocus,
 }: SelectTriggerProps) {
   return (
     <button
       type="button"
       className={cn(
-        "flex min-h-11 w-full cursor-pointer items-center text-text-secondary justify-between gap-2 rounded-md border border-grey bg-transparent py-3 px-4 pr-10 text-left font-light text-sm outline-none transition-colors",
+        "flex h-[46px] max-h-[46px] w-full cursor-pointer items-center text-text-secondary justify-between gap-2 rounded-md border border-grey bg-transparent py-3 px-4 pr-10 text-left font-light text-sm outline-none transition-colors",
         "focus-visible:border-primary",
         "disabled:cursor-not-allowed disabled:bg-background disabled:opacity-60",
         isOpen && "border-primary",
         error && "border-text-error",
-        !hasSelection && placeholder && "text-grey"
+        !hasSelection && placeholder && "text-grey",
       )}
       onClick={onToggle}
       onKeyDown={onKeyDown}
       onBlur={onBlur}
+      onFocus={onFocus}
       disabled={disabled}
       aria-haspopup="listbox"
       aria-expanded={isOpen}
