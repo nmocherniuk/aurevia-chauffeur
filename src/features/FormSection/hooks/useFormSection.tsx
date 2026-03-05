@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useMemo, useEffect } from "react";
-import { getStepsFromIndex } from "@/src/components/StepIndicator";
+import { getStepsFromIndex } from "@/src/components/StepIndicator/utils/getStepsFromIndex";
 import { FORM_STEPS } from "../data";
 import { STEP_LABELS, LAST_STEP_INDEX } from "../constants";
 import { buildSummaryItems } from "../utils/buildSummaryItems";

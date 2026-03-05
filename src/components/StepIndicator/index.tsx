@@ -56,4 +56,3 @@ export type {
   StepStatus,
   StepIconProps,
 } from "./types";
-export { getStepsFromIndex } from "./types";

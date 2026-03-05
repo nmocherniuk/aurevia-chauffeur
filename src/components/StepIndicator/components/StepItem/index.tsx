@@ -31,12 +31,6 @@ export function StepItem({
     if (isReachable) onStepClick?.(index);
   };
 
-  console.log("isReachable", isReachable);
-  console.log("index", index);
-  console.log("maxReachableStepIndex", maxReachableStepIndex);
-  console.log("isLastReachableStep", isLastReachableStep);
-  console.log("step.status", step.status);
-
   return (
     <button
       type="button"
