@@ -5,8 +5,15 @@ export const Clock: FC<
     width?: number;
     height?: number;
     fill?: string;
+    strokeWidth?: string;
   }
-> = ({ width = 36, height = 36, fill = "#E9E7E2", ...props }) => {
+> = ({
+  width = 36,
+  height = 36,
+  fill = "#E9E7E2",
+  strokeWidth = "1.8",
+  ...props
+}) => {
   return (
     <svg
       width={width}
@@ -19,14 +26,14 @@ export const Clock: FC<
       <path
         d="M18 9V18H27"
         stroke={fill}
-        strokeWidth="1.5"
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M18 33C26.2845 33 33 26.2845 33 18C33 9.7155 26.2845 3 18 3C9.7155 3 3 9.7155 3 18C3 26.2845 9.7155 33 18 33Z"
         stroke={fill}
-        strokeWidth="1.5"
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
       />

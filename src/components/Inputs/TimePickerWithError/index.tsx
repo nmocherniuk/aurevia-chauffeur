@@ -88,7 +88,9 @@ const TimePickerWithError: React.FC<TimePickerWithErrorProps> = ({
             popoverProps={{
               onOpen: () => {
                 setIsOpen(true);
-                onFocus?.({ target: { name } } as React.FocusEvent<HTMLInputElement>);
+                onFocus?.({
+                  target: { name },
+                } as React.FocusEvent<HTMLInputElement>);
               },
               onClose: () => setIsOpen(false),
             }}
@@ -108,7 +110,7 @@ const TimePickerWithError: React.FC<TimePickerWithErrorProps> = ({
               id={inputId}
               name={name}
               type="text"
-              placeholder={placeholder}
+              placeholder="  -- : --"
               value={value}
               readOnly
               className="w-full border-none bg-transparent text-sm text-text-secondary outline-none placeholder:text-grey"
@@ -121,9 +123,10 @@ const TimePickerWithError: React.FC<TimePickerWithErrorProps> = ({
           aria-hidden
         >
           <Clock
-            width={15}
-            height={16}
+            width={17}
+            height={17}
             fill={isOpen ? "var(--primary)" : "var(--grey)"}
+            strokeWidth="2.5"
           />
         </span>
       </div>

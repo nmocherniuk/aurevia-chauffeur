@@ -10,7 +10,7 @@ const PopularRoutesSection: FC = () => {
   const routes = ROUTES[activeTab];
 
   return (
-    <section id="popular-routes" className="mb-28 w-full">
+    <section id="popular-routes" className="w-full">
       <h2 className="font-benzin text-white text-center text-2xl mb-10 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-11">
         Les itinéraires les plus populaires
       </h2>

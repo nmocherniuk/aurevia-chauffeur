@@ -126,8 +126,8 @@ const DatePickerWithError: React.FC<DatePickerWithErrorProps> = ({
           aria-hidden
         >
           <Calendar
-            width={15}
-            height={16}
+            width={17}
+            height={17}
             fill={isOpen ? "var(--primary)" : "var(--grey)"}
           />
         </span>
