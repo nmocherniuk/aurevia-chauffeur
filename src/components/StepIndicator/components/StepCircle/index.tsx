@@ -35,7 +35,7 @@ export function StepCircle({
         "flex shrink-0 items-center justify-center rounded-full border-[1.5px] bg-transparent transition-colors",
         isCompleted && "border-primary",
         isCurrent && "border-primary",
-        isNotStarted && "border-(--grey)",
+        isNotStarted && "border-(--grey) opacity-60",
         isLastReachableStep && "border-(--grey-light)",
       )}
       style={{ width: CIRCLE_SIZE, height: CIRCLE_SIZE }}

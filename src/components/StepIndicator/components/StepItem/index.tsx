@@ -58,7 +58,7 @@ export function StepItem({
           "absolute left-1/2 top-full -translate-x-1/2 pt-1.5 text-center text-xs font-light whitespace-nowrap transition-colors",
           step.status === "completed" && "text-primary",
           step.status === "current" && "text-primary",
-          step.status === "notStarted" && "text-(--grey)",
+          step.status === "notStarted" && "text-(--grey) opacity-60",
           isLastReachableStep && "text-(--grey-light)",
         )}
       >
