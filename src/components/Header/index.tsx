@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import MainContainer from '../MainContainer'
 import Image from 'next/image'
 import logo from '@/public/logo.svg'
@@ -12,9 +13,19 @@ import { HeaderActions } from './components/HeaderActions'
 import { MobileMenu } from './components/MobileMenu'
 import { useActiveSectionId } from '../../hooks/useActiveSectionId'
 
+const MAIN_SECTION_ID = 'accueil'
+
 const Header: React.FC = () => {
+    const pathname = usePathname()
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const [activeSectionId, setActiveSectionId] = useActiveSectionId(NAV_LINKS)
+
+    const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (pathname === '/') {
+            e.preventDefault()
+            document.getElementById(MAIN_SECTION_ID)?.scrollIntoView({ behavior: 'smooth' })
+        }
+    }
 
     useEffect(() => {
         if (isOpen) document.body.style.overflow = 'hidden'
@@ -36,7 +47,11 @@ const Header: React.FC = () => {
                     aria-hidden={!isOpen}
                 />
                 <MainContainer className='relative z-10 flex h-full min-h-0 flex-1 items-center justify-between gap-6'>
-                    <Link href='/' className='relative h-full aspect-square shrink-0'>
+                    <Link
+                        href="/#accueil"
+                        className='relative h-full aspect-square shrink-0'
+                        onClick={handleLogoClick}
+                    >
                         <Image
                             src={logo}
                             alt="Aurevia Chauffeur"

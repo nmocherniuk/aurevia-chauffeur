@@ -14,12 +14,12 @@ const WhyChooseUsSection: FC = () => {
           return (
             <CardOutline
               key={key}
-              className="flex flex-col items-center justify-center px-5 py-6 gap-4 sm:flex-row sm:gap-6 sm:py-5"
+              className="flex flex-col items-center justify-center px-5 py-6 gap-4 sm:flex-row sm:gap-5 sm:py-5"
             >
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center sm:h-10 sm:w-10">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center sm:h-8 sm:w-8">
                 <Icon className="h-full w-full" />
               </div>
-              <div className="flex flex-col items-center justify-center gap-3 sm:items-start sm:gap-2">
+              <div className="flex flex-col items-center justify-center gap-2 sm:items-start sm:gap-1">
                 <h3 className="text-text-secondary text-xl font-onest text-center sm:text-left">
                   {value.title}
                 </h3>

@@ -19,7 +19,6 @@ export default function Home() {
         <div className="flex flex-col gap-12">
           <ServicesSection />
           <CTABlock
-            id="reserver"
             title="Réservez Votre Chauffeur en Toute Simplicité"
             description="Organisez votre transfert en quelques clics et profitez d’un voyage élégant, ponctuel et discret."
             buttonText="Book Now"

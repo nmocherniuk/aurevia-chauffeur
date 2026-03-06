@@ -12,17 +12,19 @@ const ServiceCard: FC<ServiceProps> = ({ service, className }) => {
   return (
     <article
       className={cn(
-        "relative flex h-[258px] flex-col justify-end overflow-hidden rounded-lg",
+        "group relative flex h-[258px] flex-col justify-end overflow-hidden rounded-lg",
         className,
       )}
     >
-      <Image
-        src={service.image}
-        alt={service.alt}
-        fill
-        className="object-cover object-center"
-        sizes="(max-width: 768px) 100vw, 33vw"
-      />
+      <div className="absolute inset-0 transition-transform duration-600 ease-out group-hover:scale-105">
+        <Image
+          src={service.image}
+          alt={service.alt}
+          fill
+          className="object-cover object-center"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+      </div>
       <div
         className="absolute inset-0 bg-linear-to-t from-[#06070A] to-transparent"
         aria-hidden

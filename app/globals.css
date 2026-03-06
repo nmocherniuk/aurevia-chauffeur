@@ -170,3 +170,20 @@ h2 {
 .mantine-Popover-dropdown {
   animation: slideDown 0.2s ease-out;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100vh;
+  background: var(--grey);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

@@ -29,7 +29,7 @@ const FormSection: FC = () => {
 
   return (
     <section
-      id="form"
+      id="reserver"
       className="w-full sm:px-0 md:grid lg:grid-cols-[2fr_3fr] lg:gap-x-13 lg:items-start"
     >
       <div className="hidden sm:block relative w-full overflow-hidden rounded-xl h-[260px] sm:h-[300px] lg:h-[800px] xl:h-[776px] lg:top-6 mb-9 lg:mb-0">

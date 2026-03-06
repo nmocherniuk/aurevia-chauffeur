@@ -23,9 +23,9 @@ export const Button: FC<ButtonProps> = ({
       "border border-primary text-text-secondary bg-transparent rounded-lg py-2 h-[42px] px-5 cursor-pointer",
     muted:
       "border border-grey text-grey bg-transparent rounded-md py-2 h-[42px] px-5 cursor-pointer",
-    tab: "border border-grey text-grey rounded-md px-5 h-[42px] cursor-pointer",
+    tab: "border border-grey text-grey rounded-md px-5 h-[42px] cursor-pointer transition-colors duration-300",
     tabActive:
-      "border border-primary bg-primary text-white rounded-md px-5 h-[42px] cursor-pointer",
+      "border border-primary bg-primary text-white rounded-md px-5 h-[42px] cursor-pointer transition-colors duration-300",
   };
 
   return (
