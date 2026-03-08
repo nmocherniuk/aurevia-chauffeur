@@ -1,12 +1,25 @@
 export interface Fleet {
   id: string;
+  /** Головне зображення (використовується в картці та fallback для каруселі). */
   image: string;
+  /** Додаткові фото для каруселі в модалці. Якщо не задано, використовується лише image. */
+  images?: string[];
   alt: string;
   carClass: string;
   carTitle: string;
   description: string;
   passengers: number;
   baggage: number;
+  /** Тип авто (наприклад "Luxury Sedan"). */
+  vehicleType?: string;
+  /** Рік випуску. */
+  modelYear?: string | number;
+  /** Тип коробки (наприклад "Automatic"). */
+  transmission?: string;
+  /** Оздоблення салону (наприклад "Leather"). */
+  interior?: string;
+  /** Список опцій/зручностей для тегів у модалці. */
+  amenities?: string[];
 }
 
 export const fleets: Record<string, Fleet[]> = {
@@ -14,13 +27,19 @@ export const fleets: Record<string, Fleet[]> = {
     {
       id: "fleet-comfort-1",
       image: "/images/dummy-car.png",
+      images: ["/images/dummy-car.png", "/images/dummy-car.png", "/images/dummy-car.png"],
       alt: "Alt 1",
       carClass: "Comfort",
-      carTitle: "Mercedes-Benz E-Class",
+      carTitle: "Mercedes Class S580",
       description:
         "Élégance et confort pour vos trajets privés ou professionnels en toute sérénité.",
-      passengers: 4,
-      baggage: 2,
+      passengers: 3,
+      baggage: 3,
+      vehicleType: "Luxury Sedan",
+      modelYear: "2023",
+      transmission: "Automatic",
+      interior: "Leather",
+      amenities: ["Climate control", "Wi-Fi onboard", "Phone chargers", "bottled water"],
     },
     {
       id: "fleet-comfort-2",

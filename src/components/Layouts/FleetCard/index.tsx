@@ -4,7 +4,8 @@ import React, { FC, memo, useState, useCallback } from "react";
 import { Fleet } from "@/src/features/FleetSection/data";
 import { useFleetCarousel } from "../../../hooks/useFleetCarousel";
 import { FleetCardImage } from "./components/FleetCardImage";
-import { FleetCardNavigation } from "./components/FleetCardNavigation";
+import { CarouselArrows } from "@/src/components/CarouselArrows";
+import { CarouselDots } from "@/src/components/CarouselDots";
 import { FleetCardContent } from "./components/FleetCardContent";
 import { FleetCarDetailModal } from "./components/FleetCarDetailModal";
 
@@ -49,13 +50,21 @@ const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         />
-        <FleetCardNavigation
-          currentIndex={currentIndex}
-          total={cars.length}
+        <CarouselArrows
           onPrev={goPrev}
           onNext={goNext}
-          onGoTo={goTo}
-        />
+          prevDisabled={currentIndex === 0}
+          nextDisabled={currentIndex === cars.length - 1}
+          prevLabel="Previous car"
+          nextLabel="Next car"
+        >
+          <CarouselDots
+            total={cars.length}
+            currentIndex={currentIndex}
+            onGoTo={goTo}
+            itemLabel={(i) => `Car ${i + 1}`}
+          />
+        </CarouselArrows>
       </div>
       <FleetCardContent
         classLabel={classLabel}

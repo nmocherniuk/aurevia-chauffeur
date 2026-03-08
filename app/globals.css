@@ -187,3 +187,11 @@ h2 {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
+
+.scrollbar-thin-modal {
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+.scrollbar-thin-modal::-webkit-scrollbar {
+  width: 4px;
+}
