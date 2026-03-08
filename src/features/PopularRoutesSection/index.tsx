@@ -29,7 +29,7 @@ const PopularRoutesSection: FC = () => {
           </Button>
         ))}
       </nav>
-      <div className="flex flex-col gap-5 lg:grid lg:grid-cols-2  xl:min-h-[242px]">
+      <div className="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:items-start lg:content-start xl:min-h-[244px] xl:justify-start">
         {routes.map((route, index) => (
           <RouteCard key={route.id} route={route} index={index} />
         ))}
