@@ -12,3 +12,5 @@ export const CAR_PRICES: Record<string, string> = {
   "mercedes-s580": "123",
   "bmw-7": "98",
 };
+
+export const SERVICE_TZ = "Europe/Paris";

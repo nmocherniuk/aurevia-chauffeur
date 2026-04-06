@@ -21,7 +21,9 @@ const dateYupSchema = yup
     },
   );
 
-const timeYupSchema = yup.string().required("L’heure de rendez-vous est requise");
+const timeYupSchema = yup
+  .string()
+  .required("L’heure de rendez-vous est requise");
 
 const journeySchema: StepSchema = yup.object({
   tripType: yup.string().required("Trip type is required"),
@@ -54,19 +56,18 @@ const passengerSchema: StepSchema = yup.object({
       (value) => (value ? EMAIL_REGEX.test(value) : false),
     ),
 
-  phone: yup
-    .string()
-    .required("Un numéro de téléphone est requis")
-    .test(
-      "fr-phone",
-      "Veuillez entrer un numéro de téléphone français valide",
-      (value) => {
-        if (!value) return false;
-        const phoneWithPrefix = `+33 ${value}`.trim();
-        return PHONE_REGEX.test(phoneWithPrefix);
-      },
-    ),
+  phone: yup.string().required("Un numéro de téléphone est requis"),
+  // TODO: Uncomment this when we have a valid phone number regex
 
+  // .test(
+  //   "fr-phone",
+  //   "Veuillez entrer un numéro de téléphone français valide",
+  //   (value) => {
+  //     if (!value) return false;
+  //     const phoneWithPrefix = `+33 ${value}`.trim();
+  //     return PHONE_REGEX.test(phoneWithPrefix);
+  //   },
+  // ),
   notesForChauffeur: yup.string().optional(),
 });
 

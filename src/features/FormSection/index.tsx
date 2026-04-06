@@ -14,6 +14,9 @@ import { getInitialFormValues } from "./utils/getInitialFormValues";
 import { FORM_STEPS } from "./data";
 import type { FormValues } from "./types";
 import type { FormStepProps } from "./components/steps/types";
+import { BookingStatus, createBooking, PaymentStatus } from "@/src/api/booking";
+import dayjs from "@/src/lib/dayjs";
+import { SERVICE_TZ } from "./constants";
 
 const FormSection: FC = () => {
   const {
@@ -62,8 +65,41 @@ const FormSection: FC = () => {
           validationSchema={STEP_SCHEMAS[activeStepIndex]}
           validateOnBlur={false}
           validateOnChange={false}
-          onSubmit={(values, { resetForm }) => {
-            if (activeStepIndex === lastStepIndex) return;
+          onSubmit={async (values, { resetForm }) => {
+            console.log("values", values);
+
+            const bookingAt = dayjs
+              .tz(`${values.date} ${values.time}`, SERVICE_TZ)
+              .toISOString();
+
+            if (activeStepIndex === lastStepIndex) {
+              const body = {
+                clientName: values.firstName + " " + values.lastName, // TODO: змінити на одне поле
+                clientEmail: values.email,
+                clientPhone: values.phone,
+
+                tripType: values.tripType,
+                notesForDriver: values.notesForChauffeur,
+                bookingAt: bookingAt,
+
+                vehicleId: "8a71ec1b-e570-4494-b20e-1161d017113f",
+                vehicleClass: values.carType,
+
+                to: values.to,
+                from: values.from,
+                durationMin: 100,
+                status: "assigned" as BookingStatus,
+                paymentStatus: "paid" as PaymentStatus,
+              };
+
+              console.log("values", values);
+              console.log("body", body);
+
+              const booking = await createBooking(body);
+              console.log("booking", booking);
+
+              return;
+            }
             goNext();
 
             resetForm({
