@@ -82,7 +82,7 @@ const FormSection: FC = () => {
                 notesForDriver: values.notesForChauffeur,
                 bookingAt: bookingAt,
 
-                vehicleId: "8a71ec1b-e570-4494-b20e-1161d017113f",
+                vehicleId: "b6497133-ea5b-46e1-aa08-7a43afb77901",
                 vehicleClass: values.carType,
 
                 to: values.to,
