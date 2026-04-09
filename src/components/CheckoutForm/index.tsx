@@ -90,6 +90,8 @@ export const CheckoutForm: FC<CheckoutFormProps> = ({ clientSecret, totalPrice }
           theme: "night",
           variables: {
             colorPrimary: "#C4956A",
+            colorBackground: "#06070a",
+            colorText: "#e9e7e2",
           },
         },
       }}
