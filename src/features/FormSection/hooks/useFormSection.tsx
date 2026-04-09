@@ -7,13 +7,11 @@ import { STEP_LABELS, LAST_STEP_INDEX } from "../constants";
 import { JourneyStep } from "../components/steps/JourneyStep";
 import { VehicleStep } from "../components/steps/VehicleStep";
 import { PassengerStep } from "../components/steps/PassengerStep";
-import { PaymentStep } from "../components/steps/PaymentStep";
 
 const STEP_COMPONENTS = [
   JourneyStep,
   VehicleStep,
   PassengerStep,
-  PaymentStep,
 ] as const;
 
 export function useFormSection() {

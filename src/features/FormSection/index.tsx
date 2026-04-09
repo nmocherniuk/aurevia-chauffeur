@@ -14,9 +14,7 @@ import { getInitialFormValues } from "./utils/getInitialFormValues";
 import { FORM_STEPS } from "./data";
 import type { FormValues } from "./types";
 import type { FormStepProps } from "./components/steps/types";
-import { BookingStatus, createBooking, PaymentStatus } from "@/src/api/booking";
-import dayjs from "@/src/lib/dayjs";
-import { SERVICE_TZ } from "./constants";
+import { PaymentStep } from "./components/steps/PaymentStep";
 
 const FormSection: FC = () => {
   const {
@@ -29,6 +27,8 @@ const FormSection: FC = () => {
     ActiveStep,
     lastStepIndex,
   } = useFormSection();
+
+  const isPaymentStep = activeStepIndex === lastStepIndex;
 
   return (
     <section
@@ -66,45 +66,10 @@ const FormSection: FC = () => {
           validateOnBlur={false}
           validateOnChange={false}
           onSubmit={async (values, { resetForm }) => {
-            console.log("values", values);
+            if (isPaymentStep) return;
 
-            const bookingAt = dayjs
-              .tz(`${values.date} ${values.time}`, SERVICE_TZ)
-              .toISOString();
-
-            if (activeStepIndex === lastStepIndex) {
-              const body = {
-                clientName: values.firstName + " " + values.lastName, // TODO: змінити на одне поле
-                clientEmail: values.email,
-                clientPhone: values.phone,
-
-                tripType: values.tripType,
-                notesForDriver: values.notesForChauffeur,
-                bookingAt: bookingAt,
-
-                vehicleId: "b6497133-ea5b-46e1-aa08-7a43afb77901",
-                vehicleClass: values.carType,
-
-                to: values.to,
-                from: values.from,
-                durationMin: 100,
-                status: "assigned" as BookingStatus,
-                paymentStatus: "paid" as PaymentStatus,
-              };
-
-              console.log("values", values);
-              console.log("body", body);
-
-              const booking = await createBooking(body);
-              console.log("booking", booking);
-
-              return;
-            }
             goNext();
-
-            resetForm({
-              values,
-            });
+            resetForm({ values });
           }}
         >
           {({
@@ -161,8 +126,7 @@ const FormSection: FC = () => {
 
             return (
               <>
-                {summaryItems.length > 0 &&
-                activeStepIndex !== lastStepIndex ? (
+                {summaryItems.length > 0 && !isPaymentStep ? (
                   <SummaryList
                     items={summaryItems}
                     className="py-1 mx-auto justify-center lg:justify-start"
@@ -170,30 +134,36 @@ const FormSection: FC = () => {
                   />
                 ) : null}
 
-                <Form className="mt-6 flex flex-col gap-4">
-                  {ActiveStep ? <ActiveStep {...stepProps} /> : null}
+                {isPaymentStep ? (
+                  <div className="mt-6">
+                    <PaymentStep {...stepProps} onBack={goPrev} />
+                  </div>
+                ) : (
+                  <Form className="mt-6 flex flex-col gap-4">
+                    {ActiveStep ? <ActiveStep {...stepProps} /> : null}
 
-                  <div className="flex flex-col gap-3 pt-6 sm:flex-row sm:justify-end">
-                    {activeStepIndex > 0 && (
+                    <div className="flex flex-col gap-3 pt-6 sm:flex-row sm:justify-end">
+                      {activeStepIndex > 0 && (
+                        <Button
+                          type="button"
+                          variant="secondary"
+                          onClick={goPrev}
+                          className="sm:w-[220px]"
+                        >
+                          Précédent
+                        </Button>
+                      )}
                       <Button
-                        type="button"
-                        variant="secondary"
-                        onClick={goPrev}
+                        type="submit"
+                        variant="primary"
+                        withArrow={false}
                         className="sm:w-[220px]"
                       >
-                        Précédent
+                        Continue
                       </Button>
-                    )}
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      withArrow={false}
-                      className="sm:w-[220px]"
-                    >
-                      Continue
-                    </Button>
-                  </div>
-                </Form>
+                    </div>
+                  </Form>
+                )}
               </>
             );
           }}

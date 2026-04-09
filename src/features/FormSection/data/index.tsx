@@ -14,42 +14,42 @@ export interface FormStep {
 
 export type FormFieldConfig =
   | {
-      type: "select";
-      name: string;
-      label: string;
-      placeholder: string;
-      options: { label: string; value: string; detail?: string }[];
-    }
+    type: "select";
+    name: string;
+    label: string;
+    placeholder: string;
+    options: { label: string; value: string; detail?: string }[];
+  }
   | {
-      type: "input";
-      name: string;
-      label: string;
-      placeholder: string;
-    }
+    type: "input";
+    name: string;
+    label: string;
+    placeholder: string;
+  }
   | {
-      type: "textarea";
-      name: string;
-      label: string;
-      placeholder: string;
-    }
+    type: "textarea";
+    name: string;
+    label: string;
+    placeholder: string;
+  }
   | {
-      type: "date";
-      name: string;
-      label: string;
-      placeholder: string;
-    }
+    type: "date";
+    name: string;
+    label: string;
+    placeholder: string;
+  }
   | {
-      type: "time";
-      name: string;
-      label: string;
-      placeholder: string;
-    }
+    type: "time";
+    name: string;
+    label: string;
+    placeholder: string;
+  }
   | {
-      type: "checkbox";
-      name: string;
-      label: string;
-      summaryLabel?: string;
-    };
+    type: "checkbox";
+    name: string;
+    label: string;
+    summaryLabel?: string;
+  };
 
 export const FORM_STEPS: FormStep[] = [
   {
@@ -167,7 +167,7 @@ export const FORM_STEPS: FormStep[] = [
     ],
   },
   {
-    label: "Payment",
+    label: "Confirm & Pay",
     icon: PaymentCard,
     iconSize: 22,
     fields: [
