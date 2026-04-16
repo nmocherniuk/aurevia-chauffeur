@@ -29,10 +29,41 @@ function splitSegments(displayName: string): string[] {
     .filter(Boolean);
 }
 
+function pickCity(address?: NominatimSearchHit["address"]): string {
+  if (!address) return "";
+  return (
+    address.city ??
+    address.town ??
+    address.village ??
+    address.municipality ??
+    address.suburb ??
+    address.neighbourhood ??
+    ""
+  );
+}
+
+function formatTitleFromAddress(address?: NominatimSearchHit["address"]): string {
+  if (!address) return "";
+  const road = address.road ?? address.pedestrian ?? "";
+  const house = address.house_number ?? "";
+  if (!road && !house) return "";
+  return [road, house].filter(Boolean).join(" ").trim();
+}
 
 export function formatLocationSuggestion(
-  item: Pick<NominatimSearchHit, "display_name">,
+  item: Pick<NominatimSearchHit, "display_name" | "address">,
 ): FormattedLocationSuggestion {
+  const titleFromAddress = formatTitleFromAddress(item.address);
+  const cityFromAddress = pickCity(item.address);
+  const countryFromAddress = item.address?.country ?? "";
+  if (titleFromAddress) {
+    const subtitle =
+      cityFromAddress && countryFromAddress
+        ? `${cityFromAddress}, ${countryFromAddress}`
+        : cityFromAddress || countryFromAddress || "";
+    return { title: titleFromAddress, subtitle };
+  }
+
   const raw = item.display_name.trim();
   if (!raw) {
     return { title: "", subtitle: "" };

@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
   url.searchParams.set("q", q);
   url.searchParams.set("format", "json");
   url.searchParams.set("limit", "12");
-  url.searchParams.set("addressdetails", "0");
+  url.searchParams.set("addressdetails", "1");
 
   const appUrl =
     process.env.NEXT_PUBLIC_APP_URL ??
@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
     const res = await fetch(url.toString(), {
       headers: {
         Accept: "application/json",
-        "Accept-Language": "en",
+        "Accept-Language": "en", // Set language to French
         "User-Agent": `AureviaChauffeur/1.0 (${appUrl}; booking form)`,
       },
       next: { revalidate: 0 },

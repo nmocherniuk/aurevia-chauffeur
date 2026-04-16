@@ -96,6 +96,8 @@ export function LocationAutocompleteInput({
     [onSelect],
   );
 
+  const handleMouseLeaveList = useCallback(() => setActiveIndex(-1), []);
+
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && panelVisible) {
       e.preventDefault();
@@ -171,8 +173,8 @@ export function LocationAutocompleteInput({
         <div className="relative w-full">
           <div
             className={cn(
-              "flex w-full items-center rounded-md border border-grey bg-transparent transition-colors",
-              "focus-within:border-primary",
+              "flex h-[46px] max-h-[46px] w-full items-center rounded-md border border-grey bg-transparent px-4 py-3 text-left font-light text-sm transition-colors",
+              "focus-within:border-primary focus-visible:border-primary",
               "disabled:bg-background disabled:cursor-not-allowed",
               error && "border-text-error",
             )}
@@ -190,7 +192,7 @@ export function LocationAutocompleteInput({
               disabled={disabled}
               placeholder={placeholder}
               className={cn(
-                "h-[46px] max-h-[46px] w-full flex-1 border-none bg-transparent py-3 px-4 text-sm text-text-secondary outline-none placeholder:text-grey",
+                "w-full flex-1 border-none bg-transparent text-sm text-text-secondary outline-none placeholder:text-grey",
               )}
               value={value}
               aria-invalid={Boolean(error) || undefined}
@@ -213,22 +215,22 @@ export function LocationAutocompleteInput({
           </div>
 
           {panelVisible ? (
-            <div
+            <ul
               id={listboxId}
               role="listbox"
               className={cn(
-                "absolute left-0 right-0 top-full z-[60] mt-2 max-h-[min(18rem,55vh)] overflow-y-auto scroll-smooth",
-                "rounded-xl py-2",
-                "bg-background/95 shadow-[0_16px_50px_-12px_rgba(0,0,0,0.55)] ring-1 ring-white/10",
+                "absolute left-0 right-0 top-[calc(100%+7px)] z-1000 max-h-60 list-none overflow-y-auto overflow-x-hidden rounded-md border border-grey-light bg-white p-1 shadow-lg",
+                "animate-[slideDown_0.2s_ease-out]",
               )}
+              onMouseLeave={handleMouseLeaveList}
             >
               {loading ? (
                 <div
-                  className="px-4 py-3 text-sm text-text-primary/85"
+                  className="px-3 py-2.5 text-sm text-black/80"
                   role="status"
                   aria-live="polite"
                 >
-                  <span className="inline-flex items-center gap-2.5">
+                  <span className="inline-flex items-center gap-2">
                     <span
                       className="inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-primary border-t-transparent"
                       aria-hidden
@@ -239,7 +241,7 @@ export function LocationAutocompleteInput({
               ) : null}
 
               {!loading && showNoResults ? (
-                <div className="px-4 py-3 text-sm text-text-secondary">
+                <div className="px-3 py-2.5 text-sm text-grey">
                   No results found
                 </div>
               ) : null}
@@ -250,17 +252,16 @@ export function LocationAutocompleteInput({
                   const { title, subtitle } = formatLocationSuggestion(hit);
                   const optionLabel = subtitle ? `${title}, ${subtitle}` : title;
                   return (
-                    <div
+                    <li
                       key={`${hit.lat}-${hit.lon}-${hit.display_name.slice(0, 32)}`}
                       id={`${listboxId}-opt-${index}`}
                       role="option"
                       aria-selected={active}
                       aria-label={optionLabel}
                       className={cn(
-                        "mx-1 flex cursor-pointer items-start gap-3 rounded-lg px-3.5 py-2.5 text-left transition-[background-color,color] duration-150",
-                        active
-                          ? "bg-white/[0.10]"
-                          : "hover:bg-white/[0.05]",
+                        "flex cursor-pointer items-center justify-between gap-2 py-2.5 px-3 text-sm text-black transition-colors",
+                        "hover:bg-black/5",
+                        active && "bg-black/5",
                       )}
                       onMouseDown={(e) => {
                         e.preventDefault();
@@ -268,27 +269,29 @@ export function LocationAutocompleteInput({
                       onMouseEnter={() => setActiveIndex(index)}
                       onClick={() => pick(hit)}
                     >
-                      <Location
-                        width={17}
-                        height={17}
-                        aria-hidden
-                        className="mt-0.5 shrink-0 text-grey opacity-80"
-                        fill="currentColor"
-                      />
-                      <div className="min-w-0 flex-1 overflow-hidden">
-                        <div className="truncate text-sm font-medium text-text-primary">
-                          {title}
-                        </div>
-                        {subtitle ? (
-                          <div className="truncate text-xs text-text-secondary/95">
-                            {subtitle}
+                      <div className="flex min-w-0 flex-1 items-start gap-2.5 overflow-hidden">
+                        <Location
+                          width={18}
+                          height={18}
+                          aria-hidden
+                          className="mt-0.5 shrink-0 text-grey"
+                          fill="currentColor"
+                        />
+                        <div className="min-w-0 flex-1 overflow-hidden">
+                          <div className="truncate font-medium text-black">
+                            {title}
                           </div>
-                        ) : null}
+                          {subtitle ? (
+                            <div className="truncate text-xs text-grey">
+                              {subtitle}
+                            </div>
+                          ) : null}
+                        </div>
                       </div>
-                    </div>
+                    </li>
                   );
                 })}
-            </div>
+            </ul>
           ) : null}
         </div>
 
