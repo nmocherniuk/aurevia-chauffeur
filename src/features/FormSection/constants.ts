@@ -14,3 +14,9 @@ export const CAR_PRICES: Record<string, string> = {
 };
 
 export const SERVICE_TZ = "Europe/Paris";
+
+/** Internal `TripType` values → legacy API string (keeps payload stable). */
+export function mapTripTypeToApi(tripType: string): string {
+  if (tripType === "one_way") return "one-way";
+  return tripType;
+}

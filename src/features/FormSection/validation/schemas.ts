@@ -3,6 +3,7 @@ import * as yup from "yup";
 import type { FormValues } from "../types";
 import { FORM_STEPS } from "../data";
 import { EMAIL_REGEX, MAX_EMAIL_LENGTH, PHONE_REGEX } from "./regex";
+import { hourlyDurationMinutes } from "../utils/hourlyDuration";
 
 type StepSchema = yup.ObjectSchema<Partial<FormValues>>;
 
@@ -27,8 +28,50 @@ const timeYupSchema = yup
 
 const journeySchema: StepSchema = yup.object({
   tripType: yup.string().required("Trip type is required"),
-  from: yup.string().required("Pickup location is required"),
-  to: yup.string().required("Destination is required"),
+  from: yup
+    .string()
+    .required("Pickup location is required")
+    .test(
+      "from-picked",
+      "Choose a location from the suggestions",
+      function () {
+        const lat = (this.parent as Record<string, unknown>).fromLat;
+        return typeof lat === "string" && lat.length > 0;
+      },
+    ),
+  to: yup.string().when("tripType", {
+    is: "hourly",
+    then: (schema) => schema.optional(),
+    otherwise: (schema) =>
+      schema
+        .required("Destination is required")
+        .test(
+          "to-picked",
+          "Choose a location from the suggestions",
+          function () {
+            const lat = (this.parent as Record<string, unknown>).toLat;
+            return typeof lat === "string" && lat.length > 0;
+          },
+        ),
+  }),
+  endTime: yup.string().when("tripType", {
+    is: "hourly",
+    then: (schema) =>
+      schema
+        .required("End time is required")
+        .test(
+          "after-start",
+          "End time must be after start time",
+          function (endVal) {
+            const parent = this.parent as { time?: string };
+            const start = parent.time;
+            if (!endVal || !start) return true;
+            const min = hourlyDurationMinutes(start, endVal);
+            return min !== null && min > 0;
+          },
+        ),
+    otherwise: (schema) => schema.optional(),
+  }),
   date: dateYupSchema,
   time: timeYupSchema,
 });
@@ -71,15 +114,10 @@ const passengerSchema: StepSchema = yup.object({
   notesForChauffeur: yup.string().optional(),
 });
 
-const paymentSchema: StepSchema = yup.object({
-  paymentMethod: yup.string().required("Payment method is required"),
-});
-
 export const STEP_SCHEMAS: StepSchema[] = [
   journeySchema,
   vehicleSchema,
   passengerSchema,
-  paymentSchema,
 ];
 
 export const STEP_SCHEMAS_BY_LABEL: Record<string, StepSchema | undefined> =

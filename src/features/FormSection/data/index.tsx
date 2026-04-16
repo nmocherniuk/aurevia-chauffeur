@@ -14,42 +14,47 @@ export interface FormStep {
 
 export type FormFieldConfig =
   | {
-      type: "select";
-      name: string;
-      label: string;
-      placeholder: string;
-      options: { label: string; value: string; detail?: string }[];
-    }
+    type: "select";
+    name: string;
+    label: string;
+    placeholder: string;
+    options: { label: string; value: string; detail?: string }[];
+  }
   | {
-      type: "input";
-      name: string;
-      label: string;
-      placeholder: string;
-    }
+    type: "input";
+    name: string;
+    label: string;
+    placeholder: string;
+  }
   | {
-      type: "textarea";
-      name: string;
-      label: string;
-      placeholder: string;
-    }
+    type: "textarea";
+    name: string;
+    label: string;
+    placeholder: string;
+  }
   | {
-      type: "date";
-      name: string;
-      label: string;
-      placeholder: string;
-    }
+    type: "date";
+    name: string;
+    label: string;
+    placeholder: string;
+  }
   | {
-      type: "time";
-      name: string;
-      label: string;
-      placeholder: string;
-    }
+    type: "time";
+    name: string;
+    label: string;
+    placeholder: string;
+  }
   | {
-      type: "checkbox";
-      name: string;
-      label: string;
-      summaryLabel?: string;
-    };
+    type: "checkbox";
+    name: string;
+    label: string;
+    summaryLabel?: string;
+  };
+
+export const TRIP_TYPE_SELECT_OPTIONS = [
+  { label: "One way", value: "one_way" },
+  { label: "Hourly", value: "hourly" },
+] as const;
 
 export const FORM_STEPS: FormStep[] = [
   {
@@ -62,11 +67,7 @@ export const FORM_STEPS: FormStep[] = [
         name: "tripType",
         label: "Trip type",
         placeholder: "Select vehicle type",
-        options: [
-          { label: "One way", value: "one-way" },
-          { label: "Round trip", value: "round-trip" },
-          { label: "Hourly", value: "hourly" },
-        ],
+        options: [...TRIP_TYPE_SELECT_OPTIONS],
       },
       {
         type: "input",
@@ -91,6 +92,12 @@ export const FORM_STEPS: FormStep[] = [
         name: "time",
         label: "Time",
         placeholder: "Select time",
+      },
+      {
+        type: "time",
+        name: "endTime",
+        label: "End time",
+        placeholder: "Select end time",
       },
     ],
   },
@@ -170,17 +177,6 @@ export const FORM_STEPS: FormStep[] = [
     label: "Payment",
     icon: PaymentCard,
     iconSize: 22,
-    fields: [
-      {
-        type: "select",
-        name: "paymentMethod",
-        label: "Payment method",
-        placeholder: "Select payment method",
-        options: [
-          { label: "Card", value: "card" },
-          { label: "Bank transfer", value: "transfer" },
-        ],
-      },
-    ],
+    fields: []
   },
 ];

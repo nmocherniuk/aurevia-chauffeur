@@ -18,6 +18,14 @@ export function buildSummaryItems(
     for (const field of step.fields) {
       const name = field.name;
       if (name === "notesForChauffeur") continue;
+      const tripType = String(formValues["tripType"] ?? "");
+      if (name === "endTime" && tripType !== "hourly") continue;
+      if (
+        tripType === "hourly" &&
+        (name === "time" || name === "endTime")
+      ) {
+        continue;
+      }
       const value = formValues[name];
       if (value === undefined || value === "") continue;
       if (field.type === "checkbox") {
@@ -34,17 +42,40 @@ export function buildSummaryItems(
       } else if (field.name === "to") {
         if (!formValues["from"]) items.push(str);
       } else if (field.name === "date") {
-        const timeVal = formValues["time"];
-        if (timeVal) {
-          const parsed = dayjs(`${str} ${timeVal}`);
-          items.push(
-            parsed.isValid()
-              ? parsed.format(SUMMARY_DATE_FORMAT)
-              : `${str} ${timeVal}`,
-          );
+        if (tripType === "hourly") {
+          const timeVal = formValues["time"];
+          const endVal = formValues["endTime"];
+          if (timeVal && endVal) {
+            const parsed = dayjs(`${str} ${timeVal}`);
+            items.push(
+              parsed.isValid()
+                ? `${parsed.format("D MMMM YYYY")} · ${timeVal} – ${endVal}`
+                : `${str} ${timeVal} – ${endVal}`,
+            );
+          } else if (timeVal) {
+            const parsed = dayjs(`${str} ${timeVal}`);
+            items.push(
+              parsed.isValid()
+                ? parsed.format(SUMMARY_DATE_FORMAT)
+                : `${str} ${timeVal}`,
+            );
+          } else {
+            const parsed = dayjs(str);
+            items.push(parsed.isValid() ? parsed.format("D MMMM YYYY") : str);
+          }
         } else {
-          const parsed = dayjs(str);
-          items.push(parsed.isValid() ? parsed.format("D MMMM YYYY") : str);
+          const timeVal = formValues["time"];
+          if (timeVal) {
+            const parsed = dayjs(`${str} ${timeVal}`);
+            items.push(
+              parsed.isValid()
+                ? parsed.format(SUMMARY_DATE_FORMAT)
+                : `${str} ${timeVal}`,
+            );
+          } else {
+            const parsed = dayjs(str);
+            items.push(parsed.isValid() ? parsed.format("D MMMM YYYY") : str);
+          }
         }
       } else if (field.name === "time") {
         if (!formValues["date"]) {

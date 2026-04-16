@@ -14,6 +14,11 @@ export function getInitialFormValues(): FormValues {
     }
   }
 
+  initial["fromLat"] = "";
+  initial["fromLng"] = "";
+  initial["toLat"] = "";
+  initial["toLng"] = "";
+
   return initial;
 }
 

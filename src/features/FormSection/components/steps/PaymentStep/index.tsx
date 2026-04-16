@@ -3,7 +3,6 @@
 import React, { FC, useMemo } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
-import SelectWithError from "@/src/components/SelectWithError";
 import { FORM_STEPS } from "@/src/features/FormSection/data";
 import {
   CAR_PRICES,
@@ -30,14 +29,12 @@ function getSelectLabel(
 
 export const PaymentStep: FC<FormStepProps> = ({
   getValue,
-  setValue,
-  errors,
-  handleBlur,
 }) => {
   const from = (getValue("from", false) as string) || "";
   const to = (getValue("to", false) as string) || "";
   const dateStr = (getValue("date", false) as string) || "";
   const timeStr = (getValue("time", false) as string) || "";
+  const endTimeStr = (getValue("endTime", false) as string) || "";
   const tripType = (getValue("tripType", false) as string) || "";
   const carType = (getValue("carType", false) as string) || "";
   const car = (getValue("car", false) as string) || "";
@@ -47,16 +44,28 @@ export const PaymentStep: FC<FormStepProps> = ({
   const phone = (getValue("phone", false) as string) || "";
 
   const journeyRoute = useMemo(() => {
+    if (tripType === "hourly") {
+      if (!from) return null;
+      return from;
+    }
     if (!from && !to) return null;
     return from && to ? `${from} → ${to}` : from || to;
-  }, [from, to]);
+  }, [from, to, tripType]);
 
   const journeyDateTime = useMemo(() => {
     if (!dateStr) return null;
+    if (tripType === "hourly" && timeStr && endTimeStr) {
+      const combined = `${dateStr} ${timeStr}`;
+      const parsed = dayjs(combined);
+      const datePart = parsed.isValid()
+        ? parsed.format("D MMM YYYY")
+        : dateStr;
+      return `${datePart} · ${timeStr}–${endTimeStr}`;
+    }
     const combined = timeStr ? `${dateStr} ${timeStr}` : dateStr;
     const parsed = dayjs(combined);
     return parsed.isValid() ? parsed.format(REVIEW_DATE_FORMAT) : combined;
-  }, [dateStr, timeStr]);
+  }, [dateStr, timeStr, tripType, endTimeStr]);
 
   const tripTypeLabel = useMemo(
     () => getSelectLabel(0, "tripType", tripType),
@@ -90,65 +99,45 @@ export const PaymentStep: FC<FormStepProps> = ({
     phone;
 
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.4fr] lg:gap-x-10 lg:gap-y-0">
-      {/* Left column: Review data */}
-      <div className="flex flex-col gap-6 lg:gap-8">
-        {hasReview ? (
-          <>
-            <section className="flex flex-col gap-3">
+    <div className="">
+      {hasReview ? (
+        <div className="overflow-hidden">
+          <div className="flex w-full flex-row gap-5 py-4 sm:max-w-full sm:gap-x-12 md:gap-x-17 sm:gap-y-6 flex-wrap">
+            <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
               <h3 className="text-sm font-medium text-text-primary">Journey</h3>
-              <ul className="flex flex-col gap-1.5 text-sm font-light text-text-secondary">
+              <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {journeyRoute && <li>{journeyRoute}</li>}
                 {journeyDateTime && <li>{journeyDateTime}</li>}
                 {tripTypeLabel && <li>{tripTypeLabel}</li>}
               </ul>
             </section>
 
-            <section className="flex flex-col gap-3">
+            <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
               <h3 className="text-sm font-medium text-text-primary">Vehicle</h3>
-              <ul className="flex flex-col gap-1.5 text-sm font-light text-text-secondary">
+              <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {carTypeLabel && <li>{carTypeLabel}</li>}
                 {carLabel && <li>{carLabel}</li>}
               </ul>
             </section>
 
-            <section className="flex flex-col gap-3">
-              <h3 className="text-sm font-medium text-text-primary">
-                Passenger
-              </h3>
-              <ul className="flex flex-col gap-1.5 text-sm font-light text-text-secondary">
+            <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
+              <h3 className="text-sm font-medium text-text-primary">Passenger</h3>
+              <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {passengerName && <li>{passengerName}</li>}
                 {email && <li>{email}</li>}
                 {phone && <li>{phone}</li>}
               </ul>
             </section>
-          </>
-        ) : null}
-
-        <div className="mt-auto flex flex-col gap-4 pt-4 lg:pt-6">
-          <p className="text-sm font-medium text-text-primary">
-            Total:{" "}
-            <span className="font-semibold text-primary">€{totalPrice}</span>
-          </p>
+          </div>
         </div>
-      </div>
-
-      {/* Right column: Card / payment form */}
-      <div className="flex flex-col gap-4">
-        <SelectWithError
-          name="paymentMethod"
-          label="Payment method"
-          placeholder="Select payment method"
-          options={[
-            { label: "Card", value: "card" },
-            { label: "Bank transfer", value: "transfer" },
-          ]}
-          value={(getValue("paymentMethod", false) as string) || ""}
-          onChange={(e) => setValue("paymentMethod", e.target.value)}
-          onBlur={handleBlur("paymentMethod")}
-          error={errors["paymentMethod"]}
-        />
-        {/* Placeholder for card fields (number, expiry, CVC, etc.) */}
+      ) : null}
+      <div className="flex items-center justify-between pt-6 pb-1">
+        <p className="text-xl font-medium text-text-primary">
+          Total:{" "}
+          <span className="text-xl font-semibold text-primary">
+            €{totalPrice}
+          </span>
+        </p>
       </div>
     </div>
   );

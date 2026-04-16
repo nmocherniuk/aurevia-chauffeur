@@ -14,9 +14,10 @@ import { getInitialFormValues } from "./utils/getInitialFormValues";
 import { FORM_STEPS } from "./data";
 import type { FormValues } from "./types";
 import type { FormStepProps } from "./components/steps/types";
-import { BookingStatus, createBooking, PaymentStatus } from "@/src/api/booking";
+import { BookingStatus, createBooking } from "@/src/api/booking";
 import dayjs from "@/src/lib/dayjs";
-import { SERVICE_TZ } from "./constants";
+import { mapTripTypeToApi, SERVICE_TZ } from "./constants";
+import { hourlyDurationMinutes } from "./utils/hourlyDuration";
 
 const FormSection: FC = () => {
   const {
@@ -46,10 +47,10 @@ const FormSection: FC = () => {
       </div>
       <div className="lg:pt-7 lg:pb-3 xl:pt-12">
         <div className="mb-8">
-          <h2 className="font-benzin text-white text-center text-2xl lg:text-start mb-4 sm:text-[28px] md:text-3xl lg:text-4xl">
+          <h2 className="font-benzin text-white text-center text-2xl sm:text-start mb-4 sm:text-[28px] md:text-3xl lg:text-4xl">
             Réservez votre transfert
           </h2>
-          <p className="text-text-primary text-base font-light text-center lg:text-start">
+          <p className="text-text-primary text-base font-light text-center sm:text-start">
             Enter your transfer details below and continue to confirmation.
           </p>
         </div>
@@ -57,7 +58,7 @@ const FormSection: FC = () => {
           steps={steps}
           onStepClick={goToStep}
           maxReachableStepIndex={maxStepReached}
-          className="justify-center max-w-[348px] mt-8 mb-12 mx-auto lg:mx-0"
+          className="justify-center max-w-[348px] mt-8 mb-12 mx-auto sm:mx-0"
         />
 
         <Formik<FormValues>
@@ -73,23 +74,32 @@ const FormSection: FC = () => {
               .toISOString();
 
             if (activeStepIndex === lastStepIndex) {
+              const durationMinParsed =
+                values.tripType === "hourly"
+                  ? (() => {
+                      const start = String(values.time ?? "");
+                      const end = String(values.endTime ?? "");
+                      const computed = hourlyDurationMinutes(start, end);
+                      return computed ?? 100;
+                    })()
+                  : 100;
+
               const body = {
                 clientName: values.firstName + " " + values.lastName, // TODO: змінити на одне поле
                 clientEmail: values.email,
                 clientPhone: values.phone,
 
-                tripType: values.tripType,
+                tripType: mapTripTypeToApi(String(values.tripType)),
                 notesForDriver: values.notesForChauffeur,
                 bookingAt: bookingAt,
 
-                vehicleId: "b6497133-ea5b-46e1-aa08-7a43afb77901",
+                vehicleId: "cafff580-9141-46fe-b2d5-18ea3d9fc543",
                 vehicleClass: values.carType,
 
                 to: values.to,
                 from: values.from,
-                durationMin: 100,
+                durationMin: durationMinParsed,
                 status: "assigned" as BookingStatus,
-                paymentStatus: "paid" as PaymentStatus,
               };
 
               console.log("values", values);
@@ -162,7 +172,7 @@ const FormSection: FC = () => {
             return (
               <>
                 {summaryItems.length > 0 &&
-                activeStepIndex !== lastStepIndex ? (
+                  activeStepIndex !== lastStepIndex ? (
                   <SummaryList
                     items={summaryItems}
                     className="py-1 mx-auto justify-center lg:justify-start"
