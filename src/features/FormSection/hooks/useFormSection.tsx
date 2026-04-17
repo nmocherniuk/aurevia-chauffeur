@@ -54,6 +54,11 @@ export function useFormSection() {
     [maxStepReached],
   );
 
+  const resetFlow = useCallback(() => {
+    setActiveStepIndex(0);
+    setMaxStepReached(0);
+  }, []);
+
   const ActiveStep = useMemo(() => {
     if (activeStepIndex < 0 || activeStepIndex >= STEP_COMPONENTS.length) {
       return null;
@@ -68,6 +73,7 @@ export function useFormSection() {
     goNext,
     goPrev,
     goToStep,
+    resetFlow,
     ActiveStep,
     lastStepIndex: LAST_STEP_INDEX,
   };

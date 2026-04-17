@@ -18,6 +18,8 @@ export function getInitialFormValues(): FormValues {
   initial["fromLng"] = "";
   initial["toLat"] = "";
   initial["toLng"] = "";
+  initial["price"] = "";
+  initial["distanceKm"] = "";
 
   return initial;
 }

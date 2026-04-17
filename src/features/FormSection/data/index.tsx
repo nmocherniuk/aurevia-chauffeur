@@ -123,16 +123,17 @@ export const FORM_STEPS: FormStep[] = [
         label: "Car",
         placeholder: "Select vehicle type",
         options: [
-          { label: "Mercedes S580", value: "mercedes-s580", detail: "3P · 3L" },
-          { label: "BMW 7 Series", value: "bmw-7", detail: "3P · 2L" },
+          {
+            label: "Mercedes S580",
+            value: "cafff580-9141-46fe-b2d5-18ea3d9fc543",
+            detail: "3P · 3L",
+          },
+          {
+            label: "BMW 7 Series",
+            value: "72f6d70d-a7c7-497e-9c98-073dbdb5163b",
+            detail: "3P · 2L",
+          },
         ],
-      },
-      {
-        type: "checkbox",
-        name: "bodyguardService",
-        label:
-          "Bodyguard service (Availability and pricing will be confirmed via email after your request.)",
-        summaryLabel: "Bodyguard service",
       },
     ],
   },

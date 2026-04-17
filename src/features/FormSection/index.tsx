@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Form, Formik } from "formik";
 import type { FormikErrors, FormikTouched } from "formik";
 import { StepIndicator } from "@/src/components/StepIndicator";
@@ -18,8 +18,18 @@ import { BookingStatus, createBooking } from "@/src/api/booking";
 import dayjs from "@/src/lib/dayjs";
 import { mapTripTypeToApi, SERVICE_TZ } from "./constants";
 import { hourlyDurationMinutes } from "./utils/hourlyDuration";
+import {
+  BookingSuccessView,
+  BOOKING_SUCCESS_SECTION_ID,
+} from "./components/BookingSuccessView";
+import { useScrollToSectionWhen } from "@/src/hooks/useScrollToSectionWhen";
 
 const FormSection: FC = () => {
+  const [bookingSuccess, setBookingSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  useScrollToSectionWhen(bookingSuccess, BOOKING_SUCCESS_SECTION_ID);
+
   const {
     steps,
     activeStepIndex,
@@ -27,6 +37,7 @@ const FormSection: FC = () => {
     goNext,
     goPrev,
     goToStep,
+    resetFlow,
     ActiveStep,
     lastStepIndex,
   } = useFormSection();
@@ -46,20 +57,24 @@ const FormSection: FC = () => {
         />
       </div>
       <div className="lg:pt-7 lg:pb-3 xl:pt-12">
-        <div className="mb-8">
-          <h2 className="font-benzin text-white text-center text-2xl sm:text-start mb-4 sm:text-[28px] md:text-3xl lg:text-4xl">
-            Réservez votre transfert
-          </h2>
-          <p className="text-text-primary text-base font-light text-center sm:text-start">
-            Enter your transfer details below and continue to confirmation.
-          </p>
-        </div>
-        <StepIndicator
-          steps={steps}
-          onStepClick={goToStep}
-          maxReachableStepIndex={maxStepReached}
-          className="justify-center max-w-[348px] mt-8 mb-12 mx-auto sm:mx-0"
-        />
+        {!bookingSuccess ? (
+          <>
+            <div className="mb-8">
+              <h2 className="font-benzin text-white text-center text-2xl sm:text-start mb-4 sm:text-[28px] md:text-3xl lg:text-4xl">
+                Réservez votre transfert
+              </h2>
+              <p className="text-text-primary text-base font-light text-center sm:text-start">
+                Enter your transfer details below and continue to confirmation.
+              </p>
+            </div>
+            <StepIndicator
+              steps={steps}
+              onStepClick={goToStep}
+              maxReachableStepIndex={maxStepReached}
+              className="justify-center max-w-[348px] mt-8 mb-12 mx-auto sm:mx-0"
+            />
+          </>
+        ) : null}
 
         <Formik<FormValues>
           initialValues={getInitialFormValues()}
@@ -74,6 +89,7 @@ const FormSection: FC = () => {
               .toISOString();
 
             if (activeStepIndex === lastStepIndex) {
+              setSubmitError(null);
               const durationMinParsed =
                 values.tripType === "hourly"
                   ? (() => {
@@ -93,7 +109,7 @@ const FormSection: FC = () => {
                 notesForDriver: values.notesForChauffeur,
                 bookingAt: bookingAt,
 
-                vehicleId: "cafff580-9141-46fe-b2d5-18ea3d9fc543",
+                vehicleId: String(values.car),
                 vehicleClass: values.carType,
 
                 to: values.to,
@@ -105,9 +121,14 @@ const FormSection: FC = () => {
               console.log("values", values);
               console.log("body", body);
 
-              const booking = await createBooking(body);
-              console.log("booking", booking);
-
+              try {
+                await createBooking(body);
+                setBookingSuccess(true);
+              } catch {
+                setSubmitError(
+                  "Something went wrong. Please try again in a moment.",
+                );
+              }
               return;
             }
             goNext();
@@ -124,7 +145,22 @@ const FormSection: FC = () => {
             setFieldValue,
             setFieldTouched,
             submitCount,
+            resetForm,
+            isSubmitting,
           }) => {
+            if (bookingSuccess) {
+              return (
+                <BookingSuccessView
+                  onContinue={() => {
+                    resetForm({ values: getInitialFormValues() });
+                    setBookingSuccess(false);
+                    setSubmitError(null);
+                    resetFlow();
+                  }}
+                />
+              );
+            }
+
             const summaryItems = buildSummaryItems(values, activeStepIndex);
 
             const getError = (
@@ -181,6 +217,14 @@ const FormSection: FC = () => {
                 ) : null}
 
                 <Form className="mt-6 flex flex-col gap-4">
+                  {submitError ? (
+                    <p
+                      className="text-sm text-red-400"
+                      role="alert"
+                    >
+                      {submitError}
+                    </p>
+                  ) : null}
                   {ActiveStep ? <ActiveStep {...stepProps} /> : null}
 
                   <div className="flex flex-col gap-3 pt-6 sm:flex-row sm:justify-end">
@@ -189,6 +233,7 @@ const FormSection: FC = () => {
                         type="button"
                         variant="secondary"
                         onClick={goPrev}
+                        disabled={isSubmitting}
                         className="sm:w-[220px]"
                       >
                         Précédent
@@ -198,9 +243,12 @@ const FormSection: FC = () => {
                       type="submit"
                       variant="primary"
                       withArrow={false}
+                      disabled={isSubmitting}
                       className="sm:w-[220px]"
                     >
-                      Continue
+                      {isSubmitting && activeStepIndex === lastStepIndex
+                        ? "Sending…"
+                        : "Continue"}
                     </Button>
                   </div>
                 </Form>

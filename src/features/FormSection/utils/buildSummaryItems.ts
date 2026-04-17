@@ -88,8 +88,9 @@ export function buildSummaryItems(
     }
   }
 
-  if (stepsUpToIndex >= 2 && (formValues["carType"] || formValues["car"])) {
-    items.push({ value: "Total price € 123", highlight: true });
+  const price = formValues["price"];
+  if (typeof price === "string" && price) {
+    items.push({ value: `Total price € ${price}`, highlight: true });
   }
 
   return items;

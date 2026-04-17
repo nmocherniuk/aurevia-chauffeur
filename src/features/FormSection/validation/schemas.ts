@@ -79,7 +79,6 @@ const journeySchema: StepSchema = yup.object({
 const vehicleSchema: StepSchema = yup.object({
   carType: yup.string().required("Car type is required"),
   car: yup.string().required("Car is required"),
-  bodyguardService: yup.boolean(),
 });
 
 const passengerSchema: StepSchema = yup.object({

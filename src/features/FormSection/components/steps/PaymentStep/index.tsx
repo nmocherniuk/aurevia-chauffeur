@@ -5,7 +5,6 @@ import dayjs from "dayjs";
 import "dayjs/locale/fr";
 import { FORM_STEPS } from "@/src/features/FormSection/data";
 import {
-  CAR_PRICES,
   REVIEW_DATE_FORMAT,
 } from "@/src/features/FormSection/constants";
 import type { FormStepProps } from "../types";
@@ -38,6 +37,7 @@ export const PaymentStep: FC<FormStepProps> = ({
   const tripType = (getValue("tripType", false) as string) || "";
   const carType = (getValue("carType", false) as string) || "";
   const car = (getValue("car", false) as string) || "";
+  const price = (getValue("price", false) as string) || "";
   const firstName = (getValue("firstName", false) as string) || "";
   const lastName = (getValue("lastName", false) as string) || "";
   const email = (getValue("email", false) as string) || "";
@@ -84,9 +84,7 @@ export const PaymentStep: FC<FormStepProps> = ({
     return name || null;
   }, [firstName, lastName]);
 
-  const totalPrice = useMemo(() => {
-    return car ? (CAR_PRICES[car] ?? "0") : "0";
-  }, [car]);
+  const totalPrice = useMemo(() => (price ? price : "—"), [price]);
 
   const hasReview =
     journeyRoute ||
@@ -135,7 +133,7 @@ export const PaymentStep: FC<FormStepProps> = ({
         <p className="text-xl font-medium text-text-primary">
           Total:{" "}
           <span className="text-xl font-semibold text-primary">
-            €{totalPrice}
+            {totalPrice === "—" ? "—" : `€${totalPrice}`}
           </span>
         </p>
       </div>

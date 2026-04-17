@@ -1,9 +1,13 @@
-import dayjs from "@/src/lib/dayjs";
-
-function parseTimeToMinutes(hhmm: string): number | null {
-  const d = dayjs(hhmm, "HH:mm", true);
-  if (!d.isValid()) return null;
-  return d.hour() * 60 + d.minute();
+function parseTimeToMinutes(time: string): number | null {
+  const t = time.trim();
+  const m = /^(\d{1,2}):(\d{2})(?::(\d{2}))?$/.exec(t);
+  if (!m) return null;
+  const h = Number(m[1]);
+  const min = Number(m[2]);
+  if (!Number.isFinite(h) || !Number.isFinite(min)) return null;
+  if (h < 0 || h > 23) return null;
+  if (min < 0 || min > 59) return null;
+  return h * 60 + min;
 }
 
 /**
