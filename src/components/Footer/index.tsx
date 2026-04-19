@@ -8,7 +8,6 @@ import { ROUTES, FOOTER_ROUTE_IDS } from '@/src/data/routes'
 const Footer: React.FC = () => {
     const footerRoutes = ROUTES.filter((r) => FOOTER_ROUTE_IDS.includes(r.id))
 
-
     return (
         <footer className='mt-28'>
             <MainContainer>

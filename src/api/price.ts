@@ -5,12 +5,10 @@ export type GetPriceBody = {
     vehicleId: string;
     tripType: "one_way" | "hourly";
     distanceKm?: number;
-    /** Provide for one_way so backend can compute distanceKm via coords. */
     fromLat?: number;
     fromLon?: number;
     toLat?: number;
     toLon?: number;
-    /** Provide for hourly. */
     durationMin?: number;
 };
 

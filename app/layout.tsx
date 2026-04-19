@@ -28,11 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${onest.variable} ${benzin.variable} antialiased`}>
+    <html lang="fr" className="h-full">
+      <body
+        className={`${onest.variable} ${benzin.variable} flex min-h-dvh flex-col antialiased`}
+      >
         <StyledMantaineProvider>
           <Header />
-          <main>{children}</main>
+          <main className="flex min-h-0 w-full min-w-0 flex-1 flex-col">
+            {children}
+          </main>
           <Footer />
         </StyledMantaineProvider>
       </body>

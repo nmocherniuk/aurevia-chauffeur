@@ -90,22 +90,3 @@ export async function GET(req: NextRequest) {
     return NextResponse.json([]);
   }
 }
-
-
-async function getRoute(from, to) {
-  const token = process.env.MAPBOX_TOKEN;
-
-  const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${from.lng},${from.lat};${to.lng},${to.lat}?access_token=${token}&overview=false`;
-
-  const res = await fetch(url);
-  const data = await res.json();
-
-  const route = data.routes?.[0];
-
-  if (!route) throw new Error("Route not found");
-
-  return {
-    distanceKm: route.distance / 1000,
-    durationMin: route.duration / 60,
-  };
-}
