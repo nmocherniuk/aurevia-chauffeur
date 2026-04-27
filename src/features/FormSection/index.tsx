@@ -23,11 +23,13 @@ import {
   BOOKING_SUCCESS_SECTION_ID,
 } from "./components/BookingSuccessView";
 import { useScrollToSectionWhen } from "@/src/hooks/useScrollToSectionWhen";
+import { usePathname } from "next/navigation";
 
 const FormSection: FC = () => {
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-
+  const pathname = usePathname();
+  const type = pathname.split("/").pop();
   useScrollToSectionWhen(bookingSuccess, BOOKING_SUCCESS_SECTION_ID);
 
   const {
@@ -49,7 +51,7 @@ const FormSection: FC = () => {
     >
       <div className="hidden sm:block relative w-full overflow-hidden rounded-xl h-[260px] sm:h-[300px] lg:h-[800px] xl:h-[776px] lg:top-6 mb-9 lg:mb-0">
         <Image
-          src="/images/form-car.png"
+          src={type === "driver" ? "/images/form-car.png" : "/images/security-guard-workspace.jpg"}
           alt="Form section background"
           fill
           className="object-cover object-center rounded-xl"
@@ -93,11 +95,11 @@ const FormSection: FC = () => {
               const durationMinParsed =
                 values.tripType === "hourly"
                   ? (() => {
-                      const start = String(values.time ?? "");
-                      const end = String(values.endTime ?? "");
-                      const computed = hourlyDurationMinutes(start, end);
-                      return computed ?? 100;
-                    })()
+                    const start = String(values.time ?? "");
+                    const end = String(values.endTime ?? "");
+                    const computed = hourlyDurationMinutes(start, end);
+                    return computed ?? 100;
+                  })()
                   : 100;
 
               const body = {

@@ -1,27 +1,26 @@
 import React from "react";
 import Image from "next/image";
-import heroImage from "@/public/images/hyundai-motor-group.png";
+import heroImage from "@/public/images/luxury-private-bodyguards.png";
 import { Button } from "@/src/components/Button";
 import SocialIcons from "@/src/components/SocialIcons";
 
-const MainSection: React.FC = () => {
+const MainSecuritySection: React.FC = () => {
   return (
     <section id="accueil" className="mb-28 w-full">
       <div className="relative flex h-[700px] w-full flex-col items-center justify-center overflow-hidden md:h-[900px] md:items-start xl:h-dvh">
         <Image
-          className="bg-fit-cover absolute top-0 -z-1 w-full bg-center bg-no-repeat object-cover object-center "
+          className="bg-fit-cover absolute top-0 -z-1 w-full bg-center bg-no-repeat object-cover  object-[center_10%] "
           src={heroImage}
           alt="Hero Background Image"
           fill
           quality={100}
           priority
         />
-        <div className="absolute left-0 top-0 z-0 h-full w-full bg-[#06070A]/10" />
         <div
-          className="absolute left-0 top-0 z-0 h-full w-full"
+          className="absolute inset-0 z-0"
           style={{
             background:
-              "linear-gradient(to bottom, transparent 0%, transparent 71%, #06070A 100%)",
+              "linear-gradient(to bottom, rgba(6, 7, 10, 0.3) 0%, rgba(6, 7, 10, 0.2) 50%, rgba(6, 7, 10, 0.5) 100%)",
           }}
         />
         <div className="z-10 mx-auto w-full max-w-[1360px] px-5 sm:px-7 md:px-10 lg:px-20 flex flex-col items-center sm:items-start">
@@ -44,4 +43,4 @@ const MainSection: React.FC = () => {
   );
 };
 
-export default MainSection;
+export default MainSecuritySection;
