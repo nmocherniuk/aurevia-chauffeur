@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import MainContainer from '../MainContainer'
 import Image from 'next/image'
 import logo from '@/public/logo.svg'
-import { NAV_LINKS_MAIN_PAGE as NAV_LINKS } from '@/src/data/routes'
+import { getNavLinksForPath } from '@/src/data/routes'
 import { cn } from '@/src/lib/utils'
 import { DesktopNav } from './components/DesktopNav'
 import { HeaderActions } from './components/HeaderActions'
@@ -18,7 +18,8 @@ const MAIN_SECTION_ID = 'accueil'
 const Header: React.FC = () => {
     const pathname = usePathname()
     const [isOpen, setIsOpen] = useState<boolean>(false)
-    const [activeSectionId, setActiveSectionId] = useActiveSectionId(NAV_LINKS)
+    const navLinks = getNavLinksForPath(pathname)
+    const [activeSectionId, setActiveSectionId] = useActiveSectionId(navLinks)
 
     const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         if (pathname === '/') {
@@ -60,7 +61,7 @@ const Header: React.FC = () => {
                             priority
                         />
                     </Link>
-                    <DesktopNav links={NAV_LINKS} activeSectionId={activeSectionId} onSectionChange={setActiveSectionId} />
+                    <DesktopNav links={navLinks} activeSectionId={activeSectionId} onSectionChange={setActiveSectionId} />
                     <HeaderActions isOpen={isOpen} onToggle={setIsOpen} />
                 </MainContainer>
             </header>
@@ -68,7 +69,7 @@ const Header: React.FC = () => {
             <MobileMenu
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
-                links={NAV_LINKS}
+                links={navLinks}
                 activeSectionId={activeSectionId}
                 onSectionChange={setActiveSectionId}
                 transitionDuration={transitionDuration}

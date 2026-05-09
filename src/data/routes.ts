@@ -31,11 +31,34 @@ export interface NavLink {
     href: string
 }
 
-export const NAV_LINKS_MAIN_PAGE: NavLink[] = [
-    { name: "Accueil", href: "/#accueil" },
-    { name: "Pourquoi Nous", href: "/#pourquoi-nous" },
-    { name: "Prestations", href: "/#prestations" },
-    { name: "Flotte", href: "/#flotte" },
-    { name: "Réserver", href: "/#reserver" },
-    { name: "FAQ", href: "/#faq" },
+/** Hub homepage (`/`): enter Chauffeur or Security funnels */
+export const NAV_LINKS_GATEWAY: NavLink[] = [
+    { name: "Chauffeur", href: "/driver" },
+    { name: "Security", href: "/security" },
 ]
+
+export const NAV_LINKS_DRIVER: NavLink[] = [
+    { name: "Accueil", href: "/driver#accueil" },
+    { name: "Pourquoi Nous", href: "/driver#pourquoi-nous" },
+    { name: "Prestations", href: "/driver#prestations" },
+    { name: "Flotte", href: "/driver#flotte" },
+    { name: "Réserver", href: "/driver#reserver" },
+    { name: "FAQ", href: "/driver#faq" },
+]
+
+export const NAV_LINKS_SECURITY_PAGE: NavLink[] = [
+    { name: "Accueil", href: "/security#accueil" },
+    { name: "Pourquoi Nous", href: "/security#pourquoi-nous" },
+    { name: "Prestations", href: "/security#prestations" },
+    { name: "Processus", href: "/security#itineraires-populaires" },
+    { name: "Réserver", href: "/security#reserver" },
+    { name: "FAQ", href: "/security#faq" },
+]
+
+export function getNavLinksForPath(pathname: string): NavLink[] {
+    const path = pathname.replace(/\/$/, "") || "/"
+    if (path === "/") return NAV_LINKS_GATEWAY
+    if (path.startsWith("/driver")) return NAV_LINKS_DRIVER
+    if (path.startsWith("/security")) return NAV_LINKS_SECURITY_PAGE
+    return NAV_LINKS_GATEWAY
+}

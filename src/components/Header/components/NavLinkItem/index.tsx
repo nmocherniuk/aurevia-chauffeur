@@ -1,9 +1,22 @@
+"use client"
+
 import React, { FC } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { cn, getSectionIdFromHref, scrollToSection } from '@/src/lib/utils'
 import type { NavLink } from '@/src/data/routes'
 
 const HEADER_OFFSET = -107
+
+function basePathBeforeHash(href: string): string {
+    const base = href.split('#')[0]
+    return base === '' ? '/' : base
+}
+
+function normalizePath(p: string): string {
+    const t = p.replace(/\/$/, '')
+    return t === '' ? '/' : t
+}
 
 interface NavLinkItemProps {
     link: NavLink
@@ -20,7 +33,13 @@ export const NavLinkItem: FC<NavLinkItemProps> = ({
     onSectionChange,
     onClick,
 }) => {
+    const pathname = usePathname()
     const sectionId = getSectionIdFromHref(link.href)
+    const basePath = normalizePath(basePathBeforeHash(link.href))
+    const currentPath = normalizePath(pathname)
+    const isSameRouteSection =
+        sectionId !== null && basePath === currentPath
+
     const isMobile = variant === 'mobile'
     const isActive = sectionId !== null && sectionId === activeSectionId
     const baseClasses = cn(
@@ -29,7 +48,7 @@ export const NavLinkItem: FC<NavLinkItemProps> = ({
         isActive && (isMobile ? 'nav-link-active nav-link-active-mobile' : 'nav-link-active-desktop')
     )
 
-    if (sectionId) {
+    if (sectionId && isSameRouteSection) {
         if (isMobile) {
             return (
                 <button

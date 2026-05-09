@@ -57,7 +57,7 @@ export const securityServices: SecurityService[] = [
   {
     id: "service-1",
     image: "/services-image/security/luxury-bodyguard-agent.png",
-    title: "Transferts Aéroport",
+    title: "Personal & Executive",
     description:
       "Transferts privés vers tous les aéroports avec ponctualité garantie.",
     alt: "Chauffeur privé VTC pour transfert aéroport avec service premium",
@@ -70,7 +70,7 @@ export const securityServices: SecurityService[] = [
   {
     id: "service-2",
     image: "/services-image/security/villa-security-residence.png",
-    title: "Hotels et Private Residences",
+    title: "Property & Private Security",
     description:
       "Transferts discrets vers hôtels de prestige et résidences privées.",
     alt: "Chauffeur privé pour transfert vers hôtel de luxe et résidence privée",
@@ -83,7 +83,7 @@ export const securityServices: SecurityService[] = [
   {
     id: "service-3",
     image: "/services-image/security/abstract-sphere-background.png",
-    title: "Business et Corporate Travel",
+    title: "Business & Commercial",
     description:
       "Solutions premium pour vos déplacements professionnels et réunions.",
     alt: "Chauffeur privé business pour déplacements professionnels et corporate travel",
@@ -96,7 +96,7 @@ export const securityServices: SecurityService[] = [
   {
     id: "service-4",
     image: "/services-image/security/luxury-private-residence.png",
-    title: "Private Chauffeur",
+    title: "Event & Crowd Management",
     description:
       "Chauffeur privé à l’heure ou à la journée pour vos déplacements.",
     alt: "Service de chauffeur privé à l'heure ou à la journée avec véhicule de luxe",
@@ -109,7 +109,7 @@ export const securityServices: SecurityService[] = [
   {
     id: "service-5",
     image: "/services-image/security/security-room-monitoring.png",
-    title: "Événements et Mariages",
+    title: "Advanced & Specialized",
     description:
       "Transport raffiné et élégant pour mariages et événements privés.",
     alt: "Chauffeur privé pour mariage et événement privé avec service de luxe",

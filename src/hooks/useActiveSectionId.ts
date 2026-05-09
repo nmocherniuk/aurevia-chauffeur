@@ -14,9 +14,13 @@ export function useActiveSectionId(
   const ratiosRef = useRef<Record<string, number>>({});
 
   useEffect(() => {
+    ratiosRef.current = {};
+
     const sectionIds = links
       .map((l) => getSectionIdFromHref(l.href))
       .filter((id): id is string => id !== null);
+
+    const allowedIds = new Set(sectionIds);
 
     const syncFromHash = () => {
       const hashId =
@@ -45,7 +49,9 @@ export function useActiveSectionId(
           ratiosRef.current[entry.target.id] = entry.intersectionRatio;
         }
       });
-      const entries_ = Object.entries(ratiosRef.current);
+      const entries_ = Object.entries(ratiosRef.current).filter(([id]) =>
+        allowedIds.has(id),
+      );
       if (entries_.length === 0) return;
       const [maxId, maxRatio] = entries_.reduce((a, b) =>
         a[1] >= b[1] ? a : b,

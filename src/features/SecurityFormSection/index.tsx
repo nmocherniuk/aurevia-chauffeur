@@ -3,31 +3,50 @@
 import React, { FC, useState } from "react";
 import { Form, Formik } from "formik";
 import type { FormikErrors, FormikTouched } from "formik";
+import Image from "next/image";
 import { StepIndicator } from "@/src/components/StepIndicator";
 import { SummaryList } from "@/src/components/SummaryList";
-import Image from "next/image";
-import { useFormSection } from "./hooks/useFormSection";
 import { Button } from "@/src/components/Button";
-import { STEP_SCHEMAS } from "./validation/schemas";
-import { buildSummaryItems } from "./utils/buildSummaryItems";
-import { getInitialFormValues } from "./utils/getInitialFormValues";
-import { FORM_STEPS } from "./data";
-import type { FormValues } from "./types";
-import type { FormStepProps } from "./components/steps/types";
-import { BookingStatus, createBooking } from "@/src/api/booking";
-import dayjs from "@/src/lib/dayjs";
-import { mapTripTypeToApi, SERVICE_TZ } from "./constants";
-import { hourlyDurationMinutes } from "./utils/hourlyDuration";
+import { SECURITY_STEP_SCHEMAS } from "./validation/schemas";
+import { getInitialSecurityFormValues } from "./utils/getInitialSecurityFormValues";
+import { buildSecuritySummaryItems } from "./utils/buildSecuritySummaryItems";
+import type { SecurityFormValues } from "./types";
+import type { FormStepProps } from "@/src/features/FormSection/components/steps/types";
+import { useSecurityFormSection } from "./hooks/useSecurityFormSection";
 import {
-  BookingSuccessView,
-  BOOKING_SUCCESS_SECTION_ID,
-} from "./components/BookingSuccessView";
+  SecurityRequestSuccessView,
+  SECURITY_REQUEST_SUCCESS_ID,
+} from "./components/SecurityRequestSuccessView";
 import { useScrollToSectionWhen } from "@/src/hooks/useScrollToSectionWhen";
+import { submitSecurityRequest } from "@/src/api/securityRequest";
 
-const FormSection: FC = () => {
-  const [bookingSuccess, setBookingSuccess] = useState(false);
+const SECURITY_FIELDS_BY_STEP: readonly (readonly string[])[] = [
+  [
+    "serviceCategory",
+    "serviceType",
+    "serviceTypeOther",
+    "location",
+    "date",
+    "time",
+    "duration",
+    "endDate",
+    "agentCount",
+  ],
+  ["firstName", "lastName", "email", "phone", "company"],
+  [
+    "specialRequirements",
+    "languagesRequired",
+    "dressCode",
+    "vehicleRequired",
+    "armedRequired",
+  ],
+  [],
+];
+
+const SecurityFormSection: FC = () => {
+  const [requestSuccess, setRequestSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  useScrollToSectionWhen(bookingSuccess, BOOKING_SUCCESS_SECTION_ID);
+  useScrollToSectionWhen(requestSuccess, SECURITY_REQUEST_SUCCESS_ID);
 
   const {
     steps,
@@ -39,90 +58,54 @@ const FormSection: FC = () => {
     resetFlow,
     ActiveStep,
     lastStepIndex,
-  } = useFormSection();
+  } = useSecurityFormSection();
 
   return (
     <section
       id="reserver"
       className="w-full sm:px-0 md:grid lg:grid-cols-[2fr_3fr] lg:gap-x-13 lg:items-start"
     >
-      <div className="hidden sm:block relative w-full overflow-hidden rounded-xl h-[260px] sm:h-[300px] lg:h-[800px] xl:h-[776px] lg:top-6 mb-9 lg:mb-0">
+      <div className="relative mb-9 hidden h-[260px] w-full overflow-hidden rounded-xl sm:block sm:h-[300px] lg:top-6 lg:mb-0 lg:h-[800px] xl:h-[776px]">
         <Image
-          src="/images/form-car.png"
-          alt="Form section background"
+          src="/images/security-guard-workspace.jpg"
+          alt=""
           fill
-          className="object-cover object-center rounded-xl"
+          className="rounded-xl object-cover object-center"
           sizes="(max-width: 1024px) 100vw, 40vw"
         />
       </div>
-      <div className="lg:pt-7 lg:pb-3 xl:pt-12">
-        {!bookingSuccess ? (
+      <div className="lg:pb-3 lg:pt-7 xl:pt-12">
+        {!requestSuccess ? (
           <>
             <div className="mb-8">
-              <h2 className="font-benzin text-white text-center text-2xl sm:text-start mb-4 sm:text-[28px] md:text-3xl lg:text-4xl">
-                Réservez votre transfert
+              <h2 className="mb-4 text-center font-benzin text-2xl text-white sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl">
+                Confidential service request
               </h2>
-              <p className="text-text-primary text-base font-light text-center sm:text-start">
-                Enter your transfer details below and continue to confirmation.
+              <p className="text-center text-base font-light text-text-primary sm:text-start">
+                Tell us what you need — our team will respond personally. No instant
+                confirmation; every request is reviewed with discretion.
               </p>
             </div>
             <StepIndicator
               steps={steps}
               onStepClick={goToStep}
               maxReachableStepIndex={maxStepReached}
-              className="justify-center max-w-[348px] mt-8 mb-12 mx-auto sm:mx-0"
+              className="mx-auto mb-12 mt-8 flex max-w-[348px] justify-center sm:mx-0"
             />
           </>
         ) : null}
 
-        <Formik<FormValues>
-          initialValues={getInitialFormValues()}
-          validationSchema={STEP_SCHEMAS[activeStepIndex]}
+        <Formik<SecurityFormValues>
+          initialValues={getInitialSecurityFormValues()}
+          validationSchema={SECURITY_STEP_SCHEMAS[activeStepIndex]}
           validateOnBlur={false}
           validateOnChange={false}
           onSubmit={async (values, { resetForm }) => {
-            console.log("values", values);
-
-            const bookingAt = dayjs
-              .tz(`${values.date} ${values.time}`, SERVICE_TZ)
-              .toISOString();
-
             if (activeStepIndex === lastStepIndex) {
               setSubmitError(null);
-              const durationMinParsed =
-                values.tripType === "hourly"
-                  ? (() => {
-                    const start = String(values.time ?? "");
-                    const end = String(values.endTime ?? "");
-                    const computed = hourlyDurationMinutes(start, end);
-                    return computed ?? 100;
-                  })()
-                  : 100;
-
-              const body = {
-                clientName: values.firstName + " " + values.lastName, // TODO: змінити на одне поле
-                clientEmail: values.email,
-                clientPhone: values.phone,
-
-                tripType: mapTripTypeToApi(String(values.tripType)),
-                notesForDriver: values.notesForChauffeur,
-                bookingAt: bookingAt,
-
-                vehicleId: String(values.car),
-                vehicleClass: values.carType,
-
-                to: values.to,
-                from: values.from,
-                durationMin: durationMinParsed,
-                status: "assigned" as BookingStatus,
-              };
-
-              console.log("values", values);
-              console.log("body", body);
-
               try {
-                await createBooking(body);
-                setBookingSuccess(true);
+                await submitSecurityRequest(values);
+                setRequestSuccess(true);
               } catch {
                 setSubmitError(
                   "Something went wrong. Please try again in a moment.",
@@ -131,10 +114,7 @@ const FormSection: FC = () => {
               return;
             }
             goNext();
-
-            resetForm({
-              values,
-            });
+            resetForm({ values });
           }}
         >
           {({
@@ -147,12 +127,12 @@ const FormSection: FC = () => {
             resetForm,
             isSubmitting,
           }) => {
-            if (bookingSuccess) {
+            if (requestSuccess) {
               return (
-                <BookingSuccessView
+                <SecurityRequestSuccessView
                   onContinue={() => {
-                    resetForm({ values: getInitialFormValues() });
-                    setBookingSuccess(false);
+                    resetForm({ values: getInitialSecurityFormValues() });
+                    setRequestSuccess(false);
                     setSubmitError(null);
                     resetFlow();
                   }}
@@ -160,12 +140,15 @@ const FormSection: FC = () => {
               );
             }
 
-            const summaryItems = buildSummaryItems(values, activeStepIndex);
+            const summaryItems = buildSecuritySummaryItems(
+              values,
+              activeStepIndex,
+            );
 
             const getError = (
               name: string,
-              allErrors: FormikErrors<FormValues>,
-              allTouched: FormikTouched<FormValues>,
+              allErrors: FormikErrors<SecurityFormValues>,
+              allTouched: FormikTouched<SecurityFormValues>,
             ): string | null => {
               const isTouched = Boolean(
                 (allTouched as Record<string, unknown>)[name],
@@ -175,13 +158,9 @@ const FormSection: FC = () => {
             };
 
             const errorsRecord: Record<string, string | null> = {};
-            for (const step of FORM_STEPS) {
-              for (const field of step.fields) {
-                errorsRecord[field.name] = getError(
-                  field.name,
-                  errors,
-                  touched,
-                );
+            for (const names of SECURITY_FIELDS_BY_STEP) {
+              for (const field of names) {
+                errorsRecord[field] = getError(field, errors, touched);
               }
             }
 
@@ -206,28 +185,24 @@ const FormSection: FC = () => {
 
             return (
               <>
-                {summaryItems.length > 0 &&
-                  activeStepIndex !== lastStepIndex ? (
+                {summaryItems.length > 0 && activeStepIndex !== lastStepIndex ? (
                   <SummaryList
                     items={summaryItems}
-                    className="py-1 mx-auto justify-center lg:justify-start"
-                    aria-label="Résumé de la réservation"
+                    className="mx-auto justify-center py-1 lg:justify-start"
+                    aria-label="Request summary"
                   />
                 ) : null}
 
                 <Form className="mt-6 flex flex-col gap-4">
                   {submitError ? (
-                    <p
-                      className="text-sm text-red-400"
-                      role="alert"
-                    >
+                    <p className="text-sm text-red-400" role="alert">
                       {submitError}
                     </p>
                   ) : null}
                   {ActiveStep ? <ActiveStep {...stepProps} /> : null}
 
                   <div className="flex flex-col gap-3 pt-6 sm:flex-row sm:justify-end">
-                    {activeStepIndex > 0 && (
+                    {activeStepIndex > 0 ? (
                       <Button
                         type="button"
                         variant="secondary"
@@ -235,9 +210,9 @@ const FormSection: FC = () => {
                         disabled={isSubmitting}
                         className="sm:w-[220px]"
                       >
-                        Précédent
+                        Previous
                       </Button>
-                    )}
+                    ) : null}
                     <Button
                       type="submit"
                       variant="primary"
@@ -247,7 +222,9 @@ const FormSection: FC = () => {
                     >
                       {isSubmitting && activeStepIndex === lastStepIndex
                         ? "Sending…"
-                        : "Continue"}
+                        : activeStepIndex === lastStepIndex
+                          ? "Submit request"
+                          : "Continue"}
                     </Button>
                   </div>
                 </Form>
@@ -260,4 +237,4 @@ const FormSection: FC = () => {
   );
 };
 
-export default FormSection;
+export default SecurityFormSection;
