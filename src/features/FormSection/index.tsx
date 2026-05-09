@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Form, Formik } from "formik";
 import type { FormikErrors, FormikTouched } from "formik";
 import { StepIndicator } from "@/src/components/StepIndicator";
@@ -23,8 +23,17 @@ import {
   BOOKING_SUCCESS_SECTION_ID,
 } from "./components/BookingSuccessView";
 import { useScrollToSectionWhen } from "@/src/hooks/useScrollToSectionWhen";
+import {
+  consumeFleetBookingPrefill,
+  FLEET_BOOKING_PREFILL_EVENT,
+} from "@/src/features/FleetSection/utils/fleetBookingPrefill";
+import { applyFleetPrefillToFormValues } from "./utils/applyFleetPrefill";
+import { scrollToBookingFormSmoothAfterNav } from "@/src/lib/scrollToBookingForm";
 
 const FormSection: FC = () => {
+  const [initialValues, setInitialValues] = useState<FormValues>(() =>
+    getInitialFormValues(),
+  );
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   useScrollToSectionWhen(bookingSuccess, BOOKING_SUCCESS_SECTION_ID);
@@ -40,6 +49,29 @@ const FormSection: FC = () => {
     ActiveStep,
     lastStepIndex,
   } = useFormSection();
+
+  useEffect(() => {
+    function applyPrefillFromSession(): void {
+      const fleetId = consumeFleetBookingPrefill();
+      if (!fleetId) return;
+      const merged = applyFleetPrefillToFormValues(
+        getInitialFormValues(),
+        fleetId,
+      );
+      if (!merged) return;
+      setInitialValues(merged);
+      scrollToBookingFormSmoothAfterNav();
+    }
+
+    applyPrefillFromSession();
+
+    window.addEventListener(FLEET_BOOKING_PREFILL_EVENT, applyPrefillFromSession);
+    return () =>
+      window.removeEventListener(
+        FLEET_BOOKING_PREFILL_EVENT,
+        applyPrefillFromSession,
+      );
+  }, []);
 
   return (
     <section
@@ -76,7 +108,8 @@ const FormSection: FC = () => {
         ) : null}
 
         <Formik<FormValues>
-          initialValues={getInitialFormValues()}
+          initialValues={initialValues}
+          enableReinitialize
           validationSchema={STEP_SCHEMAS[activeStepIndex]}
           validateOnBlur={false}
           validateOnChange={false}
@@ -151,7 +184,9 @@ const FormSection: FC = () => {
               return (
                 <BookingSuccessView
                   onContinue={() => {
-                    resetForm({ values: getInitialFormValues() });
+                    const blank = getInitialFormValues();
+                    setInitialValues(blank);
+                    resetForm({ values: blank });
                     setBookingSuccess(false);
                     setSubmitError(null);
                     resetFlow();

@@ -49,7 +49,7 @@ const Header: React.FC = () => {
                 />
                 <MainContainer className='relative z-10 flex h-full min-h-0 flex-1 items-center justify-between gap-6'>
                     <Link
-                        href="/#accueil"
+                        href="/"
                         className='relative h-full aspect-square shrink-0'
                         onClick={handleLogoClick}
                     >

@@ -10,12 +10,14 @@ interface FleetCardContentProps {
   classLabel: string;
   car: Fleet;
   onDetailsClick: () => void;
+  onBookNow: () => void;
 }
 
 export const FleetCardContent: FC<FleetCardContentProps> = ({
   classLabel,
   car,
   onDetailsClick,
+  onBookNow,
 }) => {
   return (
     <div
@@ -60,7 +62,12 @@ export const FleetCardContent: FC<FleetCardContentProps> = ({
         >
           Voir les détails
         </Button>
-        <Button variant="primary" className="sm:flex-1">
+        <Button
+          type="button"
+          variant="primary"
+          className="sm:flex-1"
+          onClick={onBookNow}
+        >
           Book now
         </Button>
       </div>

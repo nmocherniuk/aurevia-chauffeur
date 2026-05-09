@@ -1,7 +1,12 @@
 "use client";
 
-import React, { FC, memo, useState, useCallback } from "react";
+import React, { FC, memo, useState, useCallback, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { Fleet } from "@/src/features/FleetSection/data";
+import {
+  notifyFleetBookingPrefillReady,
+  queueFleetBookingPrefill,
+} from "@/src/features/FleetSection/utils/fleetBookingPrefill";
 import { useFleetCarousel } from "../../../hooks/useFleetCarousel";
 import { FleetCardImage } from "./components/FleetCardImage";
 import { CarouselArrows } from "@/src/components/CarouselArrows";
@@ -15,6 +20,7 @@ interface FleetCardProps {
 }
 
 const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
+  const router = useRouter();
   const {
     currentIndex,
     car,
@@ -27,6 +33,7 @@ const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalCar, setModalCar] = useState<Fleet | null>(null);
+  const pendingBookNowFleetId = useRef<string | null>(null);
 
   const handleDetailsClick = useCallback(() => {
     setModalCar(car);
@@ -38,8 +45,27 @@ const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
   }, []);
 
   const handleModalCloseComplete = useCallback(() => {
+    const fleetId = pendingBookNowFleetId.current;
+    pendingBookNowFleetId.current = null;
+    if (fleetId) {
+      queueFleetBookingPrefill(fleetId);
+      router.push("/driver", { scroll: false });
+      notifyFleetBookingPrefillReady();
+    }
     setModalCar(null);
-  }, []);
+  }, [router]);
+
+  const handleBookNow = useCallback(() => {
+    queueFleetBookingPrefill(car.id);
+    router.push("/driver", { scroll: false });
+    notifyFleetBookingPrefillReady();
+  }, [car.id, router]);
+
+  const handleModalBookNow = useCallback(() => {
+    if (!modalCar) return;
+    pendingBookNowFleetId.current = modalCar.id;
+    setModalOpen(false);
+  }, [modalCar]);
 
   return (
     <article className="flex flex-col py-6 sm:flex-row gap-4 sm:gap-7 sm:items-stretch md:gap-12 lg:flex-col lg:gap-4 lg:px-2">
@@ -70,6 +96,7 @@ const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
         classLabel={classLabel}
         car={car}
         onDetailsClick={handleDetailsClick}
+        onBookNow={handleBookNow}
       />
       <FleetCarDetailModal
         car={modalCar}
@@ -77,6 +104,7 @@ const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
         isOpen={modalOpen}
         onClose={handleModalClose}
         onCloseComplete={handleModalCloseComplete}
+        onBookNow={handleModalBookNow}
       />
     </article>
   );

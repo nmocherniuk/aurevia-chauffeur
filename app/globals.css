@@ -147,6 +147,15 @@ h2 {
   opacity: 1;
 }
 
+/*
+ * Mantine TimePicker always renders colon separators as direct <span> children of .fieldsGroup.
+ * They paint above a custom “Select time” overlay — hide until the form has a committed value.
+ */
+[data-time-empty="true"] .mantine-TimePicker-fieldsGroup > span {
+  opacity: 0;
+  pointer-events: none;
+}
+
 [data-open="true"] .mantine-DatePickerInput-input,
 [data-open="true"] .mantine-TimePicker-input,
 [data-open="true"] .mantine-Input-input {

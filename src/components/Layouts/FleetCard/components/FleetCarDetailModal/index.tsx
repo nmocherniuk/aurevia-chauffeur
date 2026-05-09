@@ -17,6 +17,7 @@ export type FleetCarDetailModalProps = {
   isOpen: boolean;
   onClose: () => void;
   onCloseComplete?: () => void;
+  onBookNow?: () => void;
 };
 
 export function FleetCarDetailModal({
@@ -25,6 +26,7 @@ export function FleetCarDetailModal({
   isOpen,
   onClose,
   onCloseComplete,
+  onBookNow,
 }: FleetCarDetailModalProps) {
   const [mounted, setMounted] = useState(false);
   const [scrollEnabled, setScrollEnabled] = useState(false);
@@ -154,6 +156,7 @@ export function FleetCarDetailModal({
                   classLabel={classLabel}
                   isOpen={isOpen}
                   onClose={onClose}
+                  onBookNow={onBookNow ?? onClose}
                   onAnimationComplete={() => setScrollEnabled(true)}
                 />
               </div>

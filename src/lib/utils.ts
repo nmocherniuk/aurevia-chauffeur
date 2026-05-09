@@ -12,6 +12,9 @@ export function getSectionIdFromHref(href: string): string | null {
 
 const DEFAULT_SCROLL_OFFSET = -77;
 
+/** Fixed header offset for in-page jumps on /driver (Nav «Reserver», Book now scroll). */
+export const DRIVER_HEADER_NAV_SCROLL_OFFSET = -107;
+
 export function scrollToSection(
   sectionId: string,
   offset: number = DEFAULT_SCROLL_OFFSET

@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import { BOOKING_VEHICLE_OPTIONS } from "@/src/features/FormSection/data/bookingVehicles";
 import { Location } from "@/src/components/SVGManager/Location";
 import type { StepIconProps } from "@/src/components/StepIndicator";
 import { Vehicle } from "@/src/components/SVGManager/Vehicle";
@@ -122,18 +123,7 @@ export const FORM_STEPS: FormStep[] = [
         name: "car",
         label: "Car",
         placeholder: "Select vehicle type",
-        options: [
-          {
-            label: "Mercedes S580",
-            value: "cafff580-9141-46fe-b2d5-18ea3d9fc543",
-            detail: "3P · 3L",
-          },
-          {
-            label: "BMW 7 Series",
-            value: "72f6d70d-a7c7-497e-9c98-073dbdb5163b",
-            detail: "3P · 2L",
-          },
-        ],
+        options: [...BOOKING_VEHICLE_OPTIONS],
       },
     ],
   },

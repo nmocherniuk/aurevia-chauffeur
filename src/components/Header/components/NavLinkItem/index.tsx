@@ -3,10 +3,13 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { cn, getSectionIdFromHref, scrollToSection } from '@/src/lib/utils'
+import {
+    cn,
+    DRIVER_HEADER_NAV_SCROLL_OFFSET,
+    getSectionIdFromHref,
+    scrollToSection,
+} from '@/src/lib/utils'
 import type { NavLink } from '@/src/data/routes'
-
-const HEADER_OFFSET = -107
 
 function basePathBeforeHash(href: string): string {
     const base = href.split('#')[0]
@@ -66,7 +69,7 @@ export const NavLinkItem: FC<NavLinkItemProps> = ({
                 className={baseClasses}
                 onClick={() => {
                     onSectionChange?.(sectionId)
-                    scrollToSection(sectionId, HEADER_OFFSET)
+                    scrollToSection(sectionId, DRIVER_HEADER_NAV_SCROLL_OFFSET)
                 }}
             >
                 {link.name}

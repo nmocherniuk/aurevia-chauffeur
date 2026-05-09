@@ -12,6 +12,7 @@ type FleetCarDetailModalContentProps = {
   classLabel: string;
   isOpen: boolean;
   onClose: () => void;
+  onBookNow: () => void;
   onAnimationComplete: () => void;
 };
 
@@ -20,6 +21,7 @@ export function FleetCarDetailModalContent({
   classLabel,
   isOpen,
   onClose,
+  onBookNow,
   onAnimationComplete,
 }: FleetCarDetailModalContentProps) {
   return (
@@ -81,9 +83,9 @@ export function FleetCarDetailModalContent({
           type="button"
           variant="primary"
           className="w-full sm:flex-1"
-          onClick={onClose}
+          onClick={onBookNow}
         >
-          Nous contacter
+          Book now
         </Button>
       </div>
     </motion.div>
