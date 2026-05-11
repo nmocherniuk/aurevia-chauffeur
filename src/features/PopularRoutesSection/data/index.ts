@@ -8,12 +8,6 @@ export interface Route {
 
 export type RouteTabId = "cityToCity" | "travelTransfers" | "winterTrips";
 
-export const ROUTE_TABS: { id: RouteTabId; label: string }[] = [
-  { id: "cityToCity", label: "Transferts de ville à ville" },
-  { id: "travelTransfers", label: "Transferts de voyage" },
-  { id: "winterTrips", label: "Voyages d'hiver" },
-];
-
 export const ROUTES: Record<RouteTabId, Route[]> = {
   cityToCity: [
     { id: 1, from: "Monaco", to: "Cannes", duration: "45 min", distance: 50 },

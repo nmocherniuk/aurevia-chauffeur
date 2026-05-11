@@ -3,11 +3,11 @@
 import { Button } from "@/src/components/Button";
 import RouteCard from "@/src/components/Layouts/RouteCard";
 import { FC, useState } from "react";
-import { ROUTES, ROUTE_TABS, type RouteTabId } from "./data";
+import { type RouteTabId } from "./data";
+import { chauffeurContent } from "@/src/content/chauffeur";
 
 const PopularRoutesSection: FC = () => {
   const [activeTab, setActiveTab] = useState<RouteTabId>("cityToCity");
-  const routes = ROUTES[activeTab];
 
   return (
     <section id="popular-routes" className="w-full">
@@ -18,7 +18,7 @@ const PopularRoutesSection: FC = () => {
         className="flex flex-col justify-center gap-3 mb-9 md:flex-row "
         aria-label="Catégories d'itinéraires"
       >
-        {ROUTE_TABS.map(({ id, label }) => (
+        {chauffeurContent.transferTabs.map(({ id, label }) => (
           <Button
             className="rounded-lg"
             key={id}
@@ -30,7 +30,7 @@ const PopularRoutesSection: FC = () => {
         ))}
       </nav>
       <div className="flex flex-col gap-5 lg:grid lg:grid-cols-2 xl:min-h-[242px] lg:content-start">
-        {routes.map((route, index) => (
+        {chauffeurContent.popularRoutes[activeTab].map((route, index) => (
           <RouteCard key={route.id} route={route} index={index} />
         ))}
       </div>
