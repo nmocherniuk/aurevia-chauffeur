@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import MainContainer from "@/src/components/MainContainer";
 import MainDriverSection from "@/src/features/MainSection/MainDriverSection";
 import { Fragment } from "react/jsx-runtime";
@@ -8,6 +9,28 @@ import PopularRoutesSection from "@/src/features/PopularRoutesSection";
 import FAQSection from "@/src/features/FAQSection";
 import CTABlock from "@/src/components/CTABlock";
 import FormSection from "@/src/features/FormSection";
+
+export const metadata: Metadata = {
+    title: "Chauffeur privé premium",
+    description:
+        "Réservez un chauffeur privé Aurevia pour vos trajets en France: confort haut de gamme, ponctualité et service sur mesure.",
+    alternates: {
+        canonical: "/driver",
+    },
+    openGraph: {
+        title: "Aurevia Chauffeur - Transport privé premium",
+        description:
+            "Service de chauffeur privé premium pour déplacements professionnels, personnels et événements.",
+        url: "/driver",
+        images: ["/images/og-image.jpg"],
+    },
+    twitter: {
+        title: "Aurevia Chauffeur - Transport privé premium",
+        description:
+            "Service de chauffeur privé premium pour déplacements professionnels, personnels et événements.",
+        images: ["/images/og-image.jpg"],
+    },
+};
 
 export default function DriverPage() {
     return (

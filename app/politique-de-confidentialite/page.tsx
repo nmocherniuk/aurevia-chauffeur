@@ -1,5 +1,28 @@
+import type { Metadata } from "next";
 import MainContainer from '@/src/components/MainContainer'
 import React from 'react'
+
+export const metadata: Metadata = {
+    title: "Politique de confidentialité",
+    description:
+        "Politique de confidentialité Aurevia: données collectées, finalités, conservation, sécurité et droits des utilisateurs.",
+    alternates: {
+        canonical: "/politique-de-confidentialite",
+    },
+    openGraph: {
+        title: "Politique de confidentialité | Aurevia",
+        description:
+            "Gestion des données personnelles, sécurité et droits RGPD sur Aurevia.",
+        url: "/politique-de-confidentialite",
+        images: ["/images/og-image.jpg"],
+    },
+    twitter: {
+        title: "Politique de confidentialité | Aurevia",
+        description:
+            "Gestion des données personnelles, sécurité et droits RGPD sur Aurevia.",
+        images: ["/images/og-image.jpg"],
+    },
+};
 
 export default function PolitiqueDeConfidentialite() {
     return (

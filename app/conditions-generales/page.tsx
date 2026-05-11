@@ -1,5 +1,28 @@
+import type { Metadata } from "next";
 import MainContainer from '@/src/components/MainContainer'
 import React from 'react'
+
+export const metadata: Metadata = {
+    title: "Conditions générales",
+    description:
+        "Consultez les conditions générales d'utilisation, de réservation, de paiement et d'annulation des services Aurevia.",
+    alternates: {
+        canonical: "/conditions-generales",
+    },
+    openGraph: {
+        title: "Conditions générales | Aurevia",
+        description:
+            "Conditions d'utilisation, réservation, paiement et annulation des services Aurevia.",
+        url: "/conditions-generales",
+        images: ["/images/og-image.jpg"],
+    },
+    twitter: {
+        title: "Conditions générales | Aurevia",
+        description:
+            "Conditions d'utilisation, réservation, paiement et annulation des services Aurevia.",
+        images: ["/images/og-image.jpg"],
+    },
+};
 
 export default function ConditionsGenerales() {
     return (

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import MainContainer from "@/src/components/MainContainer";
 import { Fragment } from "react/jsx-runtime";
 import WhyChooseUsSection from "@/src/features/WhyChooseUsSection";
@@ -7,6 +8,28 @@ import CTABlock from "@/src/components/CTABlock";
 import SecurityFormSection from "@/src/features/SecurityFormSection";
 import MainSecuritySection from "@/src/features/MainSection/MainSecuritySection";
 import BookingProcessSection from "@/src/features/BookingProcessSection";
+
+export const metadata: Metadata = {
+    title: "Sécurité privée premium",
+    description:
+        "Aurevia propose des services de sécurité privée en France: protection rapprochée, sécurisation d'événements et accompagnement professionnel.",
+    alternates: {
+        canonical: "/security",
+    },
+    openGraph: {
+        title: "Aurevia Security - Services de sécurité privée",
+        description:
+            "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
+        url: "/security",
+        images: ["/images/og-image.jpg"],
+    },
+    twitter: {
+        title: "Aurevia Security - Services de sécurité privée",
+        description:
+            "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
+        images: ["/images/og-image.jpg"],
+    },
+};
 
 export default function SecurityPage() {
     return (

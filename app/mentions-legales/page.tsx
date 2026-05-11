@@ -1,5 +1,28 @@
+import type { Metadata } from "next";
 import MainContainer from '@/src/components/MainContainer'
 import React from 'react'
+
+export const metadata: Metadata = {
+    title: "Mentions légales",
+    description:
+        "Mentions légales du site Aurevia: éditeur, hébergeur, propriété intellectuelle et informations légales.",
+    alternates: {
+        canonical: "/mentions-legales",
+    },
+    openGraph: {
+        title: "Mentions légales | Aurevia",
+        description:
+            "Informations légales du site Aurevia: éditeur, hébergement et droits.",
+        url: "/mentions-legales",
+        images: ["/images/og-image.jpg"],
+    },
+    twitter: {
+        title: "Mentions légales | Aurevia",
+        description:
+            "Informations légales du site Aurevia: éditeur, hébergement et droits.",
+        images: ["/images/og-image.jpg"],
+    },
+};
 
 export default function MentionsLegales() {
     return (

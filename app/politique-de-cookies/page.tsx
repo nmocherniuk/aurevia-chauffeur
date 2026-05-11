@@ -1,5 +1,28 @@
+import type { Metadata } from "next";
 import MainContainer from '@/src/components/MainContainer'
 import React from 'react'
+
+export const metadata: Metadata = {
+    title: "Politique de cookies",
+    description:
+        "Politique de cookies Aurevia: types de cookies utilisés, consentement et gestion des préférences.",
+    alternates: {
+        canonical: "/politique-de-cookies",
+    },
+    openGraph: {
+        title: "Politique de cookies | Aurevia",
+        description:
+            "Informations sur les cookies, la mesure d'audience et les préférences utilisateur sur Aurevia.",
+        url: "/politique-de-cookies",
+        images: ["/images/og-image.jpg"],
+    },
+    twitter: {
+        title: "Politique de cookies | Aurevia",
+        description:
+            "Informations sur les cookies, la mesure d'audience et les préférences utilisateur sur Aurevia.",
+        images: ["/images/og-image.jpg"],
+    },
+};
 
 export default function PolitiqueDeConfidentialiteEtCookies() {
     return (

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Fragment } from "react/jsx-runtime";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,6 +20,28 @@ const PORTAL_CARDS = [
     image: "/images/luxury-private-bodyguards.png",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Accueil",
+  description:
+    "Aurevia coordonne des services premium de chauffeur privé et de sécurité privée en France, avec un accompagnement sur mesure.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Aurevia - Chauffeur privé et sécurité privée",
+    description:
+      "Plateforme premium de coordination pour transport privé et sécurité privée.",
+    url: "/",
+    images: ["/images/og-image.jpg"],
+  },
+  twitter: {
+    title: "Aurevia - Chauffeur privé et sécurité privée",
+    description:
+      "Plateforme premium de coordination pour transport privé et sécurité privée.",
+    images: ["/images/og-image.jpg"],
+  },
+};
 
 export default function Home() {
   return (
