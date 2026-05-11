@@ -27,13 +27,13 @@ const timeYupSchema = yup
   .required("L’heure de rendez-vous est requise");
 
 const journeySchema: StepSchema = yup.object({
-  tripType: yup.string().required("Trip type is required"),
+  tripType: yup.string().required("Le type de trajet est requis"),
   from: yup
     .string()
-    .required("Pickup location is required")
+    .required("Le lieu de prise en charge est requis")
     .test(
       "from-picked",
-      "Choose a location from the suggestions",
+      "Choisissez un lieu parmi les suggestions",
       function () {
         const lat = (this.parent as Record<string, unknown>).fromLat;
         return typeof lat === "string" && lat.length > 0;
@@ -44,10 +44,10 @@ const journeySchema: StepSchema = yup.object({
     then: (schema) => schema.optional(),
     otherwise: (schema) =>
       schema
-        .required("Destination is required")
+        .required("La destination est requise")
         .test(
           "to-picked",
-          "Choose a location from the suggestions",
+          "Choisissez un lieu parmi les suggestions",
           function () {
             const lat = (this.parent as Record<string, unknown>).toLat;
             return typeof lat === "string" && lat.length > 0;
@@ -58,10 +58,10 @@ const journeySchema: StepSchema = yup.object({
     is: "hourly",
     then: (schema) =>
       schema
-        .required("End time is required")
+        .required("L'heure de fin est requise")
         .test(
           "after-start",
-          "End time must be after start time",
+          "L'heure de fin doit etre apres l'heure de debut",
           function (endVal) {
             const parent = this.parent as { time?: string };
             const start = parent.time;
@@ -77,13 +77,13 @@ const journeySchema: StepSchema = yup.object({
 });
 
 const vehicleSchema: StepSchema = yup.object({
-  carType: yup.string().required("Car type is required"),
-  car: yup.string().required("Car is required"),
+  carType: yup.string().required("Le type de vehicule est requis"),
+  car: yup.string().required("Le vehicule est requis"),
 });
 
 const passengerSchema: StepSchema = yup.object({
-  firstName: yup.string().required("First name is required"),
-  lastName: yup.string().required("Last name is required"),
+  firstName: yup.string().required("Le prenom est requis"),
+  lastName: yup.string().required("Le nom est requis"),
 
   email: yup
     .string()
@@ -98,7 +98,7 @@ const passengerSchema: StepSchema = yup.object({
       (value) => (value ? EMAIL_REGEX.test(value) : false),
     ),
 
-  phone: yup.string().required("Un numéro de téléphone est requis"),
+  phone: yup.string().required("Un numero de telephone est requis"),
   // TODO: Uncomment this when we have a valid phone number regex
 
   // .test(

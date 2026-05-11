@@ -102,7 +102,7 @@ export const PaymentStep: FC<FormStepProps> = ({
         <div className="overflow-hidden">
           <div className="flex w-full flex-row gap-5 py-4 sm:max-w-full sm:gap-x-12 md:gap-x-17 sm:gap-y-6 flex-wrap">
             <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
-              <h3 className="text-sm font-medium text-text-primary">Journey</h3>
+              <h3 className="text-sm font-medium text-text-primary">Trajet</h3>
               <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {journeyRoute && <li>{journeyRoute}</li>}
                 {journeyDateTime && <li>{journeyDateTime}</li>}
@@ -111,7 +111,7 @@ export const PaymentStep: FC<FormStepProps> = ({
             </section>
 
             <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
-              <h3 className="text-sm font-medium text-text-primary">Vehicle</h3>
+              <h3 className="text-sm font-medium text-text-primary">Vehicule</h3>
               <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {carTypeLabel && <li>{carTypeLabel}</li>}
                 {carLabel && <li>{carLabel}</li>}
@@ -119,7 +119,7 @@ export const PaymentStep: FC<FormStepProps> = ({
             </section>
 
             <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
-              <h3 className="text-sm font-medium text-text-primary">Passenger</h3>
+              <h3 className="text-sm font-medium text-text-primary">Passager</h3>
               <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {passengerName && <li>{passengerName}</li>}
                 {email && <li>{email}</li>}
@@ -131,7 +131,7 @@ export const PaymentStep: FC<FormStepProps> = ({
       ) : null}
       <div className="flex items-center justify-between pt-6 pb-1">
         <p className="text-xl font-medium text-text-primary">
-          Total:{" "}
+          Total :{" "}
           <span className="text-xl font-semibold text-primary">
             {totalPrice === "—" ? "—" : `€${totalPrice}`}
           </span>

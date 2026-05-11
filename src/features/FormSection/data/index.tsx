@@ -53,65 +53,65 @@ export type FormFieldConfig =
   };
 
 export const TRIP_TYPE_SELECT_OPTIONS = [
-  { label: "One way", value: "one_way" },
-  { label: "Hourly", value: "hourly" },
+  { label: "Aller simple", value: "one_way" },
+  { label: "A l'heure", value: "hourly" },
 ] as const;
 
 export const FORM_STEPS: FormStep[] = [
   {
-    label: "Journey",
+    label: "Trajet",
     icon: Location,
     iconSize: 25,
     fields: [
       {
         type: "select",
         name: "tripType",
-        label: "Trip type",
-        placeholder: "Select vehicle type",
+        label: "Type de trajet",
+        placeholder: "Selectionnez le type de trajet",
         options: [...TRIP_TYPE_SELECT_OPTIONS],
       },
       {
         type: "input",
         name: "from",
-        label: "From",
-        placeholder: "Enter pickup location",
+        label: "Depart",
+        placeholder: "Entrez le lieu de prise en charge",
       },
       {
         type: "input",
         name: "to",
-        label: "To",
-        placeholder: "Enter destination",
+        label: "Arrivee",
+        placeholder: "Entrez la destination",
       },
       {
         type: "date",
         name: "date",
         label: "Date",
-        placeholder: "Select date",
+        placeholder: "Selectionnez une date",
       },
       {
         type: "time",
         name: "time",
-        label: "Time",
-        placeholder: "Select time",
+        label: "Heure",
+        placeholder: "Selectionnez une heure",
       },
       {
         type: "time",
         name: "endTime",
-        label: "End time",
-        placeholder: "Select end time",
+        label: "Heure de fin",
+        placeholder: "Selectionnez l'heure de fin",
       },
     ],
   },
   {
-    label: "Vehicle",
+    label: "Vehicule",
     icon: Vehicle,
     iconSize: 22,
     fields: [
       {
         type: "select",
         name: "carType",
-        label: "Car type",
-        placeholder: "Select vehicle type",
+        label: "Type de vehicule",
+        placeholder: "Selectionnez le type de vehicule",
         options: [
           { label: "Comfort", value: "comfort" },
           { label: "Business", value: "business" },
@@ -121,14 +121,14 @@ export const FORM_STEPS: FormStep[] = [
       {
         type: "select",
         name: "car",
-        label: "Car",
-        placeholder: "Select vehicle type",
+        label: "Vehicule",
+        placeholder: "Selectionnez un vehicule",
         options: [...BOOKING_VEHICLE_OPTIONS],
       },
     ],
   },
   {
-    label: "Passenger",
+    label: "Passager",
     icon: Person,
     iconSize: 21,
     fields: [
@@ -136,36 +136,36 @@ export const FORM_STEPS: FormStep[] = [
         type: "input",
         name: "firstName",
         label: "Nom",
-        placeholder: "First name",
+        placeholder: "Prenom",
       },
       {
         type: "input",
         name: "lastName",
-        label: "Last name",
-        placeholder: "Last name",
+        label: "Nom",
+        placeholder: "Nom",
       },
       {
         type: "input",
         name: "email",
-        label: "Email",
-        placeholder: "Email",
+        label: "E-mail",
+        placeholder: "E-mail",
       },
       {
         type: "input",
         name: "phone",
-        label: "Phone",
-        placeholder: "Phone",
+        label: "Telephone",
+        placeholder: "Telephone",
       },
       {
         type: "textarea",
         name: "notesForChauffeur",
-        label: "Notes for chauffeur",
-        placeholder: "Optional notes",
+        label: "Notes pour le chauffeur",
+        placeholder: "Notes optionnelles",
       },
     ],
   },
   {
-    label: "Payment",
+    label: "Paiement",
     icon: PaymentCard,
     iconSize: 22,
     fields: []

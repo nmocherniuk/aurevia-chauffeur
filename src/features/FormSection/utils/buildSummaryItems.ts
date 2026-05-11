@@ -90,7 +90,7 @@ export function buildSummaryItems(
 
   const price = formValues["price"];
   if (typeof price === "string" && price) {
-    items.push({ value: `Total price € ${price}`, highlight: true });
+    items.push({ value: `Prix total € ${price}`, highlight: true });
   }
 
   return items;

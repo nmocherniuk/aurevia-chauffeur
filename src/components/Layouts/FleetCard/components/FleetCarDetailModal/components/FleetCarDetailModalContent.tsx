@@ -6,6 +6,7 @@ import { Button } from "@/src/components/Button";
 import { CAR_SPECS } from "../data/specs";
 import { CONTENT_ANIMATION } from "../constants";
 import type { Fleet } from "@/src/features/FleetSection/data";
+import { commonContent } from "@/src/content/common";
 
 type FleetCarDetailModalContentProps = {
   car: Fleet;
@@ -77,7 +78,7 @@ export function FleetCarDetailModalContent({
           className="w-full sm:flex-1"
           onClick={onClose}
         >
-          Voir les détails
+          {commonContent.buttons.closeModalButton}
         </Button>
         <Button
           type="button"
@@ -85,7 +86,7 @@ export function FleetCarDetailModalContent({
           className="w-full sm:flex-1"
           onClick={onBookNow}
         >
-          Book now
+          {commonContent.buttons.reserve}
         </Button>
       </div>
     </motion.div>

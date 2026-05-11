@@ -1,8 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import heroImage from "@/public/images/hyundai-motor-group.png";
-import { Button } from "@/src/components/Button";
 import SocialIcons from "@/src/components/SocialIcons";
+import { commonContent } from "@/src/content/common";
+import { routes } from "@/src/config/routes";
+import { NavButton } from "@/src/components/Button/NavButton";
 
 const MainDriverSection: React.FC = () => {
   return (
@@ -35,9 +37,9 @@ const MainDriverSection: React.FC = () => {
             </p>
           </article>
           <SocialIcons classNameContainer="hidden sm:flex mb-4" />
-          <Button variant="primary" className="w-full max-w-[220px]">
-            Book Now
-          </Button>
+          <NavButton variant="primary" className="w-full max-w-[220px]" href={routes.chauffeur.book}>
+            {commonContent.buttons.reserve}
+          </NavButton>
         </div>
       </div>
     </section>

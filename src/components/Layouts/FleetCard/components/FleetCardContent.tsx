@@ -5,6 +5,7 @@ import { Fleet } from "@/src/features/FleetSection/data";
 import { People } from "../../../SVGManager/People";
 import { Bagage } from "../../../SVGManager/Bagage";
 import { Button } from "../../../Button";
+import { commonContent } from "@/src/content/common";
 
 interface FleetCardContentProps {
   classLabel: string;
@@ -60,7 +61,7 @@ export const FleetCardContent: FC<FleetCardContentProps> = ({
           className="sm:flex-1"
           onClick={onDetailsClick}
         >
-          Voir les détails
+          {commonContent.buttons.seeDetails}
         </Button>
         <Button
           type="button"
@@ -68,7 +69,7 @@ export const FleetCardContent: FC<FleetCardContentProps> = ({
           className="sm:flex-1"
           onClick={onBookNow}
         >
-          Book now
+          {commonContent.buttons.reserve}
         </Button>
       </div>
     </div>

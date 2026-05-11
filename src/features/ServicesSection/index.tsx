@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import ServiceCard from "@/src/components/Layouts/ServiceCard";
-import { chauffeurServices, securityServices } from "@/src/features/ServicesSection/data";
+import { securityServices } from "@/src/features/ServicesSection/data";
+import { chauffeurContent } from "@/src/content/chauffeur";
 import ServiceSecurity from "@/src/components/Layouts/ServiceSecurity";
 
 type Props = {
@@ -16,31 +17,31 @@ const ServicesSection: FC<Props> = ({ type }) => {
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6">
         {type === "chauffeur"
-          ? chauffeurServices.map((service, index) => (
-              <ServiceCard
+          ? chauffeurContent.services.items.map((service, index) => (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              className={
+                index === chauffeurContent.services.items.length - 1
+                  ? "md:col-span-2 lg:col-span-2"
+                  : index < 2
+                    ? "lg:col-span-3"
+                    : "lg:col-span-2"
+              }
+            />
+          ))
+          : securityServices.map((service, index) => {
+            const isWide = index === securityServices.length - 1;
+
+            return (
+              <ServiceSecurity
                 key={service.id}
                 service={service}
-                className={
-                  index === chauffeurServices.length - 1
-                    ? "md:col-span-2 lg:col-span-2"
-                    : index < 2
-                      ? "lg:col-span-3"
-                      : "lg:col-span-2"
-                }
+                wide={isWide}
+                className={isWide ? "md:col-span-2 lg:col-span-4" : "lg:col-span-2"}
               />
-            ))
-          : securityServices.map((service, index) => {
-              const isWide = index === securityServices.length - 1;
-
-              return (
-                <ServiceSecurity
-                  key={service.id}
-                  service={service}
-                  wide={isWide}
-                  className={isWide ? "md:col-span-2 lg:col-span-4" : "lg:col-span-2"}
-                />
-              );
-            })}
+            );
+          })}
       </div>
     </section>
   );

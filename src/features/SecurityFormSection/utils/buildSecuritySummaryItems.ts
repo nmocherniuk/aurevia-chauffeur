@@ -42,7 +42,7 @@ export function buildSecuritySummaryItems(
         } else if (values.serviceType !== "other") {
           items.push(labelForServiceType(cat, values.serviceType));
         } else {
-          items.push("Other");
+          items.push("Autre");
         }
       }
     }
@@ -60,12 +60,12 @@ export function buildSecuritySummaryItems(
     if (values.endDate) {
       const d = dayjs(values.endDate);
       items.push(
-        d.isValid() ? `Until ${d.format("D MMMM YYYY")}` : `Until ${values.endDate}`,
+        d.isValid() ? `Jusqu'au ${d.format("D MMMM YYYY")}` : `Jusqu'au ${values.endDate}`,
       );
     }
     if (values.agentCount) {
       const n = AGENT_COUNT_OPTIONS.find((o) => o.value === values.agentCount)?.label;
-      items.push(`Agents: ${n ?? values.agentCount}`);
+      items.push(`Agents : ${n ?? values.agentCount}`);
     }
   }
 

@@ -118,8 +118,8 @@ export const VehicleStep: FC<FormStepProps> = ({
         <div className="flex flex-col gap-y-2.5 gap-x-4 ">
           <SelectWithError
             name="carType"
-            label="Car type"
-            placeholder="Select vehicle type"
+            label="Type de vehicule"
+            placeholder="Selectionnez le type de vehicule"
             options={[
               { label: "Comfort", value: "comfort" },
               { label: "Business", value: "business" },
@@ -133,8 +133,8 @@ export const VehicleStep: FC<FormStepProps> = ({
           />
           <SelectWithError
             name="car"
-            label="Car"
-            placeholder="Select vehicle type"
+            label="Vehicule"
+            placeholder="Selectionnez un vehicule"
             options={[...BOOKING_VEHICLE_OPTIONS]}
             value={(getValue("car", false) as string) || ""}
             onChange={(e) => {
@@ -167,11 +167,11 @@ export const VehicleStep: FC<FormStepProps> = ({
           <span className="text-sm font-light text-text-primary">
             {selectedVehicleId
               ? isLoadingPrice
-                ? "Calculating price…"
+                ? "Calcul du prix…"
                 : price
-                  ? "Price for selected vehicle"
-                  : "Select journey to see price"
-              : "Select vehicle to see price"}
+                  ? "Prix pour le vehicule selectionne"
+                  : "Selectionnez un trajet pour voir le prix"
+              : "Selectionnez un vehicule pour voir le prix"}
           </span>
           {tripType === "one_way" && distanceKm ? (
             <span className="text-xs font-light text-white/90">

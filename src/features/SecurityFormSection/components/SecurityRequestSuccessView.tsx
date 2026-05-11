@@ -31,12 +31,13 @@ export const SecurityRequestSuccessView: FC<Props> = ({ onContinue }) => {
         id="security-request-success-title"
         className="my-3 text-xl text-text-secondary"
       >
-        Request received
+        Demande recue
       </h4>
       <p className="mb-6 max-w-[558px] text-base font-light leading-relaxed text-text-primary">
-        Thank you. Our coordination team will review your request and contact you
-        personally to refine the details. This is not an instant booking — we confirm
-        every assignment with discretion and care.
+        Merci. Notre equipe de coordination analysera votre demande et vous
+        contactera personnellement pour affiner les details. Il ne s'agit pas
+        d'une reservation instantanee : chaque mission est confirmee avec
+        discretion et rigueur.
       </p>
       <Button
         type="button"
@@ -45,7 +46,7 @@ export const SecurityRequestSuccessView: FC<Props> = ({ onContinue }) => {
         withArrow={false}
         className="w-[280px]"
       >
-        Continue
+        Continuer
       </Button>
     </motion.section>
   );

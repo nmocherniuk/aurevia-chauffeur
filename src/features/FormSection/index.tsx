@@ -29,6 +29,7 @@ import {
 } from "@/src/features/FleetSection/utils/fleetBookingPrefill";
 import { applyFleetPrefillToFormValues } from "./utils/applyFleetPrefill";
 import { scrollToBookingFormSmoothAfterNav } from "@/src/lib/scrollToBookingForm";
+import { commonContent } from "@/src/content/common";
 
 const FormSection: FC = () => {
   const [initialValues, setInitialValues] = useState<FormValues>(() =>
@@ -95,7 +96,7 @@ const FormSection: FC = () => {
                 Réservez votre transfert
               </h2>
               <p className="text-text-primary text-base font-light text-center sm:text-start">
-                Enter your transfer details below and continue to confirmation.
+                Entrez les details de votre trajet puis poursuivez vers la confirmation.
               </p>
             </div>
             <StepIndicator
@@ -158,7 +159,7 @@ const FormSection: FC = () => {
                 setBookingSuccess(true);
               } catch {
                 setSubmitError(
-                  "Something went wrong. Please try again in a moment.",
+                  "Une erreur est survenue. Veuillez reessayer dans un instant.",
                 );
               }
               return;
@@ -270,7 +271,7 @@ const FormSection: FC = () => {
                         disabled={isSubmitting}
                         className="sm:w-[220px]"
                       >
-                        Précédent
+                        {commonContent.buttons.previous}
                       </Button>
                     )}
                     <Button
@@ -281,8 +282,8 @@ const FormSection: FC = () => {
                       className="sm:w-[220px]"
                     >
                       {isSubmitting && activeStepIndex === lastStepIndex
-                        ? "Sending…"
-                        : "Continue"}
+                        ? commonContent.buttons.sendingRequest
+                        : commonContent.buttons.continue}
                     </Button>
                   </div>
                 </Form>

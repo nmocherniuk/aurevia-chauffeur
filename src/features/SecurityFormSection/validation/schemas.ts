@@ -6,10 +6,10 @@ type StepSchema = yup.ObjectSchema<Partial<SecurityFormValues>>;
 
 const dateYupSchema = yup
   .string()
-  .required("Date is required")
+  .required("La date est requise")
   .test(
     "future-date",
-    "Date must be today or in the future",
+    "La date doit etre aujourd'hui ou dans le futur",
     (value) => {
       if (!value) return false;
       const date = new Date(value);
@@ -19,36 +19,36 @@ const dateYupSchema = yup
     },
   );
 
-const timeYupSchema = yup.string().required("Start time is required");
+const timeYupSchema = yup.string().required("L'heure de debut est requise");
 
 const serviceStepSchema: StepSchema = yup.object({
-  serviceCategory: yup.string().required("Please choose a service category"),
-  serviceType: yup.string().required("Please choose a service type"),
+  serviceCategory: yup.string().required("Veuillez choisir une categorie de service"),
+  serviceType: yup.string().required("Veuillez choisir un type de service"),
   serviceTypeOther: yup.string().when("serviceType", {
     is: "other",
     then: (schema) =>
       schema
         .trim()
-        .required("Please describe the service you need")
-        .min(3, "Please provide a bit more detail"),
+        .required("Veuillez decrire le service souhaite")
+        .min(3, "Veuillez fournir un peu plus de details"),
     otherwise: (schema) => schema.optional(),
   }),
   location: yup
     .string()
     .trim()
-    .required("Location is required")
-    .min(3, "Please enter a more precise location"),
+    .required("Le lieu est requis")
+    .min(3, "Veuillez saisir un lieu plus precis"),
   date: dateYupSchema,
   time: timeYupSchema,
-  duration: yup.string().required("Duration is required"),
+  duration: yup.string().required("La duree est requise"),
   endDate: yup.string().when("duration", {
     is: "multi",
     then: (schema) =>
       schema
-        .required("End date is required for multi-day assignments")
+        .required("La date de fin est requise pour une mission sur plusieurs jours")
         .test(
           "after-start-date",
-          "End date must be on or after the start date",
+          "La date de fin doit etre le meme jour ou apres la date de debut",
           function (endVal) {
             const start = (this.parent as { date?: string }).date;
             if (!endVal || !start) return true;
@@ -59,25 +59,25 @@ const serviceStepSchema: StepSchema = yup.object({
   }),
   agentCount: yup
     .string()
-    .required("Number of agents is required")
-    .matches(/^\d+$/, "Enter a valid number"),
+    .required("Le nombre d'agents est requis")
+    .matches(/^\d+$/, "Saisissez un nombre valide"),
 });
 
 const clientStepSchema: StepSchema = yup.object({
-  firstName: yup.string().trim().required("First name is required"),
-  lastName: yup.string().trim().required("Last name is required"),
+  firstName: yup.string().trim().required("Le prenom est requis"),
+  lastName: yup.string().trim().required("Le nom est requis"),
   email: yup
     .string()
-    .required("Email is required")
+    .required("L'e-mail est requis")
     .trim()
-    .max(MAX_EMAIL_LENGTH, "Email is too long")
-    .matches(/^\S+$/, "Email cannot contain spaces")
+    .max(MAX_EMAIL_LENGTH, "L'e-mail est trop long")
+    .matches(/^\S+$/, "L'e-mail ne peut pas contenir d'espaces")
     .test(
       "email-format",
-      "Please enter a valid email",
+      "Veuillez entrer une adresse e-mail valide",
       (value) => (value ? EMAIL_REGEX.test(value) : false),
     ),
-  phone: yup.string().trim().required("Phone number is required"),
+  phone: yup.string().trim().required("Le numero de telephone est requis"),
   company: yup.string().optional(),
 });
 

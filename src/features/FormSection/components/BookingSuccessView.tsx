@@ -48,7 +48,7 @@ export const BookingSuccessView: FC<Props> = ({ onContinue }) => {
         withArrow={false}
         className="w-[280px]"
       >
-        Continue
+        Continuer
       </Button>
     </motion.section>
   );

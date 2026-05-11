@@ -1,6 +1,6 @@
 import React from 'react'
 import CardOutline from '../Layouts/CardOutline'
-import { Button } from '../Button'
+import { NavButton } from '@/src/components/Button/NavButton'
 import { Link } from '../SVGManager/Link'
 
 interface CTABlockProps {
@@ -22,7 +22,13 @@ const CTABlock: React.FC<CTABlockProps> = ({ title, description, buttonText, but
                         <p className='text-text-primary text-base text-center sm:text-left font-light'>{description}</p>
                     </div>
                 </div>
-                <Button variant='primary' className='w-full sm:max-w-[220px]'>{buttonText}</Button>
+                <NavButton
+                    href={buttonLink}
+                    variant='primary'
+                    className='w-full sm:max-w-[220px]'
+                >
+                    {buttonText}
+                </NavButton>
             </CardOutline>
         </section>
     )

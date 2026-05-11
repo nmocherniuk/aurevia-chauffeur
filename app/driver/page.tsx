@@ -9,6 +9,8 @@ import PopularRoutesSection from "@/src/features/PopularRoutesSection";
 import FAQSection from "@/src/features/FAQSection";
 import CTABlock from "@/src/components/CTABlock";
 import FormSection from "@/src/features/FormSection";
+import { commonContent } from "@/src/content/common";
+import { routes } from "@/src/config/routes";
 
 export const metadata: Metadata = {
     title: "Chauffeur privé premium",
@@ -43,8 +45,8 @@ export default function DriverPage() {
                     <CTABlock
                         title="Réservez Votre Chauffeur en Toute Simplicité"
                         description="Organisez votre transfert en quelques clics et profitez d’un voyage élégant, ponctuel et discret."
-                        buttonText="Book Now"
-                        buttonLink="/book"
+                        buttonText={commonContent.buttons.reserve}
+                        buttonLink={routes.chauffeur.book}
                     />
                 </div>
                 <FleetSection />
@@ -55,8 +57,8 @@ export default function DriverPage() {
                     <CTABlock
                         title="Réservez Votre Chauffeur en Toute Simplicité"
                         description="Organisez votre transfert en quelques clics et profitez d’un voyage élégant, ponctuel et discret."
-                        buttonText="Book Now"
-                        buttonLink="/book"
+                        buttonText={commonContent.buttons.reserve}
+                        buttonLink={routes.chauffeur.book}
                     />
                 </div>
             </MainContainer>

@@ -36,7 +36,7 @@ function labelForDuration(v: string): string {
 
 function labelDressCode(v: string): string {
   return (
-    DRESS_CODE_OPTIONS.find((o) => o.value === v)?.label ?? "No preference"
+    DRESS_CODE_OPTIONS.find((o) => o.value === v)?.label ?? "Aucune preference"
   );
 }
 
@@ -67,7 +67,7 @@ export function buildSecurityReviewSections(
     assignmentLines.push(
       values.serviceTypeOther?.trim()
         ? values.serviceTypeOther.trim()
-        : "Other",
+        : "Autre",
     );
   } else if (values.serviceType && cat) {
     assignmentLines.push(labelForServiceType(cat, values.serviceType));
@@ -104,7 +104,7 @@ export function buildSecurityReviewSections(
     const parsed = dayjs(values.endDate);
     const end =
       parsed.isValid() ? parsed.format("D MMM YYYY") : values.endDate;
-    assignmentLines.push(`Until ${end}`);
+    assignmentLines.push(`Jusqu'au ${end}`);
   }
 
   if (values.agentCount) {
@@ -115,7 +115,7 @@ export function buildSecurityReviewSections(
   }
 
   if (assignmentLines.length > 0) {
-    sections.push({ title: "Assignment", lines: assignmentLines });
+    sections.push({ title: "Mission", lines: assignmentLines });
   }
 
   const passengerLines: string[] = [];
@@ -126,20 +126,20 @@ export function buildSecurityReviewSections(
   if (values.company?.trim()) passengerLines.push(values.company.trim());
 
   if (passengerLines.length > 0) {
-    sections.push({ title: "Passenger", lines: passengerLines });
+    sections.push({ title: "Client", lines: passengerLines });
   }
 
-  /** Always show a Details column (same flex column as Assignment / Passenger). */
+  /** Affiche toujours une colonne de details (meme layout que Mission / Client). */
   const detailLines: string[] = [
-    `Special requirements — ${values.specialRequirements?.trim() || "—"}`,
-    `Languages — ${values.languagesRequired?.trim() || "—"}`,
-    `Preferred attire — ${labelDressCode(values.dressCode ?? "")}`,
+    `Exigences particulieres — ${values.specialRequirements?.trim() || "—"}`,
+    `Langues — ${values.languagesRequired?.trim() || "—"}`,
+    `Tenue souhaitee — ${labelDressCode(values.dressCode ?? "")}`,
     values.vehicleRequired === "yes" || values.vehicleRequired === "no"
-      ? `Vehicle coordination — ${labelYesNo(values.vehicleRequired)}`
-      : "Vehicle coordination — Not specified",
+      ? `Coordination vehicule — ${labelYesNo(values.vehicleRequired)}`
+      : "Coordination vehicule — Non renseigne",
     values.armedRequired === "yes" || values.armedRequired === "no"
-      ? `Armed personnel — ${labelYesNo(values.armedRequired)}`
-      : "Armed personnel — Not specified",
+      ? `Personnel arme — ${labelYesNo(values.armedRequired)}`
+      : "Personnel arme — Non renseigne",
   ];
 
   sections.push({ title: "Details", lines: detailLines });

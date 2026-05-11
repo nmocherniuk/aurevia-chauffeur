@@ -5,9 +5,9 @@ import { ShieldCheck } from "@/src/components/SVGManager/ShieldCheck";
 
 export const SECURITY_STEP_LABELS = [
   "Service",
-  "Contact",
+  "Client",
   "Details",
-  "Review",
+  "Recapitulatif",
 ] as const;
 
 export const SECURITY_LAST_STEP_INDEX = SECURITY_STEP_LABELS.length - 1;

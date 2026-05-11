@@ -30,14 +30,14 @@ export const JourneyStep: FC<FormStepProps> = ({
     [setValue],
   );
 
-  const fromLabel = isHourly ? "Pickup location" : "From";
-  const fromPlaceholder = "Enter pickup location";
+  const fromLabel = isHourly ? "Lieu de prise en charge" : "Depart";
+  const fromPlaceholder = "Entrez le lieu de prise en charge";
 
   const datePicker = (
     <DatePickerWithError
       name="date"
       label="Date"
-      placeholder="Select date"
+      placeholder="Selectionnez une date"
       value={(getValue("date", false) as string) || ""}
       onChange={(dateOrEvent) => {
         const v =
@@ -55,8 +55,8 @@ export const JourneyStep: FC<FormStepProps> = ({
   const timeRowOneWay = (
     <TimePickerWithError
       name="time"
-      label="Time"
-      placeholder="Select time"
+      label="Heure"
+      placeholder="Selectionnez une heure"
       value={(getValue("time", false) as string) || ""}
       onChange={(eOrString) => {
         const v =
@@ -76,8 +76,8 @@ export const JourneyStep: FC<FormStepProps> = ({
       <div className="sm:col-span-2">
         <SelectWithError
           name="tripType"
-          label="Trip type"
-          placeholder="Select trip type"
+          label="Type de trajet"
+          placeholder="Selectionnez le type de trajet"
           options={[...TRIP_TYPE_SELECT_OPTIONS]}
           value={tripType}
           onChange={(e) => handleTripTypeChange(e.target.value)}
@@ -131,8 +131,8 @@ export const JourneyStep: FC<FormStepProps> = ({
           />
           <LocationAutocompleteInput
             name="to"
-            label="To"
-            placeholder="Enter destination"
+            label="Arrivee"
+            placeholder="Entrez la destination"
             value={(getValue("to", false) as string) || ""}
             onChangeText={(text) => {
               setValue("to", text);
@@ -161,8 +161,8 @@ export const JourneyStep: FC<FormStepProps> = ({
         <>
           <TimePickerWithError
             name="time"
-            label="Start time"
-            placeholder="Select start time"
+            label="Heure de debut"
+            placeholder="Selectionnez l'heure de debut"
             value={(getValue("time", false) as string) || ""}
             onChange={(eOrString) => {
               const v =
@@ -177,8 +177,8 @@ export const JourneyStep: FC<FormStepProps> = ({
           />
           <TimePickerWithError
             name="endTime"
-            label="End time"
-            placeholder="Select end time"
+            label="Heure de fin"
+            placeholder="Selectionnez l'heure de fin"
             value={(getValue("endTime", false) as string) || ""}
             onChange={(eOrString) => {
               const v =

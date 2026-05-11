@@ -15,7 +15,7 @@ export const PassengerStep: FC<FormStepProps> = ({
       <InputWithError
         name="firstName"
         label="Nom"
-        placeholder="First name"
+        placeholder="Prenom"
         value={(getValue("firstName", false) as string) || ""}
         onChange={(e) => setValue("firstName", e.target.value)}
         onBlur={handleBlur("firstName")}
@@ -24,8 +24,8 @@ export const PassengerStep: FC<FormStepProps> = ({
       />
       <InputWithError
         name="lastName"
-        label="Last name"
-        placeholder="Last name"
+        label="Nom"
+        placeholder="Nom"
         value={(getValue("lastName", false) as string) || ""}
         onChange={(e) => setValue("lastName", e.target.value)}
         onBlur={handleBlur("lastName")}
@@ -34,8 +34,8 @@ export const PassengerStep: FC<FormStepProps> = ({
       />
       <InputWithError
         name="email"
-        label="Email"
-        placeholder="Email"
+        label="E-mail"
+        placeholder="E-mail"
         value={(getValue("email", false) as string) || ""}
         onChange={(e) => setValue("email", e.target.value)}
         onBlur={handleBlur("email")}
@@ -44,8 +44,8 @@ export const PassengerStep: FC<FormStepProps> = ({
       />
       <InputWithError
         name="phone"
-        label="Phone"
-        placeholder="Phone"
+        label="Telephone"
+        placeholder="Telephone"
         value={(getValue("phone", false) as string) || ""}
         onChange={(e) => setValue("phone", e.target.value)}
         onBlur={handleBlur("phone")}
@@ -55,8 +55,8 @@ export const PassengerStep: FC<FormStepProps> = ({
       <div className="sm:col-span-2">
         <TextareaWithError
           name="notesForChauffeur"
-          label="Notes for chauffeur"
-          placeholder="Optional notes"
+          label="Notes pour le chauffeur"
+          placeholder="Notes optionnelles"
           value={(getValue("notesForChauffeur", false) as string) || ""}
           onChange={(e) => setValue("notesForChauffeur", e.target.value)}
           onBlur={handleBlur("notesForChauffeur")}

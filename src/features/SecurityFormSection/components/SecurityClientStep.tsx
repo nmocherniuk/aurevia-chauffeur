@@ -15,8 +15,8 @@ export const SecurityClientStep: FC<FormStepProps> = ({
     <div className="grid gap-y-2.5 gap-x-4 grid-cols-1 sm:grid-cols-2">
       <InputWithError
         name="firstName"
-        label="First name"
-        placeholder="First name"
+        label="Prenom"
+        placeholder="Prenom"
         value={(getValue("firstName", false) as string) || ""}
         onChange={(e) => setValue("firstName", e.target.value)}
         onBlur={handleBlur("firstName")}
@@ -25,8 +25,8 @@ export const SecurityClientStep: FC<FormStepProps> = ({
       />
       <InputWithError
         name="lastName"
-        label="Last name"
-        placeholder="Last name"
+        label="Nom"
+        placeholder="Nom"
         value={(getValue("lastName", false) as string) || ""}
         onChange={(e) => setValue("lastName", e.target.value)}
         onBlur={handleBlur("lastName")}
@@ -35,8 +35,8 @@ export const SecurityClientStep: FC<FormStepProps> = ({
       />
       <InputWithError
         name="email"
-        label="Email"
-        placeholder="Email"
+        label="E-mail"
+        placeholder="E-mail"
         value={(getValue("email", false) as string) || ""}
         onChange={(e) => setValue("email", e.target.value)}
         onBlur={handleBlur("email")}
@@ -45,8 +45,8 @@ export const SecurityClientStep: FC<FormStepProps> = ({
       />
       <InputWithError
         name="phone"
-        label="Phone"
-        placeholder="Phone"
+        label="Telephone"
+        placeholder="Telephone"
         value={(getValue("phone", false) as string) || ""}
         onChange={(e) => setValue("phone", e.target.value)}
         onBlur={handleBlur("phone")}

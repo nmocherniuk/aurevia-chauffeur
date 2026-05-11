@@ -12,28 +12,28 @@ export const SECURITY_CATEGORIES: {
 }[] = [
   {
     id: "executive_protection",
-    label: "Executive Protection",
-    description: "Discreet close protection tailored to your itinerary.",
+    label: "Protection executive",
+    description: "Protection rapprochee discrete adaptee a votre itineraire.",
   },
   {
     id: "event_security",
-    label: "Event Security",
-    description: "Calm, controlled coverage for private and public events.",
+    label: "Securite evenementielle",
+    description: "Dispositif maitrise pour evenements prives et publics.",
   },
   {
     id: "property_private",
-    label: "Property & Private Security",
-    description: "Residences, stays, and private sites with dedicated presence.",
+    label: "Securite privee & proprietes",
+    description: "Residences, sejours et sites prives avec presence dediee.",
   },
   {
     id: "business_commercial",
-    label: "Business & Commercial",
-    description: "Offices, retail, and professional environments.",
+    label: "Entreprises & commerces",
+    description: "Bureaux, commerces et environnements professionnels.",
   },
   {
     id: "advanced_specialized",
-    label: "Advanced & Specialized",
-    description: "Complex or non-standard requirements handled with care.",
+    label: "Avance & specialise",
+    description: "Besoins complexes ou non standards traites avec rigueur.",
   },
 ];
 
@@ -44,39 +44,39 @@ export const CATEGORY_SELECT_OPTIONS: ServiceTypeOption[] =
 
 export const SECURITY_SERVICE_TYPES: Record<SecurityCategoryId, ServiceTypeOption[]> = {
   executive_protection: [
-    { value: "bodyguard", label: "Bodyguard" },
-    { value: "vip_escort", label: "VIP Escort" },
-    { value: "close_protection", label: "Close Protection" },
+    { value: "bodyguard", label: "Garde du corps" },
+    { value: "vip_escort", label: "Escorte VIP" },
+    { value: "close_protection", label: "Protection rapprochee" },
   ],
   event_security: [
-    { value: "event_security", label: "Event Security" },
-    { value: "crowd_management", label: "Crowd Management" },
-    { value: "access_control", label: "Access Control" },
+    { value: "event_security", label: "Securite evenementielle" },
+    { value: "crowd_management", label: "Gestion de foule" },
+    { value: "access_control", label: "Controle d'acces" },
   ],
   property_private: [
-    { value: "villa_security", label: "Villa Security" },
-    { value: "hotel_security", label: "Hotel Security" },
-    { value: "construction_site_security", label: "Construction Site Security" },
+    { value: "villa_security", label: "Securite villa" },
+    { value: "hotel_security", label: "Securite hotel" },
+    { value: "construction_site_security", label: "Securite chantier" },
   ],
   business_commercial: [
-    { value: "retail_security", label: "Retail Security" },
-    { value: "office_security", label: "Office Security" },
-    { value: "reception_access_control", label: "Reception & Access Control" },
+    { value: "retail_security", label: "Securite commerce" },
+    { value: "office_security", label: "Securite bureaux" },
+    { value: "reception_access_control", label: "Accueil & controle d'acces" },
   ],
   advanced_specialized: [
-    { value: "mobile_patrol", label: "Mobile Patrol" },
-    { value: "alarm_response", label: "Alarm Response" },
-    { value: "k9_unit", label: "K9 Unit" },
-    { value: "soc", label: "Security Operations Center" },
+    { value: "mobile_patrol", label: "Patrouille mobile" },
+    { value: "alarm_response", label: "Intervention alarme" },
+    { value: "k9_unit", label: "Unite cynophile" },
+    { value: "soc", label: "Centre d'operations securite" },
   ],
 };
 
 const OTHER_SERVICE_OPTION: ServiceTypeOption = {
   value: "other",
-  label: "Other",
+  label: "Autre",
 };
 
-/** Types for the selected category plus “Other” (custom detail in `serviceTypeOther`). */
+/** Types pour la categorie selectionnee + "Autre" (detail dans `serviceTypeOther`). */
 export function getServiceTypeSelectOptions(
   categoryId: string,
 ): ServiceTypeOption[] {
@@ -88,11 +88,11 @@ export function getServiceTypeSelectOptions(
 }
 
 export const DURATION_OPTIONS = [
-  { value: "4", label: "4 hours" },
-  { value: "8", label: "8 hours" },
-  { value: "12", label: "12 hours" },
-  { value: "24", label: "24 hours (full day)" },
-  { value: "multi", label: "Multi-day assignment" },
+  { value: "4", label: "4 heures" },
+  { value: "8", label: "8 heures" },
+  { value: "12", label: "12 heures" },
+  { value: "24", label: "24 heures (journee complete)" },
+  { value: "multi", label: "Mission sur plusieurs jours" },
 ] as const;
 
 export const AGENT_COUNT_OPTIONS = Array.from({ length: 24 }, (_, i) => ({
@@ -101,15 +101,15 @@ export const AGENT_COUNT_OPTIONS = Array.from({ length: 24 }, (_, i) => ({
 }));
 
 export const DRESS_CODE_OPTIONS = [
-  { value: "", label: "No preference" },
+  { value: "", label: "Aucune preference" },
   { value: "business", label: "Business" },
-  { value: "formal", label: "Formal" },
-  { value: "discreet", label: "Low-profile / discreet" },
-  { value: "casual", label: "Casual" },
+  { value: "formal", label: "Formel" },
+  { value: "discreet", label: "Discret" },
+  { value: "casual", label: "Decontracte" },
 ];
 
 export const YES_NO_OPTIONS = [
-  { value: "", label: "Select" },
-  { value: "yes", label: "Yes" },
-  { value: "no", label: "No" },
+  { value: "", label: "Selectionner" },
+  { value: "yes", label: "Oui" },
+  { value: "no", label: "Non" },
 ];

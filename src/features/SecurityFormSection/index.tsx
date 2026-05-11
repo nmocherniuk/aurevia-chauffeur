@@ -79,11 +79,11 @@ const SecurityFormSection: FC = () => {
           <>
             <div className="mb-8">
               <h2 className="mb-4 text-center font-benzin text-2xl text-white sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl">
-                Confidential service request
+                Demande confidentielle de service
               </h2>
               <p className="text-center text-base font-light text-text-primary sm:text-start">
-                Tell us what you need — our team will respond personally. No instant
-                confirmation; every request is reviewed with discretion.
+                Indiquez votre besoin : notre equipe vous repondra personnellement.
+                Aucune confirmation instantanee ; chaque demande est analysee avec discretion.
               </p>
             </div>
             <StepIndicator
@@ -108,7 +108,7 @@ const SecurityFormSection: FC = () => {
                 setRequestSuccess(true);
               } catch {
                 setSubmitError(
-                  "Something went wrong. Please try again in a moment.",
+                  "Une erreur est survenue. Veuillez reessayer dans un instant.",
                 );
               }
               return;
@@ -189,7 +189,7 @@ const SecurityFormSection: FC = () => {
                   <SummaryList
                     items={summaryItems}
                     className="mx-auto justify-center py-1 lg:justify-start"
-                    aria-label="Request summary"
+                    aria-label="Resume de la demande"
                   />
                 ) : null}
 
@@ -210,7 +210,7 @@ const SecurityFormSection: FC = () => {
                         disabled={isSubmitting}
                         className="sm:w-[220px]"
                       >
-                        Previous
+                        Precedent
                       </Button>
                     ) : null}
                     <Button
@@ -221,10 +221,10 @@ const SecurityFormSection: FC = () => {
                       className="sm:w-[220px]"
                     >
                       {isSubmitting && activeStepIndex === lastStepIndex
-                        ? "Sending…"
+                        ? "Envoi…"
                         : activeStepIndex === lastStepIndex
-                          ? "Submit request"
-                          : "Continue"}
+                          ? "Envoyer la demande"
+                          : "Continuer"}
                     </Button>
                   </div>
                 </Form>
