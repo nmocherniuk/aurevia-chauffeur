@@ -1,65 +1,105 @@
+import type { Metadata } from "next";
+import { Fragment } from "react/jsx-runtime";
+import Link from "next/link";
 import Image from "next/image";
+import MainSection from "@/src/features/MainSection/MainSection";
+import MainContainer from "@/src/components/MainContainer";
+import FAQSection from "@/src/features/FAQSection";
+import { homeContent } from "@/src/content/home";
+
+export const metadata: Metadata = {
+  title: "Accueil",
+  description:
+    "Aurevia coordonne des services premium de chauffeur privé et de sécurité privée en France, avec un accompagnement sur mesure.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Aurevia - Chauffeur privé et sécurité privée",
+    description:
+      "Plateforme premium de coordination pour transport privé et sécurité privée.",
+    url: "/",
+    images: ["/images/og-image.jpg"],
+  },
+  twitter: {
+    title: "Aurevia - Chauffeur privé et sécurité privée",
+    description:
+      "Plateforme premium de coordination pour transport privé et sécurité privée.",
+    images: ["/images/og-image.jpg"],
+  },
+};
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <Fragment>
+      <MainSection
+        title={homeContent.heroSection.title}
+        subtitle={homeContent.heroSection.subtitle}
+        buttonText={homeContent.heroSection.buttonText}
+        buttonLink={homeContent.heroSection.buttonLink}
+      />
+      <MainContainer className="flex flex-col gap-27">
+        <section className="w-full" aria-labelledby="who-we-are">
+          <h2
+            id="who-we-are"
+            className="font-benzin text-white text-center text-2xl mb-10 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-11"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Aurevia — L’exigence dans chaque détail
+          </h2>
+          <div className="grid w-full grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2 md:gap-8 lg:gap-10">
+            <p className="min-w-0 text-base font-light leading-relaxed text-text-primary">
+              {homeContent.whoWeAreItems[0]}
+            </p>
+            <p className="min-w-0 text-base font-light leading-relaxed text-text-primary">
+              {homeContent.whoWeAreItems[1]}
+            </p>
+          </div>
+        </section>
+        <section
+          id="services"
+          className="w-full"
+          aria-labelledby="portal-heading"
+        >
+          <h2
+            id="portal-heading"
+            className="font-benzin text-white text-center text-2xl mb-10 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-11"
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Choisissez votre expérience
+          </h2>
+          <div className="grid w-full grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2 md:gap-8 lg:gap-10">
+            {homeContent.servicesSection.map((service) => (
+              <Link
+                key={service.title}
+                href={service.href}
+                className="group relative block min-h-[260px] overflow-hidden rounded-2xl border border-primary/35 bg-black/20 sm:min-h-[300px] md:min-h-[320px]"
+              >
+                <Image
+                  src={service.image}
+                  alt=""
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  aria-hidden
+                />
+                <div className="absolute inset-0 bg-linear-to-b from-black/35 via-black/45 to-black/80" />
+                <article className="relative z-10 flex h-full min-h-[260px] flex-col justify-end p-5 sm:min-h-[300px] sm:p-6 md:min-h-[320px]">
+                  <h3 className="font-onest text-xl text-text-secondary">
+                    {service.title}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-grey-light">
+                    {service.description}
+                  </p>
+                  <span className="mt-3 inline-flex text-sm text-primary transition-colors group-hover:text-white">
+                    {service.buttonText}
+                  </span>
+                </article>
+              </Link>
+            ))}
+          </div>
+        </section>
+        <FAQSection items={homeContent.faqItems} />
+      </MainContainer>
+    </Fragment>
   );
 }

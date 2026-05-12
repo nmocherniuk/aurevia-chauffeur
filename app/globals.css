@@ -1,26 +1,206 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --font-family-benzin: var(--font-benzin);
+  --font-family-onest: var(--font-onest);
 
-@theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-error: var(--text-error);
+  --color-primary: var(--primary);
+  --color-white: var(--white);
+  --color-black: var(--black);
+  --color-grey: var(--grey);
+  --color-grey-light: var(--grey-light);
+
+  --radius-lg: var(--radius-lg);
+  --radius-md: var(--radius-md);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #06070a;
+  --text-primary: #6c7689;
+  --text-secondary: #e9e7e2;
+  --text-error: #ef4444;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+
+  --primary: #ba8c5a;
+
+  --white: #ffffff;
+  --black: #000000;
+  --grey: #6c7689;
+  --grey-light: #aaabac;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-onest), sans-serif;
+}
+
+h1,
+h2 {
+  font-family: var(--font-benzin), sans-serif;
+}
+
+.font-benzin {
+  font-family: var(--font-benzin), sans-serif;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* react-scroll active nav link (spy) */
+.nav-link-active {
+  color: var(--text-secondary);
+}
+
+.nav-link-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 9999px;
+}
+.nav-link-active-mobile.nav-link-active {
+  color: var(--text-secondary);
+}
+
+/* desktop: active = only color (same as hover), no underline */
+.nav-link-active-desktop {
+  color: var(--primary);
+}
+
+.mantine-DatePickerInput-wrapper,
+.mantine-TimePicker-root,
+.mantine-TimePicker-wrapper {
+  width: 100%;
+  transition: border-color 160ms ease;
+}
+
+.mantine-DatePickerInput-wrapper,
+.mantine-TimePicker-root {
+  display: flex;
+  height: 46px !important;
+  min-height: 46px !important;
+  max-height: 46px !important;
+}
+
+.mantine-DatePickerInput-input,
+.mantine-TimePicker-input,
+.mantine-Input-input {
+  width: 100%;
+  height: 46px !important;
+  min-height: 46px !important;
+  max-height: 46px !important;
+  padding: 12px 42px 12px 16px !important;
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  border: 1px solid var(--grey) !important;
+  border-radius: 12px !important;
+  font-size: 14px !important;
+  font-family: var(--font-onest) !important;
+}
+
+/* TimePicker inner fields (hours/minutes) — same text and placeholder as other inputs */
+.mantine-TimePicker-fieldsRoot {
+  width: 100%;
+  border-radius: 0;
+}
+
+.mantine-TimePicker-field {
+  color: var(--text-secondary) !important;
+  font-size: 14px !important;
+  font-family: var(--font-onest) !important;
+  background: transparent !important;
+  border: none !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.mantine-TimePicker-field::placeholder {
+  color: var(--grey) !important;
+  opacity: 1;
+}
+
+/*
+ * Mantine TimePicker always renders colon separators as direct <span> children of .fieldsGroup.
+ * They paint above a custom “Select time” overlay — hide until the form has a committed value.
+ */
+[data-time-empty="true"] .mantine-TimePicker-fieldsGroup > span {
+  opacity: 0;
+  pointer-events: none;
+}
+
+[data-open="true"] .mantine-DatePickerInput-input,
+[data-open="true"] .mantine-TimePicker-input,
+[data-open="true"] .mantine-Input-input {
+  border-color: var(--primary) !important;
+}
+
+[data-error="true"] .mantine-DatePickerInput-input,
+[data-error="true"] .mantine-TimePicker-input {
+  border-color: var(--text-error) !important;
+}
+
+.mantine-InputPlaceholder-placeholder,
+.mantine-DatePickerInput-placeholder,
+.mantine-TimePicker-placeholder {
+  color: var(--grey) !important;
+}
+
+.mantine-DatePickerInput-section {
+  padding: 0 12px;
+}
+.mantine-Popover-dropdown {
+  animation: slideDown 0.2s ease-out;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100vh;
+  background: var(--grey);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+.scrollbar-thin-modal {
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+.scrollbar-thin-modal::-webkit-scrollbar {
+  width: 4px;
 }
