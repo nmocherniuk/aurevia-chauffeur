@@ -1,21 +1,30 @@
 export const routes = {
-    home: "/",
-    chauffeur: {
-        index: "/driver",
-        request: "/driver/request",
-        book: "/driver#reserver",
-    },
-    security: "/security",
+  home: {
+    index: "/",
+    services: "/#services",
+  },
 
-    legal: {
-        privacyPolicy: "/privacy-policy",
-        terms: "/terms",
-        legalNotice: "/legal-notice",
-        cookies: "/cookies",
-    },
+  chauffeur: {
+    index: "/driver",
+    request: "/driver/request",
+    book: "/driver#reserver",
+  },
 
-    forms: {
-        chauffeurRequest: "/chauffeur/request",
-        securityRequest: "/security/request",
-    },
+  security: {
+    index: "/security",
+    request: "/security/request",
+    book: "/security#reserver",
+  },
+
+  legal: {
+    privacyPolicy: "/privacy-policy",
+    terms: "/terms",
+    legalNotice: "/legal-notice",
+    cookies: "/cookies",
+  },
+
+  forms: {
+    chauffeurRequest: "/chauffeur/request",
+    securityRequest: "/security/request",
+  },
 } as const;

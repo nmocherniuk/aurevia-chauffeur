@@ -79,11 +79,11 @@ const SecurityFormSection: FC = () => {
           <>
             <div className="mb-8">
               <h2 className="mb-4 text-center font-benzin text-2xl text-white sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl">
-                Demande confidentielle de service
+                Demande confidentielle <br /> de service
               </h2>
               <p className="text-center text-base font-light text-text-primary sm:text-start">
-                Indiquez votre besoin : notre equipe vous repondra personnellement.
-                Aucune confirmation instantanee ; chaque demande est analysee avec discretion.
+                Expliquez votre besoin. Votre demande sera étudiée avec
+                discrétion par notre équipe.
               </p>
             </div>
             <StepIndicator
@@ -185,7 +185,8 @@ const SecurityFormSection: FC = () => {
 
             return (
               <>
-                {summaryItems.length > 0 && activeStepIndex !== lastStepIndex ? (
+                {summaryItems.length > 0 &&
+                activeStepIndex !== lastStepIndex ? (
                   <SummaryList
                     items={summaryItems}
                     className="mx-auto justify-center py-1 lg:justify-start"

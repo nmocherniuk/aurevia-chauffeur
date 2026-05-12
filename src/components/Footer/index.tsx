@@ -13,11 +13,11 @@ const Footer: React.FC = () => {
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-7 sm:justify-between">
           <div className="flex flex-col gap-4 text-center items-center sm:items-start sm:gap-3">
             <h4 className="text-text-secondary text-xl sm:text-left">
-              Aurevia Chauffeur
+              Aurevia
             </h4>
             <p className="text-text-primary text-base font-light sm:text-left">
-              Premium chauffeur services designed for comfort, discretion, and
-              precision.
+              Services premium de transport privé et de sécurité, pensés pour la
+              discrétion, la fiabilité et l’exigence.
             </p>
           </div>
           {/* <SocialIcons classNameIcon='border border-primary rounded-full' /> */}
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
             </ul>
           </nav>
           <p className="text-text-primary text-sm text-center pb-6 pt-3 lg:p-0">
-            &copy; 2026 Aurevia Chauffeur. All rights reserved.
+            &copy; 2026 Aurevia. Tous droits réservés
           </p>
         </div>
       </MainContainer>

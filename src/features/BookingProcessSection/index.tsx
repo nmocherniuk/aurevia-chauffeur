@@ -1,17 +1,24 @@
 import React, { FC } from "react";
 import ProcessStepItem from "@/src/components/ProccessStep/ProcessStepItem";
 import ProcessStepsConnector from "@/src/components/ProccessStep/ProcessStepsConnector";
-import { popularItinerariesSteps } from "./data";
+
+type PopularItineraryStep = {
+  id: string;
+  title: string;
+  description: string;
+};
 
 export interface BookingProcessSectionProps {
+  items: ReadonlyArray<PopularItineraryStep>;
   circleSize?: number;
 }
 
 const BookingProcessSection: FC<BookingProcessSectionProps> = ({
+  items,
   circleSize = 80,
 }) => {
   const connectorTop = circleSize / 2;
-  const lastIndex = popularItinerariesSteps.length - 1;
+  const lastIndex = items.length - 1;
 
   return (
     <section id="itineraires-populaires" className="w-full scroll-mt-24">
@@ -26,7 +33,7 @@ const BookingProcessSection: FC<BookingProcessSectionProps> = ({
         />
 
         <div className="grid grid-cols-1 gap-10 sm:gap-12 sm:grid-cols-2 md:gap-x-8 md:gap-y-14 lg:grid-cols-4 lg:gap-6 xl:gap-8">
-          {popularItinerariesSteps.map((step, index) => (
+          {items.map((step, index) => (
             <ProcessStepItem
               key={step.title}
               step={index + 1}

@@ -8,6 +8,10 @@ export const commonContent = {
     continue: "Continuer",
     sendingRequest: "Envoi…",
     previous: "Précédent",
+
+    sendRequest: "Envoyer",
+    services: "Services",
+    discover: "Découvrir",
   },
 
   navigation: {

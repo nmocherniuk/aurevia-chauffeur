@@ -8,57 +8,64 @@ import CTABlock from "@/src/components/CTABlock";
 import SecurityFormSection from "@/src/features/SecurityFormSection";
 import MainSecuritySection from "@/src/features/MainSection/MainSecuritySection";
 import BookingProcessSection from "@/src/features/BookingProcessSection";
+import { securityContent } from "@/src/content/security";
 
 export const metadata: Metadata = {
-    title: "Sécurité privée premium",
+  title: "Sécurité privée premium",
+  description:
+    "Aurevia propose des services de sécurité privée en France: protection rapprochée, sécurisation d'événements et accompagnement professionnel.",
+  alternates: {
+    canonical: "/security",
+  },
+  openGraph: {
+    title: "Aurevia Security - Services de sécurité privée",
     description:
-        "Aurevia propose des services de sécurité privée en France: protection rapprochée, sécurisation d'événements et accompagnement professionnel.",
-    alternates: {
-        canonical: "/security",
-    },
-    openGraph: {
-        title: "Aurevia Security - Services de sécurité privée",
-        description:
-            "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
-        url: "/security",
-        images: ["/images/og-image.jpg"],
-    },
-    twitter: {
-        title: "Aurevia Security - Services de sécurité privée",
-        description:
-            "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
-        images: ["/images/og-image.jpg"],
-    },
+      "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
+    url: "/security",
+    images: ["/images/og-image.jpg"],
+  },
+  twitter: {
+    title: "Aurevia Security - Services de sécurité privée",
+    description:
+      "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
+    images: ["/images/og-image.jpg"],
+  },
 };
 
 export default function SecurityPage() {
-    return (
-        <Fragment>
-            <MainSecuritySection />
-            <MainContainer className="flex flex-col gap-27">
-                <WhyChooseUsSection />
-                <div className="flex flex-col gap-12">
-                    <ServicesSection type="security" />
-                    <CTABlock
-                        title="Réservez Votre Chauffeur en Toute Simplicité"
-                        description="Organisez votre transfert en quelques clics et profitez d’un voyage élégant, ponctuel et discret."
-                        buttonText="Book Now"
-                        buttonLink="/book"
-                    />
-                </div>
-                <BookingProcessSection />
+  return (
+    <Fragment>
+      <MainSecuritySection
+        title={securityContent.heroSection.title}
+        subtitle={securityContent.heroSection.subtitle}
+        buttonText={securityContent.heroSection.buttonText}
+        buttonLink={securityContent.heroSection.buttonLink}
+      />
+      <MainContainer className="flex flex-col gap-27">
+        <WhyChooseUsSection items={securityContent.whyChooseUsItems} />
+        <div className="flex flex-col gap-12">
+          <ServicesSection type="security" />
+          <CTABlock
+            title={securityContent.securityCta.title}
+            description={securityContent.securityCta.description}
+            buttonText={securityContent.securityCta.buttonText}
+            buttonLink={securityContent.securityCta.buttonLink}
+          />
+        </div>
+        <BookingProcessSection
+          items={securityContent.securityProcessStepsItems}
+        />
 
-                <SecurityFormSection />
-                <div className="flex flex-col gap-12">
-                    <FAQSection />
-                    <CTABlock
-                        title="Réservez Votre Chauffeur en Toute Simplicité"
-                        description="Organisez votre transfert en quelques clics et profitez d’un voyage élégant, ponctuel et discret."
-                        buttonText="Book Now"
-                        buttonLink="/book"
-                    />
-                </div>
-            </MainContainer>
-        </Fragment>
-    );
+        <SecurityFormSection />
+        <div className="flex flex-col gap-12">
+          <FAQSection items={securityContent.faqItems} />
+          <CTABlock
+            title={securityContent.faqContact.title}
+            description={securityContent.faqContact.description}
+            socialMediaLink={true}
+          />
+        </div>
+      </MainContainer>
+    </Fragment>
+  );
 }

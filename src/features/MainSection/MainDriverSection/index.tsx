@@ -2,11 +2,14 @@ import React from "react";
 import Image from "next/image";
 import heroImage from "@/public/images/hyundai-motor-group.png";
 import SocialIcons from "@/src/components/SocialIcons";
-import { commonContent } from "@/src/content/common";
-import { routes } from "@/src/config/routes";
 import { NavButton } from "@/src/components/Button/NavButton";
 
-const MainDriverSection: React.FC = () => {
+const MainDriverSection: React.FC<{
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  buttonLink: string;
+}> = ({ title, subtitle, buttonText, buttonLink }) => {
   return (
     <section id="accueil" className="mb-28 w-full">
       <div className="relative flex h-[700px] w-full flex-col items-center justify-center overflow-hidden md:h-[900px] md:items-start xl:h-dvh">
@@ -28,17 +31,20 @@ const MainDriverSection: React.FC = () => {
         />
         <div className="z-10 mx-auto w-full max-w-[1360px] px-5 sm:px-7 md:px-10 lg:px-20 flex flex-col items-center sm:items-start">
           <article className="z-30 flex flex-col items-center sm:items-start md:px-0">
-            <h1 className="mb-3 text-center text-[28px] font-benzin leading-tight text-white sm:text-start md:text-[33.8px] md:leading-tight lg:text-[42px] xl:text-[44px] xl:leading-tight">
-              Aurevia Chauffeur <br /> Private Executive Transportation
+            <h1 className="mb-3 whitespace-pre-line text-center text-[28px] font-benzin leading-tight text-white sm:text-start md:text-[33.8px] md:leading-tight lg:text-[42px] xl:text-[44px] xl:leading-tight">
+              {title}
             </h1>
             <p className="mb-4 max-w-[386px] text-center text-base text-white-100 sm:text-start sm:max-w-none text-text-secondary">
-              Premium chauffeur services designed for comfort, discretion, and
-              precision.
+              {subtitle}
             </p>
           </article>
           <SocialIcons classNameContainer="hidden sm:flex mb-4" />
-          <NavButton variant="primary" className="w-full max-w-[220px]" href={routes.chauffeur.book}>
-            {commonContent.buttons.reserve}
+          <NavButton
+            variant="primary"
+            className="w-full max-w-[220px]"
+            href={buttonLink}
+          >
+            {buttonText}
           </NavButton>
         </div>
       </div>

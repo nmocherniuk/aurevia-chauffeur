@@ -38,9 +38,14 @@ export const metadata: Metadata = {
 export default function DriverPage() {
   return (
     <Fragment>
-      <MainDriverSection />
+      <MainDriverSection
+        title={chauffeurContent.heroSection.title}
+        subtitle={chauffeurContent.heroSection.subtitle}
+        buttonText={chauffeurContent.heroSection.buttonText}
+        buttonLink={chauffeurContent.heroSection.buttonLink}
+      />
       <MainContainer className="flex flex-col gap-27">
-        <WhyChooseUsSection />
+        <WhyChooseUsSection items={chauffeurContent.whyChooseUsItems} />
         <div className="flex flex-col gap-12">
           <ServicesSection type="chauffeur" />
           <CTABlock

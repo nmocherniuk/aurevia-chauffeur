@@ -1,7 +1,50 @@
 import { routes } from "../config/routes";
 import { commonContent } from "./common";
+import { List } from "@/src/components/SVGManager/List";
+import { ShieldCheck } from "@/src/components/SVGManager/ShieldCheck";
+import { Clock } from "@/src/components/SVGManager/Clock";
+import { Diamond } from "@/src/components/SVGManager/Diamond";
 
 export const chauffeurContent = {
+  heroSection: {
+    title: "Aurevia Chauffeur\nPrivate Executive Transportation",
+    subtitle:
+      "Premium chauffeur services designed for comfort, discretion, and precision.",
+    buttonText: commonContent.buttons.reserve,
+    buttonLink: routes.chauffeur.book,
+  },
+
+  whyChooseUsItems: [
+    {
+      id: "why-choose-us-1",
+      icon: List,
+      title: "Tarification claire et fixe",
+      description:
+        "Le prix de votre transfert est confirmé à l’avance. Aucun frais caché, aucune surprise — une transparence à chaque étape.",
+    },
+    {
+      id: "why-choose-us-2",
+      icon: ShieldCheck,
+      title: "Un service digne de confiance",
+      description:
+        "Des chauffeurs expérimentés, des véhicules impeccables et une discrétion absolue garantissent une expérience sûre et raffinée.",
+    },
+    {
+      id: "why-choose-us-3",
+      icon: Clock,
+      title: "Une précision sans compromis",
+      description:
+        "Chaque détail de votre trajet est soigneusement coordonné afin d’assurer une ponctualité parfaite et un service irréprochable.",
+    },
+    {
+      id: "why-choose-us-4",
+      icon: Diamond,
+      title: "Voyagez dans des conditions d’exception",
+      description:
+        "Intérieurs spacieux, présentation soignée et prestations haut de gamme subliment chacun de vos déplacements.",
+    },
+  ],
+
   services: {
     title: "Nos services",
     items: [
