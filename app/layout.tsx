@@ -21,62 +21,62 @@ const benzin = localFont({
 });
 
 export const metadata: Metadata = {
-  // icons: {
-  //   icon: [
-  //     {
-  //       url: "/favicons/favicon.svg",
-  //       type: "image/svg+xml",
-  //       rel: "icon",
-  //     },
-  //     {
-  //       url: "/favicons/favicon-96x96.png",
-  //       type: "image/png",
-  //       sizes: "96x96",
-  //       rel: "icon",
-  //     },
-  //     {
-  //       url: "/favicons/favicon-32x32.png",
-  //       type: "image/png",
-  //       sizes: "32x32",
-  //       rel: "icon",
-  //     },
-  //     {
-  //       url: "/favicons/favicon-16x16.png",
-  //       type: "image/png",
-  //       sizes: "16x16",
-  //       rel: "icon",
-  //     },
-  //   ],
-  //   shortcut: [
-  //     {
-  //       url: "/favicons/favicon.ico",
-  //       type: "image/x-icon",
-  //       rel: "shortcut icon",
-  //     },
-  //   ],
-  //   apple: [
-  //     {
-  //       url: "/favicons/apple-touch-icon.png",
-  //       type: "image/png",
-  //       sizes: "180x180",
-  //       rel: "apple-touch-icon",
-  //       fetchPriority: "high",
-  //     },
-  //   ],
-  //   other: [
-  //     {
-  //       url: "/favicons/safari-pinned-tab.svg",
-  //       type: "image/svg+xml",
-  //       rel: "mask-icon",
-  //       color: "#010F1B",
-  //     },
-  //     {
-  //       url: "/favicons/site.webmanifest",
-  //       type: "application/manifest+json",
-  //       rel: "manifest",
-  //     },
-  //   ],
-  // },
+  icons: {
+    icon: [
+      {
+        url: "/favicons/favicon.svg",
+        type: "image/svg+xml",
+        rel: "icon",
+      },
+      {
+        url: "/favicons/favicon-96x96.png",
+        type: "image/png",
+        sizes: "96x96",
+        rel: "icon",
+      },
+      {
+        url: "/favicons/favicon-32x32.png",
+        type: "image/png",
+        sizes: "32x32",
+        rel: "icon",
+      },
+      {
+        url: "/favicons/favicon-16x16.png",
+        type: "image/png",
+        sizes: "16x16",
+        rel: "icon",
+      },
+    ],
+    shortcut: [
+      {
+        url: "/favicons/favicon.ico",
+        type: "image/x-icon",
+        rel: "shortcut icon",
+      },
+    ],
+    apple: [
+      {
+        url: "/favicons/apple-touch-icon.png",
+        type: "image/png",
+        sizes: "180x180",
+        rel: "apple-touch-icon",
+        fetchPriority: "high",
+      },
+    ],
+    other: [
+      {
+        url: "/favicons/safari-pinned-tab.svg",
+        type: "image/svg+xml",
+        rel: "mask-icon",
+        color: "#060505",
+      },
+      {
+        url: "/favicons/site.webmanifest",
+        type: "application/manifest+json",
+        rel: "manifest",
+      },
+    ],
+  },
   applicationName: "Aurevia",
   appleWebApp: {
     capable: true,

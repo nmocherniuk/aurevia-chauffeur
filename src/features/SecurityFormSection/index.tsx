@@ -79,7 +79,7 @@ const SecurityFormSection: FC = () => {
           <>
             <div className="mb-8">
               <h2 className="mb-4 text-center font-benzin text-2xl text-white sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl">
-                Demande confidentielle <br /> de service
+                Demande confidentielle
               </h2>
               <p className="text-center text-base font-light text-text-primary sm:text-start">
                 Expliquez votre besoin. Votre demande sera étudiée avec

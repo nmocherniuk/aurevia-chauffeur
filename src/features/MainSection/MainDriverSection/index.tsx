@@ -21,7 +21,7 @@ const MainDriverSection: React.FC<{
           quality={100}
           priority
         />
-        <div className="absolute left-0 top-0 z-0 h-full w-full bg-[#06070A]/10" />
+        <div className="absolute left-0 top-0 z-0 h-full w-full bg-[#06070A]/28" />
         <div
           className="absolute left-0 top-0 z-0 h-full w-full"
           style={{
