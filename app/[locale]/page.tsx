@@ -5,31 +5,54 @@ import Image from "next/image";
 import MainSection from "@/src/features/MainSection/MainSection";
 import MainContainer from "@/src/components/MainContainer";
 import FAQSection from "@/src/features/FAQSection";
-import { homeContent } from "@/src/content/home";
+import { getContent } from "@/src/content";
+import { buildPageMetadata } from "@/src/lib/i18n/metadata";
+import { isLocale, type Locale } from "@/src/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Accueil",
-  description:
-    "Aurevia coordonne des services premium de chauffeur privé et de sécurité privée en France, avec un accompagnement sur mesure.",
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    title: "Aurevia - Chauffeur privé et sécurité privée",
-    description:
-      "Plateforme premium de coordination pour transport privé et sécurité privée.",
-    url: "/",
-    images: ["/images/og-image.jpg"],
-  },
-  twitter: {
-    title: "Aurevia - Chauffeur privé et sécurité privée",
-    description:
-      "Plateforme premium de coordination pour transport privé et sécurité privée.",
-    images: ["/images/og-image.jpg"],
-  },
+type PageProps = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function Home() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  const locale = isLocale(localeParam) ? localeParam : "fr";
+
+  const titles: Record<Locale, { title: string; description: string }> = {
+    fr: {
+      title: "Accueil",
+      description:
+        "Aurevia coordonne des services premium de chauffeur privé et de sécurité privée en France, avec un accompagnement sur mesure.",
+    },
+    en: {
+      title: "Home",
+      description:
+        "Aurevia coordinates premium private chauffeur and security services in France with bespoke support.",
+    },
+  };
+
+  const copy = titles[locale];
+
+  return buildPageMetadata({
+    locale,
+    path: "/",
+    title: copy.title,
+    description: copy.description,
+    openGraphTitle:
+      locale === "fr"
+        ? "Aurevia - Chauffeur privé et sécurité privée"
+        : "Aurevia - Private chauffeur and security",
+    openGraphDescription:
+      locale === "fr"
+        ? "Plateforme premium de coordination pour transport privé et sécurité privée."
+        : "Premium coordination platform for private transport and security.",
+  });
+}
+
+export default async function Home({ params }: PageProps) {
+  const { locale: localeParam } = await params;
+  const locale = isLocale(localeParam) ? localeParam : "fr";
+  const { home: homeContent } = getContent(locale);
+
   return (
     <Fragment>
       <MainSection
@@ -44,7 +67,7 @@ export default function Home() {
             id="who-we-are"
             className="font-benzin text-white text-center text-2xl mb-10 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-11"
           >
-            Aurevia — L’exigence dans chaque détail
+            {homeContent.whoWeAreTitle}
           </h2>
           <div className="grid w-full grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2 md:gap-8 lg:gap-10">
             <p className="min-w-0 text-base font-light leading-relaxed text-text-primary">
@@ -64,7 +87,7 @@ export default function Home() {
             id="portal-heading"
             className="font-benzin text-white text-center text-2xl mb-10 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-11"
           >
-            Choisissez votre expérience
+            {homeContent.servicesSectionTitle}
           </h2>
           <div className="grid w-full grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2 md:gap-8 lg:gap-10">
             {homeContent.servicesSection.map((service) => (

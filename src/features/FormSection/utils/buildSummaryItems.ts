@@ -1,20 +1,21 @@
 import dayjs from "dayjs";
-import "dayjs/locale/fr";
 import type { SummaryListItem } from "@/src/components/SummaryList";
 import type { FormValues } from "../types";
-import { FORM_STEPS } from "../data";
+import type { FormStep } from "../data/types";
 import { SUMMARY_DATE_FORMAT } from "../constants";
-
-dayjs.locale("fr");
 
 export function buildSummaryItems(
   formValues: FormValues,
   stepsUpToIndex: number,
+  formSteps: FormStep[],
+  totalPricePrefix: string,
+  dayjsLocale: string,
 ): SummaryListItem[] {
+  dayjs.locale(dayjsLocale);
   const items: SummaryListItem[] = [];
 
   for (let stepIndex = 0; stepIndex < stepsUpToIndex; stepIndex++) {
-    const step = FORM_STEPS[stepIndex];
+    const step = formSteps[stepIndex];
     for (const field of step.fields) {
       const name = field.name;
       if (name === "notesForChauffeur") continue;
@@ -90,7 +91,7 @@ export function buildSummaryItems(
 
   const price = formValues["price"];
   if (typeof price === "string" && price) {
-    items.push({ value: `Prix total € ${price}`, highlight: true });
+    items.push({ value: `${totalPricePrefix} € ${price}`, highlight: true });
   }
 
   return items;

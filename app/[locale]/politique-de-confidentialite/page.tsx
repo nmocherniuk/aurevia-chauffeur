@@ -1,28 +1,33 @@
 import type { Metadata } from "next";
 import MainContainer from "@/src/components/MainContainer";
 import React from "react";
+import {
+  buildLegalPageMetadata,
+  getPageLocale,
+} from "@/src/lib/i18n/legal-metadata";
 
-export const metadata: Metadata = {
-  title: "Politique de confidentialité",
-  description:
-    "Politique de confidentialité Aurevia: données collectées, finalités, conservation, sécurité et droits des utilisateurs.",
-  alternates: {
-    canonical: "/politique-de-confidentialite",
-  },
-  openGraph: {
-    title: "Politique de confidentialité | Aurevia",
-    description:
-      "Gestion des données personnelles, sécurité et droits RGPD sur Aurevia.",
-    url: "/politique-de-confidentialite",
-    images: ["/images/og-image.jpg"],
-  },
-  twitter: {
-    title: "Politique de confidentialité | Aurevia",
-    description:
-      "Gestion des données personnelles, sécurité et droits RGPD sur Aurevia.",
-    images: ["/images/og-image.jpg"],
-  },
+type PageProps = {
+  params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const locale = await getPageLocale(params);
+
+  return buildLegalPageMetadata({
+    locale,
+    path: "/politique-de-confidentialite",
+    fr: {
+      title: "Politique de confidentialité",
+      description:
+        "Politique de confidentialité Aurevia: données collectées, finalités, conservation, sécurité et droits des utilisateurs.",
+    },
+    en: {
+      title: "Privacy policy",
+      description:
+        "Aurevia privacy policy: data collected, purposes, retention, security, and user rights.",
+    },
+  });
+}
 
 export default function PolitiqueDeConfidentialite() {
   return (

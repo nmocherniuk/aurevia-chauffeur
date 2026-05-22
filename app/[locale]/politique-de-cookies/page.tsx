@@ -1,28 +1,33 @@
 import type { Metadata } from "next";
 import MainContainer from "@/src/components/MainContainer";
 import React from "react";
+import {
+  buildLegalPageMetadata,
+  getPageLocale,
+} from "@/src/lib/i18n/legal-metadata";
 
-export const metadata: Metadata = {
-  title: "Politique de cookies",
-  description:
-    "Politique de cookies Aurevia: types de cookies utilisés, consentement et gestion des préférences.",
-  alternates: {
-    canonical: "/politique-de-cookies",
-  },
-  openGraph: {
-    title: "Politique de cookies | Aurevia",
-    description:
-      "Informations sur les cookies, la mesure d'audience et les préférences utilisateur sur Aurevia.",
-    url: "/politique-de-cookies",
-    images: ["/images/og-image.jpg"],
-  },
-  twitter: {
-    title: "Politique de cookies | Aurevia",
-    description:
-      "Informations sur les cookies, la mesure d'audience et les préférences utilisateur sur Aurevia.",
-    images: ["/images/og-image.jpg"],
-  },
+type PageProps = {
+  params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const locale = await getPageLocale(params);
+
+  return buildLegalPageMetadata({
+    locale,
+    path: "/politique-de-cookies",
+    fr: {
+      title: "Politique de cookies",
+      description:
+        "Politique de cookies Aurevia: types de cookies utilisés, consentement et gestion des préférences.",
+    },
+    en: {
+      title: "Cookie policy",
+      description:
+        "Aurevia cookie policy: types of cookies used, consent, and preference management.",
+    },
+  });
+}
 
 export default function PolitiqueDeConfidentialiteEtCookies() {
   return (

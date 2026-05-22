@@ -1,17 +1,26 @@
-import { FORM_STEPS } from "../data";
 import type { FormValues } from "../types";
+
+const FORM_FIELD_NAMES = [
+  "tripType",
+  "from",
+  "to",
+  "date",
+  "time",
+  "endTime",
+  "carType",
+  "car",
+  "firstName",
+  "lastName",
+  "email",
+  "phone",
+  "notesForChauffeur",
+] as const;
 
 export function getInitialFormValues(): FormValues {
   const initial: FormValues = {};
 
-  for (const step of FORM_STEPS) {
-    for (const field of step.fields) {
-      if (field.type === "checkbox") {
-        initial[field.name] = false;
-      } else {
-        initial[field.name] = "";
-      }
-    }
+  for (const name of FORM_FIELD_NAMES) {
+    initial[name] = "";
   }
 
   initial["fromLat"] = "";
@@ -23,4 +32,3 @@ export function getInitialFormValues(): FormValues {
 
   return initial;
 }
-

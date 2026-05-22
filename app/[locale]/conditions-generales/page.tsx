@@ -1,28 +1,33 @@
 import type { Metadata } from "next";
 import MainContainer from "@/src/components/MainContainer";
 import React from "react";
+import {
+  buildLegalPageMetadata,
+  getPageLocale,
+} from "@/src/lib/i18n/legal-metadata";
 
-export const metadata: Metadata = {
-  title: "Conditions générales",
-  description:
-    "Consultez les conditions générales d'utilisation, de réservation, de paiement et d'annulation des services Aurevia.",
-  alternates: {
-    canonical: "/conditions-generales",
-  },
-  openGraph: {
-    title: "Conditions générales | Aurevia",
-    description:
-      "Conditions d'utilisation, réservation, paiement et annulation des services Aurevia.",
-    url: "/conditions-generales",
-    images: ["/images/og-image.jpg"],
-  },
-  twitter: {
-    title: "Conditions générales | Aurevia",
-    description:
-      "Conditions d'utilisation, réservation, paiement et annulation des services Aurevia.",
-    images: ["/images/og-image.jpg"],
-  },
+type PageProps = {
+  params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const locale = await getPageLocale(params);
+
+  return buildLegalPageMetadata({
+    locale,
+    path: "/conditions-generales",
+    fr: {
+      title: "Conditions générales",
+      description:
+        "Consultez les conditions générales d'utilisation, de réservation, de paiement et d'annulation des services Aurevia.",
+    },
+    en: {
+      title: "Terms and conditions",
+      description:
+        "Read Aurevia terms of use, booking, payment, and cancellation policies.",
+    },
+  });
+}
 
 export default function ConditionsGenerales() {
   return (

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Onest } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Footer from "@/src/components/Footer";
-import Header from "@/src/components/Header";
 import StyledMantaineProvider from "@/src/providers/StyledMantaineProvider";
 import { getSiteUrl } from "@/src/lib/site-url";
+import { defaultLocale, isLocale, ogLocales } from "@/src/i18n/config";
+import { buildLanguageAlternates } from "@/src/i18n/paths";
 
 const siteUrl = getSiteUrl();
 
@@ -111,7 +112,8 @@ export const metadata: Metadata = {
   publisher: "Aurevia",
   openGraph: {
     type: "website",
-    locale: "fr_FR",
+    locale: ogLocales.fr,
+    alternateLocale: [ogLocales.en],
     siteName: "Aurevia",
     title: "Aurevia - Services premium de transport et sécurité privée",
     description:
@@ -146,25 +148,26 @@ export const metadata: Metadata = {
     },
   },
   category: "services",
+  alternates: {
+    languages: buildLanguageAlternates("/"),
+  },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const localeHeader = headersList.get("x-locale");
+  const locale = localeHeader && isLocale(localeHeader) ? localeHeader : defaultLocale;
+
   return (
-    <html lang="fr" className="h-full">
+    <html lang={locale} className="h-full">
       <body
         className={`${onest.variable} ${benzin.variable} flex min-h-dvh flex-col antialiased`}
       >
-        <StyledMantaineProvider>
-          <Header />
-          <main className="flex min-h-0 w-full min-w-0 flex-1 flex-col">
-            {children}
-          </main>
-          <Footer />
-        </StyledMantaineProvider>
+        <StyledMantaineProvider>{children}</StyledMantaineProvider>
       </body>
     </html>
   );

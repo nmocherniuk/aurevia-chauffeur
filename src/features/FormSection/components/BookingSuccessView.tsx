@@ -4,6 +4,7 @@ import React, { FC } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { OutlineCheck } from "@/src/components/SVGManager/OutlineCheck";
 import { Button } from "@/src/components/Button";
+import { useContent } from "@/src/providers/LocaleProvider";
 
 export const BOOKING_SUCCESS_SECTION_ID = "booking-success";
 
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export const BookingSuccessView: FC<Props> = ({ onContinue }) => {
+  const { bookingForm } = useContent();
   const reduceMotion = useReducedMotion();
 
   return (
@@ -26,20 +28,15 @@ export const BookingSuccessView: FC<Props> = ({ onContinue }) => {
         ease: [0.22, 1, 0.36, 1],
       }}
     >
-      <OutlineCheck
-        className="shrink-0"
-        fill="#BB9B78"
-        aria-hidden
-      />
+      <OutlineCheck className="shrink-0" fill="#BB9B78" aria-hidden />
       <h4
         id="booking-success-title"
         className="my-3 text-xl text-text-secondary"
       >
-        Succès
+        {bookingForm.success.title}
       </h4>
       <p className="mb-6 max-w-[558px] text-base font-light leading-relaxed text-text-primary">
-        Votre demande a bien été enregistrée. Nous vous confirmerons les détails
-        de votre transfert sous peu.
+        {bookingForm.success.message}
       </p>
       <Button
         type="button"
@@ -48,7 +45,7 @@ export const BookingSuccessView: FC<Props> = ({ onContinue }) => {
         withArrow={false}
         className="w-[280px]"
       >
-        Continuer
+        {bookingForm.success.button}
       </Button>
     </motion.section>
   );

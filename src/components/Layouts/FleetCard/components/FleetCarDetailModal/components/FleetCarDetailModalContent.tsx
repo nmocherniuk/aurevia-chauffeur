@@ -6,7 +6,7 @@ import { Button } from "@/src/components/Button";
 import { CAR_SPECS } from "../data/specs";
 import { CONTENT_ANIMATION } from "../constants";
 import type { Fleet } from "@/src/features/FleetSection/data";
-import { commonContent } from "@/src/content/common";
+import { useContent } from "@/src/providers/LocaleProvider";
 
 type FleetCarDetailModalContentProps = {
   car: Fleet;
@@ -25,6 +25,8 @@ export function FleetCarDetailModalContent({
   onBookNow,
   onAnimationComplete,
 }: FleetCarDetailModalContentProps) {
+  const { common: commonContent } = useContent();
+
   return (
     <motion.div
       initial={CONTENT_ANIMATION.initial}

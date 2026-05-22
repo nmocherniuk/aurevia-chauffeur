@@ -1,10 +1,9 @@
 import React, { FC } from 'react'
-import { cn, scrollToSection } from '@/src/lib/utils'
+import { cn } from '@/src/lib/utils'
 import { type NavLink } from '@/src/data/routes'
 import { NavLinkItem } from '../NavLinkItem'
-import SocialIcons from '../../../SocialIcons'
-
-const HEADER_OFFSET = -77
+import { LanguageSwitcher } from "../LanguageSwitcher";
+import SocialIcons from "../../../SocialIcons";
 
 interface MobileMenuProps {
     isOpen: boolean
@@ -33,28 +32,28 @@ export const MobileMenu: FC<MobileMenuProps> = ({
             aria-hidden={!isOpen}
         >
             <div className='min-h-0 flex-1' aria-hidden />
-            <nav className='flex w-full flex-col items-center gap-5 px-6  py-9' aria-label='Mobile menu'>
+            <nav className='flex w-full flex-col items-center gap-5 px-6 py-9' aria-label='Mobile menu'>
+
                 {links.map((link) => (
                     <NavLinkItem
-                        key={link.href}
+                        key={link.sectionId ?? link.href}
                         link={link}
                         variant='mobile'
                         activeSectionId={activeSectionId}
-                        onClick={(sectionId) => {
-                            onSectionChange(sectionId ?? null)
-                            onClose()
-                            if (sectionId) {
-                                setTimeout(() => scrollToSection(sectionId, HEADER_OFFSET), 100)
-                            }
-                        }}
+                        onClick={() => onClose()}
                     />
                 ))}
             </nav>
-            <div className='pb-12'>
+            <div className='pb-9'>
                 <SocialIcons
                     classNameIcon='border border-primary rounded-full'
                 />
+            </div >
+            <div className='pb-12'>
+                <LanguageSwitcher className="flex lg:hidden" />
+
             </div>
+
             <div className='min-h-0 flex-1' aria-hidden />
         </div>
     )

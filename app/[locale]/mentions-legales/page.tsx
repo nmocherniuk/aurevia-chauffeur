@@ -1,28 +1,33 @@
 import type { Metadata } from "next";
 import MainContainer from "@/src/components/MainContainer";
 import React from "react";
+import {
+  buildLegalPageMetadata,
+  getPageLocale,
+} from "@/src/lib/i18n/legal-metadata";
 
-export const metadata: Metadata = {
-  title: "Mentions légales",
-  description:
-    "Mentions légales du site Aurevia: éditeur, hébergeur, propriété intellectuelle et informations légales.",
-  alternates: {
-    canonical: "/mentions-legales",
-  },
-  openGraph: {
-    title: "Mentions légales | Aurevia",
-    description:
-      "Informations légales du site Aurevia: éditeur, hébergement et droits.",
-    url: "/mentions-legales",
-    images: ["/images/og-image.jpg"],
-  },
-  twitter: {
-    title: "Mentions légales | Aurevia",
-    description:
-      "Informations légales du site Aurevia: éditeur, hébergement et droits.",
-    images: ["/images/og-image.jpg"],
-  },
+type PageProps = {
+  params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const locale = await getPageLocale(params);
+
+  return buildLegalPageMetadata({
+    locale,
+    path: "/mentions-legales",
+    fr: {
+      title: "Mentions légales",
+      description:
+        "Mentions légales du site Aurevia: éditeur, hébergeur, propriété intellectuelle et informations légales.",
+    },
+    en: {
+      title: "Legal notice",
+      description:
+        "Aurevia legal notice: publisher, hosting, intellectual property, and legal information.",
+    },
+  });
+}
 
 export default function MentionsLegales() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { Form, Formik } from "formik";
 import type { FormikErrors, FormikTouched } from "formik";
 import { StepIndicator } from "@/src/components/StepIndicator";
@@ -8,10 +8,9 @@ import { SummaryList } from "@/src/components/SummaryList";
 import Image from "next/image";
 import { useFormSection } from "./hooks/useFormSection";
 import { Button } from "@/src/components/Button";
-import { STEP_SCHEMAS } from "./validation/schemas";
+import { getStepSchemas } from "./validation/getStepSchemas";
 import { buildSummaryItems } from "./utils/buildSummaryItems";
 import { getInitialFormValues } from "./utils/getInitialFormValues";
-import { FORM_STEPS } from "./data";
 import type { FormValues } from "./types";
 import type { FormStepProps } from "./components/steps/types";
 import { BookingStatus, createBooking } from "@/src/api/booking";
@@ -29,9 +28,12 @@ import {
 } from "@/src/features/FleetSection/utils/fleetBookingPrefill";
 import { applyFleetPrefillToFormValues } from "./utils/applyFleetPrefill";
 import { scrollToBookingFormSmoothAfterNav } from "@/src/lib/scrollToBookingForm";
-import { commonContent } from "@/src/content/common";
+import { dayjsLocales, type Locale } from "@/src/i18n/config";
+import { useContent, useLocale } from "@/src/providers/LocaleProvider";
 
 const FormSection: FC = () => {
+  const locale = useLocale();
+  const { common: commonContent, bookingForm } = useContent();
   const [initialValues, setInitialValues] = useState<FormValues>(() =>
     getInitialFormValues(),
   );
@@ -41,6 +43,7 @@ const FormSection: FC = () => {
 
   const {
     steps,
+    formSteps,
     activeStepIndex,
     maxStepReached,
     goNext,
@@ -50,6 +53,17 @@ const FormSection: FC = () => {
     ActiveStep,
     lastStepIndex,
   } = useFormSection();
+
+  const stepSchemas = useMemo(
+    () => getStepSchemas(bookingForm.validation),
+    [bookingForm.validation],
+  );
+
+  useEffect(() => {
+    void import(`dayjs/locale/${dayjsLocales[locale]}`).then(() => {
+      dayjs.locale(dayjsLocales[locale]);
+    });
+  }, [locale]);
 
   useEffect(() => {
     function applyPrefillFromSession(): void {
@@ -82,7 +96,7 @@ const FormSection: FC = () => {
       <div className="hidden sm:block relative w-full overflow-hidden rounded-xl h-[260px] sm:h-[300px] lg:h-[800px] xl:h-[776px] lg:top-6 mb-9 lg:mb-0">
         <Image
           src="/images/form-car.png"
-          alt="Form section background"
+          alt={bookingForm.section.imageAlt}
           fill
           className="object-cover object-center rounded-xl"
           sizes="(max-width: 1024px) 100vw, 40vw"
@@ -93,10 +107,10 @@ const FormSection: FC = () => {
           <>
             <div className="mb-8">
               <h2 className="font-benzin text-white text-center text-2xl sm:text-start mb-4 sm:text-[28px] md:text-3xl lg:text-4xl">
-                Réservez votre transfert
+                {bookingForm.section.title}
               </h2>
               <p className="text-text-primary text-base font-light text-center sm:text-start">
-                Entrez les details de votre trajet puis poursuivez vers la confirmation.
+                {bookingForm.section.subtitle}
               </p>
             </div>
             <StepIndicator
@@ -111,7 +125,7 @@ const FormSection: FC = () => {
         <Formik<FormValues>
           initialValues={initialValues}
           enableReinitialize
-          validationSchema={STEP_SCHEMAS[activeStepIndex]}
+          validationSchema={stepSchemas[activeStepIndex]}
           validateOnBlur={false}
           validateOnChange={false}
           onSubmit={async (values, { resetForm }) => {
@@ -158,9 +172,7 @@ const FormSection: FC = () => {
                 await createBooking(body);
                 setBookingSuccess(true);
               } catch {
-                setSubmitError(
-                  "Une erreur est survenue. Veuillez reessayer dans un instant.",
-                );
+                setSubmitError(bookingForm.section.submitError);
               }
               return;
             }
@@ -196,7 +208,13 @@ const FormSection: FC = () => {
               );
             }
 
-            const summaryItems = buildSummaryItems(values, activeStepIndex);
+            const summaryItems = buildSummaryItems(
+              values,
+              activeStepIndex,
+              formSteps,
+              bookingForm.summary.totalPricePrefix,
+              dayjsLocales[locale],
+            );
 
             const getError = (
               name: string,
@@ -211,7 +229,7 @@ const FormSection: FC = () => {
             };
 
             const errorsRecord: Record<string, string | null> = {};
-            for (const step of FORM_STEPS) {
+            for (const step of formSteps) {
               for (const field of step.fields) {
                 errorsRecord[field.name] = getError(
                   field.name,
@@ -247,7 +265,7 @@ const FormSection: FC = () => {
                   <SummaryList
                     items={summaryItems}
                     className="py-1 mx-auto justify-center lg:justify-start"
-                    aria-label="Résumé de la réservation"
+                    aria-label={bookingForm.section.summaryAriaLabel}
                   />
                 ) : null}
 

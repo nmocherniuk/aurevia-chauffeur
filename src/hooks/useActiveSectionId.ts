@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { getSectionIdFromHref } from "@/src/lib/utils";
 import type { NavLink } from "@/src/data/routes";
 
 const OBSERVER_OPTIONS: IntersectionObserverInit = {
@@ -17,28 +16,17 @@ export function useActiveSectionId(
     ratiosRef.current = {};
 
     const sectionIds = links
-      .map((l) => getSectionIdFromHref(l.href))
-      .filter((id): id is string => id !== null);
+      .map((l) => l.sectionId)
+      .filter((id): id is string => id != null);
 
     const allowedIds = new Set(sectionIds);
-
-    const syncFromHash = () => {
-      const hashId =
-        typeof window !== "undefined"
-          ? window.location.hash.slice(1) || null
-          : null;
-      setActiveSectionId(hashId);
-    };
-
-    syncFromHash();
-    window.addEventListener("hashchange", syncFromHash);
 
     const elements = sectionIds
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
     if (elements.length === 0) {
-      return () => window.removeEventListener("hashchange", syncFromHash);
+      return;
     }
 
     const MIN_RATIO = 0.01;
@@ -62,10 +50,7 @@ export function useActiveSectionId(
     }, OBSERVER_OPTIONS);
 
     elements.forEach((el) => observer.observe(el));
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("hashchange", syncFromHash);
-    };
+    return () => observer.disconnect();
   }, [links]);
 
   return [activeSectionId, setActiveSectionId];

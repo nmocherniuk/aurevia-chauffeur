@@ -2,7 +2,7 @@
 
 import React, { useCallback } from "react";
 import { cn } from "@/src/lib/utils";
-import type { SelectOption } from "../../types";
+import type { SelectOption, CustomSelectVariant } from "../../types";
 import SelectOptionItem from "../SelectOptionItem";
 
 type SelectDropdownProps = {
@@ -12,6 +12,7 @@ type SelectDropdownProps = {
   focusedIndex: number;
   enabledOptions: SelectOption[];
   listboxId: string;
+  variant?: CustomSelectVariant;
   onSelect: (value: string) => void;
   setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
   dropdownRef: React.RefObject<HTMLUListElement | null>;
@@ -24,6 +25,7 @@ export default function SelectDropdown({
   focusedIndex,
   enabledOptions,
   listboxId,
+  variant = "default",
   onSelect,
   setFocusedIndex,
   dropdownRef,
@@ -36,8 +38,11 @@ export default function SelectDropdown({
     <ul
       ref={dropdownRef}
       className={cn(
-        "absolute left-0 right-0 top-[calc(100%+7px)] z-1000 max-h-60 list-none overflow-y-auto overflow-x-hidden rounded-md border border-grey-light bg-white p-1 shadow-lg",
-        "animate-[slideDown_0.2s_ease-out]"
+        "absolute z-1000 max-h-60 list-none overflow-y-auto overflow-x-hidden rounded-md border border-grey-light bg-white p-1 shadow-lg",
+        "animate-[slideDown_0.2s_ease-out]",
+        variant === "nav"
+          ? "right-0 top-[calc(100%+8px)] min-w-[160px]"
+          : "left-0 right-0 top-[calc(100%+7px)]",
       )}
       role="listbox"
       aria-labelledby={listboxId}
