@@ -3,6 +3,7 @@
 import React, { FC } from "react";
 import InputWithError from "@/src/components/Inputs/InputWithError";
 import type { FormStepProps } from "@/src/features/FormSection/components/steps/types";
+import { useContent } from "@/src/providers/LocaleProvider";
 
 export const SecurityClientStep: FC<FormStepProps> = ({
   getValue,
@@ -11,12 +12,15 @@ export const SecurityClientStep: FC<FormStepProps> = ({
   handleBlur,
   handleFocus,
 }) => {
+  const { securityForm } = useContent();
+  const copy = securityForm.client;
+
   return (
     <div className="grid gap-y-2.5 gap-x-4 grid-cols-1 sm:grid-cols-2">
       <InputWithError
         name="firstName"
-        label="Prenom"
-        placeholder="Prenom"
+        label={copy.firstName.label}
+        placeholder={copy.firstName.placeholder}
         value={(getValue("firstName", false) as string) || ""}
         onChange={(e) => setValue("firstName", e.target.value)}
         onBlur={handleBlur("firstName")}
@@ -25,8 +29,8 @@ export const SecurityClientStep: FC<FormStepProps> = ({
       />
       <InputWithError
         name="lastName"
-        label="Nom"
-        placeholder="Nom"
+        label={copy.lastName.label}
+        placeholder={copy.lastName.placeholder}
         value={(getValue("lastName", false) as string) || ""}
         onChange={(e) => setValue("lastName", e.target.value)}
         onBlur={handleBlur("lastName")}
@@ -35,8 +39,8 @@ export const SecurityClientStep: FC<FormStepProps> = ({
       />
       <InputWithError
         name="email"
-        label="E-mail"
-        placeholder="E-mail"
+        label={copy.email.label}
+        placeholder={copy.email.placeholder}
         value={(getValue("email", false) as string) || ""}
         onChange={(e) => setValue("email", e.target.value)}
         onBlur={handleBlur("email")}
@@ -45,8 +49,8 @@ export const SecurityClientStep: FC<FormStepProps> = ({
       />
       <InputWithError
         name="phone"
-        label="Telephone"
-        placeholder="Telephone"
+        label={copy.phone.label}
+        placeholder={copy.phone.placeholder}
         value={(getValue("phone", false) as string) || ""}
         onChange={(e) => setValue("phone", e.target.value)}
         onBlur={handleBlur("phone")}

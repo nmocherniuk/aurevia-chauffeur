@@ -6,12 +6,12 @@ import {
   SECURITY_LAST_STEP_INDEX,
   SECURITY_STEP_ICON_SIZES,
   SECURITY_STEP_ICONS,
-  SECURITY_STEP_LABELS,
 } from "../constants";
 import { SecurityServiceStep } from "../components/SecurityServiceStep";
 import { SecurityClientStep } from "../components/SecurityClientStep";
 import { SecurityOperationStep } from "../components/SecurityOperationStep";
 import { SecurityReviewStep } from "../components/SecurityReviewStep";
+import { useContent } from "@/src/providers/LocaleProvider";
 
 const STEP_COMPONENTS = [
   SecurityServiceStep,
@@ -21,21 +21,30 @@ const STEP_COMPONENTS = [
 ] as const;
 
 export function useSecurityFormSection() {
+  const { securityForm } = useContent();
+  const stepLabels = useMemo(
+    () => [
+      securityForm.steps.service,
+      securityForm.steps.client,
+      securityForm.steps.details,
+      securityForm.steps.review,
+    ],
+    [securityForm.steps],
+  );
+
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [maxStepReached, setMaxStepReached] = useState(0);
 
   const steps = useMemo(
     () =>
-      getStepsFromIndex(
-        [...SECURITY_STEP_LABELS],
-        activeStepIndex,
-        maxStepReached,
-      ).map((step, i) => ({
-        ...step,
-        icon: SECURITY_STEP_ICONS[i],
-        iconSize: SECURITY_STEP_ICON_SIZES[i],
-      })),
-    [activeStepIndex, maxStepReached],
+      getStepsFromIndex(stepLabels, activeStepIndex, maxStepReached).map(
+        (step, i) => ({
+          ...step,
+          icon: SECURITY_STEP_ICONS[i],
+          iconSize: SECURITY_STEP_ICON_SIZES[i],
+        }),
+      ),
+    [stepLabels, activeStepIndex, maxStepReached],
   );
 
   const goNext = useCallback(() => {

@@ -3,6 +3,7 @@ import { commonContent } from "./common";
 import { homeContent } from "./home";
 import { chauffeurContent } from "./chauffeur";
 import { securityContent } from "./security";
+import { securityFormContent } from "./securityForm";
 
 export const enContent = {
   common: commonContent,
@@ -10,4 +11,5 @@ export const enContent = {
   chauffeur: chauffeurContent,
   security: securityContent,
   bookingForm: bookingFormContent,
+  securityForm: securityFormContent,
 };

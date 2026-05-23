@@ -7,10 +7,11 @@ import DatePickerWithError from "@/src/components/Inputs/DatePickerWithError";
 import TimePickerWithError from "@/src/components/Inputs/TimePickerWithError";
 import SelectWithError from "@/src/components/SelectWithError";
 import type { FormStepProps } from "@/src/features/FormSection/components/steps/types";
+import { useContent } from "@/src/providers/LocaleProvider";
 import {
   AGENT_COUNT_OPTIONS,
-  CATEGORY_SELECT_OPTIONS,
-  DURATION_OPTIONS,
+  getCategorySelectOptions,
+  getDurationOptions,
   getServiceTypeSelectOptions,
 } from "../data/categories";
 
@@ -21,23 +22,26 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
   handleBlur,
   handleFocus,
 }) => {
+  const { securityForm } = useContent();
+  const copy = securityForm.service;
+
   const category = (getValue("serviceCategory", false) as string) || "";
   const serviceType = (getValue("serviceType", false) as string) || "";
   const duration = (getValue("duration", false) as string) || "";
   const isMultiDay = duration === "multi";
 
   const serviceTypeOptions = useMemo(
-    () => getServiceTypeSelectOptions(category),
-    [category],
+    () => getServiceTypeSelectOptions(category, securityForm),
+    [category, securityForm],
   );
 
   return (
     <div className="grid grid-cols-1 gap-y-2.5 gap-x-4 sm:grid-cols-2">
       <SelectWithError
         name="serviceCategory"
-        label="Categorie de service"
+        label={copy.category.label}
         required
-        placeholder="Selectionnez une categorie"
+        placeholder={copy.category.placeholder}
         value={category}
         onChange={(e) => {
           const v = e.target.value;
@@ -48,14 +52,14 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
         onBlur={handleBlur("serviceCategory")}
         onFocus={handleFocus("serviceCategory")}
         error={errors.serviceCategory}
-        options={CATEGORY_SELECT_OPTIONS}
+        options={getCategorySelectOptions(securityForm)}
       />
       <SelectWithError
         name="serviceType"
-        label="Type de service"
+        label={copy.type.label}
         required
         placeholder={
-          category ? "Selectionnez un type de service" : "Selectionnez d'abord une categorie"
+          category ? copy.type.placeholder : copy.type.placeholderNoCategory
         }
         value={serviceType}
         disabled={!category}
@@ -73,8 +77,8 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
         <div className="sm:col-span-2">
           <InputWithError
             name="serviceTypeOther"
-            label="Precisez le type de service"
-            placeholder="Quel service de securite recherchez-vous ?"
+            label={copy.typeOther.label}
+            placeholder={copy.typeOther.placeholder}
             value={(getValue("serviceTypeOther", false) as string) || ""}
             onChange={(e) => setValue("serviceTypeOther", e.target.value)}
             onBlur={handleBlur("serviceTypeOther")}
@@ -87,8 +91,8 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
       <div className="sm:col-span-2">
         <LocationAutocompleteInput
           name="location"
-          label="Lieu"
-          placeholder="Ville, site ou adresse"
+          label={copy.location.label}
+          placeholder={copy.location.placeholder}
           value={(getValue("location", false) as string) || ""}
           onChangeText={(text) => {
             setValue("location", text);
@@ -107,8 +111,8 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
       </div>
       <DatePickerWithError
         name="date"
-        label="Date"
-        placeholder="Selectionnez une date"
+        label={copy.date.label}
+        placeholder={copy.date.placeholder}
         value={(getValue("date", false) as string) || ""}
         onChange={(dateOrEvent) => {
           const v =
@@ -123,8 +127,8 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
       />
       <TimePickerWithError
         name="time"
-        label="Heure de debut"
-        placeholder="Selectionnez une heure"
+        label={copy.time.label}
+        placeholder={copy.time.placeholder}
         value={(getValue("time", false) as string) || ""}
         onChange={(eOrString) => {
           const v =
@@ -139,8 +143,8 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
       />
       <SelectWithError
         name="duration"
-        label="Duree"
-        placeholder="Selectionnez une duree"
+        label={copy.duration.label}
+        placeholder={copy.duration.placeholder}
         value={duration}
         onChange={(e) => {
           const v = e.target.value;
@@ -149,13 +153,13 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
         }}
         onBlur={handleBlur("duration")}
         error={errors["duration"]}
-        options={[...DURATION_OPTIONS]}
+        options={getDurationOptions(securityForm)}
       />
       {isMultiDay ? (
         <DatePickerWithError
           name="endDate"
-          label="Date de fin"
-          placeholder="Selectionnez une date de fin"
+          label={copy.endDate.label}
+          placeholder={copy.endDate.placeholder}
           value={(getValue("endDate", false) as string) || ""}
           onChange={(dateOrEvent) => {
             const v =
@@ -171,8 +175,8 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
       ) : null}
       <SelectWithError
         name="agentCount"
-        label="Nombre d'agents"
-        placeholder="Selectionner"
+        label={copy.agentCount.label}
+        placeholder={copy.agentCount.placeholder}
         value={(getValue("agentCount", false) as string) || ""}
         onChange={(e) => setValue("agentCount", e.target.value)}
         onBlur={handleBlur("agentCount")}

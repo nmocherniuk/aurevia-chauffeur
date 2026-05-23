@@ -5,6 +5,8 @@ import type { FormStepProps } from "@/src/features/FormSection/components/steps/
 import type { SecurityFormValues } from "../types";
 import { getInitialSecurityFormValues } from "../utils/getInitialSecurityFormValues";
 import { buildSecurityReviewSections } from "../utils/buildSecurityReviewSections";
+import { useContent, useLocale } from "@/src/providers/LocaleProvider";
+import { dayjsLocales } from "@/src/i18n/config";
 
 function collectValues(getValue: FormStepProps["getValue"]): SecurityFormValues {
   const initial = getInitialSecurityFormValues();
@@ -16,9 +18,14 @@ function collectValues(getValue: FormStepProps["getValue"]): SecurityFormValues 
   return out;
 }
 
-/** Matches driver {@link PaymentStep} review: wrapped sections, plain `<li>` lines. */
 export const SecurityReviewStep: FC<FormStepProps> = ({ getValue }) => {
-  const sections = buildSecurityReviewSections(collectValues(getValue));
+  const { securityForm } = useContent();
+  const locale = useLocale();
+  const sections = buildSecurityReviewSections(
+    collectValues(getValue),
+    securityForm,
+    dayjsLocales[locale],
+  );
   const hasReview = sections.some((s) => s.lines.length > 0);
 
   return (

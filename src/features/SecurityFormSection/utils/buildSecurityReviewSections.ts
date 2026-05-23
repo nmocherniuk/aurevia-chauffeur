@@ -1,76 +1,45 @@
 import dayjs from "dayjs";
-import "dayjs/locale/fr";
 import { REVIEW_DATE_FORMAT } from "@/src/features/FormSection/constants";
 import type { SecurityFormValues } from "../types";
 import {
   AGENT_COUNT_OPTIONS,
-  DRESS_CODE_OPTIONS,
-  DURATION_OPTIONS,
-  SECURITY_CATEGORIES,
-  SECURITY_SERVICE_TYPES,
-  YES_NO_OPTIONS,
-  type SecurityCategoryId,
+  labelDressCode,
+  labelForCategory,
+  labelForDuration,
+  labelForServiceType,
+  labelYesNo,
+  type SecurityFormCopy,
 } from "../data/categories";
-
-dayjs.locale("fr");
 
 export type SecurityReviewSection = {
   title: string;
-  /** Plain lines like the driver PaymentStep review (`<li>` text only). */
   lines: string[];
 };
 
-function labelForCategory(id: string): string {
-  return SECURITY_CATEGORIES.find((c) => c.id === id)?.label ?? id;
-}
-
-function labelForServiceType(categoryId: string, typeValue: string): string {
-  const key = categoryId as SecurityCategoryId;
-  const opts = SECURITY_SERVICE_TYPES[key];
-  return opts?.find((o) => o.value === typeValue)?.label ?? typeValue;
-}
-
-function labelForDuration(v: string): string {
-  return DURATION_OPTIONS.find((o) => o.value === v)?.label ?? v;
-}
-
-function labelDressCode(v: string): string {
-  return (
-    DRESS_CODE_OPTIONS.find((o) => o.value === v)?.label ?? "Aucune preference"
-  );
-}
-
-function labelYesNo(v: string): string {
-  if (v === "yes" || v === "no") {
-    return YES_NO_OPTIONS.find((o) => o.value === v)?.label ?? v;
-  }
-  return "";
-}
-
-/**
- * Review blocks matching the driver {@link PaymentStep} layout: titled sections
- * with plain text lines (no label/value grid).
- */
 export function buildSecurityReviewSections(
   values: SecurityFormValues,
+  form: SecurityFormCopy,
+  dayjsLocale: string,
 ): SecurityReviewSection[] {
+  dayjs.locale(dayjsLocale);
+  const { review } = form;
   const sections: SecurityReviewSection[] = [];
   const cat = values.serviceCategory || "";
 
   const assignmentLines: string[] = [];
 
   if (cat) {
-    assignmentLines.push(labelForCategory(cat));
+    assignmentLines.push(labelForCategory(form, cat));
   }
 
   if (values.serviceType === "other") {
     assignmentLines.push(
       values.serviceTypeOther?.trim()
         ? values.serviceTypeOther.trim()
-        : "Autre",
+        : review.other,
     );
   } else if (values.serviceType && cat) {
-    assignmentLines.push(labelForServiceType(cat, values.serviceType));
+    assignmentLines.push(labelForServiceType(form, cat, values.serviceType));
   }
 
   if (values.location?.trim()) {
@@ -97,25 +66,27 @@ export function buildSecurityReviewSections(
   }
 
   if (values.duration) {
-    assignmentLines.push(labelForDuration(values.duration));
+    assignmentLines.push(labelForDuration(form, values.duration));
   }
 
   if (values.duration === "multi" && values.endDate) {
     const parsed = dayjs(values.endDate);
     const end =
       parsed.isValid() ? parsed.format("D MMM YYYY") : values.endDate;
-    assignmentLines.push(`Jusqu'au ${end}`);
+    assignmentLines.push(`${review.until} ${end}`);
   }
 
   if (values.agentCount) {
     const n =
       AGENT_COUNT_OPTIONS.find((o) => o.value === values.agentCount)?.label ??
       values.agentCount;
-    assignmentLines.push(`${n} agent${n === "1" ? "" : "s"}`);
+    assignmentLines.push(
+      `${n} ${n === "1" ? review.agents : review.agentsPlural}`,
+    );
   }
 
   if (assignmentLines.length > 0) {
-    sections.push({ title: "Mission", lines: assignmentLines });
+    sections.push({ title: review.mission, lines: assignmentLines });
   }
 
   const passengerLines: string[] = [];
@@ -126,23 +97,22 @@ export function buildSecurityReviewSections(
   if (values.company?.trim()) passengerLines.push(values.company.trim());
 
   if (passengerLines.length > 0) {
-    sections.push({ title: "Client", lines: passengerLines });
+    sections.push({ title: review.client, lines: passengerLines });
   }
 
-  /** Affiche toujours une colonne de details (meme layout que Mission / Client). */
   const detailLines: string[] = [
-    `Exigences particulieres — ${values.specialRequirements?.trim() || "—"}`,
-    `Langues — ${values.languagesRequired?.trim() || "—"}`,
-    `Tenue souhaitee — ${labelDressCode(values.dressCode ?? "")}`,
+    `${review.specialRequirements} — ${values.specialRequirements?.trim() || "—"}`,
+    `${review.languages} — ${values.languagesRequired?.trim() || "—"}`,
+    `${review.dressCode} — ${labelDressCode(form, values.dressCode ?? "")}`,
     values.vehicleRequired === "yes" || values.vehicleRequired === "no"
-      ? `Coordination vehicule — ${labelYesNo(values.vehicleRequired)}`
-      : "Coordination vehicule — Non renseigne",
+      ? `${review.vehicleCoordination} — ${labelYesNo(form, values.vehicleRequired)}`
+      : `${review.vehicleCoordination} — ${review.notProvided}`,
     values.armedRequired === "yes" || values.armedRequired === "no"
-      ? `Personnel arme — ${labelYesNo(values.armedRequired)}`
-      : "Personnel arme — Non renseigne",
+      ? `${review.armedPersonnel} — ${labelYesNo(form, values.armedRequired)}`
+      : `${review.armedPersonnel} — ${review.notProvided}`,
   ];
 
-  sections.push({ title: "Details", lines: detailLines });
+  sections.push({ title: review.details, lines: detailLines });
 
   return sections;
 }

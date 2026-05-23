@@ -4,6 +4,7 @@ import React, { FC } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { OutlineCheck } from "@/src/components/SVGManager/OutlineCheck";
 import { Button } from "@/src/components/Button";
+import { useContent } from "@/src/providers/LocaleProvider";
 
 export const SECURITY_REQUEST_SUCCESS_ID = "security-request-success";
 
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export const SecurityRequestSuccessView: FC<Props> = ({ onContinue }) => {
+  const { securityForm } = useContent();
   const reduceMotion = useReducedMotion();
 
   return (
@@ -31,13 +33,10 @@ export const SecurityRequestSuccessView: FC<Props> = ({ onContinue }) => {
         id="security-request-success-title"
         className="my-3 text-xl text-text-secondary"
       >
-        Demande recue
+        {securityForm.success.title}
       </h4>
       <p className="mb-6 max-w-[558px] text-base font-light leading-relaxed text-text-primary">
-        Merci. Notre equipe de coordination analysera votre demande et vous
-        contactera personnellement pour affiner les details. Il ne s'agit pas
-        d'une reservation instantanee : chaque mission est confirmee avec
-        discretion et rigueur.
+        {securityForm.success.message}
       </p>
       <Button
         type="button"
@@ -46,7 +45,7 @@ export const SecurityRequestSuccessView: FC<Props> = ({ onContinue }) => {
         withArrow={false}
         className="w-[280px]"
       >
-        Continuer
+        {securityForm.success.button}
       </Button>
     </motion.section>
   );
