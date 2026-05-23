@@ -25,16 +25,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     fr: {
       title: "Chauffeur privé premium",
       description:
-        "Réservez un chauffeur privé Aurevia pour vos trajets en France: confort haut de gamme, ponctualité et service sur mesure.",
-      ogTitle: "Aurevia Chauffeur - Transport privé premium",
+        "Réservez un chauffeur privé Riviera Prime pour vos trajets en France: confort haut de gamme, ponctualité et service sur mesure.",
+      ogTitle: "Riviera Prime Chauffeur - Transport privé premium",
       ogDesc:
         "Service de chauffeur privé premium pour déplacements professionnels, personnels et événements.",
     },
     en: {
       title: "Premium private chauffeur",
       description:
-        "Book an Aurevia private chauffeur in France: premium comfort, punctuality, and bespoke service.",
-      ogTitle: "Aurevia Chauffeur - Premium private transport",
+        "Book an Riviera Prime private chauffeur in France: premium comfort, punctuality, and bespoke service.",
+      ogTitle: "Riviera Prime Chauffeur - Premium private transport",
       ogDesc:
         "Premium private chauffeur service for business, personal travel, and events.",
     },

@@ -6,17 +6,17 @@ export function createHomeContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Aurevia\nTransport et protection privée",
+      title: "Riviera Prime\nTransport et protection privée",
       subtitle:
         "Des services haut de gamme pour vos trajets, événements et besoins de sécurité.",
       buttonText: commonContent.buttons.services,
       buttonLink: routes.home.services,
     },
 
-    whoWeAreTitle: "Aurevia — L'exigence dans chaque détail",
+    whoWeAreTitle: "Riviera Prime — L'exigence dans chaque détail",
 
     whoWeAreItems: [
-      "Aurevia est une plateforme premium de coordination qui met en relation ses clients avec des professionnels indépendants de confiance dans les services de chauffeur privé et de sécurité exécutive. Nous privilégions la discrétion, la fiabilité et une gestion fluide du service, depuis la première demande jusqu'à la confirmation finale.",
+      "Riviera Prime est une plateforme premium de coordination qui met en relation ses clients avec des professionnels indépendants de confiance dans les services de chauffeur privé et de sécurité exécutive. Nous privilégions la discrétion, la fiabilité et une gestion fluide du service, depuis la première demande jusqu'à la confirmation finale.",
       "Notre réseau repose sur des professionnels expérimentés, sélectionnés pour leur qualité de service, leur réactivité et leur capacité à intervenir dans des environnements exigeants avec un haut niveau de professionnalisme. Chaque demande est traitée avec précision afin d'assurer une coordination claire, confidentielle et adaptée à vos besoins.",
     ] as const,
 
@@ -44,9 +44,9 @@ export function createHomeContent(locale: "fr" | "en") {
     faqItems: [
       {
         id: "home-faq-1",
-        question: "Quels services propose Aurevia ?",
+        question: "Quels services propose Riviera Prime ?",
         answer:
-          "Aurevia propose des services premium de chauffeur privé et de sécurité privée, adaptés aux déplacements, événements, besoins professionnels et demandes sur mesure.",
+          "Riviera Prime propose des services premium de chauffeur privé et de sécurité privée, adaptés aux déplacements, événements, besoins professionnels et demandes sur mesure.",
       },
       {
         id: "home-faq-2",

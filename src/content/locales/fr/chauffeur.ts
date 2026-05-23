@@ -10,7 +10,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Aurevia Chauffeur\nPrivate Executive Transportation",
+      title: "Riviera Prime Chauffeur\nPrivate Executive Transportation",
       subtitle:
         "Premium chauffeur services designed for comfort, discretion, and precision.",
       buttonText: commonContent.buttons.reserve,

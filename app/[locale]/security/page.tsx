@@ -24,16 +24,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     fr: {
       title: "Sécurité privée premium",
       description:
-        "Aurevia propose des services de sécurité privée en France: protection rapprochée, sécurisation d'événements et accompagnement professionnel.",
-      ogTitle: "Aurevia Security - Services de sécurité privée",
+        "Riviera Prime propose des services de sécurité privée en France: protection rapprochée, sécurisation d'événements et accompagnement professionnel.",
+      ogTitle: "Riviera Prime Security - Services de sécurité privée",
       ogDesc:
         "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
     },
     en: {
       title: "Premium private security",
       description:
-        "Aurevia offers private security services in France: close protection, event security, and professional escort.",
-      ogTitle: "Aurevia Security - Private security services",
+        "Riviera Prime offers private security services in France: close protection, event security, and professional escort.",
+      ogTitle: "Riviera Prime Security - Private security services",
       ogDesc:
         "Close protection, event security, and premium escort services across France.",
     },

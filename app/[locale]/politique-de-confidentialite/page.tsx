@@ -19,12 +19,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     fr: {
       title: "Politique de confidentialité",
       description:
-        "Politique de confidentialité Aurevia: données collectées, finalités, conservation, sécurité et droits des utilisateurs.",
+        "Politique de confidentialité Riviera Prime: données collectées, finalités, conservation, sécurité et droits des utilisateurs.",
     },
     en: {
       title: "Privacy policy",
       description:
-        "Aurevia privacy policy: data collected, purposes, retention, security, and user rights.",
+        "Riviera Prime privacy policy: data collected, purposes, retention, security, and user rights.",
     },
   });
 }

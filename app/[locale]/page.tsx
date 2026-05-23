@@ -21,12 +21,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     fr: {
       title: "Accueil",
       description:
-        "Aurevia coordonne des services premium de chauffeur privé et de sécurité privée en France, avec un accompagnement sur mesure.",
+        "Riviera Prime coordonne des services premium de chauffeur privé et de sécurité privée en France, avec un accompagnement sur mesure.",
     },
     en: {
       title: "Home",
       description:
-        "Aurevia coordinates premium private chauffeur and security services in France with bespoke support.",
+        "Riviera Prime coordinates premium private chauffeur and security services in France with bespoke support.",
     },
   };
 
@@ -39,8 +39,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: copy.description,
     openGraphTitle:
       locale === "fr"
-        ? "Aurevia - Chauffeur privé et sécurité privée"
-        : "Aurevia - Private chauffeur and security",
+        ? "Riviera Prime - Chauffeur privé et sécurité privée"
+        : "Riviera Prime - Private chauffeur and security",
     openGraphDescription:
       locale === "fr"
         ? "Plateforme premium de coordination pour transport privé et sécurité privée."

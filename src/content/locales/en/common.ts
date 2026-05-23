@@ -1,5 +1,5 @@
 export const commonContent = {
-  brand: "Aurevia",
+  brand: "Riviera Prime",
 
   buttons: {
     reserve: "Book now",
@@ -41,7 +41,7 @@ export const commonContent = {
   footer: {
     tagline:
       "Premium private transport and security services designed for discretion, reliability, and excellence.",
-    copyright: "© 2026 Aurevia. All rights reserved",
+    copyright: "© 2026 Riviera Prime. All rights reserved",
     privacy: "Privacy",
     terms: "Terms",
     legalNotice: "Legal notice",

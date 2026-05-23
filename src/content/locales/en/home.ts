@@ -6,17 +6,17 @@ export function createHomeContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Aurevia\nPrivate transport and protection",
+      title: "Riviera Prime\nPrivate transport and protection",
       subtitle:
         "Premium services for your journeys, events, and security requirements.",
       buttonText: commonContent.buttons.services,
       buttonLink: routes.home.services,
     },
 
-    whoWeAreTitle: "Aurevia — Excellence in every detail",
+    whoWeAreTitle: "Riviera Prime — Excellence in every detail",
 
     whoWeAreItems: [
-      "Aurevia is a premium coordination platform connecting clients with trusted independent professionals in private chauffeur and executive security services. We prioritise discretion, reliability, and seamless service management from the first request through to final confirmation.",
+      "Riviera Prime is a premium coordination platform connecting clients with trusted independent professionals in private chauffeur and executive security services. We prioritise discretion, reliability, and seamless service management from the first request through to final confirmation.",
       "Our network is built on experienced professionals selected for service quality, responsiveness, and the ability to operate in demanding environments with the highest level of professionalism. Every request is handled with precision to ensure clear, confidential coordination tailored to your needs.",
     ] as const,
 
@@ -44,9 +44,9 @@ export function createHomeContent(locale: "fr" | "en") {
     faqItems: [
       {
         id: "home-faq-1",
-        question: "What services does Aurevia offer?",
+        question: "What services does Riviera Prime offer?",
         answer:
-          "Aurevia offers premium private chauffeur and private security services for travel, events, business needs, and bespoke requests.",
+          "Riviera Prime offers premium private chauffeur and private security services for travel, events, business needs, and bespoke requests.",
       },
       {
         id: "home-faq-2",

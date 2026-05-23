@@ -99,7 +99,7 @@ const Header: React.FC = () => {
           >
             <Image
               src={logo}
-              alt="Aurevia Chauffeur"
+              alt="Riviera Prime Chauffeur"
               fill
               className="object-contain object-left"
               priority

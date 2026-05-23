@@ -10,7 +10,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Aurevia Chauffeur\nPrivate Executive Transportation",
+      title: "Riviera Prime Chauffeur\nPrivate Executive Transportation",
       subtitle:
         "Premium chauffeur services designed for comfort, discretion, and precision.",
       buttonText: commonContent.buttons.reserve,
@@ -39,7 +39,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
         description:
           "Every detail of your journey is carefully coordinated to ensure perfect punctuality and impeccable service.",
       },
-  {
+      {
         id: "why-choose-us-4",
         icon: Diamond,
         title: "Travel in exceptional conditions",

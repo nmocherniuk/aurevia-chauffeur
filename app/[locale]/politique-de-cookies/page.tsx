@@ -19,12 +19,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     fr: {
       title: "Politique de cookies",
       description:
-        "Politique de cookies Aurevia: types de cookies utilisés, consentement et gestion des préférences.",
+        "Politique de cookies Riviera Prime: types de cookies utilisés, consentement et gestion des préférences.",
     },
     en: {
       title: "Cookie policy",
       description:
-        "Aurevia cookie policy: types of cookies used, consent, and preference management.",
+        "Riviera Prime cookie policy: types of cookies used, consent, and preference management.",
     },
   });
 }

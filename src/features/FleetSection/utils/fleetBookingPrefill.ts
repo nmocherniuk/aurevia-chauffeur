@@ -1,9 +1,9 @@
 import { fleets } from "../data";
 import type { Fleet } from "../data";
 
-const FLEET_PREFILL_SESSION_KEY = "aurevia_driver_fleet_prefill";
+const FLEET_PREFILL_SESSION_KEY = "Riviera Prime_driver_fleet_prefill";
 
-export const FLEET_BOOKING_PREFILL_EVENT = "aurevia-fleet-booking-prefill";
+export const FLEET_BOOKING_PREFILL_EVENT = "Riviera Prime-fleet-booking-prefill";
 
 export type FleetCategoryKey = keyof typeof fleets;
 

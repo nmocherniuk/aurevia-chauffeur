@@ -12,7 +12,7 @@ export function createSecurityContent(locale: "fr" | "en") {
     heroSection: {
       title: "Protection privée et sécurité haut de gamme",
       subtitle:
-        "Aurevia coordonne des prestations de sécurité privée pour vos déplacements, événements, lieux sensibles et besoins spécifiques.",
+        "Riviera Prime coordonne des prestations de sécurité privée pour vos déplacements, événements, lieux sensibles et besoins spécifiques.",
       buttonText: commonContent.buttons.sendRequest,
       buttonLink: routes.security.book,
     },

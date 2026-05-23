@@ -19,12 +19,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     fr: {
       title: "Mentions légales",
       description:
-        "Mentions légales du site Aurevia: éditeur, hébergeur, propriété intellectuelle et informations légales.",
+        "Mentions légales du site Riviera Prime: éditeur, hébergeur, propriété intellectuelle et informations légales.",
     },
     en: {
       title: "Legal notice",
       description:
-        "Aurevia legal notice: publisher, hosting, intellectual property, and legal information.",
+        "Riviera Prime legal notice: publisher, hosting, intellectual property, and legal information.",
     },
   });
 }

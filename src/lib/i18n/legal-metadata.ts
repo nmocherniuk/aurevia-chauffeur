@@ -22,7 +22,7 @@ export function buildLegalPageMetadata({
     path,
     title: copy.title,
     description: copy.description,
-    openGraphTitle: `${copy.title} | Aurevia`,
+    openGraphTitle: `${copy.title} | Riviera Prime`,
     openGraphDescription: copy.description,
   });
 }

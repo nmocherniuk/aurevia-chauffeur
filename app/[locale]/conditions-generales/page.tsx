@@ -19,12 +19,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     fr: {
       title: "Conditions générales",
       description:
-        "Consultez les conditions générales d'utilisation, de réservation, de paiement et d'annulation des services Aurevia.",
+        "Consultez les conditions générales d'utilisation, de réservation, de paiement et d'annulation des services Riviera Prime.",
     },
     en: {
       title: "Terms and conditions",
       description:
-        "Read Aurevia terms of use, booking, payment, and cancellation policies.",
+        "Read Riviera Prime terms of use, booking, payment, and cancellation policies.",
     },
   });
 }

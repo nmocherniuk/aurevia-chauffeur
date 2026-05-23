@@ -12,7 +12,7 @@ export function createSecurityContent(locale: "fr" | "en") {
     heroSection: {
       title: "Private protection and premium security",
       subtitle:
-        "Aurevia coordinates private security services for your travel, events, sensitive locations, and specific requirements.",
+        "Riviera Prime coordinates private security services for your travel, events, sensitive locations, and specific requirements.",
       buttonText: commonContent.buttons.sendRequest,
       buttonLink: routes.security.book,
     },

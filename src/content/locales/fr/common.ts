@@ -1,5 +1,5 @@
 export const commonContent = {
-  brand: "Aurevia",
+  brand: "Riviera Prime",
 
   buttons: {
     reserve: "Réserver",
@@ -41,7 +41,7 @@ export const commonContent = {
   footer: {
     tagline:
       "Services premium de transport privé et de sécurité, pensés pour la discrétion, la fiabilité et l'exigence.",
-    copyright: "© 2026 Aurevia. Tous droits réservés",
+    copyright: "© 2026 Riviera Prime. Tous droits réservés",
     privacy: "Confidentialité",
     terms: "Conditions",
     legalNotice: "Mentions légales",
