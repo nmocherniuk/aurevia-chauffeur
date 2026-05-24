@@ -119,7 +119,7 @@ const SecurityFormSection: FC = () => {
             if (activeStepIndex === lastStepIndex) {
               setSubmitError(null);
               try {
-                await submitSecurityRequest(values);
+                await submitSecurityRequest(values, locale);
                 setRequestSuccess(true);
               } catch {
                 setSubmitError(securityForm.section.submitError);

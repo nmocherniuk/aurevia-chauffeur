@@ -29,6 +29,7 @@ import {
 import { applyFleetPrefillToFormValues } from "./utils/applyFleetPrefill";
 import { scrollToBookingFormSmoothAfterNav } from "@/src/lib/scrollToBookingForm";
 import { dayjsLocales, type Locale } from "@/src/i18n/config";
+import { toEmailLocale } from "@/src/lib/email-locale";
 import { useContent, useLocale } from "@/src/providers/LocaleProvider";
 
 const FormSection: FC = () => {
@@ -148,6 +149,7 @@ const FormSection: FC = () => {
                   : 100;
 
               const body = {
+                locale: toEmailLocale(locale),
                 clientName: values.firstName + " " + values.lastName, // TODO: змінити на одне поле
                 clientEmail: values.email,
                 clientPhone: values.phone,
