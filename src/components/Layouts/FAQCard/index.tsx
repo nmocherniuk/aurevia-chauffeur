@@ -23,7 +23,7 @@ const FAQCard: FC<FAQCardProps> = ({ question, answer }) => {
         >
           <h4
             className={cn(
-              "text-base transition-colors duration-200",
+              "text-base transition-colors duration-200 text-left",
               "text-grey group-hover/card:text-text-secondary",
               isOpen && "text-text-secondary",
             )}
