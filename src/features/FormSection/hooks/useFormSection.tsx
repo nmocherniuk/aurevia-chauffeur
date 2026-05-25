@@ -2,8 +2,9 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { getStepsFromIndex } from "@/src/components/StepIndicator/utils/getStepsFromIndex";
-import { FORM_STEPS } from "../data";
-import { STEP_LABELS, LAST_STEP_INDEX } from "../constants";
+import { getFormSteps } from "../data/getFormSteps";
+import { LAST_STEP_INDEX } from "../constants";
+import { useContent } from "@/src/providers/LocaleProvider";
 import { JourneyStep } from "../components/steps/JourneyStep";
 import { VehicleStep } from "../components/steps/VehicleStep";
 import { PassengerStep } from "../components/steps/PassengerStep";
@@ -17,19 +18,26 @@ const STEP_COMPONENTS = [
 ] as const;
 
 export function useFormSection() {
+  const { bookingForm } = useContent();
+  const formSteps = useMemo(() => getFormSteps(bookingForm), [bookingForm]);
+  const stepLabels = useMemo(
+    () => formSteps.map((s) => s.label),
+    [formSteps],
+  );
+
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [maxStepReached, setMaxStepReached] = useState(0);
 
   const steps = useMemo(
     () =>
-      getStepsFromIndex(STEP_LABELS, activeStepIndex, maxStepReached).map(
+      getStepsFromIndex(stepLabels, activeStepIndex, maxStepReached).map(
         (step, i) => ({
           ...step,
-          icon: FORM_STEPS[i]?.icon,
-          iconSize: FORM_STEPS[i]?.iconSize,
+          icon: formSteps[i]?.icon,
+          iconSize: formSteps[i]?.iconSize,
         }),
       ),
-    [activeStepIndex, maxStepReached],
+    [stepLabels, activeStepIndex, maxStepReached, formSteps],
   );
 
   const goNext = useCallback(() => {
@@ -68,6 +76,7 @@ export function useFormSection() {
 
   return {
     steps,
+    formSteps,
     activeStepIndex,
     maxStepReached,
     goNext,

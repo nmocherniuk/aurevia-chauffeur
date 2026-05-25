@@ -26,12 +26,12 @@ function SelectOptionItem({
   return (
     <li
       className={cn(
-        "flex cursor-pointer items-center justify-between gap-2 py-2.5 px-3 text-sm text-black transition-colors",
+        "flex cursor-pointer items-center justify-between gap-2 px-3 py-2.5 text-sm text-black transition-colors",
         "hover:bg-black/5",
         isFocused && "bg-black/5",
         isSelected && "bg-primary/10 font-medium",
         isSelected && isFocused && "bg-primary/15",
-        isDisabled && "cursor-not-allowed opacity-50 pointer-events-none"
+        isDisabled && "pointer-events-none cursor-not-allowed opacity-50",
       )}
       role="option"
       aria-selected={isSelected}
@@ -41,7 +41,7 @@ function SelectOptionItem({
     >
       <span className="min-w-0 truncate">{option.label}</span>
       {option.detail ? (
-        <span className="shrink-0 text-grey text-xs whitespace-nowrap">
+        <span className="shrink-0 whitespace-nowrap text-xs text-grey">
           {option.detail}
         </span>
       ) : null}

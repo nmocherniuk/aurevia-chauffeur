@@ -2,22 +2,22 @@
 
 import React, { FC, useMemo } from "react";
 import dayjs from "dayjs";
-import "dayjs/locale/fr";
-import { FORM_STEPS } from "@/src/features/FormSection/data";
-import {
-  REVIEW_DATE_FORMAT,
-} from "@/src/features/FormSection/constants";
+import { useContent, useLocale } from "@/src/providers/LocaleProvider";
+import { getFormSteps } from "@/src/features/FormSection/data/getFormSteps";
+import { REVIEW_DATE_FORMAT } from "@/src/features/FormSection/constants";
+import type { Locale } from "@/src/i18n/config";
 import type { FormStepProps } from "../types";
 
-dayjs.locale("fr");
+const DAYJS_LOCALE: Record<Locale, string> = { fr: "fr", en: "en" };
 
 function getSelectLabel(
   stepIndex: number,
   fieldName: string,
   value: string,
+  formSteps: ReturnType<typeof getFormSteps>,
 ): string {
   if (!value) return "";
-  const step = FORM_STEPS[stepIndex];
+  const step = formSteps[stepIndex];
   const field = step?.fields?.find(
     (f) => "name" in f && f.name === fieldName && "options" in f,
   );
@@ -26,9 +26,13 @@ function getSelectLabel(
   return option ? option.label : value;
 }
 
-export const PaymentStep: FC<FormStepProps> = ({
-  getValue,
-}) => {
+export const PaymentStep: FC<FormStepProps> = ({ getValue }) => {
+  const locale = useLocale();
+  const { bookingForm } = useContent();
+  const formSteps = useMemo(() => getFormSteps(bookingForm), [bookingForm]);
+
+  dayjs.locale(DAYJS_LOCALE[locale]);
+
   const from = (getValue("from", false) as string) || "";
   const to = (getValue("to", false) as string) || "";
   const dateStr = (getValue("date", false) as string) || "";
@@ -68,16 +72,19 @@ export const PaymentStep: FC<FormStepProps> = ({
   }, [dateStr, timeStr, tripType, endTimeStr]);
 
   const tripTypeLabel = useMemo(
-    () => getSelectLabel(0, "tripType", tripType),
-    [tripType],
+    () => getSelectLabel(0, "tripType", tripType, formSteps),
+    [tripType, formSteps],
   );
 
   const carTypeLabel = useMemo(
-    () => getSelectLabel(1, "carType", carType),
-    [carType],
+    () => getSelectLabel(1, "carType", carType, formSteps),
+    [carType, formSteps],
   );
 
-  const carLabel = useMemo(() => getSelectLabel(1, "car", car), [car]);
+  const carLabel = useMemo(
+    () => getSelectLabel(1, "car", car, formSteps),
+    [car, formSteps],
+  );
 
   const passengerName = useMemo(() => {
     const name = [firstName, lastName].filter(Boolean).join(" ");
@@ -102,7 +109,9 @@ export const PaymentStep: FC<FormStepProps> = ({
         <div className="overflow-hidden">
           <div className="flex w-full flex-row gap-5 py-4 sm:max-w-full sm:gap-x-12 md:gap-x-17 sm:gap-y-6 flex-wrap">
             <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
-              <h3 className="text-sm font-medium text-text-primary">Trajet</h3>
+              <h3 className="text-sm font-medium text-text-primary">
+                {bookingForm.payment.journey}
+              </h3>
               <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {journeyRoute && <li>{journeyRoute}</li>}
                 {journeyDateTime && <li>{journeyDateTime}</li>}
@@ -111,7 +120,9 @@ export const PaymentStep: FC<FormStepProps> = ({
             </section>
 
             <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
-              <h3 className="text-sm font-medium text-text-primary">Vehicule</h3>
+              <h3 className="text-sm font-medium text-text-primary">
+                {bookingForm.payment.vehicle}
+              </h3>
               <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {carTypeLabel && <li>{carTypeLabel}</li>}
                 {carLabel && <li>{carLabel}</li>}
@@ -119,7 +130,9 @@ export const PaymentStep: FC<FormStepProps> = ({
             </section>
 
             <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
-              <h3 className="text-sm font-medium text-text-primary">Passager</h3>
+              <h3 className="text-sm font-medium text-text-primary">
+                {bookingForm.payment.passenger}
+              </h3>
               <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {passengerName && <li>{passengerName}</li>}
                 {email && <li>{email}</li>}
@@ -131,7 +144,7 @@ export const PaymentStep: FC<FormStepProps> = ({
       ) : null}
       <div className="flex items-center justify-between pt-6 pb-1">
         <p className="text-xl font-medium text-text-primary">
-          Total :{" "}
+          {bookingForm.payment.total}{" "}
           <span className="text-xl font-semibold text-primary">
             {totalPrice === "—" ? "—" : `€${totalPrice}`}
           </span>

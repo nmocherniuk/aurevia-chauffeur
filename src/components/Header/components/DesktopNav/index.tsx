@@ -11,12 +11,12 @@ interface DesktopNavProps {
 export const DesktopNav: FC<DesktopNavProps> = ({ links, activeSectionId, onSectionChange }) => {
     return (
         <nav
-            className='hidden flex-1 justify-end lg:flex lg:items-center lg:gap-x-6 xl:gap-x-8 lg:pt-1'
+            className='hidden min-w-0 flex-1 justify-end lg:flex lg:items-center lg:gap-x-6 xl:gap-x-8 lg:pt-1 lg:pr-18 xl:pr-27'
             aria-label='Main navigation'
         >
             {links.map((link) => (
                 <NavLinkItem
-                    key={link.href}
+                    key={link.sectionId ?? link.href}
                     link={link}
                     variant='desktop'
                     activeSectionId={activeSectionId}

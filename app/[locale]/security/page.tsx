@@ -8,31 +8,54 @@ import CTABlock from "@/src/components/CTABlock";
 import SecurityFormSection from "@/src/features/SecurityFormSection";
 import MainSecuritySection from "@/src/features/MainSection/MainSecuritySection";
 import BookingProcessSection from "@/src/features/BookingProcessSection";
-import { securityContent } from "@/src/content/security";
+import { getContent } from "@/src/content";
+import { buildPageMetadata } from "@/src/lib/i18n/metadata";
+import { isLocale, type Locale } from "@/src/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Sécurité privée premium",
-  description:
-    "Aurevia propose des services de sécurité privée en France: protection rapprochée, sécurisation d'événements et accompagnement professionnel.",
-  alternates: {
-    canonical: "/security",
-  },
-  openGraph: {
-    title: "Aurevia Security - Services de sécurité privée",
-    description:
-      "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
-    url: "/security",
-    images: ["/images/og-image.jpg"],
-  },
-  twitter: {
-    title: "Aurevia Security - Services de sécurité privée",
-    description:
-      "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
-    images: ["/images/og-image.jpg"],
-  },
+type PageProps = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function SecurityPage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  const locale = isLocale(localeParam) ? localeParam : "fr";
+
+  const copy: Record<Locale, { title: string; description: string; ogTitle: string; ogDesc: string }> = {
+    fr: {
+      title: "Sécurité privée premium",
+      description:
+        "Riviera Prime propose des services de sécurité privée en France: protection rapprochée, sécurisation d'événements et accompagnement professionnel.",
+      ogTitle: "Riviera Prime Security - Services de sécurité privée",
+      ogDesc:
+        "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
+    },
+    en: {
+      title: "Premium private security",
+      description:
+        "Riviera Prime offers private security services in France: close protection, event security, and professional escort.",
+      ogTitle: "Riviera Prime Security - Private security services",
+      ogDesc:
+        "Close protection, event security, and premium escort services across France.",
+    },
+  };
+
+  const t = copy[locale];
+
+  return buildPageMetadata({
+    locale,
+    path: "/security",
+    title: t.title,
+    description: t.description,
+    openGraphTitle: t.ogTitle,
+    openGraphDescription: t.ogDesc,
+  });
+}
+
+export default async function SecurityPage({ params }: PageProps) {
+  const { locale: localeParam } = await params;
+  const locale = isLocale(localeParam) ? localeParam : "fr";
+  const { security: securityContent } = getContent(locale);
+
   return (
     <Fragment>
       <MainSecuritySection
@@ -55,7 +78,6 @@ export default function SecurityPage() {
         <BookingProcessSection
           items={securityContent.securityProcessStepsItems}
         />
-
         <SecurityFormSection />
         <div className="flex flex-col gap-12">
           <FAQSection items={securityContent.faqItems} />

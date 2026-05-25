@@ -9,33 +9,54 @@ import PopularRoutesSection from "@/src/features/PopularRoutesSection";
 import FAQSection from "@/src/features/FAQSection";
 import CTABlock from "@/src/components/CTABlock";
 import FormSection from "@/src/features/FormSection";
-import { commonContent } from "@/src/content/common";
-import { routes } from "@/src/config/routes";
-import { chauffeurContent } from "@/src/content/chauffeur";
+import { getContent } from "@/src/content";
+import { buildPageMetadata } from "@/src/lib/i18n/metadata";
+import { isLocale, type Locale } from "@/src/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Chauffeur privé premium",
-  description:
-    "Réservez un chauffeur privé Aurevia pour vos trajets en France: confort haut de gamme, ponctualité et service sur mesure.",
-  alternates: {
-    canonical: "/driver",
-  },
-  openGraph: {
-    title: "Aurevia Chauffeur - Transport privé premium",
-    description:
-      "Service de chauffeur privé premium pour déplacements professionnels, personnels et événements.",
-    url: "/driver",
-    images: ["/images/og-image.jpg"],
-  },
-  twitter: {
-    title: "Aurevia Chauffeur - Transport privé premium",
-    description:
-      "Service de chauffeur privé premium pour déplacements professionnels, personnels et événements.",
-    images: ["/images/og-image.jpg"],
-  },
+type PageProps = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function DriverPage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  const locale = isLocale(localeParam) ? localeParam : "fr";
+
+  const copy: Record<Locale, { title: string; description: string; ogTitle: string; ogDesc: string }> = {
+    fr: {
+      title: "Chauffeur privé premium",
+      description:
+        "Réservez un chauffeur privé Riviera Prime pour vos trajets en France: confort haut de gamme, ponctualité et service sur mesure.",
+      ogTitle: "Riviera Prime Chauffeur - Transport privé premium",
+      ogDesc:
+        "Service de chauffeur privé premium pour déplacements professionnels, personnels et événements.",
+    },
+    en: {
+      title: "Premium private chauffeur",
+      description:
+        "Book an Riviera Prime private chauffeur in France: premium comfort, punctuality, and bespoke service.",
+      ogTitle: "Riviera Prime Chauffeur - Premium private transport",
+      ogDesc:
+        "Premium private chauffeur service for business, personal travel, and events.",
+    },
+  };
+
+  const t = copy[locale];
+
+  return buildPageMetadata({
+    locale,
+    path: "/driver",
+    title: t.title,
+    description: t.description,
+    openGraphTitle: t.ogTitle,
+    openGraphDescription: t.ogDesc,
+  });
+}
+
+export default async function DriverPage({ params }: PageProps) {
+  const { locale: localeParam } = await params;
+  const locale = isLocale(localeParam) ? localeParam : "fr";
+  const { chauffeur: chauffeurContent } = getContent(locale);
+
   return (
     <Fragment>
       <MainDriverSection

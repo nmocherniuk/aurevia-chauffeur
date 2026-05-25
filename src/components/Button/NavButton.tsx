@@ -8,6 +8,7 @@ import {
   DRIVER_HEADER_NAV_SCROLL_OFFSET,
   scrollToSection,
 } from "@/src/lib/utils";
+import { isSamePagePath } from "@/src/i18n/paths";
 import { Arrow } from "../SVGManager/Arrow";
 import { BUTTON_VARIANTS, ButtonVariant } from "./variants";
 
@@ -36,21 +37,17 @@ export const NavButton: FC<NavButtonProps> = ({
     if (e.defaultPrevented) return;
     if (typeof href !== "string" || !href.includes("#")) return;
 
-    const [rawBase, rawHash] = href.split("#");
-    const sectionId = rawHash?.trim();
+    const sectionId = href.split("#")[1]?.trim();
     if (!sectionId) return;
-
-    const base = rawBase || pathname || "/";
-    const normalizedCurrent = (pathname || "/").replace(/\/$/, "") || "/";
-    const normalizedTarget = base.replace(/\/$/, "") || "/";
 
     e.preventDefault();
 
-    if (normalizedCurrent === normalizedTarget) {
+    if (isSamePagePath(pathname, href)) {
       scrollToSection(sectionId, DRIVER_HEADER_NAV_SCROLL_OFFSET);
       return;
     }
 
+    const base = href.split("#")[0] || pathname || "/";
     router.push(base, { scroll: false });
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {

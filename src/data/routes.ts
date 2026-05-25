@@ -1,3 +1,8 @@
+import { getContent } from "@/src/content";
+import { getRoutes } from "@/src/config/routes";
+import type { Locale } from "@/src/i18n/config";
+import { stripLocaleFromPathname } from "@/src/i18n/paths";
+
 export type RouteId =
   | "route-1-home"
   | "route-2-privacy"
@@ -11,17 +16,32 @@ export interface Route {
   href: string;
 }
 
-export const ROUTES: Route[] = [
-  { id: "route-1-home", name: "Accueil", href: "/" },
-  {
-    id: "route-2-privacy",
-    name: "Confidentialité",
-    href: "/politique-de-confidentialite",
-  },
-  { id: "route-3-terms", name: "Conditions", href: "/conditions-generales" },
-  { id: "route-4-legal", name: "Mentions légales", href: "/mentions-legales" },
-  { id: "route-5-cookies", name: "Cookies", href: "/politique-de-cookies" },
-];
+export interface NavLink {
+  name: string;
+  href: string;
+  /** In-page section id (DOM `id`); scroll is handled in JS, not via URL hash. */
+  sectionId?: string;
+}
+
+export function getFooterRoutes(locale: Locale): Route[] {
+  const routes = getRoutes(locale);
+  const { footer } = getContent(locale).common;
+
+  return [
+    {
+      id: "route-2-privacy",
+      name: footer.privacy,
+      href: routes.legal.privacyPolicy,
+    },
+    { id: "route-3-terms", name: footer.terms, href: routes.legal.terms },
+    {
+      id: "route-4-legal",
+      name: footer.legalNotice,
+      href: routes.legal.legalNotice,
+    },
+    { id: "route-5-cookies", name: footer.cookies, href: routes.legal.cookies },
+  ];
+}
 
 export const FOOTER_ROUTE_IDS: RouteId[] = [
   "route-2-privacy",
@@ -30,39 +50,48 @@ export const FOOTER_ROUTE_IDS: RouteId[] = [
   "route-5-cookies",
 ];
 
-export interface NavLink {
-  name: string;
-  href: string;
+export function getNavLinksForPath(pathname: string, locale: Locale): NavLink[] {
+  const path = stripLocaleFromPathname(pathname);
+  const routes = getRoutes(locale);
+  const { navigation } = getContent(locale).common;
+
+  if (path === "/") {
+    return [
+      { name: navigation.gateway.chauffeur, href: routes.chauffeur.index },
+      { name: navigation.gateway.security, href: routes.security.index },
+    ];
+  }
+
+  if (path.startsWith("/driver")) {
+    return navigation.driver.map(({ name, hash }) => ({
+      name,
+      href: routes.chauffeur.index,
+      sectionId: hash,
+    }));
+  }
+
+  if (path.startsWith("/security")) {
+    return navigation.securityPage.map(({ name, hash }) => ({
+      name,
+      href: routes.security.index,
+      sectionId: hash,
+    }));
+  }
+
+  return [
+    { name: navigation.gateway.chauffeur, href: routes.chauffeur.index },
+    { name: navigation.gateway.security, href: routes.security.index },
+  ];
 }
 
-/** Hub homepage (`/`): enter Chauffeur or Security funnels */
-export const NAV_LINKS_GATEWAY: NavLink[] = [
-  { name: "Chauffeur", href: "/driver" },
-  { name: "Security", href: "/security" },
-];
+/** @deprecated Use getFooterRoutes(locale) */
+export const ROUTES = getFooterRoutes("fr");
 
-export const NAV_LINKS_DRIVER: NavLink[] = [
-  { name: "Début", href: "/driver#accueil" },
-  { name: "Pourquoi Nous", href: "/driver#pourquoi-nous" },
-  { name: "Prestations", href: "/driver#prestations" },
-  { name: "Flotte", href: "/driver#flotte" },
-  { name: "Réserver", href: "/driver#reserver" },
-  { name: "FAQ", href: "/driver#faq" },
-];
+/** @deprecated Use getNavLinksForPath(pathname, locale) */
+export const NAV_LINKS_GATEWAY = getNavLinksForPath("/", "fr");
 
-export const NAV_LINKS_SECURITY_PAGE: NavLink[] = [
-  { name: "Début", href: "/security#accueil" },
-  { name: "Pourquoi Nous", href: "/security#pourquoi-nous" },
-  { name: "Prestations", href: "/security#prestations" },
-  { name: "Processus", href: "/security#itineraires-populaires" },
-  { name: "Demande", href: "/security#reserver" },
-  { name: "FAQ", href: "/security#faq" },
-];
+/** @deprecated */
+export const NAV_LINKS_DRIVER = getNavLinksForPath("/driver", "fr");
 
-export function getNavLinksForPath(pathname: string): NavLink[] {
-  const path = pathname.replace(/\/$/, "") || "/";
-  if (path === "/") return NAV_LINKS_GATEWAY;
-  if (path.startsWith("/driver")) return NAV_LINKS_DRIVER;
-  if (path.startsWith("/security")) return NAV_LINKS_SECURITY_PAGE;
-  return NAV_LINKS_GATEWAY;
-}
+/** @deprecated */
+export const NAV_LINKS_SECURITY_PAGE = getNavLinksForPath("/security", "fr");

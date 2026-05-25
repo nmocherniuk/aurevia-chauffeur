@@ -1,7 +1,5 @@
-import { FORM_STEPS } from "./data";
-
-export const STEP_LABELS = FORM_STEPS.map((s) => s.label);
-export const LAST_STEP_INDEX = FORM_STEPS.length - 1;
+export const FORM_STEP_COUNT = 4;
+export const LAST_STEP_INDEX = FORM_STEP_COUNT - 1;
 
 export const SUMMARY_DATE_FORMAT = "D MMMM YYYY, HH:mm";
 

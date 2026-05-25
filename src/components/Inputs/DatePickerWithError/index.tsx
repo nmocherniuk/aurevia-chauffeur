@@ -1,16 +1,14 @@
 "use client";
 
-import React, { useId, useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 
 import { DatePickerInput } from "@mantine/dates";
 import dayjs from "dayjs";
 
-import "dayjs/locale/fr";
+import { dayjsLocales } from "@/src/i18n/config";
+import { useLocale } from "@/src/providers/LocaleProvider";
 import { cn } from "@/src/lib/utils";
 import Calendar from "../../SVGManager/Calendar";
-// import Calendar from "@/src/components/SVGManager/Calendar";
-
-dayjs.locale("fr");
 
 export type DatePickerWithErrorProps = {
   name: string;
@@ -41,14 +39,32 @@ const DatePickerWithError: React.FC<DatePickerWithErrorProps> = ({
   maxDate,
   onFocus,
 }) => {
+  const siteLocale = useLocale();
+  const dayjsLocale = dayjsLocales[siteLocale];
   const inputId = id ?? (name ? `field-${name}` : "");
   const errorId = `${inputId}-error`;
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [localeReady, setLocaleReady] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    void import(`dayjs/locale/${dayjsLocale}`).then(() => {
+      if (cancelled) return;
+      dayjs.locale(dayjsLocale);
+      setLocaleReady(true);
+    });
+
+    return () => {
+      cancelled = true;
+      setLocaleReady(false);
+    };
+  }, [dayjsLocale]);
 
   const handleChange = (dateString: string | null) => {
     const syntheticEvent = {
@@ -84,8 +100,9 @@ const DatePickerWithError: React.FC<DatePickerWithErrorProps> = ({
       )}
 
       <div className="relative" data-open={isOpen ? "true" : undefined}>
-        {mounted ? (
+        {mounted && localeReady ? (
           <DatePickerInput
+            key={dayjsLocale}
             id={inputId}
             name={name}
             popoverProps={{
@@ -103,7 +120,7 @@ const DatePickerWithError: React.FC<DatePickerWithErrorProps> = ({
             onBlur={handleBlur}
             aria-invalid={Boolean(error) || undefined}
             aria-describedby={error ? errorId : undefined}
-            locale="fr"
+            locale={dayjsLocale}
             minDate={minDate}
             maxDate={maxDate}
           />

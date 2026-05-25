@@ -1,11 +1,17 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-import SocialIcons from "../SocialIcons";
 import MainContainer from "../MainContainer";
-import { ROUTES, FOOTER_ROUTE_IDS } from "@/src/data/routes";
+import { FOOTER_ROUTE_IDS, getFooterRoutes } from "@/src/data/routes";
+import { useContent, useLocale } from "@/src/providers/LocaleProvider";
 
 const Footer: React.FC = () => {
-  const footerRoutes = ROUTES.filter((r) => FOOTER_ROUTE_IDS.includes(r.id));
+  const locale = useLocale();
+  const { common } = useContent();
+  const footerRoutes = getFooterRoutes(locale).filter((route) =>
+    FOOTER_ROUTE_IDS.includes(route.id),
+  );
 
   return (
     <footer className="mt-28">
@@ -13,14 +19,12 @@ const Footer: React.FC = () => {
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-7 sm:justify-between">
           <div className="flex flex-col gap-4 text-center items-center sm:items-start sm:gap-3">
             <h4 className="text-text-secondary text-xl sm:text-left">
-              Aurevia
+              {common.brand}
             </h4>
             <p className="text-text-primary text-base font-light sm:text-left">
-              Services premium de transport privé et de sécurité, pensés pour la
-              discrétion, la fiabilité et l’exigence.
+              {common.footer.tagline}
             </p>
           </div>
-          {/* <SocialIcons classNameIcon='border border-primary rounded-full' /> */}
         </div>
 
         <div className="w-full min-w-0 py-6">
@@ -42,7 +46,7 @@ const Footer: React.FC = () => {
             </ul>
           </nav>
           <p className="text-text-primary text-sm text-center pb-6 pt-3 lg:p-0">
-            &copy; 2026 Aurevia. Tous droits réservés
+            {common.footer.copyright}
           </p>
         </div>
       </MainContainer>

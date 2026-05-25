@@ -38,6 +38,8 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
       onChange,
       onBlur,
       onFocus,
+      hideLabel = false,
+      variant = "default",
       ...props
     },
     ref,
@@ -45,6 +47,7 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
     const autoId = useId();
     const selectId = id ?? (name ? `field-${name}` : autoId);
     const hintId = hint ? `${selectId}-hint` : undefined;
+    const isNav = variant === "nav";
 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string>(
@@ -62,9 +65,11 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
 
     const selectedOption = options.find((opt) => opt.value === selectedValue);
     const displayText = selectedOption
-      ? selectedOption.detail
-        ? `${selectedOption.label} · ${selectedOption.detail}`
-        : selectedOption.label
+      ? isNav
+        ? (selectedOption.compactLabel ?? selectedOption.label)
+        : selectedOption.detail
+          ? `${selectedOption.label} · ${selectedOption.detail}`
+          : selectedOption.label
       : (placeholder ?? "");
 
     const enabledOptions = useMemo(
@@ -150,22 +155,25 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
         className={cn(
           "relative flex flex-col gap-1",
           disabled && "opacity-90",
+          isNav && "gap-0",
           className,
         )}
       >
-        <label
-          className={cn(
-            "pl-1 text-sm text-text-primary transition-colors",
-            "focus-within:text-primary",
-            isOpen && "text-primary",
-          )}
-          htmlFor={selectId}
-        >
-          {label}
-          {required ? <span className="ml-1 text-primary">*</span> : null}
-        </label>
+        {!hideLabel && label ? (
+          <label
+            className={cn(
+              "pl-1 text-sm text-text-primary transition-colors",
+              "focus-within:text-primary",
+              isOpen && "text-primary",
+            )}
+            htmlFor={selectId}
+          >
+            {label}
+            {required ? <span className="ml-1 text-primary">*</span> : null}
+          </label>
+        ) : null}
 
-        <div className="relative w-full">
+        <div className={cn("relative", isNav ? "w-auto" : "w-full")}>
           <select
             ref={(node) => {
               hiddenSelectRef.current = node;
@@ -206,6 +214,8 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
             error={error}
             selectId={selectId}
             describedBy={describedBy}
+            variant={variant}
+            ariaLabel={hideLabel ? (props["aria-label"] as string | undefined) : undefined}
             onToggle={handleToggle}
             onKeyDown={handleKeyDown}
             onBlur={handleTriggerBlur}
@@ -219,6 +229,7 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
             focusedIndex={focusedIndex}
             enabledOptions={enabledOptions}
             listboxId={selectId}
+            variant={variant}
             onSelect={handleSelect}
             setFocusedIndex={setFocusedIndex}
             dropdownRef={dropdownRef}

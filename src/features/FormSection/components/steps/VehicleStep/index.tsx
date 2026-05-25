@@ -3,6 +3,7 @@ import SelectWithError from "@/src/components/SelectWithError";
 import { BOOKING_VEHICLE_OPTIONS } from "@/src/features/FormSection/data/bookingVehicles";
 import { getPrice } from "@/src/api/price";
 import { hourlyDurationMinutes } from "@/src/features/FormSection/utils/hourlyDuration";
+import { useContent } from "@/src/providers/LocaleProvider";
 import type { FormStepProps } from "../types";
 
 export const VehicleStep: FC<FormStepProps> = ({
@@ -12,6 +13,7 @@ export const VehicleStep: FC<FormStepProps> = ({
   handleBlur,
   handleFocus,
 }) => {
+  const { bookingForm: t } = useContent();
   const selectedVehicleId = (getValue("car", false) as string) || "";
   const tripType = (getValue("tripType", false) as string) || "";
   const fromLat = (getValue("fromLat", false) as string) || "";
@@ -74,18 +76,18 @@ export const VehicleStep: FC<FormStepProps> = ({
     void getPrice(
       tripType === "hourly"
         ? {
-          vehicleId: selectedVehicleId,
-          tripType: "hourly",
-          durationMin: hourlyDurationMinutes(time, endTime) ?? undefined,
-        }
+            vehicleId: selectedVehicleId,
+            tripType: "hourly",
+            durationMin: hourlyDurationMinutes(time, endTime) ?? undefined,
+          }
         : {
-          vehicleId: selectedVehicleId,
-          tripType: "one_way",
-          fromLat: Number(fromLat),
-          fromLon: Number(fromLng),
-          toLat: Number(toLat),
-          toLon: Number(toLng),
-        },
+            vehicleId: selectedVehicleId,
+            tripType: "one_way",
+            fromLat: Number(fromLat),
+            fromLon: Number(fromLng),
+            toLat: Number(toLat),
+            toLon: Number(toLng),
+          },
       ac.signal,
     )
       .then((quote) => {
@@ -112,19 +114,23 @@ export const VehicleStep: FC<FormStepProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canQuote, selectedVehicleId, fromLat, fromLng, toLat, toLng, date, time, tripType, endTime]);
 
+  const priceHint = selectedVehicleId
+    ? isLoadingPrice
+      ? t.vehicle.calculatingPrice
+      : price
+        ? t.vehicle.priceForSelected
+        : t.vehicle.selectTripForPrice
+    : t.vehicle.selectVehicleForPrice;
+
   return (
     <div>
       <div className="grid md:grid-cols-[1.2fr_1fr] gap-2">
         <div className="flex flex-col gap-y-2.5 gap-x-4 ">
           <SelectWithError
             name="carType"
-            label="Type de vehicule"
-            placeholder="Selectionnez le type de vehicule"
-            options={[
-              { label: "Comfort", value: "comfort" },
-              { label: "Business", value: "business" },
-              { label: "Luxury", value: "luxury" },
-            ]}
+            label={t.vehicle.carType.label}
+            placeholder={t.vehicle.carType.placeholder}
+            options={[...t.vehicleClasses]}
             value={(getValue("carType", false) as string) || ""}
             onChange={(e) => setValue("carType", e.target.value)}
             onBlur={handleBlur("carType")}
@@ -133,10 +139,10 @@ export const VehicleStep: FC<FormStepProps> = ({
           />
           <SelectWithError
             name="car"
-            label="Vehicule"
-            placeholder="Selectionnez un vehicule"
+            label={t.vehicle.car.label}
+            placeholder={t.vehicle.car.placeholder}
             options={[...BOOKING_VEHICLE_OPTIONS]}
-            value={(getValue("car", false) as string) || ""}
+            value={selectedVehicleId}
             onChange={(e) => {
               setValue("car", e.target.value);
               setValue("price", "");
@@ -164,15 +170,7 @@ export const VehicleStep: FC<FormStepProps> = ({
               <>—</>
             )}
           </span>
-          <span className="text-sm font-light text-text-primary">
-            {selectedVehicleId
-              ? isLoadingPrice
-                ? "Calcul du prix…"
-                : price
-                  ? "Prix pour le vehicule selectionne"
-                  : "Selectionnez un trajet pour voir le prix"
-              : "Selectionnez un vehicule pour voir le prix"}
-          </span>
+          <span className="text-sm font-light text-text-primary">{priceHint}</span>
           {tripType === "one_way" && distanceKm ? (
             <span className="text-xs font-light text-white/90">
               {distanceKm} km

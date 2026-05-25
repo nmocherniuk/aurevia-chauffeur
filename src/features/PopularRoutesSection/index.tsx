@@ -4,19 +4,20 @@ import { Button } from "@/src/components/Button";
 import RouteCard from "@/src/components/Layouts/RouteCard";
 import { FC, useState } from "react";
 import { type RouteTabId } from "./data";
-import { chauffeurContent } from "@/src/content/chauffeur";
+import { useContent } from "@/src/providers/LocaleProvider";
 
 const PopularRoutesSection: FC = () => {
+  const { chauffeur: chauffeurContent } = useContent();
   const [activeTab, setActiveTab] = useState<RouteTabId>("cityToCity");
 
   return (
     <section id="popular-routes" className="w-full">
       <h2 className="font-benzin text-white text-center text-2xl mb-10 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-11">
-        Les itinéraires les plus populaires
+        {chauffeurContent.popularRoutes.title}
       </h2>
       <nav
         className="flex flex-col justify-center gap-3 mb-9 md:flex-row "
-        aria-label="Catégories d'itinéraires"
+        aria-label={chauffeurContent.popularRoutes.navAriaLabel}
       >
         {chauffeurContent.transferTabs.map(({ id, label }) => (
           <Button

@@ -1,6 +1,6 @@
 import type { StripeElementsOptions } from "@stripe/stripe-js";
 
-/** Stripe Elements styling aligned with Aurevia dark / bronze theme */
+/** Stripe Elements styling aligned with Riviera Prime dark / bronze theme */
 export const securityPaymentElementsOptions = (
   clientSecret: string,
 ): StripeElementsOptions => ({

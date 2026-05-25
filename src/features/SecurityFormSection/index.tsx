@@ -1,13 +1,14 @@
 "use client";
 
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { Form, Formik } from "formik";
 import type { FormikErrors, FormikTouched } from "formik";
 import Image from "next/image";
+import dayjs from "@/src/lib/dayjs";
 import { StepIndicator } from "@/src/components/StepIndicator";
 import { SummaryList } from "@/src/components/SummaryList";
 import { Button } from "@/src/components/Button";
-import { SECURITY_STEP_SCHEMAS } from "./validation/schemas";
+import { getSecurityStepSchemas } from "./validation/getSecurityStepSchemas";
 import { getInitialSecurityFormValues } from "./utils/getInitialSecurityFormValues";
 import { buildSecuritySummaryItems } from "./utils/buildSecuritySummaryItems";
 import type { SecurityFormValues } from "./types";
@@ -19,6 +20,8 @@ import {
 } from "./components/SecurityRequestSuccessView";
 import { useScrollToSectionWhen } from "@/src/hooks/useScrollToSectionWhen";
 import { submitSecurityRequest } from "@/src/api/securityRequest";
+import { useContent, useLocale } from "@/src/providers/LocaleProvider";
+import { dayjsLocales } from "@/src/i18n/config";
 
 const SECURITY_FIELDS_BY_STEP: readonly (readonly string[])[] = [
   [
@@ -44,9 +47,22 @@ const SECURITY_FIELDS_BY_STEP: readonly (readonly string[])[] = [
 ];
 
 const SecurityFormSection: FC = () => {
+  const locale = useLocale();
+  const { securityForm } = useContent();
   const [requestSuccess, setRequestSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   useScrollToSectionWhen(requestSuccess, SECURITY_REQUEST_SUCCESS_ID);
+
+  const stepSchemas = useMemo(
+    () => getSecurityStepSchemas(securityForm.validation),
+    [securityForm.validation],
+  );
+
+  useEffect(() => {
+    void import(`dayjs/locale/${dayjsLocales[locale]}`).then(() => {
+      dayjs.locale(dayjsLocales[locale]);
+    });
+  }, [locale]);
 
   const {
     steps,
@@ -68,7 +84,7 @@ const SecurityFormSection: FC = () => {
       <div className="relative mb-9 hidden h-[260px] w-full overflow-hidden rounded-xl sm:block sm:h-[300px] lg:top-6 lg:mb-0 lg:h-[800px] xl:h-[776px]">
         <Image
           src="/images/security-guard-workspace.jpg"
-          alt=""
+          alt={securityForm.section.imageAlt}
           fill
           className="rounded-xl object-cover object-center"
           sizes="(max-width: 1024px) 100vw, 40vw"
@@ -79,11 +95,10 @@ const SecurityFormSection: FC = () => {
           <>
             <div className="mb-8">
               <h2 className="mb-4 text-center font-benzin text-2xl text-white sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl">
-                Demande confidentielle
+                {securityForm.section.title}
               </h2>
               <p className="text-center text-base font-light text-text-primary sm:text-start">
-                Expliquez votre besoin. Votre demande sera étudiée avec
-                discrétion par notre équipe.
+                {securityForm.section.subtitle}
               </p>
             </div>
             <StepIndicator
@@ -97,19 +112,17 @@ const SecurityFormSection: FC = () => {
 
         <Formik<SecurityFormValues>
           initialValues={getInitialSecurityFormValues()}
-          validationSchema={SECURITY_STEP_SCHEMAS[activeStepIndex]}
+          validationSchema={stepSchemas[activeStepIndex]}
           validateOnBlur={false}
           validateOnChange={false}
           onSubmit={async (values, { resetForm }) => {
             if (activeStepIndex === lastStepIndex) {
               setSubmitError(null);
               try {
-                await submitSecurityRequest(values);
+                await submitSecurityRequest(values, locale);
                 setRequestSuccess(true);
               } catch {
-                setSubmitError(
-                  "Une erreur est survenue. Veuillez reessayer dans un instant.",
-                );
+                setSubmitError(securityForm.section.submitError);
               }
               return;
             }
@@ -143,6 +156,8 @@ const SecurityFormSection: FC = () => {
             const summaryItems = buildSecuritySummaryItems(
               values,
               activeStepIndex,
+              securityForm,
+              dayjsLocales[locale],
             );
 
             const getError = (
@@ -190,7 +205,7 @@ const SecurityFormSection: FC = () => {
                   <SummaryList
                     items={summaryItems}
                     className="mx-auto justify-center py-1 lg:justify-start"
-                    aria-label="Resume de la demande"
+                    aria-label={securityForm.section.summaryAriaLabel}
                   />
                 ) : null}
 
@@ -211,7 +226,7 @@ const SecurityFormSection: FC = () => {
                         disabled={isSubmitting}
                         className="sm:w-[220px]"
                       >
-                        Precedent
+                        {securityForm.buttons.back}
                       </Button>
                     ) : null}
                     <Button
@@ -222,10 +237,10 @@ const SecurityFormSection: FC = () => {
                       className="sm:w-[220px]"
                     >
                       {isSubmitting && activeStepIndex === lastStepIndex
-                        ? "Envoi…"
+                        ? securityForm.buttons.submitting
                         : activeStepIndex === lastStepIndex
-                          ? "Envoyer la demande"
-                          : "Continuer"}
+                          ? securityForm.buttons.submit
+                          : securityForm.buttons.continue}
                     </Button>
                   </div>
                 </Form>

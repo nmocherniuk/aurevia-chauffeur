@@ -10,7 +10,7 @@ type PageProps = {
 export const metadata: Metadata = {
   title: "Paiement sécurité",
   description:
-    "Finalisez votre paiement sécurisé pour votre réservation de service de sécurité privée Aurevia.",
+    "Finalisez votre paiement sécurisé pour votre réservation de service de sécurité privée Riviera Prime.",
   robots: {
     index: false,
     follow: false,

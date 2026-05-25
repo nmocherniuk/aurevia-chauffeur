@@ -18,6 +18,10 @@ import { cn } from "@/src/lib/utils";
 import { DesktopNav } from "./components/DesktopNav";
 import { HeaderActions } from "./components/HeaderActions";
 import { MobileMenu } from "./components/MobileMenu";
+import { LanguageSwitcher } from "./components/LanguageSwitcher";
+import { useLocale } from "@/src/providers/LocaleProvider";
+import { getRoutes } from "@/src/config/routes";
+import { stripLocaleFromPathname } from "@/src/i18n/paths";
 import { useActiveSectionId } from "../../hooks/useActiveSectionId";
 
 const MAIN_SECTION_ID = "accueil";
@@ -28,8 +32,10 @@ const SCROLL_BG_ALPHA: [number, number] = [0, 0.08];
 
 const Header: React.FC = () => {
   const pathname = usePathname();
+  const locale = useLocale();
+  const routes = getRoutes(locale);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const navLinks = getNavLinksForPath(pathname);
+  const navLinks = getNavLinksForPath(pathname, locale);
   const [activeSectionId, setActiveSectionId] = useActiveSectionId(navLinks);
 
   const { scrollY } = useScroll();
@@ -49,7 +55,7 @@ const Header: React.FC = () => {
   const headerBackground = useMotionTemplate`rgba(191, 191, 191, ${bgAlpha})`;
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname === "/") {
+    if (stripLocaleFromPathname(pathname) === "/") {
       e.preventDefault();
       document
         .getElementById(MAIN_SECTION_ID)
@@ -87,13 +93,13 @@ const Header: React.FC = () => {
         />
         <MainContainer className="relative z-10 flex h-full min-h-0 flex-1 items-center justify-between gap-6">
           <Link
-            href="/"
+            href={routes.home.index}
             className="relative h-full aspect-square shrink-0"
             onClick={handleLogoClick}
           >
             <Image
               src={logo}
-              alt="Aurevia Chauffeur"
+              alt="Riviera Prime Chauffeur"
               fill
               className="object-contain object-left"
               priority
@@ -104,7 +110,10 @@ const Header: React.FC = () => {
             activeSectionId={activeSectionId}
             onSectionChange={setActiveSectionId}
           />
-          <HeaderActions isOpen={isOpen} onToggle={setIsOpen} />
+          <div className="flex shrink-0 items-center gap-4 lg:pt-0.5">
+            <LanguageSwitcher className="relative z-10 hidden lg:flex lg:items-center" />
+            <HeaderActions isOpen={isOpen} onToggle={setIsOpen} />
+          </div>
         </MainContainer>
       </motion.header>
 

@@ -3,14 +3,7 @@ import { Person } from "@/src/components/SVGManager/Person";
 import { List } from "@/src/components/SVGManager/List";
 import { ShieldCheck } from "@/src/components/SVGManager/ShieldCheck";
 
-export const SECURITY_STEP_LABELS = [
-  "Service",
-  "Client",
-  "Details",
-  "Recapitulatif",
-] as const;
-
-export const SECURITY_LAST_STEP_INDEX = SECURITY_STEP_LABELS.length - 1;
+export const SECURITY_LAST_STEP_INDEX = 3;
 
 export const SECURITY_STEP_ICONS = [Location, Person, List, ShieldCheck] as const;
 

@@ -5,7 +5,7 @@ import { Fleet } from "@/src/features/FleetSection/data";
 import { People } from "../../../SVGManager/People";
 import { Bagage } from "../../../SVGManager/Bagage";
 import { Button } from "../../../Button";
-import { commonContent } from "@/src/content/common";
+import { useContent } from "@/src/providers/LocaleProvider";
 
 interface FleetCardContentProps {
   classLabel: string;
@@ -20,6 +20,8 @@ export const FleetCardContent: FC<FleetCardContentProps> = ({
   onDetailsClick,
   onBookNow,
 }) => {
+  const { common: commonContent } = useContent();
+
   return (
     <div
       key={car.id}

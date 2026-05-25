@@ -1,6 +1,8 @@
 import { api } from "./api";
+import type { EmailLocale } from "@/src/lib/email-locale";
 
 export type CreateBookingBody = {
+  locale: EmailLocale;
   clientName: string;
   vehicleId: string;
   driverId?: string | null;
