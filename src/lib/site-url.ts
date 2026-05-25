@@ -1,4 +1,4 @@
-export const DEFAULT_SITE_URL = "https://www.Riviera Prime.fr";
+export const DEFAULT_SITE_URL = "https://www.riviera-prime.fr";
 
 export function getSiteUrl(): string {
     return process.env.NEXT_PUBLIC_SITE_URL || DEFAULT_SITE_URL;
