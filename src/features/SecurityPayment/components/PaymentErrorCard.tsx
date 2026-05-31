@@ -1,11 +1,16 @@
+"use client";
+
 import React, { type FC } from "react";
 import { Cross } from "@/src/components/SVGManager/Cross";
+import { useContent } from "@/src/providers/LocaleProvider";
 
 type Props = {
   message: string;
 };
 
 export const PaymentErrorCard: FC<Props> = ({ message }) => {
+  const { securityPayment: copy } = useContent();
+
   return (
     <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center rounded-xl px-8 py-10 text-center ">
       <div className="mb-4 flex justify-center">
@@ -14,7 +19,7 @@ export const PaymentErrorCard: FC<Props> = ({ message }) => {
         </span>
       </div>
       <h2 className="text-xl text-text-secondary md:text-2xl">
-        Access denied
+        {copy.errors.accessDenied}
       </h2>
       <p className="mt-3 text-sm font-light leading-relaxed text-text-primary">
         {message}

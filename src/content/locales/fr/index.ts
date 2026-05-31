@@ -4,6 +4,7 @@ import { homeContent } from "./home";
 import { chauffeurContent } from "./chauffeur";
 import { securityContent } from "./security";
 import { securityFormContent } from "./securityForm";
+import { securityPaymentContent } from "./securityPayment";
 import { legalContent } from "./legal";
 
 export const frContent = {
@@ -13,5 +14,6 @@ export const frContent = {
   security: securityContent,
   bookingForm: bookingFormContent,
   securityForm: securityFormContent,
+  securityPayment: securityPaymentContent,
   legal: legalContent,
 };

@@ -8,7 +8,6 @@ function shouldSkipLocaleRedirect(pathname: string): boolean {
   return (
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
-    pathname.startsWith("/security-payment") ||
     PUBLIC_FILE.test(pathname)
   );
 }

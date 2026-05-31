@@ -3,6 +3,8 @@
 import React, { useCallback, useState, type FC } from "react";
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { CircleCheck } from "@/src/components/SVGManager/CircleCheck";
+import { useContent } from "@/src/providers/LocaleProvider";
+import { fillTemplate } from "../utils/formatBookingDateTime";
 import type { SecurityPayBooking } from "../types";
 import { Button } from "@/src/components/Button";
 
@@ -11,7 +13,8 @@ type Props = {
   token: string;
 };
 
-export const PaymentCheckoutForm: FC<Props> = ({ booking, token }) => {
+export const PaymentCheckoutForm: FC<Props> = ({ booking }) => {
+  const { securityPayment: copy } = useContent();
   const stripe = useStripe();
   const elements = useElements();
   const [processing, setProcessing] = useState(false);
@@ -35,7 +38,7 @@ export const PaymentCheckoutForm: FC<Props> = ({ booking, token }) => {
       });
 
       if (result.error) {
-        setError(result.error.message ?? "Payment failed");
+        setError(result.error.message ?? copy.errors.paymentFailed);
         setProcessing(false);
         return;
       }
@@ -45,7 +48,7 @@ export const PaymentCheckoutForm: FC<Props> = ({ booking, token }) => {
       }
       setProcessing(false);
     },
-    [stripe, elements, token],
+    [stripe, elements, copy.errors.paymentFailed],
   );
 
   if (succeeded) {
@@ -55,20 +58,21 @@ export const PaymentCheckoutForm: FC<Props> = ({ booking, token }) => {
           <CircleCheck width={48} height={48} fill="#4ade80" />
         </div>
         <p className="font-benzin text-lg text-text-secondary">
-          Payment successful!
+          {copy.checkout.successTitle}
         </p>
         <p className="mt-2 text-sm font-light text-text-primary">
-          Your trip has been confirmed. Thank you!
+          {copy.checkout.successMessage}
         </p>
       </div>
     );
   }
 
+  const payLabel = fillTemplate(copy.checkout.pay, {
+    amount: booking.totalPrice.toFixed(2),
+  });
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-4"
-    >
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="py-2">
         <PaymentElement />
       </div>
@@ -77,10 +81,14 @@ export const PaymentCheckoutForm: FC<Props> = ({ booking, token }) => {
           {error}
         </p>
       ) : null}
-      <Button variant="primary" className="w-full" disabled={processing} type="submit" withArrow={false}>
-        {processing
-          ? "Processing…"
-          : `Pay €${booking.totalPrice.toFixed(2)}`}
+      <Button
+        variant="primary"
+        className="w-full"
+        disabled={processing}
+        type="submit"
+        withArrow={false}
+      >
+        {processing ? copy.checkout.processing : payLabel}
       </Button>
     </form>
   );

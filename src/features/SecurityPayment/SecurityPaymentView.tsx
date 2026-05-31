@@ -5,6 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { isAxiosError } from "axios";
 import getStripe from "@/src/utils/getStripe";
 import { createPayIntent, fetchPayBooking } from "@/src/api/pay";
+import { useContent } from "@/src/providers/LocaleProvider";
 import type { SecurityPaymentPageState, SecurityPayBooking } from "./types";
 import { securityPaymentElementsOptions } from "./stripeAppearance";
 import { PaymentLoading } from "./components/PaymentLoading";
@@ -24,6 +25,7 @@ function parseConflictBooking(err: unknown): SecurityPayBooking | null {
 }
 
 export const SecurityPaymentView: FC<Props> = ({ token, redirectStatus }) => {
+  const { securityPayment: copy } = useContent();
   const [state, setState] = useState<SecurityPaymentPageState>({
     kind: "loading",
   });
@@ -35,7 +37,7 @@ export const SecurityPaymentView: FC<Props> = ({ token, redirectStatus }) => {
     }
 
     if (!token) {
-      setState({ kind: "error", message: "Invalid payment link" });
+      setState({ kind: "error", message: copy.errors.invalidLink });
       return;
     }
 
@@ -70,13 +72,13 @@ export const SecurityPaymentView: FC<Props> = ({ token, redirectStatus }) => {
         if (isAxiosError(err) && err.response?.status === 403) {
           setState({
             kind: "error",
-            message: "This payment link has expired or is invalid.",
+            message: copy.errors.expired,
           });
           return;
         }
         setState({
           kind: "error",
-          message: "Something went wrong. Please try again later.",
+          message: copy.errors.generic,
         });
       }
     })();
@@ -84,7 +86,7 @@ export const SecurityPaymentView: FC<Props> = ({ token, redirectStatus }) => {
     return () => {
       cancelled = true;
     };
-  }, [token, redirectStatus]);
+  }, [token, redirectStatus, copy.errors]);
 
   return (
     <div className="flex min-h-0 w-full flex-1 flex-col">

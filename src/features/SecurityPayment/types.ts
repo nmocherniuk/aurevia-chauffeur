@@ -1,6 +1,9 @@
 export type SecurityPayBooking = {
   id: string;
   clientName: string;
+  clientEmail?: string;
+  clientPhone?: string;
+  clientLocale?: string;
   from: string;
   to: string;
   bookingAt: string;
