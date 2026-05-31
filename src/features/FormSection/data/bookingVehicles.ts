@@ -1,7 +1,7 @@
 /** Values must match pricing / booking API vehicle catalog. */
 export const BOOKING_VEHICLE_IDS = {
-  mercedesS580: "cafff580-9141-46fe-b2d5-18ea3d9fc543",
-  bmw7: "72f6d70d-a7c7-497e-9c98-073dbdb5163b",
+  mercedesS580: "d612e445-2cb0-4b6d-ba98-69c540051705",
+  bmw7: "d612e445-2cb0-4b6d-ba98-69c540051705",
 } as const;
 
 export const BOOKING_VEHICLE_OPTIONS = [
