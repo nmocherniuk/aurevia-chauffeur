@@ -8,7 +8,8 @@ export type RouteId =
   | "route-2-privacy"
   | "route-3-terms"
   | "route-4-legal"
-  | "route-5-cookies";
+  | "route-5-cookies"
+  | "route-6-data-deletion";
 
 export interface Route {
   id: RouteId;
@@ -40,6 +41,11 @@ export function getFooterRoutes(locale: Locale): Route[] {
       href: routes.legal.legalNotice,
     },
     { id: "route-5-cookies", name: footer.cookies, href: routes.legal.cookies },
+    {
+      id: "route-6-data-deletion",
+      name: footer.dataDeletion,
+      href: routes.legal.dataDeletion,
+    },
   ];
 }
 
@@ -48,6 +54,7 @@ export const FOOTER_ROUTE_IDS: RouteId[] = [
   "route-3-terms",
   "route-4-legal",
   "route-5-cookies",
+  "route-6-data-deletion",
 ];
 
 export function getNavLinksForPath(pathname: string, locale: Locale): NavLink[] {

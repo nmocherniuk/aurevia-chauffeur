@@ -46,6 +46,7 @@ export const commonContent = {
     terms: "Conditions",
     legalNotice: "Mentions légales",
     cookies: "Cookies",
+    dataDeletion: "Suppression des données",
   },
 
   servicesSectionTitle: "Nos services",

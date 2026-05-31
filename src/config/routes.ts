@@ -21,6 +21,7 @@ const routePaths = {
     terms: "/conditions-generales",
     legalNotice: "/mentions-legales",
     cookies: "/politique-de-cookies",
+    dataDeletion: "/suppression-donnees-personnelles",
   },
 } as const;
 
@@ -45,6 +46,7 @@ export function getRoutes(locale: Locale) {
       terms: localizePath(routePaths.legal.terms, locale),
       legalNotice: localizePath(routePaths.legal.legalNotice, locale),
       cookies: localizePath(routePaths.legal.cookies, locale),
+      dataDeletion: localizePath(routePaths.legal.dataDeletion, locale),
     },
   };
 }

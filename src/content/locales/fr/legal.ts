@@ -31,6 +31,7 @@ export type LegalContent = {
   terms: LegalPage;
   legalNotice: LegalPage;
   cookies: LegalPage;
+  dataDeletion: LegalPage;
 };
 
 export const legalContent: LegalContent = {
@@ -733,5 +734,44 @@ export const legalContent: LegalContent = {
         ],
       },
     ],
+  },
+
+  dataDeletion: {
+    title: "Suppression des données personnelles",
+    meta: {
+      title: "Suppression des données personnelles",
+      description:
+        "Demandez la suppression de vos données personnelles traitées par Riviera Prime, conformément au RGPD.",
+    },
+    intro: [
+      {
+        type: "p",
+        text: "Conformément au Règlement général sur la protection des données (RGPD), vous pouvez demander la suppression de vos données personnelles traitées par Riviera Prime.",
+      },
+      {
+        type: "p",
+        text: "Pour effectuer une demande de suppression, veuillez nous contacter à l’adresse suivante :",
+      },
+      { type: "p", text: "contact@riviera-prime.com" },
+      { type: "p", text: "Merci d’indiquer dans votre message :" },
+      {
+        type: "ul",
+        items: [
+          "votre nom et prénom ;",
+          "votre numéro de téléphone ;",
+          "l’adresse e-mail utilisée lors de votre demande ou réservation ;",
+          "l’objet de votre demande : suppression des données personnelles.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Après réception de votre demande, nous procéderons à son examen et supprimerons les données concernées dans les meilleurs délais, sauf si certaines informations doivent être conservées afin de respecter des obligations légales, comptables, fiscales ou réglementaires.",
+      },
+      {
+        type: "p",
+        text: "Les données nécessaires à la sécurité, à la prévention de la fraude, au suivi des paiements ou au respect d’obligations légales peuvent être conservées pendant la durée strictement nécessaire.",
+      },
+    ],
+    groups: [],
   },
 };

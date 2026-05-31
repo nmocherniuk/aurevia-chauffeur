@@ -11,6 +11,7 @@ const publicPaths = [
   "/conditions-generales",
   "/mentions-legales",
   "/politique-de-cookies",
+  "/suppression-donnees-personnelles",
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

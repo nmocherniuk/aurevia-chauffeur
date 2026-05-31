@@ -698,4 +698,43 @@ export const legalContent: LegalContent = {
       },
     ],
   },
+
+  dataDeletion: {
+    title: "Personal data deletion",
+    meta: {
+      title: "Personal data deletion",
+      description:
+        "Request deletion of your personal data processed by Riviera Prime, in accordance with the GDPR.",
+    },
+    intro: [
+      {
+        type: "p",
+        text: "In accordance with the General Data Protection Regulation (GDPR), you may request the deletion of your personal data processed by Riviera Prime.",
+      },
+      {
+        type: "p",
+        text: "To submit a deletion request, please contact us at the following address:",
+      },
+      { type: "p", text: "contact@riviera-prime.com" },
+      { type: "p", text: "Please include the following in your message:" },
+      {
+        type: "ul",
+        items: [
+          "your first and last name;",
+          "your phone number;",
+          "the email address used for your request or booking;",
+          "the subject of your request: personal data deletion.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Upon receipt of your request, we will review it and delete the relevant data as soon as possible, unless certain information must be retained to comply with legal, accounting, tax or regulatory obligations.",
+      },
+      {
+        type: "p",
+        text: "Data required for security, fraud prevention, payment follow-up or compliance with legal obligations may be retained for the strictly necessary period.",
+      },
+    ],
+    groups: [],
+  },
 };
