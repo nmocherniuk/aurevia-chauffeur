@@ -22,11 +22,12 @@ const MainSecuritySection: React.FC<{
           quality={100}
           priority
         />
+        <div className="absolute left-0 top-0 z-0 h-full w-full bg-[#06070A]/28" />
         <div
-          className="absolute inset-0 z-0"
+          className="absolute left-0 top-0 z-0 h-full w-full"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(6, 7, 10, 0.3) 0%, rgba(6, 7, 10, 0.2) 50%, rgba(6, 7, 10, 0.5) 100%)",
+              "linear-gradient(to bottom, transparent 0%, transparent 71%, #06070A 100%)",
           }}
         />
         <div className="z-10 mx-auto w-full max-w-[1360px] px-5 sm:px-7 md:px-10 lg:px-20 flex flex-col items-center sm:items-start">
