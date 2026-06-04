@@ -5,6 +5,7 @@ import Image from "next/image";
 import MainSection from "@/src/features/MainSection/MainSection";
 import MainContainer from "@/src/components/MainContainer";
 import FAQSection from "@/src/features/FAQSection";
+import CTABlock from "@/src/components/CTABlock";
 import { getContent } from "@/src/content";
 import { buildPageMetadata } from "@/src/lib/i18n/metadata";
 import { isLocale, type Locale } from "@/src/i18n/config";
@@ -124,7 +125,14 @@ export default async function Home({ params }: PageProps) {
             ))}
           </div>
         </section>
-        <FAQSection items={homeContent.faqItems} />
+        <div className="flex flex-col gap-12">
+          <FAQSection items={homeContent.faqItems} />
+          <CTABlock
+            title={homeContent.partnerCta.title}
+            description={homeContent.partnerCta.description}
+            socialMediaLink
+          />
+        </div>
       </MainContainer>
     </Fragment>
   );

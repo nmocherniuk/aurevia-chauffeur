@@ -41,6 +41,12 @@ export function createHomeContent(locale: "fr" | "en") {
       },
     ] as const,
 
+    partnerCta: {
+      title: "Interested in becoming our partner?",
+      description:
+        "Chauffeurs, security agents, or premium providers: get in touch to introduce your services and join our network.",
+    },
+
     faqItems: [
       {
         id: "home-faq-1",

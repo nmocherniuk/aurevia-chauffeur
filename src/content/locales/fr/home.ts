@@ -41,6 +41,12 @@ export function createHomeContent(locale: "fr" | "en") {
       },
     ] as const,
 
+    partnerCta: {
+      title: "Vous souhaitez devenir notre partenaire ?",
+      description:
+        "Chauffeurs, agents de sécurité ou prestataires premium : contactez-nous pour présenter votre activité et rejoindre notre réseau.",
+    },
+
     faqItems: [
       {
         id: "home-faq-1",
