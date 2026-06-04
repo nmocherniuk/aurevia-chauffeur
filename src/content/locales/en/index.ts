@@ -6,6 +6,7 @@ import { securityContent } from "./security";
 import { securityFormContent } from "./securityForm";
 import { securityPaymentContent } from "./securityPayment";
 import { legalContent } from "./legal";
+import { cookieNoticeContent } from "./cookieNotice";
 
 export const enContent = {
   common: commonContent,
@@ -16,4 +17,5 @@ export const enContent = {
   securityForm: securityFormContent,
   securityPayment: securityPaymentContent,
   legal: legalContent,
+  cookieNotice: cookieNoticeContent,
 };

@@ -155,11 +155,11 @@ export const legalContent: LegalContent = {
             blocks: [
               {
                 type: "p",
-                text: "The platform may use cookies and similar technologies necessary for its operation, for audience measurement and, where applicable, to improve the user experience.",
+                text: "The website uses only cookies and similar technologies that are strictly necessary for its operation (security, language preference, completing payments). No audience measurement, advertising or profiling cookies are placed.",
               },
               {
                 type: "p",
-                text: "Detailed terms regarding the use of cookies and the collection of consent are set out in the Cookie Policy.",
+                text: "These cookies do not require prior consent. Further details are set out in the Cookie Policy.",
               },
             ],
           },
@@ -547,150 +547,139 @@ export const legalContent: LegalContent = {
   },
 
   cookies: {
-    title: "Privacy and cookie policy",
+    title: "Cookie policy",
     meta: {
       title: "Cookie policy",
       description:
-        "Riviera Prime cookie policy: types of cookies used, consent, and preference management.",
+        "Riviera Prime cookie policy: strictly necessary cookies, purposes, retention and your rights (GDPR).",
     },
+    intro: [
+      {
+        type: "p",
+        text: "This policy explains how Riviera Prime uses cookies and similar technologies on riviera-prime.com, in accordance with Regulation (EU) 2016/679 (GDPR) and the ePrivacy rules.",
+      },
+    ],
     groups: [
       {
         sections: [
           {
-            id: "responsable-traitement",
-            heading: "1. Data controller",
-            blocks: [
-              { type: "p", text: "The controller of the personal data collected on this website is:" },
-              { type: "p", text: "RIVIERA STRATEGIE" },
-            ],
-          },
-          {
-            id: "donnees-collectees",
-            heading: "2. Data that may be collected",
-            blocks: [
-              { type: "p", text: "Depending on the nature of the requests submitted, the following data may in particular be collected:" },
-              {
-                type: "ul",
-                items: [
-                  "first and last name;",
-                  "phone number;",
-                  "email address;",
-                  "booking information;",
-                  "pick-up location;",
-                  "destination;",
-                  "requested date and time;",
-                  "information useful for organizing the request;",
-                  "technical browsing data.",
-                ],
-              },
-            ],
-          },
-          {
-            id: "finalites-traitement",
-            heading: "3. Purposes of processing",
-            blocks: [
-              { type: "p", text: "Data is processed in order to:" },
-              {
-                type: "ul",
-                items: [
-                  "respond to requests received;",
-                  "organize bookings;",
-                  "coordinate requested services;",
-                  "share information strictly necessary with the partners concerned;",
-                  "provide commercial follow-up;",
-                  "manage payments;",
-                  "prevent fraudulent use;",
-                  "comply with legal and regulatory obligations.",
-                ],
-              },
-            ],
-          },
-          {
-            id: "bases-juridiques",
-            heading: "4. Legal bases",
-            blocks: [
-              { type: "p", text: "Processing relies, depending on the situation, on:" },
-              {
-                type: "ul",
-                items: [
-                  "performance of a contract;",
-                  "pre-contractual measures;",
-                  "consent;",
-                  "legitimate interest;",
-                  "compliance with a legal obligation.",
-                ],
-              },
-            ],
-          },
-          {
-            id: "destinataires-donnees",
-            heading: "5. Recipients of data",
-            blocks: [
-              { type: "p", text: "Data may only be shared with:" },
-              {
-                type: "ul",
-                items: [
-                  "partner professionals concerned by the request;",
-                  "technical service providers;",
-                  "payment service providers;",
-                  "legally competent authorities where the regulations so require.",
-                ],
-              },
-            ],
-          },
-          {
-            id: "duree-conservation",
-            heading: "6. Retention period",
+            id: "quest-ce-quun-cookie",
+            heading: "1. What is a cookie?",
             blocks: [
               {
                 type: "p",
-                text: "Data is kept for the period necessary for its purpose and then archived for the applicable legal periods.",
+                text: "A cookie is a small text file placed on your device (computer, tablet, smartphone) when you visit a website. It helps ensure the site works correctly or remembers certain preferences.",
               },
             ],
           },
           {
-            id: "droits-personnes",
-            heading: "7. Rights of data subjects",
+            id: "cookies-utilises",
+            heading: "2. Cookies used on this site",
             blocks: [
-              { type: "p", text: "Every person has:" },
-              {
-                type: "ul",
-                items: [
-                  "a right of access;",
-                  "a right of rectification;",
-                  "a right of erasure;",
-                  "a right to object;",
-                  "a right to restriction;",
-                  "a right to portability.",
-                ],
-              },
-              { type: "p", text: "Any request may be sent to: kosivtchoukyouriy@gmail.com" },
               {
                 type: "p",
-                text: "In the event of a persistent difficulty, a complaint may be lodged with the French Data Protection Authority (CNIL).",
+                text: "Riviera Prime currently uses only cookies that are strictly necessary for the website to function and to provide the services you request. No audience measurement (analytics), advertising, social media or profiling cookies are placed.",
+              },
+              {
+                type: "p",
+                text: "Strictly necessary cookies may be used to:",
+              },
+              {
+                type: "ul",
+                items: [
+                  "ensure site security and stability;",
+                  "remember your language choice (French / English);",
+                  "enable secure online payment processing;",
+                  "maintain a technical session for the duration of your visit.",
+                ],
               },
             ],
           },
           {
-            id: "cookies",
-            heading: "8. Cookies",
+            id: "base-juridique",
+            heading: "3. Legal basis and consent",
             blocks: [
-              { type: "p", text: "The website may use:" },
+              {
+                type: "p",
+                text: "Under applicable law, strictly necessary cookies do not require your prior consent because they are essential to the service you request (performance of a contract or legitimate security interest).",
+              },
+              {
+                type: "p",
+                text: "If non-essential cookies (such as analytics or advertising) were introduced in the future, your explicit consent would be collected beforehand via a dedicated banner, and this policy would be updated.",
+              },
+            ],
+          },
+          {
+            id: "prestataires-tiers",
+            heading: "4. Third-party providers",
+            blocks: [
+              {
+                type: "p",
+                text: "Some cookies or trackers may be placed by providers acting on our behalf, only to the extent necessary:",
+              },
               {
                 type: "ul",
                 items: [
-                  "cookies strictly necessary for its operation;",
-                  "audience measurement cookies;",
-                  "advertising cookies;",
-                  "personalization cookies.",
+                  "Stripe — secure processing of online payments (payment page);",
+                  "website host (OVHcloud) — security and technical availability.",
                 ],
               },
-              { type: "p", text: "Non-essential cookies are only placed after the user's express consent." },
-              { type: "p", text: "Consent may be withdrawn at any time." },
-              { type: "p", text: "Tools that may be used:" },
               {
-                type: "ul",
-                items: ["Google Analytics", "Google Ads", "Meta Pixel"],
+                type: "p",
+                text: "Address search (autocomplete) is performed via our server; no audience measurement or advertising cookies are linked to this feature.",
+              },
+            ],
+          },
+          {
+            id: "duree-cookies",
+            heading: "5. Retention period",
+            blocks: [
+              {
+                type: "p",
+                text: "Strictly necessary cookies are kept only for as long as required for their purpose (usually for the session or up to 13 months at most for language preference), then deleted or become inactive.",
+              },
+            ],
+          },
+          {
+            id: "gestion-cookies",
+            heading: "6. Managing cookies in your browser",
+            blocks: [
+              {
+                type: "p",
+                text: "You can configure your browser to block or delete cookies. Please note: blocking all cookies may affect some site features (language, payment, forms).",
+              },
+              {
+                type: "p",
+                text: "See your browser’s help section (Chrome, Firefox, Safari, Edge, etc.) to change your preferences.",
+              },
+            ],
+          },
+          {
+            id: "droits-rgpd",
+            heading: "7. Your rights (GDPR)",
+            blocks: [
+              {
+                type: "p",
+                text: "For any questions about cookies or your personal data, you can contact:",
+              },
+              { type: "p", text: "contact@riviera-prime.com" },
+              {
+                type: "p",
+                text: "You have the rights of access, rectification, erasure, restriction, objection and portability under the GDPR. To exercise these rights or request deletion of your data, see also our Personal data deletion page.",
+              },
+              {
+                type: "p",
+                text: "If difficulties persist, you may lodge a complaint with the CNIL (www.cnil.fr).",
+              },
+            ],
+          },
+          {
+            id: "mise-a-jour",
+            heading: "8. Updates to this policy",
+            blocks: [
+              {
+                type: "p",
+                text: "This policy may be updated to reflect changes to the website or the law. The latest version is the one published on this page.",
               },
             ],
           },

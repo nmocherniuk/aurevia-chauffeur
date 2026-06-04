@@ -192,11 +192,11 @@ export const legalContent: LegalContent = {
             blocks: [
               {
                 type: "p",
-                text: "La plateforme peut utiliser des cookies et technologies similaires nécessaires à son fonctionnement, à la mesure d’audience et, le cas échéant, à l’amélioration de l’expérience utilisateur.",
+                text: "Le site utilise uniquement des cookies et technologies similaires strictement nécessaires à son fonctionnement (sécurité, préférence de langue, finalisation des paiements). Aucun cookie de mesure d’audience, publicitaire ou de profilage n’est déposé.",
               },
               {
                 type: "p",
-                text: "Les modalités détaillées relatives à l’utilisation des cookies et au recueil du consentement sont précisées dans la Politique de cookies.",
+                text: "Ces cookies ne requièrent pas de consentement préalable. Les modalités détaillées sont précisées dans la Politique de cookies.",
               },
             ],
           },
@@ -584,150 +584,139 @@ export const legalContent: LegalContent = {
   },
 
   cookies: {
-    title: "Politique de confidentialité et cookies",
+    title: "Politique de cookies",
     meta: {
       title: "Politique de cookies",
       description:
-        "Politique de cookies Riviera Prime: types de cookies utilisés, consentement et gestion des préférences.",
+        "Politique de cookies Riviera Prime : cookies strictement nécessaires, finalités, durée et vos droits (RGPD).",
     },
+    intro: [
+      {
+        type: "p",
+        text: "La présente politique explique comment Riviera Prime utilise des cookies et technologies similaires sur le site riviera-prime.com, conformément au Règlement (UE) 2016/679 (RGPD) et à la directive ePrivacy.",
+      },
+    ],
     groups: [
       {
         sections: [
           {
-            id: "responsable-traitement",
-            heading: "1. Responsable du traitement",
-            blocks: [
-              { type: "p", text: "Le responsable du traitement des données personnelles collectées sur le présent site est :" },
-              { type: "p", text: "RIVIERA STRATEGIE" },
-            ],
-          },
-          {
-            id: "donnees-collectees",
-            heading: "2. Données susceptibles d’être collectées",
-            blocks: [
-              { type: "p", text: "Selon la nature des demandes adressées, les données suivantes peuvent notamment être collectées :" },
-              {
-                type: "ul",
-                items: [
-                  "nom et prénom ;",
-                  "numéro de téléphone ;",
-                  "adresse électronique ;",
-                  "informations relatives à la réservation ;",
-                  "lieu de prise en charge ;",
-                  "destination ;",
-                  "date et horaire souhaités ;",
-                  "informations utiles à l’organisation de la demande ;",
-                  "données techniques de navigation.",
-                ],
-              },
-            ],
-          },
-          {
-            id: "finalites-traitement",
-            heading: "3. Finalités du traitement",
-            blocks: [
-              { type: "p", text: "Les données sont traitées afin de :" },
-              {
-                type: "ul",
-                items: [
-                  "répondre aux demandes reçues ;",
-                  "organiser les réservations ;",
-                  "coordonner les prestations sollicitées ;",
-                  "transmettre les informations strictement nécessaires aux partenaires concernés ;",
-                  "assurer le suivi commercial ;",
-                  "gérer les paiements ;",
-                  "prévenir les utilisations frauduleuses ;",
-                  "satisfaire aux obligations légales et réglementaires.",
-                ],
-              },
-            ],
-          },
-          {
-            id: "bases-juridiques",
-            heading: "4. Bases juridiques",
-            blocks: [
-              { type: "p", text: "Les traitements reposent, selon les situations, sur :" },
-              {
-                type: "ul",
-                items: [
-                  "l’exécution d’un contrat ;",
-                  "les mesures précontractuelles ;",
-                  "le consentement ;",
-                  "l’intérêt légitime ;",
-                  "le respect d’une obligation légale.",
-                ],
-              },
-            ],
-          },
-          {
-            id: "destinataires-donnees",
-            heading: "5. Destinataires des données",
-            blocks: [
-              { type: "p", text: "Les données peuvent être transmises uniquement :" },
-              {
-                type: "ul",
-                items: [
-                  "aux partenaires professionnels concernés par la demande ;",
-                  "aux prestataires techniques ;",
-                  "aux prestataires de paiement ;",
-                  "aux autorités légalement compétentes lorsque la réglementation l’exige.",
-                ],
-              },
-            ],
-          },
-          {
-            id: "duree-conservation",
-            heading: "6. Durée de conservation",
+            id: "quest-ce-quun-cookie",
+            heading: "1. Qu’est-ce qu’un cookie ?",
             blocks: [
               {
                 type: "p",
-                text: "Les données sont conservées pendant la durée nécessaire à leur finalité puis archivées selon les délais légaux applicables.",
+                text: "Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de la consultation d’un site. Il permet notamment d’assurer le bon fonctionnement du site ou de mémoriser certaines préférences.",
               },
             ],
           },
           {
-            id: "droits-personnes",
-            heading: "7. Droits des personnes",
+            id: "cookies-utilises",
+            heading: "2. Cookies utilisés sur ce site",
             blocks: [
-              { type: "p", text: "Toute personne dispose :" },
-              {
-                type: "ul",
-                items: [
-                  "d’un droit d’accès ;",
-                  "d’un droit de rectification ;",
-                  "d’un droit d’effacement ;",
-                  "d’un droit d’opposition ;",
-                  "d’un droit de limitation ;",
-                  "d’un droit à la portabilité.",
-                ],
-              },
-              { type: "p", text: "Toute demande peut être adressée à : kosivtchoukyouriy@gmail.com" },
               {
                 type: "p",
-                text: "En cas de difficulté persistante, une réclamation peut être introduite auprès de la Commission Nationale de l’Informatique et des Libertés.",
+                text: "Riviera Prime n’utilise actuellement que des cookies strictement nécessaires au fonctionnement du site et à la fourniture des services demandés. Aucun cookie de mesure d’audience (analytics), publicitaire, de réseaux sociaux ou de profilage n’est déposé.",
+              },
+              {
+                type: "p",
+                text: "Les cookies strictement nécessaires peuvent notamment servir à :",
+              },
+              {
+                type: "ul",
+                items: [
+                  "assurer la sécurité et la stabilité du site ;",
+                  "mémoriser votre choix de langue (français / anglais) ;",
+                  "permettre le traitement sécurisé des paiements en ligne ;",
+                  "conserver une session technique le temps de votre navigation.",
+                ],
               },
             ],
           },
           {
-            id: "cookies",
-            heading: "8. Cookies",
+            id: "base-juridique",
+            heading: "3. Base juridique et consentement",
             blocks: [
-              { type: "p", text: "Le site peut utiliser :" },
+              {
+                type: "p",
+                text: "Conformément à la réglementation applicable, les cookies strictement nécessaires ne requièrent pas votre consentement préalable, car ils sont indispensables au service que vous demandez (exécution du contrat ou intérêt légitime de sécurité).",
+              },
+              {
+                type: "p",
+                text: "Si des cookies non essentiels (par exemple analytics ou publicité) devaient être introduits ultérieurement, votre consentement explicite sera recueilli au préalable via un bandeau dédié, et cette politique sera mise à jour.",
+              },
+            ],
+          },
+          {
+            id: "prestataires-tiers",
+            heading: "4. Prestataires tiers",
+            blocks: [
+              {
+                type: "p",
+                text: "Certains cookies ou traceurs peuvent être déposés par des prestataires agissant pour notre compte, uniquement dans la mesure nécessaire :",
+              },
               {
                 type: "ul",
                 items: [
-                  "des cookies strictement nécessaires à son fonctionnement ;",
-                  "des cookies de mesure d’audience ;",
-                  "des cookies publicitaires ;",
-                  "des cookies de personnalisation.",
+                  "Stripe — traitement sécurisé des paiements en ligne (page de paiement) ;",
+                  "hébergeur du site (OVHcloud) — sécurité et disponibilité technique.",
                 ],
               },
-              { type: "p", text: "Les cookies non essentiels ne sont déposés qu’après consentement exprès de l’utilisateur." },
-              { type: "p", text: "Le consentement peut être retiré à tout moment." },
-              { type: "p", text: "Outils susceptibles d’être utilisés :" },
               {
-                type: "ul",
-                items: ["Google Analytics", "Google Ads", "Meta Pixel"],
+                type: "p",
+                text: "La recherche d’adresses (autocomplétion) est effectuée via notre serveur ; aucun cookie publicitaire de mesure d’audience n’est associé à cette fonctionnalité.",
+              },
+            ],
+          },
+          {
+            id: "duree-cookies",
+            heading: "5. Durée de conservation",
+            blocks: [
+              {
+                type: "p",
+                text: "Les cookies strictement nécessaires sont conservés pour la durée strictement requise à leur finalité (généralement la durée de la session ou jusqu’à 13 mois maximum pour la mémorisation de la langue), puis supprimés ou deviennent inactifs.",
+              },
+            ],
+          },
+          {
+            id: "gestion-cookies",
+            heading: "6. Gérer les cookies depuis votre navigateur",
+            blocks: [
+              {
+                type: "p",
+                text: "Vous pouvez configurer votre navigateur pour bloquer ou supprimer les cookies. Attention : le blocage de tous les cookies peut dégrader certaines fonctionnalités du site (langue, paiement, formulaires).",
+              },
+              {
+                type: "p",
+                text: "Consultez l’aide de votre navigateur (Chrome, Firefox, Safari, Edge, etc.) pour modifier vos préférences.",
+              },
+            ],
+          },
+          {
+            id: "droits-rgpd",
+            heading: "7. Vos droits (RGPD)",
+            blocks: [
+              {
+                type: "p",
+                text: "Pour toute question relative aux cookies ou à vos données personnelles, vous pouvez contacter :",
+              },
+              { type: "p", text: "contact@riviera-prime.com" },
+              {
+                type: "p",
+                text: "Vous disposez des droits d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité prévus par le RGPD. Pour exercer ces droits ou demander la suppression de vos données, consultez également notre page Suppression des données personnelles.",
+              },
+              {
+                type: "p",
+                text: "En cas de difficulté, vous pouvez introduire une réclamation auprès de la CNIL (www.cnil.fr).",
+              },
+            ],
+          },
+          {
+            id: "mise-a-jour",
+            heading: "8. Mise à jour de cette politique",
+            blocks: [
+              {
+                type: "p",
+                text: "Cette politique peut être modifiée pour refléter l’évolution du site ou de la réglementation. La date de dernière mise à jour correspond à la version publiée sur cette page.",
               },
             ],
           },

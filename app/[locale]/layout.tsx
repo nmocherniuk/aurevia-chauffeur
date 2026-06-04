@@ -3,6 +3,7 @@ import { locales, isLocale, type Locale } from "@/src/i18n/config";
 import { LocaleProvider } from "@/src/providers/LocaleProvider";
 import Header from "@/src/components/Header";
 import Footer from "@/src/components/Footer";
+import { CookieNotice } from "@/src/components/CookieNotice";
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -28,6 +29,7 @@ export default async function LocaleLayout({
       <Header />
       <main className="flex min-h-0 w-full min-w-0 flex-1 flex-col">{children}</main>
       <Footer />
+      <CookieNotice />
     </LocaleProvider>
   );
 }
