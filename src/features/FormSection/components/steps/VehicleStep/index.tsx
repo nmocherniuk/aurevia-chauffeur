@@ -2,7 +2,10 @@ import React, { FC, useEffect, useMemo, useRef, useState } from "react";
 import SelectWithError from "@/src/components/SelectWithError";
 import { getPrice } from "@/src/api/price";
 import { hourlyDurationMinutes } from "@/src/features/FormSection/utils/hourlyDuration";
-import { buildVehicleOptions } from "@/src/features/FormSection/utils/vehicleOptions";
+import {
+  buildAvailableVehicleClassOptions,
+  buildVehicleOptions,
+} from "@/src/features/FormSection/utils/vehicleOptions";
 import { useVehiclesStore } from "@/src/store/vehiclesStore";
 import { useContent } from "@/src/providers/LocaleProvider";
 import type { FormStepProps } from "../types";
@@ -39,10 +42,29 @@ export const VehicleStep: FC<FormStepProps> = ({
     void fetchVehicles();
   }, [fetchVehicles]);
 
+  const vehicleClassOptions = useMemo(
+    () => buildAvailableVehicleClassOptions(vehicles, t.vehicleClasses),
+    [vehicles, t.vehicleClasses],
+  );
+
   const vehicleOptions = useMemo(
     () => buildVehicleOptions(vehicles, carType),
     [vehicles, carType],
   );
+
+  useEffect(() => {
+    if (
+      carType &&
+      vehicleClassOptions.length > 0 &&
+      !vehicleClassOptions.some((option) => option.value === carType)
+    ) {
+      setValue("carType", "");
+      setValue("car", "");
+      setValue("price", "");
+      setValue("distanceKm", "");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [vehicleClassOptions, carType]);
 
   useEffect(() => {
     if (
@@ -160,9 +182,15 @@ export const VehicleStep: FC<FormStepProps> = ({
             name="carType"
             label={t.vehicle.carType.label}
             placeholder={t.vehicle.carType.placeholder}
-            options={[...t.vehicleClasses]}
+            options={vehicleClassOptions}
+            disabled={vehiclesLoading || vehicleClassOptions.length === 0}
             value={(getValue("carType", false) as string) || ""}
-            onChange={(e) => setValue("carType", e.target.value)}
+            onChange={(e) => {
+              setValue("carType", e.target.value);
+              setValue("car", "");
+              setValue("price", "");
+              setValue("distanceKm", "");
+            }}
             onBlur={handleBlur("carType")}
             onFocus={handleFocus("carType")}
             error={errors["carType"]}

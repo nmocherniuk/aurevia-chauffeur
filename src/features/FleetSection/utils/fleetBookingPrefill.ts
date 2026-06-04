@@ -9,11 +9,11 @@ export type FleetCategoryKey = keyof typeof fleets;
 
 const CATEGORY_TO_FORM_CAR_TYPE: Record<
   FleetCategoryKey,
-  "comfort" | "business" | "luxury"
+  "comfort" | "business" | "van"
 > = {
   comfort: "comfort",
   business: "business",
-  van: "luxury",
+  van: "van",
 };
 
 /** Передає id авто у форму на `/driver` без query у посиланні. */
@@ -57,7 +57,7 @@ export function findFleetCarById(
 
 export function getFleetFormPrefill(fleetCarId: string): {
   car: string;
-  carType: "comfort" | "business" | "luxury";
+  carType: "comfort" | "business" | "van";
 } | null {
   const found = findFleetCarById(fleetCarId);
   if (!found) return null;

@@ -19,7 +19,7 @@ export const bookingFormContent = {
   vehicleClasses: [
     { value: "comfort", label: "Comfort" },
     { value: "business", label: "Business" },
-    { value: "luxury", label: "Luxury" },
+    { value: "van", label: "Van" },
   ],
   journey: {
     tripType: {

@@ -3,7 +3,10 @@
 import { useState, useCallback, useMemo } from "react";
 import { getStepsFromIndex } from "@/src/components/StepIndicator/utils/getStepsFromIndex";
 import { getFormSteps } from "../data/getFormSteps";
-import { buildVehicleOptions } from "../utils/vehicleOptions";
+import {
+  buildAvailableVehicleClassOptions,
+  buildVehicleOptions,
+} from "../utils/vehicleOptions";
 import { useVehiclesStore } from "@/src/store/vehiclesStore";
 import { LAST_STEP_INDEX } from "../constants";
 import { useContent } from "@/src/providers/LocaleProvider";
@@ -23,9 +26,13 @@ export function useFormSection() {
   const { bookingForm } = useContent();
   const vehicles = useVehiclesStore((s) => s.vehicles);
   const vehicleOptions = useMemo(() => buildVehicleOptions(vehicles), [vehicles]);
+  const vehicleClassOptions = useMemo(
+    () => buildAvailableVehicleClassOptions(vehicles, bookingForm.vehicleClasses),
+    [vehicles, bookingForm.vehicleClasses],
+  );
   const formSteps = useMemo(
-    () => getFormSteps(bookingForm, vehicleOptions),
-    [bookingForm, vehicleOptions],
+    () => getFormSteps(bookingForm, vehicleOptions, vehicleClassOptions),
+    [bookingForm, vehicleOptions, vehicleClassOptions],
   );
   const stepLabels = useMemo(
     () => formSteps.map((s) => s.label),

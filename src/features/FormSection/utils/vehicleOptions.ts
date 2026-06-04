@@ -6,12 +6,32 @@ export type VehicleSelectOption = {
   detail?: string;
 };
 
+export type VehicleClassOption = {
+  label: string;
+  value: string;
+};
+
 /** Form vehicle-class value → API vehicle `class`. */
 const FORM_CARTYPE_TO_API_CLASS: Record<string, PublicVehicleJson["class"]> = {
   comfort: "comfort",
   business: "business",
+  van: "van",
+  /** @deprecated use `van` */
   luxury: "van",
 };
+
+/** Keeps only classes that have at least one vehicle in the catalog. */
+export function buildAvailableVehicleClassOptions(
+  vehicles: PublicVehicleJson[],
+  allClasses: readonly VehicleClassOption[],
+): VehicleClassOption[] {
+  const apiClassesWithVehicles = new Set(vehicles.map((v) => v.class));
+
+  return allClasses.filter((option) => {
+    const apiClass = FORM_CARTYPE_TO_API_CLASS[option.value];
+    return apiClass != null && apiClassesWithVehicles.has(apiClass);
+  });
+}
 
 function buildDetail(vehicle: PublicVehicleJson): string | undefined {
   const parts: string[] = [];

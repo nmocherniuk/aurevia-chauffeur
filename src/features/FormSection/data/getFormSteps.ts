@@ -4,7 +4,10 @@ import { Vehicle } from "@/src/components/SVGManager/Vehicle";
 import { Person } from "@/src/components/SVGManager/Person";
 import { PaymentCard } from "@/src/components/SVGManager/PaymentCard";
 import type { StepIconProps } from "@/src/components/StepIndicator";
-import type { VehicleSelectOption } from "@/src/features/FormSection/utils/vehicleOptions";
+import type {
+  VehicleClassOption,
+  VehicleSelectOption,
+} from "@/src/features/FormSection/utils/vehicleOptions";
 import type { bookingFormContent as FrBookingForm } from "@/src/content/locales/fr/bookingForm";
 import type { FormStep } from "./types";
 
@@ -13,6 +16,7 @@ type BookingFormContent = typeof FrBookingForm;
 export function getFormSteps(
   content: BookingFormContent,
   vehicleOptions: VehicleSelectOption[] = [],
+  vehicleClassOptions: VehicleClassOption[] = [],
 ): FormStep[] {
   return [
     {
@@ -69,7 +73,10 @@ export function getFormSteps(
           name: "carType",
           label: content.vehicle.carType.label,
           placeholder: content.vehicle.carType.placeholder,
-          options: [...content.vehicleClasses],
+          options:
+            vehicleClassOptions.length > 0
+              ? vehicleClassOptions
+              : [...content.vehicleClasses],
         },
         {
           type: "select",
