@@ -8,6 +8,8 @@ import FAQSection from "@/src/features/FAQSection";
 import { getContent } from "@/src/content";
 import { buildPageMetadata } from "@/src/lib/i18n/metadata";
 import { isLocale, type Locale } from "@/src/i18n/config";
+import { JsonLd } from "@/src/components/JsonLd";
+import { getFaqPageSchema } from "@/src/lib/seo/structuredData";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -55,6 +57,7 @@ export default async function Home({ params }: PageProps) {
 
   return (
     <Fragment>
+      <JsonLd data={getFaqPageSchema(homeContent.faqItems)} />
       <MainSection
         title={homeContent.heroSection.title}
         subtitle={homeContent.heroSection.subtitle}

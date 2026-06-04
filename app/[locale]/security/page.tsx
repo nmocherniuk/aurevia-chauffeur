@@ -11,6 +11,11 @@ import BookingProcessSection from "@/src/features/BookingProcessSection";
 import { getContent } from "@/src/content";
 import { buildPageMetadata } from "@/src/lib/i18n/metadata";
 import { isLocale, type Locale } from "@/src/i18n/config";
+import { JsonLd } from "@/src/components/JsonLd";
+import {
+  getFaqPageSchema,
+  getServiceSchema,
+} from "@/src/lib/seo/structuredData";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -56,8 +61,23 @@ export default async function SecurityPage({ params }: PageProps) {
   const locale = isLocale(localeParam) ? localeParam : "fr";
   const { security: securityContent } = getContent(locale);
 
+  const serviceSchema = getServiceSchema({
+    locale,
+    path: "/security",
+    name:
+      locale === "fr" ? "Sécurité privée premium" : "Premium private security",
+    description:
+      locale === "fr"
+        ? "Services de sécurité privée en France : protection rapprochée, sécurisation d'événements et accompagnement professionnel."
+        : "Private security services in France: close protection, event security, and professional escort.",
+    serviceType: locale === "fr" ? "Sécurité privée" : "Private security",
+  });
+
   return (
     <Fragment>
+      <JsonLd
+        data={[serviceSchema, getFaqPageSchema(securityContent.faqItems)]}
+      />
       <MainSecuritySection
         title={securityContent.heroSection.title}
         subtitle={securityContent.heroSection.subtitle}

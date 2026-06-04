@@ -12,6 +12,11 @@ import FormSection from "@/src/features/FormSection";
 import { getContent } from "@/src/content";
 import { buildPageMetadata } from "@/src/lib/i18n/metadata";
 import { isLocale, type Locale } from "@/src/i18n/config";
+import { JsonLd } from "@/src/components/JsonLd";
+import {
+  getFaqPageSchema,
+  getServiceSchema,
+} from "@/src/lib/seo/structuredData";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -57,8 +62,23 @@ export default async function DriverPage({ params }: PageProps) {
   const locale = isLocale(localeParam) ? localeParam : "fr";
   const { chauffeur: chauffeurContent } = getContent(locale);
 
+  const serviceSchema = getServiceSchema({
+    locale,
+    path: "/driver",
+    name:
+      locale === "fr" ? "Chauffeur privé premium" : "Premium private chauffeur",
+    description:
+      locale === "fr"
+        ? "Service de chauffeur privé premium en France : transferts, déplacements professionnels, événements et trajets sur mesure."
+        : "Premium private chauffeur service in France: transfers, business travel, events, and bespoke journeys.",
+    serviceType: locale === "fr" ? "Chauffeur privé" : "Private chauffeur",
+  });
+
   return (
     <Fragment>
+      <JsonLd
+        data={[serviceSchema, getFaqPageSchema(chauffeurContent.faqItems)]}
+      />
       <MainDriverSection
         title={chauffeurContent.heroSection.title}
         subtitle={chauffeurContent.heroSection.subtitle}
