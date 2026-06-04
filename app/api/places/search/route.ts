@@ -14,11 +14,31 @@ type MapboxFeature = {
   context?: Array<{ id: string; text: string }>;
 };
 
+const SUPPORTED_LANGS = ["fr", "en"] as const;
+const DEFAULT_LANG = "fr";
+
+/** Reduces an IETF tag (e.g. "en-US") to a supported primary subtag. */
+function normalizeLang(value: string | null | undefined): string | null {
+  if (!value) return null;
+  const primary = value.split("-")[0]?.trim().toLowerCase() ?? "";
+  return (SUPPORTED_LANGS as readonly string[]).includes(primary)
+    ? primary
+    : null;
+}
+
+/**
+ * Search language priority:
+ * 1. `lang` query param (site locale chosen by the user),
+ * 2. `Accept-Language` header (browser),
+ * 3. French fallback.
+ */
 function pickLang(req: NextRequest): string {
-  const h = req.headers.get("accept-language") ?? "";
-  const first = h.split(",")[0]?.trim() ?? "";
-  const lang = first.split(";")[0]?.trim() ?? "";
-  return lang || "fr";
+  const fromQuery = normalizeLang(req.nextUrl.searchParams.get("lang"));
+  if (fromQuery) return fromQuery;
+
+  const header = req.headers.get("accept-language") ?? "";
+  const fromHeader = normalizeLang(header.split(",")[0]);
+  return fromHeader ?? DEFAULT_LANG;
 }
 
 function ctxText(feature: MapboxFeature, prefix: string): string {

@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { NominatimSearchHit } from "@/src/lib/places/nominatimTypes";
 import { prioritizeNominatimResults } from "@/src/lib/places/prioritizeResults";
+import { useLocale } from "@/src/providers/LocaleProvider";
 
 const LIMIT = 5;
 
 export function usePlacesSearch(debouncedQuery: string) {
+  const locale = useLocale();
   const [hits, setHits] = useState<NominatimSearchHit[]>([]);
   const [loading, setLoading] = useState(false);
   const reqId = useRef(0);
@@ -27,7 +29,7 @@ export function usePlacesSearch(debouncedQuery: string) {
 
     const run = async () => {
       try {
-        const url = `/api/places/search?q=${encodeURIComponent(debouncedQuery.trim())}`;
+        const url = `/api/places/search?q=${encodeURIComponent(debouncedQuery.trim())}&lang=${locale}`;
         const res = await fetch(url, { signal: ac.signal });
         if (reqId.current !== id) return;
         const raw = (await res.json()) as unknown;
@@ -50,7 +52,7 @@ export function usePlacesSearch(debouncedQuery: string) {
     return () => {
       ac.abort();
     };
-  }, [debouncedQuery, queryOk]);
+  }, [debouncedQuery, queryOk, locale]);
 
   const showNoResults = queryOk && !loading && hits.length === 0;
 
