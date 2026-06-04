@@ -1,4 +1,4 @@
-import { Instagram } from "@/src/components/SVGManager/Instagram";
+// import { Instagram } from "@/src/components/SVGManager/Instagram";
 import { Whatsapp } from "@/src/components/SVGManager/Whatsapp";
 import { Email } from "@/src/components/SVGManager/Email";
 import { Phone } from "@/src/components/SVGManager/Phone";
@@ -9,26 +9,26 @@ export const socialIcons: Record<
 > = {
   whatsapp: {
     Icon: Whatsapp,
-    url: "test@test.com",
+    url: "https://wa.me/33611112430",
     width: 28,
     height: 28,
   },
   email: {
     Icon: Email,
-    url: "test@test.com",
+    url: "mailto:contact@riviera-prime.com",
     width: 28,
     height: 25,
   },
   mobile: {
     Icon: Phone,
-    url: "test@test.com",
+    url: "tel:+33611112430",
     width: 25,
     height: 25,
   },
-  instagram: {
-    Icon: Instagram,
-    url: "test@test.com",
-    width: 27,
-    height: 27,
-  },
+  // instagram: {
+  //   Icon: Instagram,
+  //   url: "",
+  //   width: 27,
+  //   height: 27,
+  // },
 };
