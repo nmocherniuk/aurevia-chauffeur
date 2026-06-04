@@ -2,8 +2,10 @@
 
 import React, { FC, useEffect, useMemo } from "react";
 import FleetCard from "@/src/components/Layouts/FleetCard";
+import { FleetEmptyState } from "@/src/features/FleetSection/components/FleetEmptyState";
 import { type Fleet } from "@/src/features/FleetSection/data";
 import { BOOKING_VEHICLE_IDS } from "@/src/features/FormSection/data/bookingVehicles";
+import { useContent } from "@/src/providers/LocaleProvider";
 import { useVehiclesStore } from "@/src/store/vehiclesStore";
 
 const FLEET_ORDER: ("comfort" | "business" | "van")[] = [
@@ -18,7 +20,10 @@ const CLASS_LABELS: Record<string, string> = {
 };
 
 const FleetSection: FC = () => {
+  const { chauffeur } = useContent();
+  const { fleet: fleetCopy } = chauffeur;
   const vehicles = useVehiclesStore((s) => s.vehicles);
+  const vehiclesStatus = useVehiclesStore((s) => s.status);
   const fetchVehicles = useVehiclesStore((s) => s.fetchVehicles);
 
   useEffect(() => {
@@ -65,24 +70,35 @@ const FleetSection: FC = () => {
     [fleetGroups],
   );
 
+  const showEmptyState =
+    !hasAnyVehicles &&
+    (vehiclesStatus === "success" || vehiclesStatus === "error");
+
   return (
     <section id="flotte" className="w-full">
       <h2 className="font-benzin text-white text-center text-2xl mb-10 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-11">
-        Comfortable transportation, professional drivers
+        {fleetCopy.title}
       </h2>
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-        {hasAnyVehicles
-          ? FLEET_ORDER.map((key) =>
-            (fleetGroups[key] ?? []).length > 0 ? (
-              <FleetCard
-                key={key}
-                cars={fleetGroups[key]}
-                classLabel={CLASS_LABELS[key]}
-              />
-            ) : null,
-          )
-          : null}
-      </div>
+      {showEmptyState ? (
+        <FleetEmptyState
+          title={fleetCopy.empty.title}
+          description={fleetCopy.empty.description}
+        />
+      ) : (
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+          {hasAnyVehicles
+            ? FLEET_ORDER.map((key) =>
+                (fleetGroups[key] ?? []).length > 0 ? (
+                  <FleetCard
+                    key={key}
+                    cars={fleetGroups[key]}
+                    classLabel={CLASS_LABELS[key]}
+                  />
+                ) : null,
+              )
+            : null}
+        </div>
+      )}
     </section>
   );
 };

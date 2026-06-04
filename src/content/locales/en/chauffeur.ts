@@ -94,6 +94,15 @@ export function createChauffeurContent(locale: "fr" | "en") {
       ],
     },
 
+    fleet: {
+      title: "Comfortable transportation, professional drivers",
+      empty: {
+        title: "No vehicles available at the moment",
+        description:
+          "Our fleet is being updated. Contact us or use the booking form to tell us what you need.",
+      },
+    },
+
     vehicleCta: {
       title: "Book Your Chauffeur with Ease",
       description:

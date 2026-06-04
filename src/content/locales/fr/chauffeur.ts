@@ -94,6 +94,15 @@ export function createChauffeurContent(locale: "fr" | "en") {
       ],
     },
 
+    fleet: {
+      title: "Un transport confortable, des chauffeurs professionnels",
+      empty: {
+        title: "Aucun véhicule disponible pour le moment",
+        description:
+          "Flotte en cours de mise à jour. Contactez-nous ou utilisez le formulaire de réservation.",
+      },
+    },
+
     vehicleCta: {
       title: "Réservez Votre Chauffeur en Toute Simplicité",
       description:
