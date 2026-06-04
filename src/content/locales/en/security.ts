@@ -59,7 +59,7 @@ export function createSecurityContent(locale: "fr" | "en") {
         highlights: [
           "Business and personal travel",
           "Discretion and responsiveness",
-          "Experienced agents",
+          "Protection and vehicle",
         ],
       },
       {

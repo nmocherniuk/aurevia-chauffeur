@@ -67,6 +67,9 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
           const v = e.target.value;
           setValue("serviceType", v);
           if (v !== "other") setValue("serviceTypeOther", "");
+          if (v === "protection_with_vehicle") {
+            setValue("vehicleRequired", "yes");
+          }
         }}
         onBlur={handleBlur("serviceType")}
         onFocus={handleFocus("serviceType")}

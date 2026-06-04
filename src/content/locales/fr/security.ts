@@ -59,7 +59,7 @@ export function createSecurityContent(locale: "fr" | "en") {
         highlights: [
           "Déplacements professionnels et personnels",
           "Discrétion et réactivité",
-          "Agents expérimentés",
+          "Protection et véhicule",
         ],
       },
       {

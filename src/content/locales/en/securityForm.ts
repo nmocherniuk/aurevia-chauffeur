@@ -83,6 +83,10 @@ export const securityFormContent = {
       { value: "bodyguard", label: "Bodyguard" },
       { value: "vip_escort", label: "VIP escort" },
       { value: "close_protection", label: "Close protection" },
+      {
+        value: "protection_with_vehicle",
+        label: "Protection with vehicle",
+      },
     ],
     event_security: [
       { value: "event_security", label: "Event security" },
