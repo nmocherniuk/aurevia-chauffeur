@@ -48,6 +48,8 @@ export const bookingFormContent = {
       placeholder: "Sélectionnez le type de véhicule",
     },
     car: { label: "Véhicule", placeholder: "Sélectionnez un véhicule" },
+    carLoading: "Chargement des véhicules…",
+    carEmpty: "Aucun véhicule disponible",
     calculatingPrice: "Calcul du prix…",
     priceForSelected: "Prix pour le véhicule sélectionné",
     selectTripForPrice: "Sélectionnez un trajet pour voir le prix",

@@ -1,11 +1,10 @@
 "use client";
 
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useEffect, useMemo } from "react";
 import FleetCard from "@/src/components/Layouts/FleetCard";
 import { type Fleet } from "@/src/features/FleetSection/data";
 import { BOOKING_VEHICLE_IDS } from "@/src/features/FormSection/data/bookingVehicles";
-import type { PublicVehicleJson } from "./types/publicVehicle";
-import { getPublicVehicles } from "@/src/api/vehicles";
+import { useVehiclesStore } from "@/src/store/vehiclesStore";
 
 const FLEET_ORDER: ("comfort" | "business" | "van")[] = [
   "comfort",
@@ -19,69 +18,47 @@ const CLASS_LABELS: Record<string, string> = {
 };
 
 const FleetSection: FC = () => {
-  const [fleetGroups, setFleetGroups] = useState<Record<string, Fleet[]>>({
-    comfort: [],
-    business: [],
-    van: [],
-  });
+  const vehicles = useVehiclesStore((s) => s.vehicles);
+  const fetchVehicles = useVehiclesStore((s) => s.fetchVehicles);
 
   useEffect(() => {
-    let cancelled = false;
+    void fetchVehicles();
+  }, [fetchVehicles]);
 
-    const loadVehicles = async () => {
-      try {
-        const vehicles = await getPublicVehicles();
-        if (cancelled) return;
-
-        const grouped: Record<string, Fleet[]> = {
-          comfort: [],
-          business: [],
-          van: [],
-        };
-
-        for (const item of vehicles) {
-          const key = item.class;
-          if (!(key in grouped)) continue;
-
-          grouped[key].push({
-            id: item.id,
-            bookingVehicleId:
-              item.vehicleName.toLowerCase().includes("bmw")
-                ? BOOKING_VEHICLE_IDS.bmw7
-                : BOOKING_VEHICLE_IDS.mercedesS580,
-            image: item.imageUrl || "/images/dummy-car.png",
-            alt: item.vehicleName,
-            carClass: CLASS_LABELS[key],
-            carTitle: item.vehicleName,
-            description: item.description,
-            passengers: item.passengers ?? 0,
-            baggage: item.baggageCount ?? 0,
-            vehicleType: item.vehicleType || undefined,
-            modelYear: item.year || undefined,
-            transmission: item.transmission || undefined,
-            interior: item.interior || undefined,
-            amenities: item.amenities ?? [],
-          });
-        }
-
-        setFleetGroups(grouped);
-      } catch {
-        if (!cancelled) {
-          setFleetGroups({
-            comfort: [],
-            business: [],
-            van: [],
-          });
-        }
-      }
+  const fleetGroups = useMemo(() => {
+    const grouped: Record<string, Fleet[]> = {
+      comfort: [],
+      business: [],
+      van: [],
     };
 
-    void loadVehicles();
+    for (const item of vehicles) {
+      const key = item.class;
+      if (!(key in grouped)) continue;
 
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+      grouped[key].push({
+        id: item.id,
+        bookingVehicleId:
+          item.vehicleName.toLowerCase().includes("bmw")
+            ? BOOKING_VEHICLE_IDS.bmw7
+            : BOOKING_VEHICLE_IDS.mercedesS580,
+        image: item.imageUrl || "/images/dummy-car.png",
+        alt: item.vehicleName,
+        carClass: CLASS_LABELS[key],
+        carTitle: item.vehicleName,
+        description: item.description,
+        passengers: item.passengers ?? 0,
+        baggage: item.baggageCount ?? 0,
+        vehicleType: item.vehicleType || undefined,
+        modelYear: item.year || undefined,
+        transmission: item.transmission || undefined,
+        interior: item.interior || undefined,
+        amenities: item.amenities ?? [],
+      });
+    }
+
+    return grouped;
+  }, [vehicles]);
 
   const hasAnyVehicles = useMemo(
     () => FLEET_ORDER.some((key) => (fleetGroups[key] ?? []).length > 0),

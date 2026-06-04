@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useMemo, useRef, useState } from "react";
 import SelectWithError from "@/src/components/SelectWithError";
-import { BOOKING_VEHICLE_OPTIONS } from "@/src/features/FormSection/data/bookingVehicles";
 import { getPrice } from "@/src/api/price";
 import { hourlyDurationMinutes } from "@/src/features/FormSection/utils/hourlyDuration";
+import { buildVehicleOptions } from "@/src/features/FormSection/utils/vehicleOptions";
+import { useVehiclesStore } from "@/src/store/vehiclesStore";
 import { useContent } from "@/src/providers/LocaleProvider";
 import type { FormStepProps } from "../types";
 
@@ -14,7 +15,12 @@ export const VehicleStep: FC<FormStepProps> = ({
   handleFocus,
 }) => {
   const { bookingForm: t } = useContent();
+  const vehicles = useVehiclesStore((s) => s.vehicles);
+  const vehiclesStatus = useVehiclesStore((s) => s.status);
+  const fetchVehicles = useVehiclesStore((s) => s.fetchVehicles);
+
   const selectedVehicleId = (getValue("car", false) as string) || "";
+  const carType = (getValue("carType", false) as string) || "";
   const tripType = (getValue("tripType", false) as string) || "";
   const fromLat = (getValue("fromLat", false) as string) || "";
   const fromLng = (getValue("fromLng", false) as string) || "";
@@ -28,6 +34,30 @@ export const VehicleStep: FC<FormStepProps> = ({
   const distanceKm = (getValue("distanceKm", false) as string) || "";
   const [isLoadingPrice, setIsLoadingPrice] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    void fetchVehicles();
+  }, [fetchVehicles]);
+
+  const vehicleOptions = useMemo(
+    () => buildVehicleOptions(vehicles, carType),
+    [vehicles, carType],
+  );
+
+  useEffect(() => {
+    if (
+      selectedVehicleId &&
+      vehicleOptions.length > 0 &&
+      !vehicleOptions.some((option) => option.value === selectedVehicleId)
+    ) {
+      setValue("car", "");
+      setValue("price", "");
+      setValue("distanceKm", "");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [vehicleOptions, selectedVehicleId]);
+
+  const vehiclesLoading = vehiclesStatus === "loading";
 
   const canQuote = useMemo(() => {
     if (!selectedVehicleId) return false;
@@ -140,8 +170,15 @@ export const VehicleStep: FC<FormStepProps> = ({
           <SelectWithError
             name="car"
             label={t.vehicle.car.label}
-            placeholder={t.vehicle.car.placeholder}
-            options={[...BOOKING_VEHICLE_OPTIONS]}
+            placeholder={
+              vehiclesLoading
+                ? t.vehicle.carLoading
+                : vehicleOptions.length === 0
+                  ? t.vehicle.carEmpty
+                  : t.vehicle.car.placeholder
+            }
+            options={vehicleOptions}
+            disabled={vehiclesLoading || vehicleOptions.length === 0}
             value={selectedVehicleId}
             onChange={(e) => {
               setValue("car", e.target.value);
