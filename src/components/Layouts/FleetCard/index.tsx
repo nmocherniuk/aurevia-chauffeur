@@ -76,21 +76,23 @@ const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         />
-        <CarouselArrows
-          onPrev={goPrev}
-          onNext={goNext}
-          prevDisabled={currentIndex === 0}
-          nextDisabled={currentIndex === cars.length - 1}
-          prevLabel="Previous car"
-          nextLabel="Next car"
-        >
-          <CarouselDots
-            total={cars.length}
-            currentIndex={currentIndex}
-            onGoTo={goTo}
-            itemLabel={(i) => `Car ${i + 1}`}
-          />
-        </CarouselArrows>
+        {cars.length > 1 ? (
+          <CarouselArrows
+            onPrev={goPrev}
+            onNext={goNext}
+            prevDisabled={currentIndex === 0}
+            nextDisabled={currentIndex === cars.length - 1}
+            prevLabel="Previous car"
+            nextLabel="Next car"
+          >
+            <CarouselDots
+              total={cars.length}
+              currentIndex={currentIndex}
+              onGoTo={goTo}
+              itemLabel={(i) => `Car ${i + 1}`}
+            />
+          </CarouselArrows>
+        ) : null}
       </div>
       <FleetCardContent
         classLabel={classLabel}
