@@ -111,11 +111,16 @@ export const VehicleStep: FC<FormStepProps> = ({
   ]);
 
   useEffect(() => {
+    setValue("priceLoading", isLoadingPrice);
+  }, [isLoadingPrice, setValue]);
+
+  useEffect(() => {
     abortRef.current?.abort();
     abortRef.current = null;
 
     if (!canQuote) {
       setIsLoadingPrice(false);
+      setValue("priceLoading", false);
       if (price) setValue("price", "");
       if (distanceKm) setValue("distanceKm", "");
       return;
@@ -236,6 +241,14 @@ export const VehicleStep: FC<FormStepProps> = ({
             )}
           </span>
           <span className="text-sm font-light text-text-primary">{priceHint}</span>
+          {errors["price"] ? (
+            <span
+              className="text-xs text-text-error text-center"
+              role="alert"
+            >
+              {errors["price"]}
+            </span>
+          ) : null}
           {tripType === "one_way" && distanceKm ? (
             <span className="text-xs font-light text-white/90">
               {distanceKm} km

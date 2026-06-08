@@ -1,5 +1,6 @@
 export const FORM_STEP_COUNT = 4;
 export const LAST_STEP_INDEX = FORM_STEP_COUNT - 1;
+export const VEHICLE_STEP_INDEX = 1;
 
 export const SUMMARY_DATE_FORMAT = "D MMMM YYYY, HH:mm";
 

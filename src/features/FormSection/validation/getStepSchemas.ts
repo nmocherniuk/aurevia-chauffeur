@@ -63,6 +63,7 @@ export function getStepSchemas(v: BookingValidation): StepSchema[] {
   const vehicleSchema: StepSchema = yup.object({
     carType: yup.string().required(v.carTypeRequired),
     car: yup.string().required(v.carRequired),
+    price: yup.string().required(v.priceRequired),
   });
 
   const passengerSchema: StepSchema = yup.object({

@@ -15,7 +15,7 @@ import type { FormValues } from "./types";
 import type { FormStepProps } from "./components/steps/types";
 import { BookingStatus, createBooking } from "@/src/api/booking";
 import dayjs from "@/src/lib/dayjs";
-import { mapTripTypeToApi, SERVICE_TZ } from "./constants";
+import { mapTripTypeToApi, SERVICE_TZ, VEHICLE_STEP_INDEX } from "./constants";
 import { hourlyDurationMinutes } from "./utils/hourlyDuration";
 import {
   BookingSuccessView,
@@ -235,6 +235,16 @@ const FormSection: FC = () => {
                 );
               }
             }
+            const priceErr = (errors as Record<string, unknown>).price;
+            errorsRecord.price =
+              submitCount > 0 && typeof priceErr === "string"
+                ? priceErr
+                : getError("price", errors, touched);
+
+            const isVehicleStepAwaitingPrice =
+              activeStepIndex === VEHICLE_STEP_INDEX &&
+              (Boolean(values.priceLoading) ||
+                !String(values.price ?? "").trim());
 
             const stepProps: FormStepProps = {
               getValue: (name: string, isCheckbox: boolean) => {
@@ -293,7 +303,7 @@ const FormSection: FC = () => {
                       type="submit"
                       variant="primary"
                       withArrow={false}
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || isVehicleStepAwaitingPrice}
                       className="sm:w-[220px]"
                     >
                       {isSubmitting && activeStepIndex === lastStepIndex

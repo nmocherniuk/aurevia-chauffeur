@@ -85,6 +85,7 @@ export const bookingFormContent = {
     endTimeAfterStart: "End time must be after start time",
     carTypeRequired: "Vehicle class is required",
     carRequired: "Vehicle is required",
+    priceRequired: "Please wait for the price calculation before continuing",
     firstNameRequired: "First name is required",
     lastNameRequired: "Last name is required",
     emailRequired: "Email is required",
