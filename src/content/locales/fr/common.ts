@@ -40,7 +40,7 @@ export const commonContent = {
 
   footer: {
     tagline:
-      "Services premium de transport privé et de sécurité, pensés pour la discrétion, la fiabilité et l'exigence.",
+      "Solutions premium de mobilité et de sécurité, pensés pour la discrétion, la fiabilité et l'exigence.",
     copyright: "© 2026 Riviera Prime. Tous droits réservés",
     privacy: "Confidentialité",
     terms: "Conditions",

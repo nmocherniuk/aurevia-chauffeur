@@ -59,7 +59,7 @@ export function createSecurityContent(locale: "fr" | "en") {
         highlights: [
           "Déplacements professionnels et personnels",
           "Discrétion et réactivité",
-          "Protection et véhicule",
+          "Protection et transport",
         ],
       },
       {
@@ -91,7 +91,7 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-4",
         image: "/services-image/security/luxury-private-residence.png",
-        title: "Event & Crowd Management",
+        title: "Sécurité Événementielle",
         description:
           "Sécurisation d'événements privés, soirées et rassemblements.",
         alt: "Gestion de sécurité pour événements privés",
@@ -104,7 +104,7 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-5",
         image: "/services-image/security/security-room-monitoring.png",
-        title: "Advanced & Specialized",
+        title: "Solutions Spécialisées",
         description:
           "Missions spécifiques nécessitant une expertise et une coordination avancées.",
         alt: "Services de sécurité privée spécialisés",

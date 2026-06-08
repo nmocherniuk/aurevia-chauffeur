@@ -59,7 +59,7 @@ export function createSecurityContent(locale: "fr" | "en") {
         highlights: [
           "Business and personal travel",
           "Discretion and responsiveness",
-          "Protection and vehicle",
+          "Protection and transport",
         ],
       },
       {
@@ -104,7 +104,7 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-5",
         image: "/services-image/security/security-room-monitoring.png",
-        title: "Advanced & Specialized",
+        title: "Specialised Solutions",
         description:
           "Specific missions requiring advanced expertise and coordination.",
         alt: "Specialised private security services",

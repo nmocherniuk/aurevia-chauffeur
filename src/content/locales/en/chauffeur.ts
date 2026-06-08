@@ -70,7 +70,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
         {
           id: "service-3",
           image: "/services-image/chauffeur-prive-luxe-interieur-mercedes.jpg",
-          title: "Business and Corporate Travel",
+          title: "Professional Travel",
           description:
             "Premium solutions for business travel and meetings.",
           alt: "Business chauffeur for professional and corporate travel",
@@ -112,9 +112,9 @@ export function createChauffeurContent(locale: "fr" | "en") {
     },
 
     transferTabs: [
-      { id: "cityToCity" as const, label: "City-to-city transfers" },
-      { id: "travelTransfers" as const, label: "Travel transfers" },
-      { id: "winterTrips" as const, label: "Winter trips" },
+      { id: "cityToCity" as const, label: "Private transfers" },
+      { id: "travelTransfers" as const, label: "Chauffeur on demand" },
+      { id: "winterTrips" as const, label: "Long distance" },
     ],
 
     popularRoutes: {

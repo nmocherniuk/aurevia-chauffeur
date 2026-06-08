@@ -62,7 +62,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
         {
           id: "service-2",
           image: "/services-image/transfert-hotel-residence-privee-chauffeur.png",
-          title: "Hotels et Private Residences",
+          title: "Hôtels et Résidences Privées",
           description:
             "Transferts discrets vers hôtels de prestige et résidences privées.",
           alt: "Chauffeur privé pour transfert vers hôtel de luxe et résidence privée",
@@ -70,7 +70,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
         {
           id: "service-3",
           image: "/services-image/chauffeur-prive-luxe-interieur-mercedes.jpg",
-          title: "Business et Corporate Travel",
+          title: "Déplacements Professionnels",
           description:
             "Solutions premium pour vos déplacements professionnels et réunions.",
           alt: "Chauffeur privé business pour déplacements professionnels et corporate travel",
@@ -112,9 +112,9 @@ export function createChauffeurContent(locale: "fr" | "en") {
     },
 
     transferTabs: [
-      { id: "cityToCity" as const, label: "Transferts de ville à ville" },
-      { id: "travelTransfers" as const, label: "Transferts de voyage" },
-      { id: "winterTrips" as const, label: "Voyages d'hiver" },
+      { id: "cityToCity" as const, label: "Transferts privés" },
+      { id: "travelTransfers" as const, label: "Chauffeur à disposition" },
+      { id: "winterTrips" as const, label: "Longue distance" },
     ],
 
     popularRoutes: {
