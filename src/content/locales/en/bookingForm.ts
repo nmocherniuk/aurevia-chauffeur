@@ -10,7 +10,7 @@ export const bookingFormContent = {
     journey: "Journey",
     vehicle: "Vehicle",
     passenger: "Passenger",
-    payment: "Payment",
+    review: "Review",
   },
   tripTypes: [
     { value: "one_way", label: "One way" },
@@ -57,11 +57,12 @@ export const bookingFormContent = {
       placeholder: "Optional notes",
     },
   },
-  payment: {
+  review: {
     journey: "Journey",
     vehicle: "Vehicle",
     passenger: "Passenger",
     total: "Total:",
+    paymentNotice: "Once your trip is confirmed, payment will be required.",
   },
   success: {
     title: "Success",

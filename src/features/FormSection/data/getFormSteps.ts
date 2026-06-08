@@ -2,7 +2,7 @@ import type { ComponentType } from "react";
 import { Location } from "@/src/components/SVGManager/Location";
 import { Vehicle } from "@/src/components/SVGManager/Vehicle";
 import { Person } from "@/src/components/SVGManager/Person";
-import { PaymentCard } from "@/src/components/SVGManager/PaymentCard";
+import { CircleCheck } from "@/src/components/SVGManager/CircleCheck";
 import type { StepIconProps } from "@/src/components/StepIndicator";
 import type {
   VehicleClassOption,
@@ -125,8 +125,8 @@ export function getFormSteps(
       ],
     },
     {
-      label: content.steps.payment,
-      icon: PaymentCard as ComponentType<StepIconProps>,
+      label: content.steps.review,
+      icon: CircleCheck as ComponentType<StepIconProps>,
       iconSize: 22,
       fields: [],
     },

@@ -110,7 +110,7 @@ export const PaymentStep: FC<FormStepProps> = ({ getValue }) => {
           <div className="flex w-full flex-row gap-5 py-4 sm:max-w-full sm:gap-x-12 md:gap-x-17 sm:gap-y-6 flex-wrap">
             <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
               <h3 className="text-sm font-medium text-text-primary">
-                {bookingForm.payment.journey}
+                {bookingForm.review.journey}
               </h3>
               <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {journeyRoute && <li>{journeyRoute}</li>}
@@ -121,7 +121,7 @@ export const PaymentStep: FC<FormStepProps> = ({ getValue }) => {
 
             <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
               <h3 className="text-sm font-medium text-text-primary">
-                {bookingForm.payment.vehicle}
+                {bookingForm.review.vehicle}
               </h3>
               <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {carTypeLabel && <li>{carTypeLabel}</li>}
@@ -131,7 +131,7 @@ export const PaymentStep: FC<FormStepProps> = ({ getValue }) => {
 
             <section className="flex min-w-0 w-full flex-col gap-2 sm:w-auto sm:shrink-0">
               <h3 className="text-sm font-medium text-text-primary">
-                {bookingForm.payment.passenger}
+                {bookingForm.review.passenger}
               </h3>
               <ul className="flex flex-col gap-1 text-sm font-light text-text-secondary">
                 {passengerName && <li>{passengerName}</li>}
@@ -142,12 +142,15 @@ export const PaymentStep: FC<FormStepProps> = ({ getValue }) => {
           </div>
         </div>
       ) : null}
-      <div className="flex items-center justify-between pt-6 pb-1">
+      <div className="flex flex-col gap-3 pt-6 pb-1">
         <p className="text-xl font-medium text-text-primary">
-          {bookingForm.payment.total}{" "}
+          {bookingForm.review.total}{" "}
           <span className="text-xl font-semibold text-primary">
             {totalPrice === "—" ? "—" : `€${totalPrice}`}
           </span>
+        </p>
+        <p className="text-sm font-light leading-relaxed text-text-primary">
+          {bookingForm.review.paymentNotice}
         </p>
       </div>
     </div>

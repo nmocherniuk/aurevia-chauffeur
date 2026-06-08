@@ -12,7 +12,7 @@ export const bookingFormContent = {
     journey: "Trajet",
     vehicle: "Véhicule",
     passenger: "Passager",
-    payment: "Paiement",
+    review: "Vérification",
   },
   tripTypes: [
     { value: "one_way", label: "Aller simple" },
@@ -65,11 +65,13 @@ export const bookingFormContent = {
       placeholder: "Notes optionnelles",
     },
   },
-  payment: {
+  review: {
     journey: "Trajet",
     vehicle: "Véhicule",
     passenger: "Passager",
     total: "Total :",
+    paymentNotice:
+      "Une fois votre trajet confirmé, le paiement sera demandé.",
   },
   success: {
     title: "Succès",
