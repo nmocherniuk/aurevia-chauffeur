@@ -1,12 +1,17 @@
 "use client";
 
 import React, { FC, memo, useState, useCallback, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Fleet } from "@/src/features/FleetSection/data";
 import {
   notifyFleetBookingPrefillReady,
   queueFleetBookingPrefill,
 } from "@/src/features/FleetSection/utils/fleetBookingPrefill";
+import { buildFleetBookingPrefill } from "@/src/components/Layouts/FleetCard/utils/buildFleetBookingPrefill";
+import { getRoutes } from "@/src/config/routes";
+import { pathWithoutLocaleFromHref } from "@/src/i18n/paths";
+import { scrollToBookingFormSmoothAfterNav } from "@/src/lib/scrollToBookingForm";
+import { useLocale } from "@/src/providers/LocaleProvider";
 import { useFleetCarousel } from "../../../hooks/useFleetCarousel";
 import { FleetCardImage } from "./components/FleetCardImage";
 import { CarouselArrows } from "@/src/components/CarouselArrows";
@@ -21,6 +26,9 @@ interface FleetCardProps {
 
 const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = useLocale();
+  const driverPath = getRoutes(locale).chauffeur.index;
   const {
     currentIndex,
     car,
@@ -44,22 +52,36 @@ const FleetCardComponent: FC<FleetCardProps> = ({ cars, classLabel }) => {
     setModalOpen(false);
   }, []);
 
+  const startFleetBooking = useCallback(
+    (selectedCar: Fleet) => {
+      queueFleetBookingPrefill(buildFleetBookingPrefill(selectedCar));
+      const onDriverPage = pathWithoutLocaleFromHref(pathname) === "/driver";
+
+      if (onDriverPage) {
+        notifyFleetBookingPrefillReady();
+        scrollToBookingFormSmoothAfterNav();
+        return;
+      }
+
+      router.push(driverPath, { scroll: false });
+      notifyFleetBookingPrefillReady();
+    },
+    [driverPath, pathname, router],
+  );
+
   const handleModalCloseComplete = useCallback(() => {
     const fleetId = pendingBookNowFleetId.current;
     pendingBookNowFleetId.current = null;
     if (fleetId) {
-      queueFleetBookingPrefill(fleetId);
-      router.push("/driver", { scroll: false });
-      notifyFleetBookingPrefillReady();
+      const selectedCar = cars.find((item) => item.id === fleetId);
+      if (selectedCar) startFleetBooking(selectedCar);
     }
     setModalCar(null);
-  }, [router]);
+  }, [cars, startFleetBooking]);
 
   const handleBookNow = useCallback(() => {
-    queueFleetBookingPrefill(car.id);
-    router.push("/driver", { scroll: false });
-    notifyFleetBookingPrefillReady();
-  }, [car.id, router]);
+    startFleetBooking(car);
+  }, [car, startFleetBooking]);
 
   const handleModalBookNow = useCallback(() => {
     if (!modalCar) return;

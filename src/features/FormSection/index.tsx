@@ -68,14 +68,9 @@ const FormSection: FC = () => {
 
   useEffect(() => {
     function applyPrefillFromSession(): void {
-      const fleetId = consumeFleetBookingPrefill();
-      if (!fleetId) return;
-      const merged = applyFleetPrefillToFormValues(
-        getInitialFormValues(),
-        fleetId,
-      );
-      if (!merged) return;
-      setInitialValues(merged);
+      const prefill = consumeFleetBookingPrefill();
+      if (!prefill) return;
+      setInitialValues(applyFleetPrefillToFormValues(getInitialFormValues(), prefill));
       scrollToBookingFormSmoothAfterNav();
     }
 

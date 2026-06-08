@@ -7,31 +7,53 @@ export const FLEET_BOOKING_PREFILL_EVENT = "Riviera Prime-fleet-booking-prefill"
 
 export type FleetCategoryKey = keyof typeof fleets;
 
+export type FleetBookingPrefill = {
+  vehicleId: string;
+  carType: "comfort" | "business" | "van";
+};
+
 const CATEGORY_TO_FORM_CAR_TYPE: Record<
   FleetCategoryKey,
-  "comfort" | "business" | "van"
+  FleetBookingPrefill["carType"]
 > = {
   comfort: "comfort",
   business: "business",
   van: "van",
 };
 
-/** Передає id авто у форму на `/driver` без query у посиланні. */
-export function queueFleetBookingPrefill(fleetCarId: string): void {
+/** Передає вибране авто у форму на `/driver` без query у посиланні. */
+export function queueFleetBookingPrefill(prefill: FleetBookingPrefill): void {
   if (typeof sessionStorage === "undefined") return;
   try {
-    sessionStorage.setItem(FLEET_PREFILL_SESSION_KEY, fleetCarId);
+    sessionStorage.setItem(FLEET_PREFILL_SESSION_KEY, JSON.stringify(prefill));
   } catch {
     /* private mode / quota */
   }
 }
 
-export function consumeFleetBookingPrefill(): string | null {
+export function consumeFleetBookingPrefill(): FleetBookingPrefill | null {
   if (typeof sessionStorage === "undefined") return null;
   try {
-    const v = sessionStorage.getItem(FLEET_PREFILL_SESSION_KEY);
-    if (v) sessionStorage.removeItem(FLEET_PREFILL_SESSION_KEY);
-    return v;
+    const raw = sessionStorage.getItem(FLEET_PREFILL_SESSION_KEY);
+    if (!raw) return null;
+    sessionStorage.removeItem(FLEET_PREFILL_SESSION_KEY);
+
+    try {
+      const parsed = JSON.parse(raw) as Partial<FleetBookingPrefill>;
+      if (parsed.vehicleId && parsed.carType) {
+        return {
+          vehicleId: parsed.vehicleId,
+          carType: parsed.carType,
+        };
+      }
+    } catch {
+      /* legacy: plain fleet card id string */
+    }
+
+    const legacy = getFleetFormPrefill(raw);
+    return legacy
+      ? { vehicleId: legacy.car, carType: legacy.carType }
+      : null;
   } catch {
     return null;
   }
@@ -55,9 +77,10 @@ export function findFleetCarById(
   return null;
 }
 
+/** @deprecated Legacy static fleet catalog lookup. */
 export function getFleetFormPrefill(fleetCarId: string): {
   car: string;
-  carType: "comfort" | "business" | "van";
+  carType: FleetBookingPrefill["carType"];
 } | null {
   const found = findFleetCarById(fleetCarId);
   if (!found) return null;

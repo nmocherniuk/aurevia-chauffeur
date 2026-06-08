@@ -1,9 +1,13 @@
 import { BOOKING_VEHICLE_IDS } from "@/src/features/FormSection/data/bookingVehicles";
 
+export type FleetFormCarType = "comfort" | "business" | "van";
+
 export interface Fleet {
   id: string;
   /** UUID каталогу авто для ціни / API бронювання (опції поля «Car» у формі). */
   bookingVehicleId: string;
+  /** Значення поля «Type de véhicule» у формі бронювання. */
+  formCarType: FleetFormCarType;
   /** Головне зображення (використовується в картці та fallback для каруселі). */
   image: string;
   /** Додаткові фото для каруселі в модалці. Якщо не задано, використовується лише image. */
@@ -31,6 +35,7 @@ export const fleets: Record<string, Fleet[]> = {
     {
       id: "fleet-comfort-1",
       bookingVehicleId: BOOKING_VEHICLE_IDS.mercedesS580,
+      formCarType: "comfort",
       image: "/images/dummy-car.png",
       images: ["/images/dummy-car.png", "/images/dummy-car.png", "/images/dummy-car.png"],
       alt: "Alt 1",
@@ -49,6 +54,7 @@ export const fleets: Record<string, Fleet[]> = {
     {
       id: "fleet-comfort-2",
       bookingVehicleId: BOOKING_VEHICLE_IDS.bmw7,
+      formCarType: "comfort",
       image: "/images/dummy-car.png",
       alt: "Alt 2",
       carClass: "Business",
@@ -61,6 +67,7 @@ export const fleets: Record<string, Fleet[]> = {
     {
       id: "fleet-comfort-3",
       bookingVehicleId: BOOKING_VEHICLE_IDS.bmw7,
+      formCarType: "comfort",
       image: "/images/dummy-car.png",
       alt: "Alt 3",
       carClass: "Van",
@@ -75,6 +82,7 @@ export const fleets: Record<string, Fleet[]> = {
     {
       id: "fleet-business-1",
       bookingVehicleId: BOOKING_VEHICLE_IDS.mercedesS580,
+      formCarType: "business",
       image: "/images/dummy-car.png",
       alt: "Alt 1",
       carClass: "Comfort",
@@ -87,6 +95,7 @@ export const fleets: Record<string, Fleet[]> = {
     {
       id: "fleet-business-2",
       bookingVehicleId: BOOKING_VEHICLE_IDS.bmw7,
+      formCarType: "business",
       image: "/images/dummy-car.png",
       alt: "Alt 2",
       carClass: "Business",
@@ -99,6 +108,7 @@ export const fleets: Record<string, Fleet[]> = {
     {
       id: "fleet-business-3",
       bookingVehicleId: BOOKING_VEHICLE_IDS.bmw7,
+      formCarType: "business",
       image: "/images/dummy-car.png",
       alt: "Alt 3",
       carClass: "Van",
@@ -113,6 +123,7 @@ export const fleets: Record<string, Fleet[]> = {
     {
       id: "fleet-van-1",
       bookingVehicleId: BOOKING_VEHICLE_IDS.mercedesS580,
+      formCarType: "van",
       image: "/images/dummy-car.png",
       alt: "Alt 1",
       carClass: "Comfort",
@@ -125,6 +136,7 @@ export const fleets: Record<string, Fleet[]> = {
     {
       id: "fleet-van-2",
       bookingVehicleId: BOOKING_VEHICLE_IDS.bmw7,
+      formCarType: "van",
       image: "/images/dummy-car.png",
       alt: "Alt 2",
       carClass: "Business",
@@ -137,6 +149,7 @@ export const fleets: Record<string, Fleet[]> = {
     {
       id: "fleet-van-3",
       bookingVehicleId: BOOKING_VEHICLE_IDS.bmw7,
+      formCarType: "van",
       image: "/images/dummy-car.png",
       alt: "Alt 3",
       carClass: "Van",

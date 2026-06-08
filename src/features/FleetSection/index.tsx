@@ -4,7 +4,6 @@ import React, { FC, useEffect, useMemo } from "react";
 import FleetCard from "@/src/components/Layouts/FleetCard";
 import { FleetEmptyState } from "@/src/features/FleetSection/components/FleetEmptyState";
 import { type Fleet } from "@/src/features/FleetSection/data";
-import { BOOKING_VEHICLE_IDS } from "@/src/features/FormSection/data/bookingVehicles";
 import { useContent } from "@/src/providers/LocaleProvider";
 import { useVehiclesStore } from "@/src/store/vehiclesStore";
 
@@ -43,10 +42,8 @@ const FleetSection: FC = () => {
 
       grouped[key].push({
         id: item.id,
-        bookingVehicleId:
-          item.vehicleName.toLowerCase().includes("bmw")
-            ? BOOKING_VEHICLE_IDS.bmw7
-            : BOOKING_VEHICLE_IDS.mercedesS580,
+        bookingVehicleId: item.id,
+        formCarType: key,
         image: item.imageUrl || "/images/dummy-car.png",
         alt: item.vehicleName,
         carClass: CLASS_LABELS[key],
