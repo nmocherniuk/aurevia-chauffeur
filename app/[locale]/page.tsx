@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function Home({ params }: PageProps) {
   const { locale: localeParam } = await params;
   const locale = isLocale(localeParam) ? localeParam : "fr";
-  const { home: homeContent } = getContent(locale);
+  const { home: homeContent, common: commonContent } = getContent(locale);
 
   return (
     <Fragment>
@@ -126,7 +126,10 @@ export default async function Home({ params }: PageProps) {
           </div>
         </section>
         <div className="flex flex-col gap-12">
-          <FAQSection items={homeContent.faqItems} />
+          <FAQSection
+            title={commonContent.sectionTitles.faq}
+            items={homeContent.faqItems}
+          />
           <CTABlock
             title={homeContent.partnerCta.title}
             description={homeContent.partnerCta.description}

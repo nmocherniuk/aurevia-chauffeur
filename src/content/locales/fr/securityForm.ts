@@ -2,7 +2,7 @@ export const securityFormContent = {
   section: {
     title: "Demande confidentielle",
     subtitle:
-      "Expliquez votre besoin. Votre demande sera étudiée avec discrétion par notre équipe.",
+      "Expliquez votre besoin. Votre demande sera étudiée avec discrétion par l'équipe de coordination.",
     imageAlt: "Espace de coordination sécurité",
     summaryAriaLabel: "Résumé de la demande",
     submitError:
@@ -165,7 +165,7 @@ export const securityFormContent = {
   success: {
     title: "Demande reçue",
     message:
-      "Merci. Notre équipe de coordination analysera votre demande et vous contactera personnellement pour affiner les détails. Il ne s'agit pas d'une réservation instantanée : chaque mission est confirmée avec discrétion et rigueur.",
+      "Merci. L'équipe de coordination analysera votre demande et vous contactera personnellement pour affiner les détails. Il ne s'agit pas d'une réservation instantanée : chaque mission est confirmée avec discrétion et rigueur.",
     button: "Continuer",
   },
   validation: {

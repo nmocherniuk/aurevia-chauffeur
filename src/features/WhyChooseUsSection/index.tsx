@@ -9,12 +9,13 @@ export type WhyChooseUsItem = {
 };
 
 const WhyChooseUsSection: FC<{
+  title: string;
   items: ReadonlyArray<WhyChooseUsItem>;
-}> = ({ items }) => {
+}> = ({ title, items }) => {
   return (
     <section id="pourquoi-nous" className="w-full">
       <h2 className="font-benzin text-white text-center text-2xl mb-10 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-11">
-        Pourquoi une clientèle exigeante nous fait confiance
+        {title}
       </h2>
       <div className="flex flex-col gap-5 md:grid lg:grid-cols-2 ">
         {items.map(({ id, icon: Icon, title, description }) => (

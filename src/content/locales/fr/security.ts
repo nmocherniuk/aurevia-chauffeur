@@ -30,7 +30,7 @@ export function createSecurityContent(locale: "fr" | "en") {
         icon: UserCheck,
         title: "Des agents sélectionnés avec exigence",
         description:
-          "Nous coordonnons l'intervention de professionnels fiables, expérimentés et habitués aux environnements sensibles ou haut de gamme.",
+          "L'intervention de professionnels fiables, expérimentés et habitués aux environnements sensibles ou haut de gamme est coordonnée avec exigence.",
       },
       {
         id: "why-choose-us-3",
@@ -44,7 +44,7 @@ export function createSecurityContent(locale: "fr" | "en") {
         icon: Car,
         title: "Sécurité et transport coordonnés",
         description:
-          "Lorsque la situation l'exige, nous pouvons coordonner une solution associant protection, accompagnement et transport privé avec chauffeur.",
+          "Lorsque la situation l'exige, une solution associant protection, accompagnement et transport privé avec chauffeur peut être coordonnée.",
       },
     ],
 
@@ -119,7 +119,7 @@ export function createSecurityContent(locale: "fr" | "en") {
     securityCta: {
       title: "Besoin d'un dispositif de sécurité adapté ?",
       description:
-        "Décrivez votre besoin dans le formulaire. Notre équipe analysera votre demande et vous recontactera rapidement.",
+        "Décrivez votre besoin dans le formulaire. Votre demande sera analysée et un retour personnalisé vous sera adressé rapidement.",
       buttonText: commonContent.buttons.sendRequest,
       buttonLink: routes.security.book,
     },
@@ -129,19 +129,19 @@ export function createSecurityContent(locale: "fr" | "en") {
         id: "security-step-1",
         title: "Envoyer votre demande",
         description:
-          "Renseignez les informations essentielles via notre formulaire sécurisé.",
+          "Renseignez les informations essentielles via le formulaire sécurisé.",
       },
       {
         id: "security-step-2",
         title: "Analyse de votre besoin",
         description:
-          "Notre équipe étudie votre demande, le contexte et les contraintes de la mission.",
+          "La demande, le contexte et les contraintes de la mission sont étudiés avec attention.",
       },
       {
         id: "security-step-3",
         title: "Retour personnalisé",
         description:
-          "Nous vous recontactons avec les informations nécessaires et les prochaines étapes.",
+          "Un retour personnalisé vous est adressé avec les informations nécessaires et les prochaines étapes.",
       },
       {
         id: "security-step-4",
@@ -156,13 +156,13 @@ export function createSecurityContent(locale: "fr" | "en") {
         id: "security-faq-1",
         question: "Comment envoyer une demande de sécurité ?",
         answer:
-          "Remplissez le formulaire avec les informations nécessaires : type de mission, lieu, date, horaires, nombre d'agents souhaité et besoins spécifiques. Votre demande est ensuite transmise à notre équipe pour traitement.",
+          "Remplissez le formulaire avec les informations nécessaires : type de mission, lieu, date, horaires, nombre d'agents souhaité et besoins spécifiques. Votre demande est ensuite prise en charge pour traitement.",
       },
       {
         id: "security-faq-2",
         question: "La demande est-elle confirmée automatiquement ?",
         answer:
-          "Non, l'envoi du formulaire ne confirme pas automatiquement la mission. Notre équipe analyse votre demande, vérifie les informations transmises et revient vers vous avec une réponse adaptée.",
+          "Non, l'envoi du formulaire ne confirme pas automatiquement la mission. La demande est analysée, les informations transmises sont vérifiées, puis une réponse adaptée vous est adressée.",
       },
       {
         id: "security-faq-3",
@@ -174,14 +174,14 @@ export function createSecurityContent(locale: "fr" | "en") {
         id: "security-faq-4",
         question: "Quand vais-je recevoir une réponse ?",
         answer:
-          "Après l'envoi du formulaire, votre demande est étudiée par notre équipe. Nous vous recontactons ensuite avec les informations nécessaires, les disponibilités possibles et les prochaines étapes.",
+          "Après l'envoi du formulaire, votre demande est étudiée. Un retour personnalisé vous est ensuite adressé avec les informations nécessaires, les disponibilités possibles et les prochaines étapes.",
       },
     ],
 
     faqContact: {
       title: "Besoin d'une précision avant votre demande ?",
       description:
-        "Indiquez vos besoins spécifiques dans le formulaire. Nous les analyserons avec votre demande.",
+        "Indiquez vos besoins spécifiques dans le formulaire. Ils seront pris en compte avec votre demande.",
     },
   };
 }

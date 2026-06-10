@@ -76,7 +76,7 @@ export const bookingFormContent = {
   success: {
     title: "Succès",
     message:
-      "Votre demande a bien été enregistrée. Nous vous confirmerons les détails de votre transfert sous peu.",
+      "Votre demande a bien été enregistrée. Les détails de votre transfert vous seront confirmés sous peu.",
     button: "Continuer",
   },
   summary: {

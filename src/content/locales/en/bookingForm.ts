@@ -67,7 +67,7 @@ export const bookingFormContent = {
   success: {
     title: "Success",
     message:
-      "Your request has been received. We will confirm your transfer details shortly.",
+      "Your request has been received. Your transfer details will be confirmed shortly.",
     button: "Continue",
   },
   summary: {

@@ -99,7 +99,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
       empty: {
         title: "No vehicles available at the moment",
         description:
-          "Our fleet is being updated. Contact us or use the booking form to tell us what you need.",
+          "The fleet is being updated. Use the booking form or get in touch using the contact details provided.",
       },
     },
 
@@ -247,7 +247,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
         id: "faq-1",
         question: "How do I book a vehicle?",
         answer:
-          "Select your preferred vehicle, enter your journey details, and submit your request. Our team checks vehicle and chauffeur availability before confirming the booking.",
+          "Select your preferred vehicle, enter your journey details, and submit your request. Vehicle and chauffeur availability is verified before the booking is confirmed.",
       },
       {
         id: "faq-2",
@@ -265,14 +265,14 @@ export function createChauffeurContent(locale: "fr" | "en") {
         id: "faq-4",
         question: "Can I choose a specific vehicle?",
         answer:
-          "Yes, you can choose a specific vehicle from those offered. Availability is confirmed after review by our team.",
+          "Yes, you can choose a specific vehicle from those offered. Availability is confirmed after review during request processing.",
       },
     ],
 
     faqContact: {
       title: "Need clarification before your request?",
       description:
-        "You can write to us directly or specify your requirements in the booking form.",
+        "You can get in touch directly or specify your requirements in the booking form.",
     },
   };
 }

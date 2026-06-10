@@ -16,8 +16,8 @@ export function createHomeContent(locale: "fr" | "en") {
     whoWeAreTitle: "Riviera Prime — L'exigence dans chaque détail",
 
     whoWeAreItems: [
-      "Riviera Prime est une plateforme premium de coordination qui met en relation ses clients avec des professionnels indépendants de confiance dans les services de chauffeur privé et de sécurité exécutive. Nous privilégions la discrétion, la fiabilité et une gestion fluide du service, depuis la première demande jusqu'à la confirmation finale.",
-      "Notre réseau repose sur des professionnels expérimentés, sélectionnés pour leur qualité de service, leur réactivité et leur capacité à intervenir dans des environnements exigeants avec un haut niveau de professionnalisme. Chaque demande est traitée avec précision afin d'assurer une coordination claire, confidentielle et adaptée à vos besoins.",
+      "Riviera Prime est une plateforme premium de coordination qui met en relation ses clients avec des professionnels indépendants de confiance dans les services de chauffeur privé et de sécurité exécutive. La plateforme privilégie la discrétion, la fiabilité et une gestion fluide du service, depuis la première demande jusqu'à la confirmation finale.",
+      "Le réseau s'appuie sur des professionnels expérimentés, sélectionnés pour leur qualité de service, leur réactivité et leur capacité à intervenir dans des environnements exigeants avec un haut niveau de professionnalisme. Chaque demande est traitée avec précision afin d'assurer une coordination claire, confidentielle et adaptée à vos besoins.",
     ] as const,
 
     servicesSectionTitle: "Choisissez votre expérience",
@@ -42,9 +42,9 @@ export function createHomeContent(locale: "fr" | "en") {
     ] as const,
 
     partnerCta: {
-      title: "Vous souhaitez devenir notre partenaire ?",
+      title: "Vous souhaitez devenir partenaire ?",
       description:
-        "Chauffeurs, agents de sécurité ou prestataires premium : contactez-nous pour présenter votre activité et rejoindre notre réseau.",
+        "Chauffeurs, agents de sécurité ou prestataires premium : prenez contact pour présenter votre activité et rejoindre le réseau Riviera Prime.",
     },
 
     faqItems: [
@@ -58,7 +58,7 @@ export function createHomeContent(locale: "fr" | "en") {
         id: "home-faq-2",
         question: "Comment fonctionne une demande de réservation ?",
         answer:
-          "Vous envoyez votre demande avec les informations nécessaires. Notre équipe vérifie ensuite la disponibilité, la faisabilité et les partenaires adaptés avant de vous confirmer la prestation.",
+          "Vous envoyez votre demande avec les informations nécessaires. La disponibilité, la faisabilité et les partenaires adaptés sont ensuite vérifiés avant confirmation de la prestation.",
       },
       {
         id: "home-faq-3",

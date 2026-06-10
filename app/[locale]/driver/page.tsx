@@ -60,7 +60,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function DriverPage({ params }: PageProps) {
   const { locale: localeParam } = await params;
   const locale = isLocale(localeParam) ? localeParam : "fr";
-  const { chauffeur: chauffeurContent } = getContent(locale);
+  const { chauffeur: chauffeurContent, common: commonContent } =
+    getContent(locale);
 
   const serviceSchema = getServiceSchema({
     locale,
@@ -86,7 +87,10 @@ export default async function DriverPage({ params }: PageProps) {
         buttonLink={chauffeurContent.heroSection.buttonLink}
       />
       <MainContainer className="flex flex-col gap-27">
-        <WhyChooseUsSection items={chauffeurContent.whyChooseUsItems} />
+        <WhyChooseUsSection
+          title={commonContent.sectionTitles.whyChooseUs}
+          items={chauffeurContent.whyChooseUsItems}
+        />
         <div className="flex flex-col gap-12">
           <ServicesSection type="chauffeur" />
           <CTABlock
@@ -100,7 +104,10 @@ export default async function DriverPage({ params }: PageProps) {
         <PopularRoutesSection />
         <FormSection />
         <div className="flex flex-col gap-12">
-          <FAQSection items={chauffeurContent.faqItems} />
+          <FAQSection
+            title={commonContent.sectionTitles.faq}
+            items={chauffeurContent.faqItems}
+          />
           <CTABlock
             title={chauffeurContent.faqContact.title}
             description={chauffeurContent.faqContact.description}

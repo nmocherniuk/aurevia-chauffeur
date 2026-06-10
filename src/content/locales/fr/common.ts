@@ -22,7 +22,7 @@ export const commonContent = {
     },
     driver: [
       { name: "Début", hash: "accueil" },
-      { name: "Pourquoi Nous", hash: "pourquoi-nous" },
+      { name: "Les atouts", hash: "pourquoi-nous" },
       { name: "Prestations", hash: "prestations" },
       { name: "Flotte", hash: "flotte" },
       { name: "Réserver", hash: "reserver" },
@@ -30,7 +30,7 @@ export const commonContent = {
     ],
     securityPage: [
       { name: "Début", hash: "accueil" },
-      { name: "Pourquoi Nous", hash: "pourquoi-nous" },
+      { name: "Les atouts", hash: "pourquoi-nous" },
       { name: "Prestations", hash: "prestations" },
       { name: "Processus", hash: "itineraires-populaires" },
       { name: "Demande", hash: "reserver" },
@@ -49,5 +49,10 @@ export const commonContent = {
     dataDeletion: "Suppression des données",
   },
 
-  servicesSectionTitle: "Nos services",
+  servicesSectionTitle: "Prestations",
+
+  sectionTitles: {
+    whyChooseUs: "Pourquoi une clientèle exigeante choisit Riviera Prime",
+    faq: "Questions fréquentes",
+  },
 };

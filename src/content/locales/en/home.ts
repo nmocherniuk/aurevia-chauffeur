@@ -16,8 +16,8 @@ export function createHomeContent(locale: "fr" | "en") {
     whoWeAreTitle: "Riviera Prime — Excellence in every detail",
 
     whoWeAreItems: [
-      "Riviera Prime is a premium coordination platform connecting clients with trusted independent professionals in private chauffeur and executive security services. We prioritise discretion, reliability, and seamless service management from the first request through to final confirmation.",
-      "Our network is built on experienced professionals selected for service quality, responsiveness, and the ability to operate in demanding environments with the highest level of professionalism. Every request is handled with precision to ensure clear, confidential coordination tailored to your needs.",
+      "Riviera Prime is a premium coordination platform connecting clients with trusted independent professionals in private chauffeur and executive security services. The platform prioritises discretion, reliability, and seamless service management from the first request through to final confirmation.",
+      "The network brings together experienced professionals selected for service quality, responsiveness, and the ability to operate in demanding environments with the highest level of professionalism. Every request is handled with precision to ensure clear, confidential coordination tailored to your needs.",
     ] as const,
 
     servicesSectionTitle: "Choose your experience",
@@ -42,9 +42,9 @@ export function createHomeContent(locale: "fr" | "en") {
     ] as const,
 
     partnerCta: {
-      title: "Interested in becoming our partner?",
+      title: "Interested in becoming a partner?",
       description:
-        "Chauffeurs, security agents, or premium providers: get in touch to introduce your services and join our network.",
+        "Chauffeurs, security agents, or premium providers: get in touch to introduce your services and join the Riviera Prime network.",
     },
 
     faqItems: [
@@ -58,7 +58,7 @@ export function createHomeContent(locale: "fr" | "en") {
         id: "home-faq-2",
         question: "How does a booking request work?",
         answer:
-          "You submit your request with the required information. Our team then checks availability, feasibility, and suitable partners before confirming the service.",
+          "You submit your request with the required information. Availability, feasibility, and suitable partners are then verified before the service is confirmed.",
       },
       {
         id: "home-faq-3",

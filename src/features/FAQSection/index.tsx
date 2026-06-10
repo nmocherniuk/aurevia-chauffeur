@@ -8,12 +8,13 @@ export type FaqItem = {
 };
 
 const FAQSection: FC<{
+  title: string;
   items: ReadonlyArray<FaqItem>;
-}> = ({ items }) => {
+}> = ({ title, items }) => {
   return (
     <section id="faq" className="w-full">
       <h2 className="font-benzin text-white text-center text-2xl mb-10 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-11">
-        Vos Questions, Nos Réponses
+        {title}
       </h2>
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         {items.map((faq) => (

@@ -2,7 +2,7 @@ export const securityFormContent = {
   section: {
     title: "Confidential request",
     subtitle:
-      "Describe your requirements. Your request will be reviewed discreetly by our team.",
+      "Describe your requirements. Your request will be reviewed discreetly by the coordination team.",
     imageAlt: "Security coordination workspace",
     summaryAriaLabel: "Request summary",
     submitError: "Something went wrong. Please try again in a moment.",
@@ -152,7 +152,7 @@ export const securityFormContent = {
   success: {
     title: "Request received",
     message:
-      "Thank you. Our coordination team will review your request and contact you personally to refine the details. This is not an instant booking: each assignment is confirmed with discretion and care.",
+      "Thank you. The coordination team will review your request and contact you personally to refine the details. This is not an instant booking: each assignment is confirmed with discretion and care.",
     button: "Continue",
   },
   validation: {

@@ -99,7 +99,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
       empty: {
         title: "Aucun véhicule disponible pour le moment",
         description:
-          "Flotte en cours de mise à jour. Contactez-nous ou utilisez le formulaire de réservation.",
+          "Flotte en cours de mise à jour. Utilisez le formulaire de réservation ou prenez contact via les coordonnées indiquées.",
       },
     },
 
@@ -247,7 +247,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
         id: "faq-1",
         question: "Comment réserver un véhicule ?",
         answer:
-          "Sélectionnez le véhicule souhaité, renseignez les informations de votre trajet, puis envoyez votre demande. Notre équipe vérifie la disponibilité du véhicule et du chauffeur avant de confirmer la réservation.",
+          "Sélectionnez le véhicule souhaité, renseignez les informations de votre trajet, puis envoyez votre demande. La disponibilité du véhicule et du chauffeur est vérifiée avant confirmation de la réservation.",
       },
       {
         id: "faq-2",
@@ -265,14 +265,14 @@ export function createChauffeurContent(locale: "fr" | "en") {
         id: "faq-4",
         question: "Puis-je choisir un véhicule précis ?",
         answer:
-          "Oui, vous pouvez choisir un véhicule spécifique parmi ceux proposés. Sa disponibilité est toutefois confirmée après vérification par notre équipe.",
+          "Oui, vous pouvez choisir un véhicule spécifique parmi ceux proposés. Sa disponibilité est toutefois confirmée après vérification lors du traitement de la demande.",
       },
     ],
 
     faqContact: {
       title: "Besoin d'une précision avant votre demande ?",
       description:
-        "Vous pouvez nous écrire directement ou indiquer vos besoins spécifiques dans le formulaire de réservation.",
+        "Vous pouvez écrire directement ou indiquer vos besoins spécifiques dans le formulaire de réservation.",
     },
   };
 }

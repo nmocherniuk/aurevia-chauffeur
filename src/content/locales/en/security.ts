@@ -30,7 +30,7 @@ export function createSecurityContent(locale: "fr" | "en") {
         icon: UserCheck,
         title: "Rigorously selected agents",
         description:
-          "We coordinate reliable, experienced professionals accustomed to sensitive and premium environments.",
+          "Reliable, experienced professionals accustomed to sensitive and premium environments are coordinated with care.",
       },
       {
         id: "why-choose-us-3",
@@ -44,7 +44,7 @@ export function createSecurityContent(locale: "fr" | "en") {
         icon: Car,
         title: "Coordinated security and transport",
         description:
-          "When required, we can coordinate a solution combining protection, escort, and private chauffeur transport.",
+          "When required, a solution combining protection, escort, and private chauffeur transport can be coordinated.",
       },
     ],
 
@@ -119,7 +119,7 @@ export function createSecurityContent(locale: "fr" | "en") {
     securityCta: {
       title: "Need a tailored security plan?",
       description:
-        "Describe your requirements in the form. Our team will review your request and get back to you promptly.",
+        "Describe your requirements in the form. Your request will be reviewed and you will receive a personalised response promptly.",
       buttonText: commonContent.buttons.sendRequest,
       buttonLink: routes.security.book,
     },
@@ -129,19 +129,19 @@ export function createSecurityContent(locale: "fr" | "en") {
         id: "security-step-1",
         title: "Submit your request",
         description:
-          "Provide essential information through our secure form.",
+          "Provide essential information through the secure form.",
       },
       {
         id: "security-step-2",
         title: "Assessment of your needs",
         description:
-          "Our team reviews your request, context, and mission constraints.",
+          "Your request, context, and mission constraints are reviewed with care.",
       },
       {
         id: "security-step-3",
         title: "Personalised response",
         description:
-          "We contact you with the necessary information and next steps.",
+          "You receive a personalised response with the necessary information and next steps.",
       },
       {
         id: "security-step-4",
@@ -156,32 +156,32 @@ export function createSecurityContent(locale: "fr" | "en") {
         id: "security-faq-1",
         question: "How do I submit a security request?",
         answer:
-          "Complete the form with the required information: mission type, location, date, schedule, number of agents required, and any specific needs. Your request is then forwarded to our team for processing.",
+          "Complete the form with the required information: mission type, location, date, schedule, number of agents required, and any specific needs. Your request is then taken forward for processing.",
       },
       {
         id: "security-faq-2",
         question: "Is the request confirmed automatically?",
         answer:
-          "No, submitting the form does not automatically confirm the mission. Our team reviews your request, verifies the information provided, and responds with a tailored answer.",
+          "No, submitting the form does not automatically confirm the mission. The request is reviewed, the information provided is verified, and a tailored response is sent to you.",
       },
       {
         id: "security-faq-3",
         question: "What information should I provide?",
         answer:
-          "We recommend indicating the service type, address or intervention area, date, schedule, number of agents required, and any specific requirements related to the mission.",
+          "It is recommended to indicate the service type, address or intervention area, date, schedule, number of agents required, and any specific requirements related to the mission.",
       },
       {
         id: "security-faq-4",
         question: "When will I receive a response?",
         answer:
-          "After submitting the form, your request is reviewed by our team. We then contact you with the necessary information, possible availability, and next steps.",
+          "After submitting the form, your request is reviewed. You then receive a personalised response with the necessary information, possible availability, and next steps.",
       },
     ],
 
     faqContact: {
       title: "Need clarification before your request?",
       description:
-        "Specify your requirements in the form. We will review them along with your request.",
+        "Specify your requirements in the form. They will be taken into account along with your request.",
     },
   };
 }

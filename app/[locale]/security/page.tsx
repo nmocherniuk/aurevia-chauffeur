@@ -59,7 +59,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function SecurityPage({ params }: PageProps) {
   const { locale: localeParam } = await params;
   const locale = isLocale(localeParam) ? localeParam : "fr";
-  const { security: securityContent } = getContent(locale);
+  const { security: securityContent, common: commonContent } =
+    getContent(locale);
 
   const serviceSchema = getServiceSchema({
     locale,
@@ -85,7 +86,10 @@ export default async function SecurityPage({ params }: PageProps) {
         buttonLink={securityContent.heroSection.buttonLink}
       />
       <MainContainer className="flex flex-col gap-27">
-        <WhyChooseUsSection items={securityContent.whyChooseUsItems} />
+        <WhyChooseUsSection
+          title={commonContent.sectionTitles.whyChooseUs}
+          items={securityContent.whyChooseUsItems}
+        />
         <div className="flex flex-col gap-12">
           <ServicesSection type="security" />
           <CTABlock
@@ -100,7 +104,10 @@ export default async function SecurityPage({ params }: PageProps) {
         />
         <SecurityFormSection />
         <div className="flex flex-col gap-12">
-          <FAQSection items={securityContent.faqItems} />
+          <FAQSection
+            title={commonContent.sectionTitles.faq}
+            items={securityContent.faqItems}
+          />
           <CTABlock
             title={securityContent.faqContact.title}
             description={securityContent.faqContact.description}
