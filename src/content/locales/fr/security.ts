@@ -124,6 +124,10 @@ export function createSecurityContent(locale: "fr" | "en") {
       buttonLink: routes.security.book,
     },
 
+    processSection: {
+      title: "Votre demande en 4 étapes",
+    },
+
     securityProcessStepsItems: [
       {
         id: "security-step-1",

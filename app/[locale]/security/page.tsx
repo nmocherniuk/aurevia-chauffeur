@@ -100,6 +100,7 @@ export default async function SecurityPage({ params }: PageProps) {
           />
         </div>
         <BookingProcessSection
+          title={securityContent.processSection.title}
           items={securityContent.securityProcessStepsItems}
         />
         <SecurityFormSection />
