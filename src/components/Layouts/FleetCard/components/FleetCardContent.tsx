@@ -20,7 +20,8 @@ export const FleetCardContent: FC<FleetCardContentProps> = ({
   onDetailsClick,
   onBookNow,
 }) => {
-  const { common: commonContent } = useContent();
+  const { common: commonContent, chauffeur } = useContent();
+  const { capacity } = chauffeur.fleet;
 
   return (
     <div
@@ -43,7 +44,7 @@ export const FleetCardContent: FC<FleetCardContentProps> = ({
             {car.passengers}
           </span>{" "}
           <span className="text-grey text-sm font-light">
-            {car.passengers > 1 ? "passengers" : "passenger"}
+            {car.passengers > 1 ? capacity.passengers : capacity.passenger}
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -52,7 +53,7 @@ export const FleetCardContent: FC<FleetCardContentProps> = ({
             {car.baggage}
           </span>{" "}
           <span className="text-grey text-sm font-light">
-            {car.baggage > 1 ? "baggages" : "baggage"}
+            {car.baggage > 1 ? capacity.bagages : capacity.baggage}
           </span>
         </div>
       </div>

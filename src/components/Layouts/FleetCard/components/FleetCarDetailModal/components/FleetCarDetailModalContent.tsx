@@ -25,7 +25,8 @@ export function FleetCarDetailModalContent({
   onBookNow,
   onAnimationComplete,
 }: FleetCarDetailModalContentProps) {
-  const { common: commonContent } = useContent();
+  const { common: commonContent, chauffeur } = useContent();
+  const { detailSpecs } = chauffeur.fleet;
 
   return (
     <motion.div
@@ -43,16 +44,17 @@ export function FleetCarDetailModalContent({
       <p className="text-base font-light text-grey mb-6">{car.description}</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 sm:gap-y-3 sm:gap-x-4 mb-6 lg:grid-cols-[auto_auto_auto] lg:gap-x-6">
-        {CAR_SPECS.map(({ id, Icon, label, getValue }) => {
+        {CAR_SPECS.map(({ id, Icon, getValue }) => {
           const value = getValue(car);
           if (value === null || value === undefined || value === "") return null;
+          const displayLabel = detailSpecs[id];
           return (
             <div key={id} className="flex items-center gap-2 min-w-0">
               <span className="flex h-6 w-6 shrink-0 items-center justify-center">
                 <Icon fill="var(--primary)" className="h-5 w-5" />
               </span>
               <div className="min-w-0">
-                <span className="text-grey text-sm font-light">{label} </span>
+                <span className="text-grey text-sm font-light">{displayLabel} </span>
                 <span className="text-text-secondary text-sm">{value}</span>
               </div>
             </div>

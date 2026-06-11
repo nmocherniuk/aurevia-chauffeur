@@ -52,13 +52,13 @@ export function createHomeContent(locale: "fr" | "en") {
         id: "home-faq-1",
         question: "What services does Riviera Prime offer?",
         answer:
-          "Riviera Prime offers premium private chauffeur and private security services for travel, events, business needs, and bespoke requests.",
+          "Riviera Prime coordinates premium private chauffeur and private security services for travel, events, business needs, and bespoke requests.",
       },
       {
         id: "home-faq-2",
         question: "How does a booking request work?",
         answer:
-          "You submit your request with the required information. Availability, feasibility, and suitable partners are then verified before the service is confirmed.",
+          "You submit your request with the required information. Availability, feasibility of the request, and identification of suitable partners are then verified before any confirmation.",
       },
       {
         id: "home-faq-3",

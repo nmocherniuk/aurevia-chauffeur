@@ -10,9 +10,9 @@ export function createChauffeurContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Riviera Prime Chauffeur\nPrivate Executive Transportation",
+      title: "Riviera Prime\nChauffeur privé et transport",
       subtitle:
-        "Premium chauffeur services designed for comfort, discretion, and precision.",
+        "Service de chauffeur privé premium conçu pour le confort, la discrétion et la précision.",
       buttonText: commonContent.buttons.reserve,
       buttonLink: routes.chauffeur.book,
     },
@@ -100,6 +100,20 @@ export function createChauffeurContent(locale: "fr" | "en") {
         title: "Aucun véhicule disponible pour le moment",
         description:
           "Flotte en cours de mise à jour. Utilisez le formulaire de réservation ou prenez contact via les coordonnées indiquées.",
+      },
+      capacity: {
+        passenger: "passager",
+        passengers: "passagers",
+        baggage: "bagage",
+        bagages: "bagages",
+      },
+      detailSpecs: {
+        passengers: "Passagers :",
+        vehicleType: "Type de véhicule :",
+        modelYear: "Année :",
+        baggage: "Bagages :",
+        transmission: "Transmission :",
+        interior: "Intérieur :",
       },
     },
 

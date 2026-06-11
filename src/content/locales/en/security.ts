@@ -10,7 +10,7 @@ export function createSecurityContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Private protection and premium security",
+      title: "Close protection and premium security",
       subtitle:
         "Riviera Prime coordinates private security services for your travel, events, sensitive locations, and specific requirements.",
       buttonText: commonContent.buttons.sendRequest,
@@ -154,9 +154,9 @@ export function createSecurityContent(locale: "fr" | "en") {
     faqItems: [
       {
         id: "security-faq-1",
-        question: "How do I submit a security request?",
+        question: "How do I make a security request?",
         answer:
-          "Complete the form with the required information: mission type, location, date, schedule, number of agents required, and any specific needs. Your request is then taken forward for processing.",
+          "Complete the form with the required information: mission type, location, date, schedule, number of agents required, and any specific needs. Your request is then taken forward and reviewed.",
       },
       {
         id: "security-faq-2",

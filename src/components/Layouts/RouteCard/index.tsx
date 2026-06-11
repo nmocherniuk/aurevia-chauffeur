@@ -11,10 +11,17 @@ interface RouteCardProps {
 
 const RouteCard: FC<RouteCardProps> = ({ route, index }) => {
   return (
-    <article aria-label={`Route ${index + 1}: ${route.from} vers ${route.to}`}>
-      <CardOutline className="flex flex-col gap-2 p-5 sm:flex-row sm:justify-between lg:flex-col lg:gap-1.5 xl:flex-row xl:justify-between">
+    <article
+      className="min-w-0"
+      aria-label={`Route ${index + 1}: ${route.from} vers ${route.to}`}
+    >
+      <CardOutline className="flex w-full min-w-0 flex-col items-start gap-2 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 lg:flex-col lg:items-start lg:gap-1.5 xl:flex-row xl:items-center xl:justify-between">
         <RouteCardRoute from={route.from} to={route.to} index={index} />
-        <RouteCardMeta duration={route.duration} distance={route.distance} />
+        <RouteCardMeta
+          className="shrink-0"
+          duration={route.duration}
+          distance={route.distance}
+        />
       </CardOutline>
     </article>
   );

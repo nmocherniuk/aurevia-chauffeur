@@ -19,7 +19,7 @@ export const bookingFormContent = {
     { value: "hourly", label: "À l'heure" },
   ],
   vehicleClasses: [
-    { value: "comfort", label: "Comfort" },
+    { value: "comfort", label: "Confort" },
     { value: "business", label: "Business" },
     { value: "van", label: "Van" },
   ],

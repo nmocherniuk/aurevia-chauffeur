@@ -12,14 +12,15 @@ const FLEET_ORDER: ("comfort" | "business" | "van")[] = [
   "business",
   "van",
 ];
-const CLASS_LABELS: Record<string, string> = {
-  comfort: "Comfort",
-  business: "Business",
-  van: "Van",
-};
-
 const FleetSection: FC = () => {
-  const { chauffeur } = useContent();
+  const { chauffeur, bookingForm } = useContent();
+  const classLabels = useMemo(
+    () =>
+      Object.fromEntries(
+        bookingForm.vehicleClasses.map(({ value, label }) => [value, label]),
+      ) as Record<string, string>,
+    [bookingForm.vehicleClasses],
+  );
   const { fleet: fleetCopy } = chauffeur;
   const vehicles = useVehiclesStore((s) => s.vehicles);
   const vehiclesStatus = useVehiclesStore((s) => s.status);
@@ -46,7 +47,7 @@ const FleetSection: FC = () => {
         formCarType: key,
         image: item.imageUrl || "/images/dummy-car.png",
         alt: item.vehicleName,
-        carClass: CLASS_LABELS[key],
+        carClass: classLabels[key] ?? key,
         carTitle: item.vehicleName,
         description: item.description,
         passengers: item.passengers ?? 0,
@@ -60,7 +61,7 @@ const FleetSection: FC = () => {
     }
 
     return grouped;
-  }, [vehicles]);
+  }, [vehicles, classLabels]);
 
   const hasAnyVehicles = useMemo(
     () => FLEET_ORDER.some((key) => (fleetGroups[key] ?? []).length > 0),
@@ -89,7 +90,7 @@ const FleetSection: FC = () => {
                   <FleetCard
                     key={key}
                     cars={fleetGroups[key]}
-                    classLabel={CLASS_LABELS[key]}
+                    classLabel={classLabels[key] ?? key}
                   />
                 ) : null,
               )

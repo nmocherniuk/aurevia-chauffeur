@@ -10,7 +10,7 @@ export function createSecurityContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Protection privée et sécurité haut de gamme",
+      title: "Protection rapprochée et sécurité haut de gamme",
       subtitle:
         "Riviera Prime coordonne des prestations de sécurité privée pour vos déplacements, événements, lieux sensibles et besoins spécifiques.",
       buttonText: commonContent.buttons.sendRequest,
@@ -28,7 +28,7 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "why-choose-us-2",
         icon: UserCheck,
-        title: "Des agents sélectionnés avec exigence",
+        title: "Des professionnels sélectionnés avec exigence",
         description:
           "L'intervention de professionnels fiables, expérimentés et habitués aux environnements sensibles ou haut de gamme est coordonnée avec exigence.",
       },
@@ -154,9 +154,9 @@ export function createSecurityContent(locale: "fr" | "en") {
     faqItems: [
       {
         id: "security-faq-1",
-        question: "Comment envoyer une demande de sécurité ?",
+        question: "Comment formuler une demande de sécurité ?",
         answer:
-          "Remplissez le formulaire avec les informations nécessaires : type de mission, lieu, date, horaires, nombre d'agents souhaité et besoins spécifiques. Votre demande est ensuite prise en charge pour traitement.",
+          "Remplissez le formulaire avec les informations nécessaires : type de mission, lieu, date, horaires, nombre d'agents souhaité et besoins spécifiques. Votre demande est ensuite prise en charge et analysée.",
       },
       {
         id: "security-faq-2",

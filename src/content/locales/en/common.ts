@@ -22,7 +22,7 @@ export const commonContent = {
     },
     driver: [
       { name: "Home", hash: "accueil" },
-      { name: "Why us", hash: "pourquoi-nous" },
+      { name: "Highlights", hash: "pourquoi-nous" },
       { name: "Services", hash: "prestations" },
       { name: "Fleet", hash: "flotte" },
       { name: "Book", hash: "reserver" },
@@ -30,7 +30,7 @@ export const commonContent = {
     ],
     securityPage: [
       { name: "Home", hash: "accueil" },
-      { name: "Why us", hash: "pourquoi-nous" },
+      { name: "Highlights", hash: "pourquoi-nous" },
       { name: "Services", hash: "prestations" },
       { name: "Process", hash: "itineraires-populaires" },
       { name: "Request", hash: "reserver" },

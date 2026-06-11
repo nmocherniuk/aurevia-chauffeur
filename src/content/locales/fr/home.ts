@@ -52,13 +52,13 @@ export function createHomeContent(locale: "fr" | "en") {
         id: "home-faq-1",
         question: "Quels services propose Riviera Prime ?",
         answer:
-          "Riviera Prime propose des services premium de chauffeur privé et de sécurité privée, adaptés aux déplacements, événements, besoins professionnels et demandes sur mesure.",
+          "Riviera Prime coordonne des prestations premium de chauffeur privé et de sécurité privée, adaptés aux déplacements, événements, besoins professionnels et demandes sur mesure.",
       },
       {
         id: "home-faq-2",
         question: "Comment fonctionne une demande de réservation ?",
         answer:
-          "Vous envoyez votre demande avec les informations nécessaires. La disponibilité, la faisabilité et les partenaires adaptés sont ensuite vérifiés avant confirmation de la prestation.",
+          "Vous envoyez votre demande avec les informations nécessaires. La disponibilité, la faisabilité de la demande et l’identification des partenaires adaptés sont ensuite vérifiées avant toute confirmation.",
       },
       {
         id: "home-faq-3",

@@ -6,10 +6,17 @@ import { CalendarFilled } from "@/src/components/SVGManager/CalendarFilled";
 import { Transmission } from "@/src/components/SVGManager/Transmission";
 import { CarSeat } from "@/src/components/SVGManager/CarSeat";
 
+export type CarSpecId =
+  | "passengers"
+  | "vehicleType"
+  | "modelYear"
+  | "baggage"
+  | "transmission"
+  | "interior";
+
 export type CarSpecItem = {
-  id: string;
+  id: CarSpecId;
   Icon: React.ComponentType<{ fill?: string; className?: string }>;
-  label: string;
   getValue: (car: Fleet) => string | number | null | undefined;
 };
 
@@ -17,37 +24,31 @@ export const CAR_SPECS: CarSpecItem[] = [
   {
     id: "passengers",
     Icon: People,
-    label: "Passagers:",
     getValue: (car) => car.passengers,
   },
   {
     id: "vehicleType",
     Icon: VehicleFilled,
-    label: "Vehicle type:",
     getValue: (car) => car.vehicleType ?? null,
   },
   {
     id: "modelYear",
     Icon: CalendarFilled,
-    label: "Model year:",
-    getValue: (car) => car.modelYear != null ? String(car.modelYear) : null,
+    getValue: (car) => (car.modelYear != null ? String(car.modelYear) : null),
   },
   {
     id: "baggage",
     Icon: Bagage,
-    label: "bagages:",
     getValue: (car) => car.baggage,
   },
   {
     id: "transmission",
     Icon: Transmission,
-    label: "Transmission:",
     getValue: (car) => car.transmission ?? null,
   },
   {
     id: "interior",
     Icon: CarSeat,
-    label: "Interior:",
     getValue: (car) => car.interior ?? null,
   },
 ];
