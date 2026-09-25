@@ -17,7 +17,7 @@ const MainSecuritySection: React.FC<{
         <Image
           className="bg-fit-cover absolute top-0 -z-1 w-full bg-center bg-no-repeat object-cover  object-[center_10%] "
           src={heroImage}
-          alt="Hero Background Image"
+          alt="Sécurité privée — professionnels indépendants pour protection et accompagnement"
           fill
           quality={100}
           priority

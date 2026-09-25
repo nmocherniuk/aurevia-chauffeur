@@ -40,7 +40,7 @@ export const commonContent = {
 
   footer: {
     tagline:
-      "Premium mobility and security solutions designed for discretion, reliability, and excellence.",
+      "Premium coordination for private chauffeur and private security, designed for discretion, reliability, and excellence.",
     copyright: "© 2026 Riviera Prime. All rights reserved",
     privacy: "Privacy",
     terms: "Terms",

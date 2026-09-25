@@ -8,9 +8,9 @@ function getDisallowPaths(): string[] {
     (locale) => `/${locale}/security-payment/`,
   );
 
+  // Do not block /_next/ — Google needs CSS/JS for rendering.
   return [
     "/api/",
-    "/_next/",
     "/security-payment/",
     ...localizedPayment,
   ];

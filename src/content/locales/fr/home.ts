@@ -6,9 +6,9 @@ export function createHomeContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Riviera Prime\nTransport et protection privée",
+      title: "Riviera Prime\nChauffeur privé & sécurité privée",
       subtitle:
-        "Des services haut de gamme pour vos trajets, événements et besoins de sécurité.",
+        "Coordination premium pour vos transferts, événements et besoins de sécurité privée sur la Côte d'Azur.",
       buttonText: commonContent.buttons.services,
       buttonLink: routes.home.services,
     },
@@ -16,27 +16,31 @@ export function createHomeContent(locale: "fr" | "en") {
     whoWeAreTitle: "Riviera Prime — L'exigence dans chaque détail",
 
     whoWeAreItems: [
-      "Riviera Prime est une plateforme premium de coordination qui met en relation ses clients avec des professionnels indépendants de confiance dans les services de chauffeur privé et de sécurité exécutive. La plateforme privilégie la discrétion, la fiabilité et une gestion fluide du service, depuis la première demande jusqu'à la confirmation finale.",
-      "Le réseau s'appuie sur des professionnels expérimentés, sélectionnés pour leur qualité de service, leur réactivité et leur capacité à intervenir dans des environnements exigeants avec un haut niveau de professionnalisme. Chaque demande est traitée avec précision afin d'assurer une coordination claire, confidentielle et adaptée à vos besoins.",
+      "Riviera Prime est une plateforme de coordination qui met ses clients en relation avec des professionnels indépendants sélectionnés selon leurs besoins, dans le chauffeur privé et la sécurité privée. La plateforme privilégie la discrétion, la fiabilité et une gestion fluide du service, depuis la première demande jusqu'à la confirmation finale.",
+      "Le réseau s'appuie sur des professionnels indépendants expérimentés, sélectionnés pour leur qualité de service, leur réactivité et leur capacité à intervenir dans des environnements exigeants. Chaque demande est traitée avec précision afin d'assurer une coordination claire, confidentielle et adaptée à vos besoins sur la Côte d'Azur et au-delà.",
     ] as const,
 
-    servicesSectionTitle: "Choisissez votre expérience",
+    servicesSectionTitle: "Chauffeur privé et sécurité privée",
 
     servicesSection: [
       {
-        title: "Chauffeur privé",
+        title: "Chauffeur privé sur la Côte d'Azur",
         description:
-          "Un service de transport haut de gamme pour vos transferts, déplacements professionnels, événements et trajets sur mesure.",
+          "Mise en relation pour vos transferts, déplacements professionnels, événements et trajets sur mesure avec des chauffeurs privés indépendants.",
         href: routes.chauffeur.index,
         image: "/images/hyundai-motor-group.png",
+        imageAlt:
+          "Chauffeur privé sur la Côte d'Azur — véhicule premium pour transferts et déplacements",
         buttonText: commonContent.buttons.discover,
       },
       {
-        title: "Sécurité privée",
+        title: "Solutions de sécurité privée",
         description:
-          "Des solutions de protection, d'accompagnement et de sécurité coordonnées selon vos besoins, vos lieux et vos contraintes.",
+          "Accès coordonné à des professionnels indépendants de la sécurité pour protection, accompagnement et sécurisation selon vos contraintes.",
         href: routes.security.index,
         image: "/images/luxury-private-bodyguards.png",
+        imageAlt:
+          "Sécurité privée — professionnels indépendants pour protection et accompagnement",
         buttonText: commonContent.buttons.discover,
       },
     ] as const,
@@ -52,7 +56,7 @@ export function createHomeContent(locale: "fr" | "en") {
         id: "home-faq-1",
         question: "Quels services propose Riviera Prime ?",
         answer:
-          "Riviera Prime coordonne des prestations premium de chauffeur privé et de sécurité privée, adaptés aux déplacements, événements, besoins professionnels et demandes sur mesure.",
+          "Riviera Prime coordonne la mise en relation avec des chauffeurs privés indépendants et des professionnels indépendants de la sécurité privée, pour les déplacements, événements, besoins professionnels et demandes sur mesure.",
       },
       {
         id: "home-faq-2",

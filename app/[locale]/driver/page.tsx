@@ -14,6 +14,7 @@ import { buildPageMetadata } from "@/src/lib/i18n/metadata";
 import { isLocale, type Locale } from "@/src/i18n/config";
 import { JsonLd } from "@/src/components/JsonLd";
 import {
+  getBreadcrumbSchema,
   getFaqPageSchema,
   getServiceSchema,
 } from "@/src/lib/seo/structuredData";
@@ -26,22 +27,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale: localeParam } = await params;
   const locale = isLocale(localeParam) ? localeParam : "fr";
 
-  const copy: Record<Locale, { title: string; description: string; ogTitle: string; ogDesc: string }> = {
+  const copy: Record<
+    Locale,
+    { title: string; description: string; ogTitle: string; ogDesc: string }
+  > = {
     fr: {
-      title: "Chauffeur privé premium",
+      title: "Chauffeur privé sur la Côte d'Azur",
       description:
-        "Réservez un chauffeur privé Riviera Prime pour vos trajets en France: confort haut de gamme, ponctualité et service sur mesure.",
-      ogTitle: "Riviera Prime Chauffeur - Transport privé premium",
+        "Riviera Prime met ses clients en relation avec des chauffeurs privés indépendants pour transferts aéroport, déplacements professionnels, mise à disposition et événements sur la Côte d'Azur.",
+      ogTitle: "Chauffeur privé sur la Côte d'Azur | Riviera Prime",
       ogDesc:
-        "Service de chauffeur privé premium pour déplacements professionnels, personnels et événements.",
+        "Coordination de mise en relation avec des chauffeurs privés indépendants — Nice, Cannes, Monaco, Antibes, Saint-Tropez et transferts aéroport.",
     },
     en: {
-      title: "Premium private chauffeur",
+      title: "Private chauffeur on the French Riviera",
       description:
-        "Book an Riviera Prime private chauffeur in France: premium comfort, punctuality, and bespoke service.",
-      ogTitle: "Riviera Prime Chauffeur - Premium private transport",
+        "Riviera Prime connects clients with independent private chauffeurs for airport transfers, business travel, chauffeur hire, and events on the French Riviera.",
+      ogTitle: "Private chauffeur on the French Riviera | Riviera Prime",
       ogDesc:
-        "Premium private chauffeur service for business, personal travel, and events.",
+        "Coordinated introductions to independent private chauffeurs — Nice, Cannes, Monaco, Antibes, Saint-Tropez, and airport transfers.",
     },
   };
 
@@ -67,18 +71,41 @@ export default async function DriverPage({ params }: PageProps) {
     locale,
     path: "/driver",
     name:
-      locale === "fr" ? "Chauffeur privé premium" : "Premium private chauffeur",
+      locale === "fr"
+        ? "Coordination chauffeur privé sur la Côte d'Azur"
+        : "Private chauffeur coordination on the French Riviera",
     description:
       locale === "fr"
-        ? "Service de chauffeur privé premium en France : transferts, déplacements professionnels, événements et trajets sur mesure."
-        : "Premium private chauffeur service in France: transfers, business travel, events, and bespoke journeys.",
-    serviceType: locale === "fr" ? "Chauffeur privé" : "Private chauffeur",
+        ? "Riviera Prime coordonne la mise en relation avec des chauffeurs privés indépendants pour transferts, déplacements professionnels, mise à disposition et événements sur la Côte d'Azur."
+        : "Riviera Prime coordinates introductions to independent private chauffeurs for transfers, business travel, chauffeur hire, and events on the French Riviera.",
+    serviceType:
+      locale === "fr"
+        ? "Coordination de chauffeur privé"
+        : "Private chauffeur coordination",
   });
+
+  const breadcrumbSchema = getBreadcrumbSchema(locale, [
+    {
+      name: locale === "fr" ? "Accueil" : "Home",
+      path: "/",
+    },
+    {
+      name:
+        locale === "fr"
+          ? "Chauffeur privé"
+          : "Private chauffeur",
+      path: "/driver",
+    },
+  ]);
 
   return (
     <Fragment>
       <JsonLd
-        data={[serviceSchema, getFaqPageSchema(chauffeurContent.faqItems)]}
+        data={[
+          serviceSchema,
+          breadcrumbSchema,
+          getFaqPageSchema(chauffeurContent.faqItems),
+        ]}
       />
       <MainDriverSection
         title={chauffeurContent.heroSection.title}
@@ -87,6 +114,24 @@ export default async function DriverPage({ params }: PageProps) {
         buttonLink={chauffeurContent.heroSection.buttonLink}
       />
       <MainContainer className="flex flex-col gap-27">
+        <section className="w-full" aria-labelledby="driver-seo-intro">
+          <h2
+            id="driver-seo-intro"
+            className="font-benzin text-white text-center text-2xl mb-6 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-8"
+          >
+            {chauffeurContent.seoIntro.title}
+          </h2>
+          <div className="flex flex-col gap-4 max-w-3xl">
+            {chauffeurContent.seoIntro.paragraphs.map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 48)}
+                className="text-base font-light leading-relaxed text-text-primary"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </section>
         <WhyChooseUsSection
           title={commonContent.sectionTitles.whyChooseUs}
           items={chauffeurContent.whyChooseUsItems}

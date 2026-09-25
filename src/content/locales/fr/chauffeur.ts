@@ -10,11 +10,20 @@ export function createChauffeurContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Riviera Prime\nChauffeur privé et transport",
+      title: "Chauffeur privé\nsur la Côte d'Azur",
       subtitle:
-        "Service de chauffeur privé premium conçu pour le confort, la discrétion et la précision.",
+        "Riviera Prime coordonne la mise en relation avec des chauffeurs privés indépendants pour vos transferts, déplacements et événements.",
       buttonText: commonContent.buttons.reserve,
       buttonLink: routes.chauffeur.book,
+    },
+
+    /** SEO intro — intermediary model + verified use cases / geography. */
+    seoIntro: {
+      title: "Transport avec chauffeur, coordonné selon vos besoins",
+      paragraphs: [
+        "Riviera Prime facilite l'accès à des chauffeurs privés indépendants pour des trajets exigeants : transferts aéroport, déplacements professionnels, mise à disposition et événements. La plateforme coordonne la demande, la disponibilité et la confirmation — sans employer elle-même les chauffeurs.",
+        "Les itinéraires les plus demandés s'articulent autour de Nice, Cannes, Monaco, Antibes et Saint-Tropez, ainsi que des liaisons depuis l'aéroport de Nice — autant de trajets déjà proposés parmi les parcours populaires de la plateforme.",
+      ],
     },
 
     whyChooseUsItems: [
@@ -30,7 +39,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
         icon: ShieldCheck,
         title: "Un service digne de confiance",
         description:
-          "Des chauffeurs expérimentés, des véhicules impeccables et une discrétion absolue garantissent une expérience sûre et raffinée.",
+          "Des chauffeurs indépendants expérimentés, des véhicules impeccables et une discrétion absolue pour une expérience sûre et raffinée.",
       },
       {
         id: "why-choose-us-3",
@@ -49,53 +58,53 @@ export function createChauffeurContent(locale: "fr" | "en") {
     ],
 
     services: {
-      title: commonContent.servicesSectionTitle,
+      title: "Prestations de chauffeur privé",
       items: [
         {
           id: "service-1",
           image: "/services-image/transfert-aeroport-chauffeur-prive-vtc.png",
-          title: "Transferts Aéroport",
+          title: "Transferts aéroport",
           description:
             "Transferts privés vers tous les aéroports avec ponctualité garantie.",
-          alt: "Chauffeur privé VTC pour transfert aéroport avec service premium",
+          alt: "Transfert aéroport avec chauffeur privé — service premium sur la Côte d'Azur",
         },
         {
           id: "service-2",
           image: "/services-image/transfert-hotel-residence-privee-chauffeur.png",
-          title: "Hôtels et Résidences Privées",
+          title: "Hôtels et résidences privées",
           description:
             "Transferts discrets vers hôtels de prestige et résidences privées.",
-          alt: "Chauffeur privé pour transfert vers hôtel de luxe et résidence privée",
+          alt: "Transfert hôtel ou résidence privée avec chauffeur privé",
         },
         {
           id: "service-3",
           image: "/services-image/chauffeur-prive-luxe-interieur-mercedes.jpg",
-          title: "Déplacements Professionnels",
+          title: "Déplacements professionnels",
           description:
             "Solutions premium pour vos déplacements professionnels et réunions.",
-          alt: "Chauffeur privé business pour déplacements professionnels et corporate travel",
+          alt: "Déplacement professionnel avec chauffeur privé",
         },
         {
           id: "service-4",
           image: "/services-image/business-corporate-travel-chauffeur-prive.png",
-          title: "Private Chauffeur",
+          title: "Mise à disposition",
           description:
             "Chauffeur privé à l'heure ou à la journée pour vos déplacements.",
-          alt: "Service de chauffeur privé à l'heure ou à la journée avec véhicule de luxe",
+          alt: "Mise à disposition d'un chauffeur privé à l'heure ou à la journée",
         },
         {
           id: "service-5",
           image: "/services-image/chauffeur-mariage-evenement-prive-luxe.png",
-          title: "Événements et Mariages",
+          title: "Événements et mariages",
           description:
             "Transport raffiné et élégant pour mariages et événements privés.",
-          alt: "Chauffeur privé pour mariage et événement privé avec service de luxe",
+          alt: "Chauffeur privé pour mariage et événement privé",
         },
       ],
     },
 
     fleet: {
-      title: "Un transport confortable, des chauffeurs professionnels",
+      title: "Véhicules premium et chauffeurs indépendants",
       empty: {
         title: "Aucun véhicule disponible pour le moment",
         description:
@@ -118,9 +127,9 @@ export function createChauffeurContent(locale: "fr" | "en") {
     },
 
     vehicleCta: {
-      title: "Réservez Votre Chauffeur en Toute Simplicité",
+      title: "Organisez votre transfert en toute simplicité",
       description:
-        "Organisez votre transfert en quelques clics et profitez d'un voyage élégant, ponctuel et discret.",
+        "Décrivez votre trajet — Riviera Prime coordonne la mise en relation avec un chauffeur privé indépendant pour un voyage élégant, ponctuel et discret.",
       buttonText: commonContent.buttons.reserve,
       buttonLink: routes.chauffeur.book,
     },
@@ -132,7 +141,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
     ],
 
     popularRoutes: {
-      title: "Les itinéraires les plus populaires",
+      title: "Itinéraires populaires sur la Côte d'Azur",
       navAriaLabel: "Catégories d'itinéraires",
       cityToCity: [
         {

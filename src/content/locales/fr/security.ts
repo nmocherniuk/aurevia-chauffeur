@@ -10,11 +10,19 @@ export function createSecurityContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Protection rapprochée et sécurité haut de gamme",
+      title: "Sécurité privée\net protection rapprochée",
       subtitle:
-        "Riviera Prime coordonne des prestations de sécurité privée pour vos déplacements, événements, lieux sensibles et besoins spécifiques.",
+        "Riviera Prime facilite l'accès à des professionnels indépendants de la sécurité privée pour vos déplacements, événements, lieux sensibles et besoins spécifiques.",
       buttonText: commonContent.buttons.sendRequest,
       buttonLink: routes.security.book,
+    },
+
+    seoIntro: {
+      title: "Solutions de sécurité privée coordonnées",
+      paragraphs: [
+        "Riviera Prime coordonne la mise en relation avec des professionnels indépendants de la sécurité pour la protection rapprochée, la sécurisation de biens, la sécurité événementielle et les missions spécialisées. La plateforme analyse votre demande et organise le dispositif adapté — sans employer elle-même les agents.",
+        "Chaque mission est étudiée selon le contexte, le lieu et le niveau de protection requis, afin d'assurer une coordination claire, discrète et conforme à vos contraintes.",
+      ],
     },
 
     whyChooseUsItems: [
@@ -52,10 +60,10 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-1",
         image: "/services-image/security/luxury-bodyguard-agent.png",
-        title: "Personal & Executive",
+        title: "Protection personnelle & exécutive",
         description:
           "Protection rapprochée et accompagnement pour dirigeants et personnalités.",
-        alt: "Agent de sécurité privée pour protection exécutive",
+        alt: "Protection rapprochée et sécurité exécutive avec professionnels indépendants",
         highlights: [
           "Déplacements professionnels et personnels",
           "Discrétion et réactivité",
@@ -65,10 +73,10 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-2",
         image: "/services-image/security/villa-security-residence.png",
-        title: "Property & Private Security",
+        title: "Sécurité de biens & résidences",
         description:
           "Sécurisation de résidences, villas et lieux privés sensibles.",
-        alt: "Sécurité de résidence privée et villa de luxe",
+        alt: "Sécurité de résidence privée et villa",
         highlights: [
           "Résidences et villas",
           "Surveillance et présence",
@@ -78,7 +86,7 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-3",
         image: "/services-image/security/abstract-sphere-background.png",
-        title: "Business & Commercial",
+        title: "Sécurité business & commerciale",
         description:
           "Solutions de sécurité pour entreprises, sites et activités commerciales.",
         alt: "Sécurité privée pour entreprises et sites commerciaux",
@@ -91,10 +99,10 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-4",
         image: "/services-image/security/luxury-private-residence.png",
-        title: "Sécurité Événementielle",
+        title: "Sécurité événementielle",
         description:
           "Sécurisation d'événements privés, soirées et rassemblements.",
-        alt: "Gestion de sécurité pour événements privés",
+        alt: "Sécurité événementielle pour événements privés",
         highlights: [
           "Événements privés",
           "Soirées et galas",
@@ -104,10 +112,10 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-5",
         image: "/services-image/security/security-room-monitoring.png",
-        title: "Solutions Spécialisées",
+        title: "Solutions spécialisées",
         description:
           "Missions spécifiques nécessitant une expertise et une coordination avancées.",
-        alt: "Services de sécurité privée spécialisés",
+        alt: "Solutions de sécurité privée spécialisées",
         highlights: [
           "Missions sur mesure",
           "Expertise avancée",
@@ -119,7 +127,7 @@ export function createSecurityContent(locale: "fr" | "en") {
     securityCta: {
       title: "Besoin d'un dispositif de sécurité adapté ?",
       description:
-        "Décrivez votre besoin dans le formulaire. Votre demande sera analysée et un retour personnalisé vous sera adressé rapidement.",
+        "Décrivez votre besoin dans le formulaire. Riviera Prime analyse votre demande et coordonne la mise en relation avec des professionnels indépendants adaptés.",
       buttonText: commonContent.buttons.sendRequest,
       buttonLink: routes.security.book,
     },

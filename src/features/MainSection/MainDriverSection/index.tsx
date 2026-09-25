@@ -16,7 +16,7 @@ const MainDriverSection: React.FC<{
         <Image
           className="bg-fit-cover absolute top-0 -z-1 w-full bg-center bg-no-repeat object-cover object-center "
           src={heroImage}
-          alt="Hero Background Image"
+          alt="Chauffeur privé sur la Côte d'Azur — véhicule premium"
           fill
           quality={100}
           priority

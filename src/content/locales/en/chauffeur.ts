@@ -10,11 +10,19 @@ export function createChauffeurContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Riviera Prime\nPrivate chauffeur and transport",
+      title: "Private chauffeur\non the French Riviera",
       subtitle:
-        "Premium private chauffeur service designed for comfort, discretion, and precision.",
+        "Riviera Prime coordinates introductions to independent private chauffeurs for transfers, travel, and events.",
       buttonText: commonContent.buttons.reserve,
       buttonLink: routes.chauffeur.book,
+    },
+
+    seoIntro: {
+      title: "Chauffeur-driven transport, coordinated to your needs",
+      paragraphs: [
+        "Riviera Prime facilitates access to independent private chauffeurs for demanding journeys: airport transfers, business travel, hourly hire, and events. The platform coordinates the request, availability, and confirmation — without employing the chauffeurs itself.",
+        "The most requested routes centre on Nice, Cannes, Monaco, Antibes, and Saint-Tropez, as well as connections from Nice Airport — journeys already featured among the platform's popular routes.",
+      ],
     },
 
     whyChooseUsItems: [
@@ -30,7 +38,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
         icon: ShieldCheck,
         title: "A service you can trust",
         description:
-          "Experienced chauffeurs, immaculate vehicles, and absolute discretion ensure a safe, refined experience.",
+          "Experienced independent chauffeurs, immaculate vehicles, and absolute discretion for a safe, refined experience.",
       },
       {
         id: "why-choose-us-3",
@@ -49,53 +57,53 @@ export function createChauffeurContent(locale: "fr" | "en") {
     ],
 
     services: {
-      title: commonContent.servicesSectionTitle,
+      title: "Private chauffeur services",
       items: [
         {
           id: "service-1",
           image: "/services-image/transfert-aeroport-chauffeur-prive-vtc.png",
-          title: "Airport Transfers",
+          title: "Airport transfers",
           description:
             "Private transfers to all airports with guaranteed punctuality.",
-          alt: "Private chauffeur for premium airport transfer service",
+          alt: "Airport transfer with private chauffeur — premium service on the French Riviera",
         },
         {
           id: "service-2",
           image: "/services-image/transfert-hotel-residence-privee-chauffeur.png",
-          title: "Hotels and Private Residences",
+          title: "Hotels and private residences",
           description:
             "Discreet transfers to luxury hotels and private residences.",
-          alt: "Private chauffeur transfer to luxury hotel and private residence",
+          alt: "Hotel or private residence transfer with private chauffeur",
         },
         {
           id: "service-3",
           image: "/services-image/chauffeur-prive-luxe-interieur-mercedes.jpg",
-          title: "Professional Travel",
+          title: "Business travel",
           description:
             "Premium solutions for business travel and meetings.",
-          alt: "Business chauffeur for professional and corporate travel",
+          alt: "Business travel with private chauffeur",
         },
         {
           id: "service-4",
           image: "/services-image/business-corporate-travel-chauffeur-prive.png",
-          title: "Private Chauffeur",
+          title: "Chauffeur hire",
           description:
             "Hourly or daily private chauffeur for your journeys.",
-          alt: "Private chauffeur service by the hour or day with luxury vehicle",
+          alt: "Hourly or daily private chauffeur hire",
         },
         {
           id: "service-5",
           image: "/services-image/chauffeur-mariage-evenement-prive-luxe.png",
-          title: "Events and Weddings",
+          title: "Events and weddings",
           description:
             "Refined, elegant transport for weddings and private events.",
-          alt: "Private chauffeur for wedding and private event luxury service",
+          alt: "Private chauffeur for weddings and private events",
         },
       ],
     },
 
     fleet: {
-      title: "Comfortable transportation, professional drivers",
+      title: "Premium vehicles and independent chauffeurs",
       empty: {
         title: "No vehicles available at the moment",
         description:
@@ -118,9 +126,9 @@ export function createChauffeurContent(locale: "fr" | "en") {
     },
 
     vehicleCta: {
-      title: "Book Your Chauffeur with Ease",
+      title: "Arrange your transfer with ease",
       description:
-        "Arrange your transfer in a few clicks and enjoy an elegant, punctual, and discreet journey.",
+        "Describe your journey — Riviera Prime coordinates the introduction to an independent private chauffeur for an elegant, punctual, and discreet trip.",
       buttonText: commonContent.buttons.reserve,
       buttonLink: routes.chauffeur.book,
     },
@@ -132,7 +140,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
     ],
 
     popularRoutes: {
-      title: "Most popular routes",
+      title: "Popular routes on the French Riviera",
       navAriaLabel: "Route categories",
       cityToCity: [
         {

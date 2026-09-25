@@ -13,6 +13,7 @@ import { buildPageMetadata } from "@/src/lib/i18n/metadata";
 import { isLocale, type Locale } from "@/src/i18n/config";
 import { JsonLd } from "@/src/components/JsonLd";
 import {
+  getBreadcrumbSchema,
   getFaqPageSchema,
   getServiceSchema,
 } from "@/src/lib/seo/structuredData";
@@ -25,22 +26,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale: localeParam } = await params;
   const locale = isLocale(localeParam) ? localeParam : "fr";
 
-  const copy: Record<Locale, { title: string; description: string; ogTitle: string; ogDesc: string }> = {
+  const copy: Record<
+    Locale,
+    { title: string; description: string; ogTitle: string; ogDesc: string }
+  > = {
     fr: {
-      title: "Sécurité privée premium",
+      title: "Sécurité privée et protection rapprochée",
       description:
-        "Riviera Prime propose des services de sécurité privée en France: protection rapprochée, sécurisation d'événements et accompagnement professionnel.",
-      ogTitle: "Riviera Prime Security - Services de sécurité privée",
+        "Riviera Prime facilite l'accès à des professionnels indépendants de la sécurité privée : protection rapprochée, sécurité de biens, sécurité événementielle et missions spécialisées.",
+      ogTitle: "Sécurité privée et protection rapprochée | Riviera Prime",
       ogDesc:
-        "Protection rapprochée, sécurité événementielle et accompagnement premium partout en France.",
+        "Coordination de mise en relation avec des professionnels indépendants de la sécurité privée selon vos besoins et contraintes.",
     },
     en: {
-      title: "Premium private security",
+      title: "Private security and close protection",
       description:
-        "Riviera Prime offers private security services in France: close protection, event security, and professional escort.",
-      ogTitle: "Riviera Prime Security - Private security services",
+        "Riviera Prime facilitates access to independent private security professionals: close protection, property security, event security, and specialised missions.",
+      ogTitle: "Private security and close protection | Riviera Prime",
       ogDesc:
-        "Close protection, event security, and premium escort services across France.",
+        "Coordinated introductions to independent private security professionals tailored to your needs and constraints.",
     },
   };
 
@@ -66,18 +70,38 @@ export default async function SecurityPage({ params }: PageProps) {
     locale,
     path: "/security",
     name:
-      locale === "fr" ? "Sécurité privée premium" : "Premium private security",
+      locale === "fr"
+        ? "Coordination sécurité privée"
+        : "Private security coordination",
     description:
       locale === "fr"
-        ? "Services de sécurité privée en France : protection rapprochée, sécurisation d'événements et accompagnement professionnel."
-        : "Private security services in France: close protection, event security, and professional escort.",
-    serviceType: locale === "fr" ? "Sécurité privée" : "Private security",
+        ? "Riviera Prime facilite l'accès à des professionnels indépendants de la sécurité privée pour la protection rapprochée, la sécurité de biens, la sécurité événementielle et les missions spécialisées."
+        : "Riviera Prime facilitates access to independent private security professionals for close protection, property security, event security, and specialised missions.",
+    serviceType:
+      locale === "fr"
+        ? "Coordination de sécurité privée"
+        : "Private security coordination",
   });
+
+  const breadcrumbSchema = getBreadcrumbSchema(locale, [
+    {
+      name: locale === "fr" ? "Accueil" : "Home",
+      path: "/",
+    },
+    {
+      name: locale === "fr" ? "Sécurité privée" : "Private security",
+      path: "/security",
+    },
+  ]);
 
   return (
     <Fragment>
       <JsonLd
-        data={[serviceSchema, getFaqPageSchema(securityContent.faqItems)]}
+        data={[
+          serviceSchema,
+          breadcrumbSchema,
+          getFaqPageSchema(securityContent.faqItems),
+        ]}
       />
       <MainSecuritySection
         title={securityContent.heroSection.title}
@@ -86,6 +110,24 @@ export default async function SecurityPage({ params }: PageProps) {
         buttonLink={securityContent.heroSection.buttonLink}
       />
       <MainContainer className="flex flex-col gap-27">
+        <section className="w-full" aria-labelledby="security-seo-intro">
+          <h2
+            id="security-seo-intro"
+            className="font-benzin text-white text-center text-2xl mb-6 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-8"
+          >
+            {securityContent.seoIntro.title}
+          </h2>
+          <div className="flex flex-col gap-4 max-w-3xl">
+            {securityContent.seoIntro.paragraphs.map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 48)}
+                className="text-base font-light leading-relaxed text-text-primary"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </section>
         <WhyChooseUsSection
           title={commonContent.sectionTitles.whyChooseUs}
           items={securityContent.whyChooseUsItems}

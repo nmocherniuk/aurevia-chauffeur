@@ -10,11 +10,19 @@ export function createSecurityContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Close protection and premium security",
+      title: "Private security\nand close protection",
       subtitle:
-        "Riviera Prime coordinates private security services for your travel, events, sensitive locations, and specific requirements.",
+        "Riviera Prime facilitates access to independent private security professionals for travel, events, sensitive locations, and specific requirements.",
       buttonText: commonContent.buttons.sendRequest,
       buttonLink: routes.security.book,
+    },
+
+    seoIntro: {
+      title: "Coordinated private security solutions",
+      paragraphs: [
+        "Riviera Prime coordinates introductions to independent security professionals for close protection, property security, event security, and specialised missions. The platform reviews your request and organises a suitable arrangement — without employing the agents itself.",
+        "Each assignment is assessed according to context, location, and required protection level to ensure clear, discreet coordination aligned with your constraints.",
+      ],
     },
 
     whyChooseUsItems: [
@@ -52,10 +60,10 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-1",
         image: "/services-image/security/luxury-bodyguard-agent.png",
-        title: "Personal & Executive",
+        title: "Personal & executive protection",
         description:
           "Close protection and escort for executives and high-profile clients.",
-        alt: "Private security agent for executive protection",
+        alt: "Close protection and executive security with independent professionals",
         highlights: [
           "Business and personal travel",
           "Discretion and responsiveness",
@@ -65,10 +73,10 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-2",
         image: "/services-image/security/villa-security-residence.png",
-        title: "Property & Private Security",
+        title: "Property & residence security",
         description:
           "Securing residences, villas, and sensitive private locations.",
-        alt: "Private residence and luxury villa security",
+        alt: "Private residence and villa security",
         highlights: [
           "Residences and villas",
           "Presence and surveillance",
@@ -78,7 +86,7 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-3",
         image: "/services-image/security/abstract-sphere-background.png",
-        title: "Business & Commercial",
+        title: "Business & commercial security",
         description:
           "Security solutions for businesses, premises, and commercial activities.",
         alt: "Private security for business and commercial sites",
@@ -91,10 +99,10 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-4",
         image: "/services-image/security/luxury-private-residence.png",
-        title: "Event & Crowd Management",
+        title: "Event security",
         description:
           "Security for private events, evenings, and gatherings.",
-        alt: "Security management for private events",
+        alt: "Event security for private events",
         highlights: [
           "Private events",
           "Evenings and galas",
@@ -104,10 +112,10 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "service-5",
         image: "/services-image/security/security-room-monitoring.png",
-        title: "Specialised Solutions",
+        title: "Specialised solutions",
         description:
           "Specific missions requiring advanced expertise and coordination.",
-        alt: "Specialised private security services",
+        alt: "Specialised private security solutions",
         highlights: [
           "Bespoke missions",
           "Advanced expertise",
@@ -119,7 +127,7 @@ export function createSecurityContent(locale: "fr" | "en") {
     securityCta: {
       title: "Need a tailored security plan?",
       description:
-        "Describe your requirements in the form. Your request will be reviewed and you will receive a personalised response promptly.",
+        "Describe your requirements in the form. Riviera Prime reviews your request and coordinates introductions to suitable independent professionals.",
       buttonText: commonContent.buttons.sendRequest,
       buttonLink: routes.security.book,
     },

@@ -20,16 +20,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale: localeParam } = await params;
   const locale = isLocale(localeParam) ? localeParam : "fr";
 
-  const titles: Record<Locale, { title: string; description: string }> = {
+  const titles: Record<
+    Locale,
+    { title: string; description: string; ogTitle: string; ogDesc: string }
+  > = {
     fr: {
-      title: "Accueil",
+      title: "Chauffeur privé & sécurité privée sur la Côte d'Azur",
       description:
-        "Riviera Prime coordonne des services premium de chauffeur privé et de sécurité privée en France, avec un accompagnement sur mesure.",
+        "Riviera Prime coordonne la mise en relation avec des chauffeurs privés et des professionnels indépendants de la sécurité privée sur la Côte d'Azur.",
+      ogTitle:
+        "Chauffeur privé & sécurité privée sur la Côte d'Azur | Riviera Prime",
+      ogDesc:
+        "Plateforme de coordination qui met ses clients en relation avec des chauffeurs privés indépendants et des professionnels de la sécurité sur la Côte d'Azur.",
     },
     en: {
-      title: "Home",
+      title: "Private chauffeur & private security on the French Riviera",
       description:
-        "Riviera Prime coordinates premium private chauffeur and security services in France with bespoke support.",
+        "Riviera Prime coordinates introductions to independent private chauffeurs and private security professionals on the French Riviera.",
+      ogTitle:
+        "Private chauffeur & private security on the French Riviera | Riviera Prime",
+      ogDesc:
+        "Coordination platform connecting clients with independent private chauffeurs and security professionals on the French Riviera.",
     },
   };
 
@@ -40,14 +51,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     path: "/",
     title: copy.title,
     description: copy.description,
-    openGraphTitle:
-      locale === "fr"
-        ? "Riviera Prime - Chauffeur privé et sécurité privée"
-        : "Riviera Prime - Private chauffeur and security",
-    openGraphDescription:
-      locale === "fr"
-        ? "Plateforme premium de coordination pour transport privé et sécurité privée."
-        : "Premium coordination platform for private transport and security.",
+    openGraphTitle: copy.ogTitle,
+    openGraphDescription: copy.ogDesc,
   });
 }
 
@@ -102,12 +107,11 @@ export default async function Home({ params }: PageProps) {
               >
                 <Image
                   src={service.image}
-                  alt=""
+                  alt={service.imageAlt}
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  aria-hidden
                 />
                 <div className="absolute inset-0 bg-linear-to-b from-black/35 via-black/45 to-black/80" />
                 <article className="relative z-10 flex h-full min-h-[260px] flex-col justify-end p-5 sm:min-h-[300px] sm:p-6 md:min-h-[320px]">

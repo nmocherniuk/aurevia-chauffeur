@@ -23,8 +23,8 @@ const ORGANIZATION = {
 } as const;
 
 const ORGANIZATION_DESCRIPTION: Record<Locale, string> = {
-  fr: "Plateforme premium de coordination de services de chauffeur privé et de sécurité privée en France.",
-  en: "Premium coordination platform for private chauffeur and private security services in France.",
+  fr: "Plateforme premium de coordination qui met ses clients en relation avec des chauffeurs privés indépendants et des professionnels indépendants de la sécurité privée, notamment sur la Côte d'Azur.",
+  en: "Premium coordination platform connecting clients with independent private chauffeurs and independent private security professionals, notably on the French Riviera.",
 };
 
 function orgId(siteUrl: string): string {
@@ -64,10 +64,16 @@ export function getOrganizationSchema(locale: Locale) {
       addressRegion: ORGANIZATION.address.region,
       addressCountry: ORGANIZATION.address.country,
     },
-    areaServed: {
-      "@type": "Country",
-      name: "France",
-    },
+    areaServed: [
+      {
+        "@type": "AdministrativeArea",
+        name: "Provence-Alpes-Côte d'Azur",
+      },
+      {
+        "@type": "Country",
+        name: "France",
+      },
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
@@ -102,7 +108,7 @@ type ServiceSchemaInput = {
   serviceType: string;
 };
 
-/** Service node (chauffeur / security) linked to the organisation as provider. */
+/** Service node — describes coordinated access to independent professionals. */
 export function getServiceSchema({
   locale,
   path,
@@ -120,11 +126,41 @@ export function getServiceSchema({
     serviceType,
     url: absolute(siteUrl, localizePath(path, locale)),
     provider: { "@id": orgId(siteUrl) },
-    areaServed: {
-      "@type": "Country",
-      name: "France",
-    },
+    areaServed: [
+      {
+        "@type": "AdministrativeArea",
+        name: "Provence-Alpes-Côte d'Azur",
+      },
+      {
+        "@type": "Country",
+        name: "France",
+      },
+    ],
     availableLanguage: ["fr", "en"],
+  };
+}
+
+type BreadcrumbItem = {
+  name: string;
+  path: string;
+};
+
+/** BreadcrumbList for key landing pages. */
+export function getBreadcrumbSchema(
+  locale: Locale,
+  items: ReadonlyArray<BreadcrumbItem>,
+) {
+  const siteUrl = getSiteUrl();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absolute(siteUrl, localizePath(item.path, locale)),
+    })),
   };
 }
 

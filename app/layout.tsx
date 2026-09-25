@@ -87,25 +87,25 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Riviera Prime - Services premium de transport et sécurité privée",
+    default:
+      "Chauffeur privé & sécurité privée sur la Côte d'Azur | Riviera Prime",
     template: "%s | Riviera Prime",
   },
   description:
-    "Riviera Prime propose des services premium de chauffeur privé et de sécurité privée en France pour les particuliers, les professionnels, les événements et les déplacements sur mesure.",
+    "Riviera Prime coordonne la mise en relation avec des chauffeurs privés et des professionnels indépendants de la sécurité privée sur la Côte d'Azur.",
   keywords: [
     "Riviera Prime",
     "chauffeur privé",
-    "service chauffeur privé",
-    "VTC haut de gamme",
+    "chauffeur privé Côte d'Azur",
+    "transport avec chauffeur",
+    "transfert aéroport",
     "sécurité privée",
-    "agent de sécurité",
     "protection rapprochée",
-    "bodyguard",
-    "transport privé",
-    "chauffeur professionnel",
     "sécurité événementielle",
-    "France",
-    "Paris",
+    "Côte d'Azur",
+    "Nice",
+    "Cannes",
+    "Monaco",
   ],
   authors: [{ name: "Riviera Prime" }],
   creator: "Riviera Prime",
@@ -115,25 +115,27 @@ export const metadata: Metadata = {
     locale: ogLocales.fr,
     alternateLocale: [ogLocales.en],
     siteName: "Riviera Prime",
-    title: "Riviera Prime - Services premium de transport et sécurité privée",
+    title:
+      "Chauffeur privé & sécurité privée sur la Côte d'Azur | Riviera Prime",
     description:
-      "Services premium de chauffeur privé et de sécurité privée en France. Transport haut de gamme, protection rapprochée, sécurité événementielle et accompagnement personnalisé.",
+      "Plateforme de coordination qui met ses clients en relation avec des chauffeurs privés et des professionnels indépendants de la sécurité sur la Côte d'Azur.",
     url: siteUrl,
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Riviera Prime - Chauffeur privé et sécurité privée",
+        alt: "Riviera Prime — chauffeur privé et sécurité privée sur la Côte d'Azur",
         type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Riviera Prime - Services premium de transport et sécurité privée",
+    title:
+      "Chauffeur privé & sécurité privée sur la Côte d'Azur | Riviera Prime",
     description:
-      "Riviera Prime propose des services haut de gamme de chauffeur privé et de sécurité privée en France.",
+      "Riviera Prime coordonne la mise en relation avec des chauffeurs privés et des professionnels indépendants de la sécurité sur la Côte d'Azur.",
     images: ["/images/og-image.jpg"],
   },
   robots: {

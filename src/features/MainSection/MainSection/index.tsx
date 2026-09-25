@@ -17,7 +17,7 @@ const MainSection: React.FC<{
         <Image
           className="bg-fit-cover absolute top-0 -z-1 w-full bg-center bg-no-repeat object-cover object-center "
           src={heroImage}
-          alt="Hero Background Image"
+          alt="Riviera Prime — chauffeur privé et sécurité privée sur la Côte d'Azur"
           fill
           quality={100}
           priority

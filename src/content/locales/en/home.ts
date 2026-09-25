@@ -6,9 +6,9 @@ export function createHomeContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Riviera Prime\nPrivate transport and protection",
+      title: "Riviera Prime\nPrivate chauffeur & private security",
       subtitle:
-        "Premium services for your journeys, events, and security requirements.",
+        "Premium coordination for transfers, events, and private security needs on the French Riviera.",
       buttonText: commonContent.buttons.services,
       buttonLink: routes.home.services,
     },
@@ -16,27 +16,31 @@ export function createHomeContent(locale: "fr" | "en") {
     whoWeAreTitle: "Riviera Prime — Excellence in every detail",
 
     whoWeAreItems: [
-      "Riviera Prime is a premium coordination platform connecting clients with trusted independent professionals in private chauffeur and executive security services. The platform prioritises discretion, reliability, and seamless service management from the first request through to final confirmation.",
-      "The network brings together experienced professionals selected for service quality, responsiveness, and the ability to operate in demanding environments with the highest level of professionalism. Every request is handled with precision to ensure clear, confidential coordination tailored to your needs.",
+      "Riviera Prime is a coordination platform that connects clients with independent professionals selected according to their needs, in private chauffeur and private security services. The platform prioritises discretion, reliability, and seamless service management from the first request through to final confirmation.",
+      "The network brings together experienced independent professionals selected for service quality, responsiveness, and the ability to operate in demanding environments. Every request is handled with precision to ensure clear, confidential coordination tailored to your needs on the French Riviera and beyond.",
     ] as const,
 
-    servicesSectionTitle: "Choose your experience",
+    servicesSectionTitle: "Private chauffeur and private security",
 
     servicesSection: [
       {
-        title: "Private chauffeur",
+        title: "Private chauffeur on the French Riviera",
         description:
-          "Premium transport for airport transfers, business travel, events, and bespoke journeys.",
+          "Coordinated access for airport transfers, business travel, events, and bespoke journeys with independent private chauffeurs.",
         href: routes.chauffeur.index,
         image: "/images/hyundai-motor-group.png",
+        imageAlt:
+          "Private chauffeur on the French Riviera — premium vehicle for transfers and travel",
         buttonText: commonContent.buttons.discover,
       },
       {
-        title: "Private security",
+        title: "Private security solutions",
         description:
-          "Protection, escort, and security solutions coordinated to your needs, locations, and constraints.",
+          "Coordinated access to independent security professionals for protection, escort, and security tailored to your constraints.",
         href: routes.security.index,
         image: "/images/luxury-private-bodyguards.png",
+        imageAlt:
+          "Private security — independent professionals for protection and escort",
         buttonText: commonContent.buttons.discover,
       },
     ] as const,
@@ -52,7 +56,7 @@ export function createHomeContent(locale: "fr" | "en") {
         id: "home-faq-1",
         question: "What services does Riviera Prime offer?",
         answer:
-          "Riviera Prime coordinates premium private chauffeur and private security services for travel, events, business needs, and bespoke requests.",
+          "Riviera Prime coordinates connections with independent private chauffeurs and independent private security professionals for travel, events, business needs, and bespoke requests.",
       },
       {
         id: "home-faq-2",
