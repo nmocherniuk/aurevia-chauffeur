@@ -1,8 +1,10 @@
 export const bookingFormContent = {
   section: {
     title: "Book your transfer",
-    subtitle: "Enter your journey details and continue to confirmation.",
-    imageAlt: "Luxury vehicle for private transfer",
+    subtitle:
+      "Enter your journey details to receive a proposal tailored to your needs.",
+    imageAlt:
+      "Private chauffeur opening a saloon car door by the sea on the French Riviera",
     summaryAriaLabel: "Booking summary",
     submitError: "Something went wrong. Please try again in a moment.",
   },

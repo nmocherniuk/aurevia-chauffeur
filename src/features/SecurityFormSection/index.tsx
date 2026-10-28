@@ -83,7 +83,7 @@ const SecurityFormSection: FC = () => {
     >
       <div className="relative mb-9 hidden h-[260px] w-full overflow-hidden rounded-xl sm:block sm:h-[300px] lg:top-6 lg:mb-0 lg:h-[800px] xl:h-[776px]">
         <Image
-          src="/images/security-guard-workspace.jpg"
+          src="/images/centre-surveillance-securite-privee-villa.webp"
           alt={securityForm.section.imageAlt}
           fill
           className="rounded-xl object-cover object-center"

@@ -15,7 +15,7 @@ export const legalContent: LegalContent = {
       },
       {
         type: "p",
-        text: "The platform acts as an intermediary connecting clients with independent professionals, in particular private chauffeurs and security agents. It does not directly carry out the operational services entrusted to its partners.",
+        text: "Riviera Prime provides a private chauffeur (VTC) transport service, carried out directly or by independent partner chauffeurs. For private security, Riviera Prime acts as an intermediary connecting clients with private security companies that hold the applicable regulatory authorisations; it does not itself carry out surveillance, guarding or protection services.",
       },
     ],
     groups: [
@@ -54,8 +54,9 @@ export const legalContent: LegalContent = {
               {
                 type: "ul",
                 items: [
-                  "receiving and managing booking requests;",
-                  "coordinating services with the independent professionals concerned;",
+                  "receiving and managing booking and introduction requests;",
+                  "organising chauffeur transport services and, where applicable, coordinating with independent partner chauffeurs;",
+                  "passing private security requests on to the provider companies concerned;",
                   "communicating with clients before, during and after the service;",
                   "processing and following up on payments;",
                   "preventing fraud, abuse and unauthorized use;",
@@ -76,7 +77,8 @@ export const legalContent: LegalContent = {
               {
                 type: "ul",
                 items: [
-                  "with partner professionals in charge of the service, such as private chauffeurs or security agents;",
+                  "with independent partner chauffeurs, when the transport service is entrusted to them;",
+                  "with partner private security companies, when the request concerns a security service;",
                   "with Stripe or any equivalent payment provider, for secure payment processing;",
                   "with Meta (WhatsApp Cloud API), when this channel is used for operational exchanges related to the organization or follow-up of the booking;",
                   "with technical providers involved in hosting, maintenance or operation of the platform;",
@@ -169,11 +171,11 @@ export const legalContent: LegalContent = {
             blocks: [
               {
                 type: "p",
-                text: "The platform acts as an intermediary and digital services operator. The professionals carrying out the services are legally independent and remain solely responsible for their professional, administrative, social, tax and regulatory obligations.",
+                text: "For private chauffeur transport, Riviera Prime provides the service directly or has it carried out by independent partner chauffeurs. For private security, Riviera Prime acts only as an intermediary and digital services operator: services are offered, contracted and performed by the security companies concerned, which remain solely responsible for their professional, administrative, social, tax and regulatory obligations, including applicable authorisations (notably CNAPS authorisations in France, where required).",
               },
               {
                 type: "p",
-                text: "In this context, certain personal data may be transmitted to these independent professionals where necessary to organize, confirm and deliver the service requested by the client.",
+                text: "In this context, certain personal data may be transmitted to partner chauffeurs or to the private security companies concerned where necessary to organize, confirm and deliver the service requested by the client.",
               },
             ],
           },
@@ -199,13 +201,13 @@ export const legalContent: LegalContent = {
             blocks: [
               {
                 type: "p",
-                text: "Riviera Prime offers a premium organization, booking and coordination service providing access to a network of independent professionals working in particular in:",
+                text: "Riviera Prime offers:",
               },
               {
                 type: "ul",
                 items: [
-                  "private chauffeured passenger transport;",
-                  "private security;",
+                  "a private chauffeured passenger transport (VTC) service, provided directly by Riviera Prime or carried out by independent partner chauffeurs;",
+                  "introductions to private security companies for close protection, property security, event security and specialised missions;",
                   "associated high-end services.",
                 ],
               },
@@ -219,19 +221,18 @@ export const legalContent: LegalContent = {
               {
                 type: "ul",
                 items: [
-                  "an organization company;",
-                  "a booking coordinator;",
-                  "a commercial facilitator;",
-                  "a digital services operator.",
+                  "a private chauffeur (VTC) transport provider, directly or via partner chauffeurs;",
+                  "an intermediary for private security requests;",
+                  "a booking coordinator and digital services operator.",
                 ],
               },
               {
                 type: "p",
-                text: "The company receives client requests, organizes their handling and coordinates, according to the needs expressed, the intervention of selected independent partner professionals.",
+                text: "The company receives client requests, organizes their handling, provides or arranges transport services according to the availability agreed, and for private security facilitates contact with selected specialised companies.",
               },
               {
                 type: "p",
-                text: "The company does not directly perform the material execution of the operational services entrusted to its partners.",
+                text: "For private security, the company does not perform the material execution of surveillance, guarding or protection services: these are contracted and carried out directly by the provider companies.",
               },
             ],
           },
@@ -241,7 +242,7 @@ export const legalContent: LegalContent = {
             blocks: [
               {
                 type: "p",
-                text: "Operational services are carried out by legally independent professionals.",
+                text: "Depending on the nature of the request, certain services may be carried out by legally independent professionals: partner chauffeurs for transport, or private security companies for protection and security missions.",
               },
               { type: "p", text: "Each partner remains solely responsible for:" },
               {
@@ -261,13 +262,17 @@ export const legalContent: LegalContent = {
             id: "responsabilite",
             heading: "4. Liability",
             blocks: [
-              { type: "p", text: "The company cannot be held liable for:" },
+              {
+                type: "p",
+                text: "The company cannot be held liable for:",
+              },
               {
                 type: "ul",
                 items: [
-                  "delays attributable to the executing partner;",
-                  "an incident occurring during the service;",
-                  "a failure by the service provider;",
+                  "delays attributable to a partner chauffeur or a provider security company;",
+                  "an incident occurring during a service performed by a partner;",
+                  "a failure by an independent provider;",
+                  "the unavailability of a security company or a refusal to take on the mission;",
                   "a case of force majeure;",
                   "a temporary unavailability of the website.",
                 ],
@@ -313,13 +318,16 @@ export const legalContent: LegalContent = {
               {
                 type: "ul",
                 items: [
-                  "partner availability;",
+                  "availability of the vehicle and chauffeur, or of the security company concerned;",
                   "operational validation;",
                   "logistical feasibility;",
                   "final confirmation.",
                 ],
               },
-              { type: "p", text: "The booking is only final after written confirmation." },
+              {
+                type: "p",
+                text: "A transport booking is only final after written confirmation. A private security service is confirmed only after acceptance by the provider company and agreement on its terms.",
+              },
             ],
           },
           {
@@ -334,6 +342,10 @@ export const legalContent: LegalContent = {
                   "established on a quote basis;",
                   "variable depending on location, time, duration, urgency, service level or any specific constraint.",
                 ],
+              },
+              {
+                type: "p",
+                text: "For transport, the price and payment terms are communicated before confirmation. For private security, pricing and payment terms are set with the provider company.",
               },
             ],
           },
@@ -369,24 +381,23 @@ export const legalContent: LegalContent = {
               {
                 type: "ul",
                 items: [
-                  "booking fees;",
-                  "coordination fees;",
-                  "organization fees;",
+                  "the price of the private chauffeur transport service;",
+                  "booking, coordination or organization fees;",
                   "remuneration provided for by contract;",
-                  "a commission agreed according to the nature of the operation.",
+                  "a commission agreed according to the nature of the operation, in particular for introductions relating to private security.",
                 ],
               },
               {
                 type: "p",
-                text: "The main price of the service may, depending on the nature of the service concerned, be invoiced directly by the executing partner professional.",
+                text: "The main price of a private security service may be invoiced directly by the provider company. When a partner chauffeur carries out the transport, certain amounts may also be paid to that partner under the agreed terms.",
               },
               {
                 type: "p",
-                text: "Main services are carried out by legally independent partner professionals, each remaining solely responsible for its legal, administrative, social, tax and operational obligations.",
+                text: "Independent partners (chauffeurs or security companies) remain solely responsible for their legal, administrative, social, tax and operational obligations for the services they perform.",
               },
               {
                 type: "p",
-                text: "Any compensation due to RIVIERA STRATEGIE is communicated to the client before final validation of the booking.",
+                text: "Any compensation due to RIVIERA STRATEGIE is communicated to the client before final validation of the booking or introduction.",
               },
             ],
           },

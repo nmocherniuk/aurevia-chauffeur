@@ -23,8 +23,8 @@ const ORGANIZATION = {
 } as const;
 
 const ORGANIZATION_DESCRIPTION: Record<Locale, string> = {
-  fr: "Plateforme premium de coordination qui met ses clients en relation avec des chauffeurs privés indépendants et des professionnels indépendants de la sécurité privée, notamment sur la Côte d'Azur.",
-  en: "Premium coordination platform connecting clients with independent private chauffeurs and independent private security professionals, notably on the French Riviera.",
+  fr: "Service de chauffeur privé VTC sur la Côte d'Azur et mise en relation avec des entreprises de sécurité privée à Nice, Cannes, Monaco, Antibes et Saint-Tropez.",
+  en: "Private chauffeur service on the French Riviera and introductions to private security companies in Nice, Cannes, Monaco, Antibes and Saint-Tropez.",
 };
 
 function orgId(siteUrl: string): string {
@@ -108,7 +108,7 @@ type ServiceSchemaInput = {
   serviceType: string;
 };
 
-/** Service node — describes coordinated access to independent professionals. */
+/** Service node for a landing page. */
 export function getServiceSchema({
   locale,
   path,

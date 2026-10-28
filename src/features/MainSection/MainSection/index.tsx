@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import heroImage from "@/public/images/isaac-martin-61d2hT57MAE-unsplash.jpg";
+import heroImage from "@/public/images/chauffeur-prive-securite-privee-cote-azur.webp";
 import { Button } from "@/src/components/Button";
 import SocialIcons from "@/src/components/SocialIcons";
 import { NavButton } from "@/src/components/Button/NavButton";
@@ -17,7 +17,7 @@ const MainSection: React.FC<{
         <Image
           className="bg-fit-cover absolute top-0 -z-1 w-full bg-center bg-no-repeat object-cover object-center "
           src={heroImage}
-          alt="Riviera Prime — chauffeur privé et sécurité privée sur la Côte d'Azur"
+          alt="Chauffeur privé et agents de sécurité devant l'hôtel Carlton à Cannes"
           fill
           quality={100}
           priority
@@ -35,14 +35,14 @@ const MainSection: React.FC<{
             <h1 className="mb-3 whitespace-pre-line text-center text-[28px] font-benzin leading-tight text-white  md:text-[33.8px] md:leading-tight lg:text-[42px] xl:text-[44px] xl:leading-tight">
               {title}
             </h1>
-            <p className="mb-4 max-w-[386px] text-center text-base text-white-100 sm:max-w-none text-text-secondary">
+            <p className="mb-4 max-w-[386px] text-center text-base text-white-100 sm:max-w-[600px] md:max-w-[640px] text-text-secondary">
               {subtitle}
             </p>
           </article>
           <SocialIcons classNameContainer="hidden sm:flex mb-4" />
           <NavButton
             variant="primary"
-            className="w-full max-w-[220px]"
+            className="w-full min-w-[220px] max-w-max whitespace-nowrap"
             href={buttonLink}
           >
             {buttonText}

@@ -40,7 +40,7 @@ export const commonContent = {
 
   footer: {
     tagline:
-      "Coordination premium pour le chauffeur privé et la sécurité privée, pensée pour la discrétion, la fiabilité et l'exigence.",
+      "Chauffeur privé VTC et accès à des solutions de sécurité privée sur la Côte d'Azur. Excellence, discrétion, fiabilité.",
     copyright: "© 2026 Riviera Prime. Tous droits réservés",
     privacy: "Confidentialité",
     terms: "Conditions",
@@ -49,10 +49,10 @@ export const commonContent = {
     dataDeletion: "Suppression des données",
   },
 
-  servicesSectionTitle: "Prestations",
+  servicesSectionTitle: "Solutions de sécurité privée",
 
   sectionTitles: {
-    whyChooseUs: "Pourquoi une clientèle exigeante choisit Riviera Prime",
+    whyChooseUs: "Pourquoi choisir Riviera Prime ?",
     faq: "Questions fréquentes",
   },
 };

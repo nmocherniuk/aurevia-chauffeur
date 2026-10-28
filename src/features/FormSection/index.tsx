@@ -91,7 +91,7 @@ const FormSection: FC = () => {
     >
       <div className="hidden sm:block relative w-full overflow-hidden rounded-xl h-[260px] sm:h-[300px] lg:h-[800px] xl:h-[776px] lg:top-6 mb-9 lg:mb-0">
         <Image
-          src="/images/form-car.png"
+          src="/images/reservation-chauffeur-prive-vtc-cote-azur.webp"
           alt={bookingForm.section.imageAlt}
           fill
           className="object-cover object-center rounded-xl"

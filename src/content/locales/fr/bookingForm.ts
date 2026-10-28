@@ -2,8 +2,9 @@ export const bookingFormContent = {
   section: {
     title: "Réservez votre transfert",
     subtitle:
-      "Entrez les détails de votre trajet puis poursuivez vers la confirmation.",
-    imageAlt: "Véhicule de luxe pour transfert privé",
+      "Renseignez les informations de votre trajet pour recevoir une proposition adaptée à vos besoins.",
+    imageAlt:
+      "Chauffeur privé VTC ouvrant la portière d'une berline en bord de mer sur la Côte d'Azur",
     summaryAriaLabel: "Résumé de la réservation",
     submitError:
       "Une erreur est survenue. Veuillez réessayer dans un instant.",

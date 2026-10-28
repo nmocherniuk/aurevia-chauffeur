@@ -49,7 +49,7 @@ export const legalContent: LegalContent = {
       },
       {
         type: "p",
-        text: "La plateforme agit en qualité d’intermédiaire de mise en relation entre des clients et des professionnels indépendants, notamment des chauffeurs privés et des agents de sécurité. Elle n’exécute pas directement les prestations opérationnelles confiées aux partenaires.",
+        text: "Riviera Prime propose un service de transport privé avec chauffeur (VTC), assuré directement ou réalisé par des chauffeurs VTC partenaires indépendants. Pour la sécurité privée, Riviera Prime agit en qualité d’intermédiaire de mise en relation avec des entreprises de sécurité privée disposant des autorisations réglementaires applicables ; elle n’exécute pas elle-même les prestations de surveillance, de gardiennage ou de protection.",
       },
     ],
     groups: [
@@ -91,8 +91,9 @@ export const legalContent: LegalContent = {
               {
                 type: "ul",
                 items: [
-                  "réception et gestion des demandes de réservation ;",
-                  "coordination des prestations avec les professionnels indépendants concernés ;",
+                  "réception et gestion des demandes de réservation et de mise en relation ;",
+                  "organisation des prestations de transport avec chauffeur et, le cas échéant, coordination avec des chauffeurs VTC partenaires indépendants ;",
+                  "transmission des demandes de sécurité privée aux entreprises prestataires concernées ;",
                   "communication avec les clients avant, pendant et après la prestation ;",
                   "traitement et suivi des paiements ;",
                   "prévention des fraudes, abus et utilisations non autorisées ;",
@@ -113,7 +114,8 @@ export const legalContent: LegalContent = {
               {
                 type: "ul",
                 items: [
-                  "aux professionnels partenaires chargés de la prestation, tels que des chauffeurs privés ou agents de sécurité ;",
+                  "aux chauffeurs VTC partenaires indépendants, lorsque la prestation de transport leur est confiée ;",
+                  "aux entreprises de sécurité privée partenaires, lorsque la demande porte sur une prestation de sécurité ;",
                   "à Stripe ou à tout prestataire de paiement équivalent, pour le traitement sécurisé des paiements ;",
                   "à Meta (WhatsApp Cloud API), lorsque ce canal est utilisé pour les échanges opérationnels liés à l’organisation ou au suivi de la réservation ;",
                   "aux prestataires techniques intervenant dans l’hébergement, la maintenance ou le fonctionnement de la plateforme ;",
@@ -206,11 +208,11 @@ export const legalContent: LegalContent = {
             blocks: [
               {
                 type: "p",
-                text: "La plateforme intervient en qualité d’intermédiaire et d’opérateur de services numériques. Les professionnels réalisant les prestations sont juridiquement indépendants et demeurent seuls responsables de leurs obligations professionnelles, administratives, sociales, fiscales et réglementaires.",
+                text: "Pour le transport privé avec chauffeur, Riviera Prime fournit le service directement ou le fait réaliser par des chauffeurs VTC partenaires indépendants. Pour la sécurité privée, Riviera Prime agit uniquement en qualité d’intermédiaire de mise en relation et d’opérateur de services numériques : les prestations sont proposées, contractualisées et réalisées par les entreprises de sécurité concernées, qui demeurent seules responsables de leurs obligations professionnelles, administratives, sociales, fiscales et réglementaires, y compris des autorisations applicables (notamment CNAPS, lorsqu’elles sont requises).",
               },
               {
                 type: "p",
-                text: "Dans ce cadre, certaines données personnelles peuvent être transmises à ces professionnels indépendants lorsque cela est nécessaire pour organiser, confirmer et exécuter la prestation demandée par le client.",
+                text: "Dans ce cadre, certaines données personnelles peuvent être transmises aux chauffeurs VTC partenaires ou aux entreprises de sécurité privée concernées lorsque cela est nécessaire pour organiser, confirmer et exécuter la prestation demandée par le client.",
               },
             ],
           },
@@ -236,13 +238,13 @@ export const legalContent: LegalContent = {
             blocks: [
               {
                 type: "p",
-                text: "Riviera Prime propose un service premium d’organisation, de réservation et de coordination permettant l’accès à un réseau de professionnels indépendants intervenant notamment dans :",
+                text: "Riviera Prime propose :",
               },
               {
                 type: "ul",
                 items: [
-                  "le transport privé de personnes avec chauffeur ;",
-                  "la sécurité privée ;",
+                  "un service de transport privé de personnes avec chauffeur (VTC), assuré directement par Riviera Prime ou réalisé par des chauffeurs VTC partenaires indépendants ;",
+                  "une mise en relation avec des entreprises de sécurité privée pour la protection rapprochée, la sécurisation de biens, la sécurité événementielle et les missions spécialisées ;",
                   "des prestations haut de gamme associées.",
                 ],
               },
@@ -256,19 +258,18 @@ export const legalContent: LegalContent = {
               {
                 type: "ul",
                 items: [
-                  "de société d’organisation ;",
-                  "de coordinateur de réservations ;",
-                  "de facilitateur commercial ;",
-                  "d’opérateur de services numériques.",
+                  "de prestataire de transport privé avec chauffeur (VTC), directement ou via des chauffeurs partenaires ;",
+                  "d’intermédiaire de mise en relation pour les demandes de sécurité privée ;",
+                  "de coordinateur de réservations et d’opérateur de services numériques.",
                 ],
               },
               {
                 type: "p",
-                text: "La société reçoit les demandes des clients, organise leur traitement et coordonne, selon les besoins exprimés, l’intervention de partenaires professionnels indépendants sélectionnés.",
+                text: "La société reçoit les demandes des clients, organise leur traitement, assure ou fait assurer les prestations de transport selon les disponibilités convenues, et facilite, pour la sécurité privée, la prise de contact avec des entreprises spécialisées sélectionnées.",
               },
               {
                 type: "p",
-                text: "La société n’assure pas directement l’exécution matérielle des prestations opérationnelles confiées aux partenaires.",
+                text: "Pour la sécurité privée, la société n’assure pas l’exécution matérielle des prestations de surveillance, de gardiennage ou de protection : celles-ci sont contractualisées et réalisées directement par les entreprises prestataires.",
               },
             ],
           },
@@ -278,7 +279,7 @@ export const legalContent: LegalContent = {
             blocks: [
               {
                 type: "p",
-                text: "Les prestations opérationnelles sont réalisées par des professionnels juridiquement indépendants.",
+                text: "Selon la nature de la demande, certaines prestations peuvent être réalisées par des professionnels juridiquement indépendants : chauffeurs VTC partenaires pour le transport, ou entreprises de sécurité privée pour les missions de protection et de sécurisation.",
               },
               { type: "p", text: "Chaque partenaire demeure seul responsable :" },
               {
@@ -298,13 +299,17 @@ export const legalContent: LegalContent = {
             id: "responsabilite",
             heading: "4. Responsabilité",
             blocks: [
-              { type: "p", text: "La société ne saurait être tenue responsable :" },
+              {
+                type: "p",
+                text: "La société ne saurait être tenue responsable :",
+              },
               {
                 type: "ul",
                 items: [
-                  "des retards imputables au partenaire exécutant ;",
-                  "d’un incident survenu durant la prestation ;",
-                  "d’un manquement du prestataire ;",
+                  "des retards imputables à un chauffeur VTC partenaire ou à une entreprise de sécurité prestataire ;",
+                  "d’un incident survenu durant une prestation réalisée par un partenaire ;",
+                  "d’un manquement d’un prestataire indépendant ;",
+                  "de l’indisponibilité d’une entreprise de sécurité ou d’un refus de prise en charge de la mission ;",
                   "d’un cas de force majeure ;",
                   "d’une indisponibilité temporaire du site.",
                 ],
@@ -350,13 +355,16 @@ export const legalContent: LegalContent = {
               {
                 type: "ul",
                 items: [
-                  "à la disponibilité des partenaires ;",
+                  "à la disponibilité du véhicule et du chauffeur, ou de l’entreprise de sécurité concernée ;",
                   "à la validation opérationnelle ;",
                   "à la faisabilité logistique ;",
                   "à la confirmation finale.",
                 ],
               },
-              { type: "p", text: "La réservation n’est définitive qu’après confirmation écrite." },
+              {
+                type: "p",
+                text: "Une réservation de transport n’est définitive qu’après confirmation écrite. Une prestation de sécurité privée n’est confirmée qu’après acceptation par l’entreprise prestataire et accord sur ses conditions.",
+              },
             ],
           },
           {
@@ -371,6 +379,10 @@ export const legalContent: LegalContent = {
                   "établies sur devis ;",
                   "variables selon le lieu, l’horaire, la durée, l’urgence, le niveau de service ou toute contrainte particulière.",
                 ],
+              },
+              {
+                type: "p",
+                text: "Pour le transport, le prix et les modalités de paiement sont communiqués avant confirmation. Pour la sécurité privée, la tarification et les conditions de paiement sont définies avec l’entreprise prestataire.",
               },
             ],
           },
@@ -406,24 +418,23 @@ export const legalContent: LegalContent = {
               {
                 type: "ul",
                 items: [
-                  "à des frais de réservation ;",
-                  "à des frais de coordination ;",
-                  "à des frais d’organisation ;",
+                  "au prix de la prestation de transport avec chauffeur ;",
+                  "à des frais de réservation, de coordination ou d’organisation ;",
                   "à une rémunération contractuellement prévue ;",
-                  "à une commission convenue selon la nature de l’opération.",
+                  "à une commission convenue selon la nature de l’opération, notamment pour la mise en relation en matière de sécurité privée.",
                 ],
               },
               {
                 type: "p",
-                text: "Le prix principal de la prestation peut, selon la nature du service concerné, être facturé directement par le partenaire professionnel exécutant.",
+                text: "Le prix principal d’une prestation de sécurité privée peut être facturé directement par l’entreprise prestataire. Lorsqu’un chauffeur VTC partenaire assure le transport, certaines sommes peuvent également lui être versées selon les modalités convenues.",
               },
               {
                 type: "p",
-                text: "Les prestations principales sont réalisées par des partenaires professionnels juridiquement indépendants, chacun demeurant seul responsable de ses obligations légales, administratives, sociales, fiscales et opérationnelles.",
+                text: "Les partenaires indépendants (chauffeurs VTC ou entreprises de sécurité) demeurent seuls responsables de leurs obligations légales, administratives, sociales, fiscales et opérationnelles pour les prestations qu’ils exécutent.",
               },
               {
                 type: "p",
-                text: "Toute rémunération revenant à RIVIERA STRATEGIE est portée à la connaissance du client avant validation définitive de la réservation.",
+                text: "Toute rémunération revenant à RIVIERA STRATEGIE est portée à la connaissance du client avant validation définitive de la réservation ou de la mise en relation.",
               },
             ],
           },

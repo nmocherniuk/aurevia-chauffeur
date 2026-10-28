@@ -12,17 +12,16 @@ export function createChauffeurContent(locale: "fr" | "en") {
     heroSection: {
       title: "Chauffeur privé\nsur la Côte d'Azur",
       subtitle:
-        "Riviera Prime coordonne la mise en relation avec des chauffeurs privés indépendants pour vos transferts, déplacements et événements.",
+        "Riviera Prime assure vos transferts privés, déplacements professionnels et événements sur la Côte d'Azur, directement ou avec des chauffeurs VTC partenaires qualifiés.",
       buttonText: commonContent.buttons.reserve,
       buttonLink: routes.chauffeur.book,
     },
 
-    /** SEO intro — intermediary model + verified use cases / geography. */
     seoIntro: {
-      title: "Transport avec chauffeur, coordonné selon vos besoins",
+      title: "Transport avec chauffeur, adapté à vos besoins",
       paragraphs: [
-        "Riviera Prime facilite l'accès à des chauffeurs privés indépendants pour des trajets exigeants : transferts aéroport, déplacements professionnels, mise à disposition et événements. La plateforme coordonne la demande, la disponibilité et la confirmation — sans employer elle-même les chauffeurs.",
-        "Les itinéraires les plus demandés s'articulent autour de Nice, Cannes, Monaco, Antibes et Saint-Tropez, ainsi que des liaisons depuis l'aéroport de Nice — autant de trajets déjà proposés parmi les parcours populaires de la plateforme.",
+        "Riviera Prime propose un service de chauffeur privé VTC pour vos transferts aéroport, déplacements professionnels, mises à disposition et événements sur la Côte d'Azur. Les prestations sont assurées directement par Riviera Prime ou par des chauffeurs VTC partenaires indépendants, selon les disponibilités.",
+        "Nous intervenons notamment à Nice, Cannes, Monaco, Antibes et Saint-Tropez, ainsi que depuis et vers l'aéroport Nice Côte d'Azur.",
       ],
     },
 
@@ -30,30 +29,30 @@ export function createChauffeurContent(locale: "fr" | "en") {
       {
         id: "why-choose-us-1",
         icon: List,
-        title: "Tarification claire et fixe",
+        title: "Tarification claire et transparente",
         description:
-          "Le prix de votre transfert est confirmé à l'avance. Aucun frais caché, aucune surprise — une transparence à chaque étape.",
+          "Le prix de votre transfert vous est communiqué avant la confirmation de votre réservation.",
       },
       {
         id: "why-choose-us-2",
         icon: ShieldCheck,
         title: "Un service digne de confiance",
         description:
-          "Des chauffeurs indépendants expérimentés, des véhicules impeccables et une discrétion absolue pour une expérience sûre et raffinée.",
+          "Des chauffeurs professionnels, des véhicules soigneusement entretenus et une discrétion absolue pour un trajet sûr et confortable.",
       },
       {
         id: "why-choose-us-3",
         icon: Clock,
-        title: "Une précision sans compromis",
+        title: "Une organisation rigoureuse",
         description:
-          "Chaque détail de votre trajet est soigneusement coordonné afin d'assurer une ponctualité parfaite et un service irréprochable.",
+          "Chaque trajet est préparé avec soin pour respecter vos horaires et vos contraintes.",
       },
       {
         id: "why-choose-us-4",
         icon: Diamond,
         title: "Voyagez dans des conditions d'exception",
         description:
-          "Intérieurs spacieux, présentation soignée et prestations haut de gamme pour sublimer chacun de vos déplacements.",
+          "Berlines et vans premium, intérieurs spacieux et prestations haut de gamme pour chacun de vos déplacements.",
       },
     ],
 
@@ -62,49 +61,49 @@ export function createChauffeurContent(locale: "fr" | "en") {
       items: [
         {
           id: "service-1",
-          image: "/services-image/transfert-aeroport-chauffeur-prive-vtc.png",
+          image: "/services-image/transfert-aeroport-nice-chauffeur-prive-vtc.webp",
           title: "Transferts aéroport",
           description:
-            "Transferts privés vers tous les aéroports avec ponctualité garantie.",
-          alt: "Transfert aéroport avec chauffeur privé — service premium sur la Côte d'Azur",
+            "Transferts privés depuis et vers l'aéroport de Nice et les autres aéroports desservis.",
+          alt: "Chauffeur privé VTC accueillant un client à l'aéroport Nice Côte d'Azur",
         },
         {
           id: "service-2",
-          image: "/services-image/transfert-hotel-residence-privee-chauffeur.png",
+          image: "/services-image/transfert-villa-residence-privee-chauffeur.webp",
           title: "Hôtels et résidences privées",
           description:
-            "Transferts discrets vers hôtels de prestige et résidences privées.",
-          alt: "Transfert hôtel ou résidence privée avec chauffeur privé",
+            "Transferts discrets vers les hôtels de prestige et résidences privées.",
+          alt: "Chauffeur chargeant les bagages d'une famille devant une villa avec vue mer",
         },
         {
           id: "service-3",
-          image: "/services-image/chauffeur-prive-luxe-interieur-mercedes.jpg",
+          image: "/services-image/deplacement-professionnel-chauffeur-prive.webp",
           title: "Déplacements professionnels",
           description:
-            "Solutions premium pour vos déplacements professionnels et réunions.",
-          alt: "Déplacement professionnel avec chauffeur privé",
+            "Un chauffeur privé pour vos rendez-vous, réunions et voyages d'affaires.",
+          alt: "Homme d'affaires travaillant à l'arrière d'une berline avec chauffeur privé",
         },
         {
           id: "service-4",
-          image: "/services-image/business-corporate-travel-chauffeur-prive.png",
+          image: "/services-image/mise-a-disposition-chauffeur-prive.webp",
           title: "Mise à disposition",
           description:
-            "Chauffeur privé à l'heure ou à la journée pour vos déplacements.",
-          alt: "Mise à disposition d'un chauffeur privé à l'heure ou à la journée",
+            "Chauffeur privé à l'heure ou à la journée selon votre programme.",
+          alt: "Chauffeur privé ouvrant la portière à une cliente devant des boutiques de luxe",
         },
         {
           id: "service-5",
-          image: "/services-image/chauffeur-mariage-evenement-prive-luxe.png",
+          image: "/services-image/chauffeur-mariage-evenement-mercedes-classe-v.webp",
           title: "Événements et mariages",
           description:
-            "Transport raffiné et élégant pour mariages et événements privés.",
-          alt: "Chauffeur privé pour mariage et événement privé",
+            "Transport élégant pour vos invités lors de mariages et événements privés.",
+          alt: "Demoiselles d'honneur devant un Mercedes Classe V avec chauffeur pour un mariage",
         },
       ],
     },
 
     fleet: {
-      title: "Véhicules premium et chauffeurs indépendants",
+      title: "Véhicules premium avec chauffeur",
       empty: {
         title: "Aucun véhicule disponible pour le moment",
         description:
@@ -129,7 +128,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
     vehicleCta: {
       title: "Organisez votre transfert en toute simplicité",
       description:
-        "Décrivez votre trajet — Riviera Prime coordonne la mise en relation avec un chauffeur privé indépendant pour un voyage élégant, ponctuel et discret.",
+        "Indiquez votre trajet, la date, l'heure et le nombre de passagers. Riviera Prime vérifie les disponibilités avant de confirmer votre réservation.",
       buttonText: commonContent.buttons.reserve,
       buttonLink: routes.chauffeur.book,
     },
@@ -270,32 +269,32 @@ export function createChauffeurContent(locale: "fr" | "en") {
         id: "faq-1",
         question: "Comment réserver un véhicule ?",
         answer:
-          "Sélectionnez le véhicule souhaité, renseignez les informations de votre trajet, puis envoyez votre demande. La disponibilité du véhicule et du chauffeur est vérifiée avant confirmation de la réservation.",
+          "Choisissez le véhicule souhaité, renseignez les informations de votre trajet, puis envoyez votre demande. La disponibilité du véhicule et du chauffeur est vérifiée avant la confirmation de votre réservation.",
       },
       {
         id: "faq-2",
         question: "La réservation est-elle immédiate ?",
         answer:
-          "La demande n'est pas automatiquement confirmée. Elle est d'abord vérifiée selon la disponibilité du véhicule, du chauffeur et les contraintes liées au trajet. Vous recevez ensuite une confirmation.",
+          "Non. Votre demande est d'abord vérifiée selon la disponibilité du véhicule et du chauffeur, ainsi que les contraintes liées au trajet. Vous recevez ensuite une confirmation écrite.",
       },
       {
         id: "faq-3",
         question: "Quand dois-je effectuer le paiement ?",
         answer:
-          "Le paiement est demandé après validation de votre demande. Une fois le véhicule et le chauffeur confirmés, vous recevez les instructions de paiement sécurisé.",
+          "Les modalités de paiement vous sont communiquées avant la confirmation de votre réservation. Selon la prestation, un acompte ou un paiement intégral peut être demandé, via une solution de paiement sécurisée.",
       },
       {
         id: "faq-4",
         question: "Puis-je choisir un véhicule précis ?",
         answer:
-          "Oui, vous pouvez choisir un véhicule spécifique parmi ceux proposés. Sa disponibilité est toutefois confirmée après vérification lors du traitement de la demande.",
+          "Oui, vous pouvez choisir un véhicule parmi ceux proposés. Sa disponibilité est confirmée lors du traitement de votre demande.",
       },
     ],
 
     faqContact: {
       title: "Besoin d'une précision avant votre demande ?",
       description:
-        "Vous pouvez écrire directement ou indiquer vos besoins spécifiques dans le formulaire de réservation.",
+        "Contactez directement Riviera Prime ou indiquez vos besoins particuliers dans le formulaire de réservation.",
     },
   };
 }

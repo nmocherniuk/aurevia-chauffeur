@@ -6,18 +6,18 @@ export function createHomeContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Riviera Prime\nChauffeur privé & sécurité privée",
+      title: "Chauffeur privé & sécurité privée\nsur la Côte d'Azur",
       subtitle:
-        "Coordination premium pour vos transferts, événements et besoins de sécurité privée sur la Côte d'Azur.",
-      buttonText: commonContent.buttons.services,
+        "Transferts privés, déplacements professionnels et solutions de sécurité sur mesure à Nice, Cannes, Monaco, Antibes et Saint-Tropez.",
+      buttonText: "Découvrir les services",
       buttonLink: routes.home.services,
     },
 
     whoWeAreTitle: "Riviera Prime — L'exigence dans chaque détail",
 
     whoWeAreItems: [
-      "Riviera Prime est une plateforme de coordination qui met ses clients en relation avec des professionnels indépendants sélectionnés selon leurs besoins, dans le chauffeur privé et la sécurité privée. La plateforme privilégie la discrétion, la fiabilité et une gestion fluide du service, depuis la première demande jusqu'à la confirmation finale.",
-      "Le réseau s'appuie sur des professionnels indépendants expérimentés, sélectionnés pour leur qualité de service, leur réactivité et leur capacité à intervenir dans des environnements exigeants. Chaque demande est traitée avec précision afin d'assurer une coordination claire, confidentielle et adaptée à vos besoins sur la Côte d'Azur et au-delà.",
+      "Riviera Prime propose des services de transport privé avec chauffeur sur la Côte d'Azur : transferts aéroport, déplacements professionnels, événements et trajets sur mesure. Les prestations de transport sont assurées directement par notre service VTC ou réalisées par des chauffeurs VTC partenaires indépendants, selon les disponibilités et les conditions de réservation convenues.",
+      "Pour vos besoins de sécurité privée, Riviera Prime facilite la prise de contact avec des entreprises spécialisées disposant des autorisations réglementaires requises. Notre priorité : un accompagnement personnalisé, fondé sur la discrétion, le professionnalisme, la transparence et l'attention portée à chaque détail.",
     ] as const,
 
     servicesSectionTitle: "Chauffeur privé et sécurité privée",
@@ -26,21 +26,21 @@ export function createHomeContent(locale: "fr" | "en") {
       {
         title: "Chauffeur privé sur la Côte d'Azur",
         description:
-          "Mise en relation pour vos transferts, déplacements professionnels, événements et trajets sur mesure avec des chauffeurs privés indépendants.",
+          "Transferts aéroport, déplacements professionnels, événements et trajets sur mesure avec chauffeur VTC.",
         href: routes.chauffeur.index,
-        image: "/images/hyundai-motor-group.png",
+        image: "/images/chauffeur-prive-vtc-nice-promenade-des-anglais.webp",
         imageAlt:
-          "Chauffeur privé sur la Côte d'Azur — véhicule premium pour transferts et déplacements",
+          "Chauffeurs privés VTC et véhicules premium sur la Promenade des Anglais à Nice",
         buttonText: commonContent.buttons.discover,
       },
       {
         title: "Solutions de sécurité privée",
         description:
-          "Accès coordonné à des professionnels indépendants de la sécurité pour protection, accompagnement et sécurisation selon vos contraintes.",
+          "Protection rapprochée, sécurité de villas, d'événements et d'entreprises avec des prestataires spécialisés.",
         href: routes.security.index,
-        image: "/images/luxury-private-bodyguards.png",
+        image: "/images/protection-rapprochee-securite-privee-cote-azur.webp",
         imageAlt:
-          "Sécurité privée — professionnels indépendants pour protection et accompagnement",
+          "Agents de protection rapprochée devant des véhicules noirs à un aéroport",
         buttonText: commonContent.buttons.discover,
       },
     ] as const,
@@ -48,7 +48,7 @@ export function createHomeContent(locale: "fr" | "en") {
     partnerCta: {
       title: "Vous souhaitez devenir partenaire ?",
       description:
-        "Chauffeurs, agents de sécurité ou prestataires premium : prenez contact pour présenter votre activité et rejoindre le réseau Riviera Prime.",
+        "Chauffeur VTC indépendant, exploitant de transport ou entreprise de sécurité privée : Riviera Prime développe son réseau de partenaires sur la Côte d'Azur. Contactez-nous pour présenter votre activité. Toute collaboration est soumise à la vérification des qualifications, autorisations et assurances professionnelles applicables.",
     },
 
     faqItems: [
@@ -56,25 +56,25 @@ export function createHomeContent(locale: "fr" | "en") {
         id: "home-faq-1",
         question: "Quels services propose Riviera Prime ?",
         answer:
-          "Riviera Prime coordonne la mise en relation avec des chauffeurs privés indépendants et des professionnels indépendants de la sécurité privée, pour les déplacements, événements, besoins professionnels et demandes sur mesure.",
+          "Riviera Prime propose des services de chauffeur privé VTC sur la Côte d'Azur : transferts aéroport, déplacements professionnels, mise à disposition et événements. Pour la sécurité privée, Riviera Prime facilite la prise de contact avec des entreprises spécialisées disposant des autorisations nécessaires.",
       },
       {
         id: "home-faq-2",
         question: "Comment fonctionne une demande de réservation ?",
         answer:
-          "Vous envoyez votre demande avec les informations nécessaires. La disponibilité, la faisabilité de la demande et l’identification des partenaires adaptés sont ensuite vérifiées avant toute confirmation.",
+          "Vous envoyez votre demande avec les informations nécessaires. Pour un transport, Riviera Prime vérifie les disponibilités et vous adresse une confirmation. Pour une demande de sécurité privée, elle est transmise à une entreprise spécialisée susceptible d'y répondre.",
       },
       {
         id: "home-faq-3",
         question: "La réservation est-elle confirmée immédiatement ?",
         answer:
-          "Non, une demande n'est pas automatiquement confirmée. La réservation devient définitive uniquement après validation de la disponibilité et confirmation écrite.",
+          "Non. Une réservation de transport devient définitive après vérification des disponibilités et confirmation écrite. Une prestation de sécurité privée est confirmée directement par l'entreprise prestataire, selon ses propres conditions.",
       },
       {
         id: "home-faq-4",
         question: "Quand le paiement est-il demandé ?",
         answer:
-          "Le paiement est demandé selon la nature de la prestation : à la réservation, sous forme d'acompte ou après confirmation. Les paiements sont sécurisés via une solution de paiement fiable.",
+          "Pour un transport, le prix et les modalités de paiement vous sont communiqués avant confirmation. Pour une prestation de sécurité privée, la tarification et les conditions de paiement sont définies avec l'entreprise prestataire.",
       },
     ],
   };

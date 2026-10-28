@@ -87,18 +87,17 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
   metadataBase: new URL(siteUrl),
   title: {
-    default:
-      "Chauffeur privé & sécurité privée sur la Côte d'Azur | Riviera Prime",
+    default: "Chauffeur privé & sécurité privée Côte d'Azur | Riviera Prime",
     template: "%s | Riviera Prime",
   },
   description:
-    "Riviera Prime coordonne la mise en relation avec des chauffeurs privés et des professionnels indépendants de la sécurité privée sur la Côte d'Azur.",
+    "Chauffeur privé VTC, transferts aéroport et solutions de sécurité privée à Nice, Cannes, Monaco et Saint-Tropez. Découvrez Riviera Prime.",
   keywords: [
     "Riviera Prime",
     "chauffeur privé",
+    "chauffeur privé VTC",
     "chauffeur privé Côte d'Azur",
-    "transport avec chauffeur",
-    "transfert aéroport",
+    "transfert aéroport Nice",
     "sécurité privée",
     "protection rapprochée",
     "sécurité événementielle",
@@ -106,6 +105,7 @@ export const metadata: Metadata = {
     "Nice",
     "Cannes",
     "Monaco",
+    "Saint-Tropez",
   ],
   authors: [{ name: "Riviera Prime" }],
   creator: "Riviera Prime",
@@ -115,10 +115,9 @@ export const metadata: Metadata = {
     locale: ogLocales.fr,
     alternateLocale: [ogLocales.en],
     siteName: "Riviera Prime",
-    title:
-      "Chauffeur privé & sécurité privée sur la Côte d'Azur | Riviera Prime",
+    title: "Chauffeur privé & sécurité privée Côte d'Azur | Riviera Prime",
     description:
-      "Plateforme de coordination qui met ses clients en relation avec des chauffeurs privés et des professionnels indépendants de la sécurité sur la Côte d'Azur.",
+      "Transferts privés, déplacements professionnels et solutions de sécurité sur mesure à Nice, Cannes, Monaco, Antibes et Saint-Tropez.",
     url: siteUrl,
     images: [
       {
@@ -132,10 +131,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Chauffeur privé & sécurité privée sur la Côte d'Azur | Riviera Prime",
+    title: "Chauffeur privé & sécurité privée Côte d'Azur | Riviera Prime",
     description:
-      "Riviera Prime coordonne la mise en relation avec des chauffeurs privés et des professionnels indépendants de la sécurité sur la Côte d'Azur.",
+      "Chauffeur privé VTC, transferts aéroport et solutions de sécurité privée à Nice, Cannes, Monaco et Saint-Tropez.",
     images: ["/images/og-image.jpg"],
   },
   robots: {

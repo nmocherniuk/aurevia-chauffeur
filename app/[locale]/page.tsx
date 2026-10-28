@@ -25,22 +25,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     { title: string; description: string; ogTitle: string; ogDesc: string }
   > = {
     fr: {
-      title: "Chauffeur privé & sécurité privée sur la Côte d'Azur",
+      title: "Chauffeur privé & sécurité privée Côte d'Azur",
       description:
-        "Riviera Prime coordonne la mise en relation avec des chauffeurs privés et des professionnels indépendants de la sécurité privée sur la Côte d'Azur.",
-      ogTitle:
-        "Chauffeur privé & sécurité privée sur la Côte d'Azur | Riviera Prime",
+        "Chauffeur privé VTC, transferts aéroport et solutions de sécurité privée à Nice, Cannes, Monaco et Saint-Tropez. Découvrez Riviera Prime.",
+      ogTitle: "Chauffeur privé & sécurité privée Côte d'Azur | Riviera Prime",
       ogDesc:
-        "Plateforme de coordination qui met ses clients en relation avec des chauffeurs privés indépendants et des professionnels de la sécurité sur la Côte d'Azur.",
+        "Transferts privés, déplacements professionnels et solutions de sécurité sur mesure à Nice, Cannes, Monaco, Antibes et Saint-Tropez.",
     },
     en: {
-      title: "Private chauffeur & private security on the French Riviera",
+      title: "Private chauffeur & security on the French Riviera",
       description:
-        "Riviera Prime coordinates introductions to independent private chauffeurs and private security professionals on the French Riviera.",
+        "Private chauffeur service, Nice airport transfers and private security solutions in Nice, Cannes, Monaco and Saint-Tropez. Discover Riviera Prime.",
       ogTitle:
-        "Private chauffeur & private security on the French Riviera | Riviera Prime",
+        "Private chauffeur & security on the French Riviera | Riviera Prime",
       ogDesc:
-        "Coordination platform connecting clients with independent private chauffeurs and security professionals on the French Riviera.",
+        "Private transfers, business travel and tailored security solutions in Nice, Cannes, Monaco, Antibes and Saint-Tropez.",
     },
   };
 

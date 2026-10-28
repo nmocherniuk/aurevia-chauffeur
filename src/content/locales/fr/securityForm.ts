@@ -1,9 +1,10 @@
 export const securityFormContent = {
   section: {
-    title: "Demande confidentielle",
+    title: "Demande confidentielle de sécurité privée",
     subtitle:
-      "Expliquez votre besoin. Votre demande sera étudiée avec discrétion par l'équipe de coordination.",
-    imageAlt: "Espace de coordination sécurité",
+      "Décrivez votre besoin. Votre demande est étudiée avec discrétion et peut être transmise à une entreprise de sécurité privée adaptée.",
+    imageAlt:
+      "Agents de sécurité dans un centre de surveillance vidéo d'une villa",
     summaryAriaLabel: "Résumé de la demande",
     submitError:
       "Une erreur est survenue. Veuillez réessayer dans un instant.",
@@ -26,7 +27,7 @@ export const securityFormContent = {
       placeholder: "Sélectionnez une catégorie",
     },
     type: {
-      label: "Type de service",
+      label: "Type de prestation",
       placeholder: "Sélectionnez un type de service",
       placeholderNoCategory: "Sélectionnez d'abord une catégorie",
     },
@@ -35,16 +36,16 @@ export const securityFormContent = {
       placeholder: "Quel service de sécurité recherchez-vous ?",
     },
     location: {
-      label: "Lieu",
+      label: "Lieu d'intervention",
       placeholder: "Ville, site ou adresse",
     },
-    date: { label: "Date", placeholder: "Sélectionnez une date" },
+    date: { label: "Date souhaitée", placeholder: "Sélectionnez une date" },
     time: {
       label: "Heure de début",
       placeholder: "Sélectionnez une heure",
     },
     duration: {
-      label: "Durée",
+      label: "Durée estimée",
       placeholder: "Sélectionnez une durée",
     },
     endDate: {
@@ -52,7 +53,7 @@ export const securityFormContent = {
       placeholder: "Sélectionnez une date de fin",
     },
     agentCount: {
-      label: "Nombre d'agents",
+      label: "Nombre d'agents souhaité",
       placeholder: "Sélectionner",
     },
   },
@@ -165,7 +166,7 @@ export const securityFormContent = {
   success: {
     title: "Demande reçue",
     message:
-      "Merci. L'équipe de coordination analysera votre demande et vous contactera personnellement pour affiner les détails. Il ne s'agit pas d'une réservation instantanée : chaque mission est confirmée avec discrétion et rigueur.",
+      "Merci. Votre demande sera étudiée par Riviera Prime et pourra être transmise à une entreprise de sécurité privée adaptée, conformément à la politique de confidentialité. L'envoi du formulaire ne constitue ni une réservation confirmée ni un contrat de prestation de sécurité.",
     button: "Continuer",
   },
   validation: {

@@ -12,16 +12,16 @@ export function createChauffeurContent(locale: "fr" | "en") {
     heroSection: {
       title: "Private chauffeur\non the French Riviera",
       subtitle:
-        "Riviera Prime coordinates introductions to independent private chauffeurs for transfers, travel, and events.",
+        "Riviera Prime handles your private transfers, business travel and events on the French Riviera, directly or with qualified partner chauffeurs.",
       buttonText: commonContent.buttons.reserve,
       buttonLink: routes.chauffeur.book,
     },
 
     seoIntro: {
-      title: "Chauffeur-driven transport, coordinated to your needs",
+      title: "Private chauffeur service tailored to your needs",
       paragraphs: [
-        "Riviera Prime facilitates access to independent private chauffeurs for demanding journeys: airport transfers, business travel, hourly hire, and events. The platform coordinates the request, availability, and confirmation — without employing the chauffeurs itself.",
-        "The most requested routes centre on Nice, Cannes, Monaco, Antibes, and Saint-Tropez, as well as connections from Nice Airport — journeys already featured among the platform's popular routes.",
+        "Riviera Prime provides a private chauffeur service for airport transfers, business travel, hourly hire and events on the French Riviera. Journeys are carried out directly by Riviera Prime or by independent partner chauffeurs, depending on availability.",
+        "We operate in Nice, Cannes, Monaco, Antibes and Saint-Tropez, as well as to and from Nice Côte d'Azur Airport.",
       ],
     },
 
@@ -29,30 +29,30 @@ export function createChauffeurContent(locale: "fr" | "en") {
       {
         id: "why-choose-us-1",
         icon: List,
-        title: "Clear, fixed pricing",
+        title: "Clear, transparent pricing",
         description:
-          "Your transfer price is confirmed in advance. No hidden fees, no surprises — full transparency at every step.",
+          "The price of your transfer is communicated before your booking is confirmed.",
       },
       {
         id: "why-choose-us-2",
         icon: ShieldCheck,
         title: "A service you can trust",
         description:
-          "Experienced independent chauffeurs, immaculate vehicles, and absolute discretion for a safe, refined experience.",
+          "Professional chauffeurs, well-maintained vehicles and complete discretion for a safe, comfortable journey.",
       },
       {
         id: "why-choose-us-3",
         icon: Clock,
-        title: "Uncompromising precision",
+        title: "Careful planning",
         description:
-          "Every detail of your journey is carefully coordinated to ensure perfect punctuality and impeccable service.",
+          "Every journey is carefully prepared around your schedule and requirements.",
       },
       {
         id: "why-choose-us-4",
         icon: Diamond,
         title: "Travel in exceptional conditions",
         description:
-          "Spacious interiors, impeccable presentation, and premium amenities elevate every journey.",
+          "Premium saloons and vans, spacious interiors and high-end amenities for every journey.",
       },
     ],
 
@@ -61,49 +61,49 @@ export function createChauffeurContent(locale: "fr" | "en") {
       items: [
         {
           id: "service-1",
-          image: "/services-image/transfert-aeroport-chauffeur-prive-vtc.png",
+          image: "/services-image/transfert-aeroport-nice-chauffeur-prive-vtc.webp",
           title: "Airport transfers",
           description:
-            "Private transfers to all airports with guaranteed punctuality.",
-          alt: "Airport transfer with private chauffeur — premium service on the French Riviera",
+            "Private transfers to and from Nice Airport and other airports served.",
+          alt: "Private chauffeur welcoming a client at Nice Côte d'Azur Airport",
         },
         {
           id: "service-2",
-          image: "/services-image/transfert-hotel-residence-privee-chauffeur.png",
+          image: "/services-image/transfert-villa-residence-privee-chauffeur.webp",
           title: "Hotels and private residences",
           description:
             "Discreet transfers to luxury hotels and private residences.",
-          alt: "Hotel or private residence transfer with private chauffeur",
+          alt: "Chauffeur loading a family's luggage outside a sea-view villa",
         },
         {
           id: "service-3",
-          image: "/services-image/chauffeur-prive-luxe-interieur-mercedes.jpg",
+          image: "/services-image/deplacement-professionnel-chauffeur-prive.webp",
           title: "Business travel",
           description:
-            "Premium solutions for business travel and meetings.",
-          alt: "Business travel with private chauffeur",
+            "A private chauffeur for your appointments, meetings and business trips.",
+          alt: "Businessman working in the back of a chauffeur-driven saloon",
         },
         {
           id: "service-4",
-          image: "/services-image/business-corporate-travel-chauffeur-prive.png",
+          image: "/services-image/mise-a-disposition-chauffeur-prive.webp",
           title: "Chauffeur hire",
           description:
-            "Hourly or daily private chauffeur for your journeys.",
-          alt: "Hourly or daily private chauffeur hire",
+            "Hourly or daily private chauffeur to fit your schedule.",
+          alt: "Private chauffeur opening the door for a client outside luxury boutiques",
         },
         {
           id: "service-5",
-          image: "/services-image/chauffeur-mariage-evenement-prive-luxe.png",
+          image: "/services-image/chauffeur-mariage-evenement-mercedes-classe-v.webp",
           title: "Events and weddings",
           description:
-            "Refined, elegant transport for weddings and private events.",
-          alt: "Private chauffeur for weddings and private events",
+            "Elegant transport for your guests at weddings and private events.",
+          alt: "Bridesmaids beside a chauffeur-driven Mercedes V-Class at a wedding",
         },
       ],
     },
 
     fleet: {
-      title: "Premium vehicles and independent chauffeurs",
+      title: "Premium chauffeur-driven vehicles",
       empty: {
         title: "No vehicles available at the moment",
         description:
@@ -128,7 +128,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
     vehicleCta: {
       title: "Arrange your transfer with ease",
       description:
-        "Describe your journey — Riviera Prime coordinates the introduction to an independent private chauffeur for an elegant, punctual, and discreet trip.",
+        "Enter your route, date, time and number of passengers. Riviera Prime checks availability before confirming your booking.",
       buttonText: commonContent.buttons.reserve,
       buttonLink: routes.chauffeur.book,
     },
@@ -190,28 +190,28 @@ export function createChauffeurContent(locale: "fr" | "en") {
       travelTransfers: [
         {
           id: 1,
-          from: "Aéroport de Nice",
+          from: "Nice Airport",
           to: "Monaco",
           duration: "35 min",
           distance: 30,
         },
         {
           id: 2,
-          from: "Aéroport de Nice",
+          from: "Nice Airport",
           to: "Cannes",
           duration: "35 min",
           distance: 32,
         },
         {
           id: 3,
-          from: "Aéroport de Nice",
+          from: "Nice Airport",
           to: "Saint-Tropez",
           duration: "2 h",
           distance: 110,
         },
         {
           id: 4,
-          from: "Aéroport de Nice",
+          from: "Nice Airport",
           to: "Antibes / Cap d'Antibes",
           duration: "25 min",
           distance: 20,
@@ -226,7 +226,7 @@ export function createChauffeurContent(locale: "fr" | "en") {
         {
           id: 6,
           from: "Cannes",
-          to: "Aéroport de Marseille",
+          to: "Marseille Airport",
           duration: "2 h 15 min",
           distance: 175,
         },
@@ -269,32 +269,32 @@ export function createChauffeurContent(locale: "fr" | "en") {
         id: "faq-1",
         question: "How do I book a vehicle?",
         answer:
-          "Select your preferred vehicle, enter your journey details, and submit your request. Vehicle and chauffeur availability is verified before the booking is confirmed.",
+          "Choose your preferred vehicle, enter your journey details and submit your request. Vehicle and chauffeur availability is checked before your booking is confirmed.",
       },
       {
         id: "faq-2",
         question: "Is the booking immediate?",
         answer:
-          "The request is not automatically confirmed. It is first reviewed based on vehicle and chauffeur availability and journey constraints. You then receive a confirmation.",
+          "No. Your request is first checked against vehicle and chauffeur availability and any journey constraints. You then receive a written confirmation.",
       },
       {
         id: "faq-3",
         question: "When do I need to pay?",
         answer:
-          "Payment is requested after your request is validated. Once the vehicle and chauffeur are confirmed, you receive secure payment instructions.",
+          "Payment terms are communicated before your booking is confirmed. Depending on the service, a deposit or full payment may be requested through a secure payment solution.",
       },
       {
         id: "faq-4",
         question: "Can I choose a specific vehicle?",
         answer:
-          "Yes, you can choose a specific vehicle from those offered. Availability is confirmed after review during request processing.",
+          "Yes, you can choose a vehicle from those offered. Its availability is confirmed when your request is processed.",
       },
     ],
 
     faqContact: {
       title: "Need clarification before your request?",
       description:
-        "You can get in touch directly or specify your requirements in the booking form.",
+        "Contact Riviera Prime directly or add any specific requirements in the booking form.",
     },
   };
 }

@@ -32,20 +32,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     { title: string; description: string; ogTitle: string; ogDesc: string }
   > = {
     fr: {
-      title: "Chauffeur privé sur la Côte d'Azur",
+      title: "Chauffeur privé VTC sur la Côte d'Azur",
       description:
-        "Riviera Prime met ses clients en relation avec des chauffeurs privés indépendants pour transferts aéroport, déplacements professionnels, mise à disposition et événements sur la Côte d'Azur.",
-      ogTitle: "Chauffeur privé sur la Côte d'Azur | Riviera Prime",
+        "Chauffeur privé VTC : transferts aéroport, déplacements professionnels, mise à disposition et événements à Nice, Cannes, Monaco, Antibes et Saint-Tropez.",
+      ogTitle: "Chauffeur privé VTC sur la Côte d'Azur | Riviera Prime",
       ogDesc:
-        "Coordination de mise en relation avec des chauffeurs privés indépendants — Nice, Cannes, Monaco, Antibes, Saint-Tropez et transferts aéroport.",
+        "Transferts privés et déplacements avec chauffeur à Nice, Cannes, Monaco, Antibes, Saint-Tropez et depuis l'aéroport Nice Côte d'Azur.",
     },
     en: {
-      title: "Private chauffeur on the French Riviera",
+      title: "Private chauffeur service on the French Riviera",
       description:
-        "Riviera Prime connects clients with independent private chauffeurs for airport transfers, business travel, chauffeur hire, and events on the French Riviera.",
-      ogTitle: "Private chauffeur on the French Riviera | Riviera Prime",
+        "Private chauffeur service: Nice airport transfers, business travel, hourly hire and events in Nice, Cannes, Monaco, Antibes and Saint-Tropez.",
+      ogTitle: "Private chauffeur service on the French Riviera | Riviera Prime",
       ogDesc:
-        "Coordinated introductions to independent private chauffeurs — Nice, Cannes, Monaco, Antibes, Saint-Tropez, and airport transfers.",
+        "Private transfers and chauffeur-driven travel in Nice, Cannes, Monaco, Antibes, Saint-Tropez and from Nice Côte d'Azur Airport.",
     },
   };
 
@@ -72,16 +72,14 @@ export default async function DriverPage({ params }: PageProps) {
     path: "/driver",
     name:
       locale === "fr"
-        ? "Coordination chauffeur privé sur la Côte d'Azur"
-        : "Private chauffeur coordination on the French Riviera",
+        ? "Chauffeur privé VTC sur la Côte d'Azur"
+        : "Private chauffeur service on the French Riviera",
     description:
       locale === "fr"
-        ? "Riviera Prime coordonne la mise en relation avec des chauffeurs privés indépendants pour transferts, déplacements professionnels, mise à disposition et événements sur la Côte d'Azur."
-        : "Riviera Prime coordinates introductions to independent private chauffeurs for transfers, business travel, chauffeur hire, and events on the French Riviera.",
+        ? "Service de chauffeur privé VTC pour transferts aéroport, déplacements professionnels, mise à disposition et événements à Nice, Cannes, Monaco, Antibes et Saint-Tropez, assuré directement par Riviera Prime ou par des chauffeurs VTC partenaires indépendants."
+        : "Private chauffeur service for airport transfers, business travel, hourly hire and events in Nice, Cannes, Monaco, Antibes and Saint-Tropez, provided directly by Riviera Prime or by independent partner chauffeurs.",
     serviceType:
-      locale === "fr"
-        ? "Coordination de chauffeur privé"
-        : "Private chauffeur coordination",
+      locale === "fr" ? "Chauffeur privé VTC" : "Private chauffeur service",
   });
 
   const breadcrumbSchema = getBreadcrumbSchema(locale, [
@@ -117,15 +115,15 @@ export default async function DriverPage({ params }: PageProps) {
         <section className="w-full" aria-labelledby="driver-seo-intro">
           <h2
             id="driver-seo-intro"
-            className="font-benzin text-white text-center text-2xl mb-6 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-8"
+            className="font-benzin text-white text-center text-2xl mb-10 sm:text-start sm:text-[28px] md:text-3xl lg:text-4xl lg:mb-11"
           >
             {chauffeurContent.seoIntro.title}
           </h2>
-          <div className="flex flex-col gap-4 max-w-3xl">
+          <div className="grid w-full grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2 md:gap-8 lg:gap-10">
             {chauffeurContent.seoIntro.paragraphs.map((paragraph) => (
               <p
                 key={paragraph.slice(0, 48)}
-                className="text-base font-light leading-relaxed text-text-primary"
+                className="min-w-0 text-base font-light leading-relaxed text-text-primary"
               >
                 {paragraph}
               </p>

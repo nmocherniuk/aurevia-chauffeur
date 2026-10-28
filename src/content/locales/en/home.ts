@@ -6,18 +6,18 @@ export function createHomeContent(locale: "fr" | "en") {
 
   return {
     heroSection: {
-      title: "Riviera Prime\nPrivate chauffeur & private security",
+      title: "Private chauffeur & private security\non the French Riviera",
       subtitle:
-        "Premium coordination for transfers, events, and private security needs on the French Riviera.",
-      buttonText: commonContent.buttons.services,
+        "Private transfers, business travel and tailored security solutions in Nice, Cannes, Monaco, Antibes and Saint-Tropez.",
+      buttonText: "Discover the services",
       buttonLink: routes.home.services,
     },
 
     whoWeAreTitle: "Riviera Prime — Excellence in every detail",
 
     whoWeAreItems: [
-      "Riviera Prime is a coordination platform that connects clients with independent professionals selected according to their needs, in private chauffeur and private security services. The platform prioritises discretion, reliability, and seamless service management from the first request through to final confirmation.",
-      "The network brings together experienced independent professionals selected for service quality, responsiveness, and the ability to operate in demanding environments. Every request is handled with precision to ensure clear, confidential coordination tailored to your needs on the French Riviera and beyond.",
+      "Riviera Prime provides private chauffeur services on the French Riviera: airport transfers, business travel, events and bespoke journeys. Transport is carried out directly by our own chauffeur service or by independent partner chauffeurs, depending on availability and the booking terms agreed.",
+      "For private security needs, Riviera Prime puts you in touch with specialised companies holding the required regulatory authorisations. Our priority is a personal approach built on discretion, professionalism, transparency and attention to every detail.",
     ] as const,
 
     servicesSectionTitle: "Private chauffeur and private security",
@@ -26,21 +26,20 @@ export function createHomeContent(locale: "fr" | "en") {
       {
         title: "Private chauffeur on the French Riviera",
         description:
-          "Coordinated access for airport transfers, business travel, events, and bespoke journeys with independent private chauffeurs.",
+          "Airport transfers, business travel, events and bespoke journeys with a professional chauffeur.",
         href: routes.chauffeur.index,
-        image: "/images/hyundai-motor-group.png",
+        image: "/images/chauffeur-prive-vtc-nice-promenade-des-anglais.webp",
         imageAlt:
-          "Private chauffeur on the French Riviera — premium vehicle for transfers and travel",
+          "Private chauffeurs and premium vehicles on the Promenade des Anglais in Nice",
         buttonText: commonContent.buttons.discover,
       },
       {
         title: "Private security solutions",
         description:
-          "Coordinated access to independent security professionals for protection, escort, and security tailored to your constraints.",
+          "Close protection, villa, event and business security with specialised providers.",
         href: routes.security.index,
-        image: "/images/luxury-private-bodyguards.png",
-        imageAlt:
-          "Private security — independent professionals for protection and escort",
+        image: "/images/protection-rapprochee-securite-privee-cote-azur.webp",
+        imageAlt: "Close protection officers standing by black vehicles at an airport",
         buttonText: commonContent.buttons.discover,
       },
     ] as const,
@@ -48,7 +47,7 @@ export function createHomeContent(locale: "fr" | "en") {
     partnerCta: {
       title: "Interested in becoming a partner?",
       description:
-        "Chauffeurs, security agents, or premium providers: get in touch to introduce your services and join the Riviera Prime network.",
+        "Independent chauffeur, transport operator or private security company: Riviera Prime is growing its partner network on the French Riviera. Get in touch to introduce your business. Any collaboration is subject to verification of the applicable qualifications, authorisations and professional insurance.",
     },
 
     faqItems: [
@@ -56,25 +55,25 @@ export function createHomeContent(locale: "fr" | "en") {
         id: "home-faq-1",
         question: "What services does Riviera Prime offer?",
         answer:
-          "Riviera Prime coordinates connections with independent private chauffeurs and independent private security professionals for travel, events, business needs, and bespoke requests.",
+          "Riviera Prime provides private chauffeur services on the French Riviera: airport transfers, business travel, chauffeur hire and events. For private security, Riviera Prime puts you in touch with specialised companies holding the necessary authorisations.",
       },
       {
         id: "home-faq-2",
         question: "How does a booking request work?",
         answer:
-          "You submit your request with the required information. Availability, feasibility of the request, and identification of suitable partners are then verified before any confirmation.",
+          "You submit your request with the required details. For transport, Riviera Prime checks availability and sends you a confirmation. A private security request is passed on to a specialised company able to handle it.",
       },
       {
         id: "home-faq-3",
         question: "Is the booking confirmed immediately?",
         answer:
-          "No, a request is not automatically confirmed. The booking becomes final only after availability is validated and written confirmation is provided.",
+          "No. A transport booking becomes final once availability has been checked and confirmed in writing. A private security service is confirmed directly by the provider company, under its own terms.",
       },
       {
         id: "home-faq-4",
         question: "When is payment required?",
         answer:
-          "Payment is requested depending on the service: at booking, as a deposit, or after confirmation. All payments are processed through a secure payment solution.",
+          "For transport, the price and payment terms are communicated before confirmation. For a private security service, pricing and payment terms are set with the provider company.",
       },
     ],
   };

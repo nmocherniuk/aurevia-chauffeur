@@ -40,7 +40,7 @@ export const commonContent = {
 
   footer: {
     tagline:
-      "Premium coordination for private chauffeur and private security, designed for discretion, reliability, and excellence.",
+      "Private chauffeur service and access to private security solutions on the French Riviera. Excellence, discretion, reliability.",
     copyright: "© 2026 Riviera Prime. All rights reserved",
     privacy: "Privacy",
     terms: "Terms",
@@ -49,10 +49,10 @@ export const commonContent = {
     dataDeletion: "Data deletion",
   },
 
-  servicesSectionTitle: "Services",
+  servicesSectionTitle: "Private security solutions",
 
   sectionTitles: {
-    whyChooseUs: "Why discerning clients choose Riviera Prime",
+    whyChooseUs: "Why choose Riviera Prime?",
     faq: "Frequently asked questions",
   },
 };

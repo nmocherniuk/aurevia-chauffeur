@@ -3,25 +3,24 @@ import { Clock } from "@/src/components/SVGManager/Clock";
 import { ShieldCheck } from "@/src/components/SVGManager/ShieldCheck";
 import { UserCheck } from "@/src/components/SVGManager/UserCheck";
 import { getRoutes } from "@/src/config/routes";
-import { commonContent } from "./common";
 
 export function createSecurityContent(locale: "fr" | "en") {
   const routes = getRoutes(locale);
 
   return {
     heroSection: {
-      title: "Private security\nand close protection",
+      title: "Private security and close protection on the French Riviera",
       subtitle:
-        "Riviera Prime facilitates access to independent private security professionals for travel, events, sensitive locations, and specific requirements.",
-      buttonText: commonContent.buttons.sendRequest,
+        "Riviera Prime facilitates access to private security companies for your travel, villas, events and protection needs in Nice, Cannes, Monaco and Saint-Tropez.",
+      buttonText: "Request a quote",
       buttonLink: routes.security.book,
     },
 
     seoIntro: {
-      title: "Coordinated private security solutions",
+      title: "Private security solutions tailored to your needs",
       paragraphs: [
-        "Riviera Prime coordinates introductions to independent security professionals for close protection, property security, event security, and specialised missions. The platform reviews your request and organises a suitable arrangement — without employing the agents itself.",
-        "Each assignment is assessed according to context, location, and required protection level to ensure clear, discreet coordination aligned with your constraints.",
+        "Riviera Prime puts clients in touch with private security companies for close protection and for villa, residence, business and event security on the French Riviera.",
+        "Services are offered, contracted and carried out directly by the security companies concerned, which must hold the applicable regulatory authorisations, including those issued by the CNAPS (France's private security regulator) where required.",
       ],
     },
 
@@ -29,41 +28,41 @@ export function createSecurityContent(locale: "fr" | "en") {
       {
         id: "why-choose-us-1",
         icon: ShieldCheck,
-        title: "A plan tailored to every mission",
+        title: "A solution for every need",
         description:
-          "Each request is assessed based on context, location, schedule, and required security level to propose a coherent solution.",
+          "Each request is assessed according to context, location, schedule and the level of security required, so it can be directed to a suitable solution.",
       },
       {
         id: "why-choose-us-2",
         icon: UserCheck,
-        title: "Rigorously selected agents",
+        title: "Qualified security companies",
         description:
-          "Reliable, experienced professionals accustomed to sensitive and premium environments are coordinated with care.",
+          "Requests are directed to private security companies experienced in sensitive and high-end environments.",
       },
       {
         id: "why-choose-us-3",
         icon: Clock,
-        title: "Responsive, discreet coordination",
+        title: "Discretion and responsiveness",
         description:
-          "Your request is handled with care to organise a clear, confidential intervention adapted to your operational constraints.",
+          "Every request is handled with care and confidentiality, taking your operational constraints into account.",
       },
       {
         id: "why-choose-us-4",
         icon: Car,
-        title: "Coordinated security and transport",
+        title: "Security and private chauffeur",
         description:
-          "When required, a solution combining protection, escort, and private chauffeur transport can be coordinated.",
+          "Combine your private security request with our private chauffeur service for your travel on the French Riviera.",
       },
     ],
 
     securityServices: [
       {
         id: "service-1",
-        image: "/services-image/security/luxury-bodyguard-agent.png",
-        title: "Personal & executive protection",
+        image: "/services-image/security/protection-rapprochee-garde-du-corps.webp",
+        title: "Close protection",
         description:
-          "Close protection and escort for executives and high-profile clients.",
-        alt: "Close protection and executive security with independent professionals",
+          "Close protection and escort for executives, high-profile individuals and private clients.",
+        alt: "Bodyguards escorting a client along a French Riviera promenade",
         highlights: [
           "Business and personal travel",
           "Discretion and responsiveness",
@@ -72,50 +71,50 @@ export function createSecurityContent(locale: "fr" | "en") {
       },
       {
         id: "service-2",
-        image: "/services-image/security/villa-security-residence.png",
-        title: "Property & residence security",
+        image: "/services-image/security/securite-villa-residence-privee.webp",
+        title: "Villa and residence security",
         description:
-          "Securing residences, villas, and sensitive private locations.",
-        alt: "Private residence and villa security",
+          "Surveillance and protection of villas, residences and private properties.",
+        alt: "Security guard with a radio watching over a seafront villa with a pool",
         highlights: [
-          "Residences and villas",
-          "Presence and surveillance",
-          "Absolute confidentiality",
+          "Villas and residences",
+          "On-site presence and surveillance",
+          "Complete confidentiality",
         ],
       },
       {
         id: "service-3",
-        image: "/services-image/security/abstract-sphere-background.png",
-        title: "Business & commercial security",
+        image: "/services-image/security/securite-entreprise-escorte-dirigeants.webp",
+        title: "Business and retail security",
         description:
-          "Security solutions for businesses, premises, and commercial activities.",
-        alt: "Private security for business and commercial sites",
+          "Security solutions for companies, offices, sites and shops.",
+        alt: "Security officers escorting executives outside a business building",
         highlights: [
           "Sensitive sites",
-          "Professional escort",
-          "Tailored coordination",
+          "Reception and access control",
+          "Tailored solutions",
         ],
       },
       {
         id: "service-4",
-        image: "/services-image/security/luxury-private-residence.png",
+        image: "/services-image/security/securite-evenementielle-yacht.webp",
         title: "Event security",
         description:
-          "Security for private events, evenings, and gatherings.",
-        alt: "Event security for private events",
+          "Security for private events, receptions, parties and gatherings.",
+        alt: "Security officer at a private reception on a yacht at sunset",
         highlights: [
           "Private events",
-          "Evenings and galas",
-          "Coordination with organisers",
+          "Parties and galas",
+          "Liaison with organisers",
         ],
       },
       {
         id: "service-5",
-        image: "/services-image/security/security-room-monitoring.png",
-        title: "Specialised solutions",
+        image: "/services-image/security/securite-specialisee-protection-vip.webp",
+        title: "Specialised security services",
         description:
-          "Specific missions requiring advanced expertise and coordination.",
-        alt: "Specialised private security solutions",
+          "Specific missions requiring advanced expertise and planning.",
+        alt: "High-profile client with two protection officers on a villa terrace",
         highlights: [
           "Bespoke missions",
           "Advanced expertise",
@@ -125,10 +124,10 @@ export function createSecurityContent(locale: "fr" | "en") {
     ],
 
     securityCta: {
-      title: "Need a tailored security plan?",
+      title: "Need a private security solution?",
       description:
-        "Describe your requirements in the form. Riviera Prime reviews your request and coordinates introductions to suitable independent professionals.",
-      buttonText: commonContent.buttons.sendRequest,
+        "Describe your requirements in the form. Riviera Prime reviews your request and can refer you to a suitable private security company.",
+      buttonText: "Request a quote",
       buttonLink: routes.security.book,
     },
 
@@ -139,61 +138,63 @@ export function createSecurityContent(locale: "fr" | "en") {
     securityProcessStepsItems: [
       {
         id: "security-step-1",
-        title: "Submit your request",
+        title: "Send your request",
         description:
-          "Provide essential information through the secure form.",
+          "Provide the essential information through the secure form.",
       },
       {
         id: "security-step-2",
         title: "Assessment of your needs",
         description:
-          "Your request, context, and mission constraints are reviewed with care.",
+          "Your request, its context and the mission constraints are reviewed with care.",
       },
       {
         id: "security-step-3",
-        title: "Personalised response",
+        title: "Provider proposal",
         description:
-          "You receive a personalised response with the necessary information and next steps.",
+          "A suitable private security company sends you a proposal.",
       },
       {
         id: "security-step-4",
-        title: "Deployment of the plan",
+        title: "Service confirmation",
         description:
-          "After approval, the intervention is coordinated according to agreed terms.",
+          "Terms, pricing and arrangements are agreed directly with the provider company.",
       },
     ],
+
+    faqTitle: "Private security FAQ",
 
     faqItems: [
       {
         id: "security-faq-1",
-        question: "How do I make a security request?",
+        question: "How do I find a private security company?",
         answer:
-          "Complete the form with the required information: mission type, location, date, schedule, number of agents required, and any specific needs. Your request is then taken forward and reviewed.",
+          "Complete the form with the type of service, location, date, schedule and number of agents required. Riviera Prime reviews your request and can pass it on to a suitable private security company.",
       },
       {
         id: "security-faq-2",
-        question: "Is the request confirmed automatically?",
+        question: "Is my request confirmed automatically?",
         answer:
-          "No, submitting the form does not automatically confirm the mission. The request is reviewed, the information provided is verified, and a tailored response is sent to you.",
+          "No. Submitting the form is not a booking. The service is confirmed only once the security company concerned has accepted it and its terms have been agreed.",
       },
       {
         id: "security-faq-3",
         question: "What information should I provide?",
         answer:
-          "It is recommended to indicate the service type, address or intervention area, date, schedule, number of agents required, and any specific requirements related to the mission.",
+          "Indicate the type of service, the address or area, the date, the schedule, the number of agents required and any specific requirements related to the mission.",
       },
       {
         id: "security-faq-4",
         question: "When will I receive a response?",
         answer:
-          "After submitting the form, your request is reviewed. You then receive a personalised response with the necessary information, possible availability, and next steps.",
+          "Riviera Prime aims to respond as quickly as possible. Timing depends on the nature of the request and the availability of the security companies.",
       },
     ],
 
     faqContact: {
-      title: "Need clarification before your request?",
+      title: "A question before your request?",
       description:
-        "Specify your requirements in the form. They will be taken into account along with your request.",
+        "Contact Riviera Prime by WhatsApp, email or phone to discuss your private security needs on the French Riviera.",
     },
   };
 }

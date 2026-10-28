@@ -1,9 +1,9 @@
 export const securityFormContent = {
   section: {
-    title: "Confidential request",
+    title: "Confidential private security request",
     subtitle:
-      "Describe your requirements. Your request will be reviewed discreetly by the coordination team.",
-    imageAlt: "Security coordination workspace",
+      "Describe your requirements. Your request is reviewed discreetly and may be passed on to a suitable private security company.",
+    imageAlt: "Security officers in a villa CCTV monitoring room",
     summaryAriaLabel: "Request summary",
     submitError: "Something went wrong. Please try again in a moment.",
   },
@@ -34,14 +34,14 @@ export const securityFormContent = {
       placeholder: "What security service are you looking for?",
     },
     location: {
-      label: "Location",
+      label: "Service location",
       placeholder: "City, site, or address",
     },
-    date: { label: "Date", placeholder: "Select a date" },
+    date: { label: "Preferred date", placeholder: "Select a date" },
     time: { label: "Start time", placeholder: "Select a time" },
-    duration: { label: "Duration", placeholder: "Select a duration" },
+    duration: { label: "Estimated duration", placeholder: "Select a duration" },
     endDate: { label: "End date", placeholder: "Select an end date" },
-    agentCount: { label: "Number of agents", placeholder: "Select" },
+    agentCount: { label: "Number of agents required", placeholder: "Select" },
   },
   client: {
     firstName: { label: "First name", placeholder: "First name" },
@@ -152,7 +152,7 @@ export const securityFormContent = {
   success: {
     title: "Request received",
     message:
-      "Thank you. The coordination team will review your request and contact you personally to refine the details. This is not an instant booking: each assignment is confirmed with discretion and care.",
+      "Thank you. Your request will be reviewed by Riviera Prime and may be passed on to a suitable private security company, in accordance with the privacy policy. Submitting the form is neither a confirmed booking nor a security service contract.",
     button: "Continue",
   },
   validation: {
