@@ -94,7 +94,7 @@ const Header: React.FC = () => {
         <MainContainer className="relative z-10 flex h-full min-h-0 flex-1 items-center justify-between gap-6">
           <Link
             href={routes.home.index}
-            className="relative h-full aspect-square shrink-0"
+            className="relative h-[58px] aspect-square shrink-0 self-center"
             onClick={handleLogoClick}
           >
             <Image
