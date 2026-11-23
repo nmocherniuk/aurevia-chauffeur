@@ -1,5 +1,9 @@
 import { api } from "./api";
 import type { EmailLocale } from "@/src/lib/email-locale";
+import type { GeoPoint } from "@/src/lib/geo";
+
+/** Address picked from suggestions; the backend re-verifies `location` by `placeId`. */
+export type BookingPlaceRef = { placeId: string; location: GeoPoint };
 
 export type CreateBookingBody = {
   locale: EmailLocale;
@@ -7,7 +11,8 @@ export type CreateBookingBody = {
   vehicleId: string;
   driverId?: string | null;
   bookingAt: string;
-  route?: string;
+  fromPlace?: BookingPlaceRef;
+  toPlace?: BookingPlaceRef;
   durationMin?: number;
   status?: BookingStatus;
   paymentStatus?: PaymentStatus;

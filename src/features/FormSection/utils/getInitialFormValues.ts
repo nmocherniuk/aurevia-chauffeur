@@ -23,8 +23,10 @@ export function getInitialFormValues(): FormValues {
     initial[name] = "";
   }
 
+  initial["fromPlaceId"] = "";
   initial["fromLat"] = "";
   initial["fromLng"] = "";
+  initial["toPlaceId"] = "";
   initial["toLat"] = "";
   initial["toLng"] = "";
   initial["price"] = "";

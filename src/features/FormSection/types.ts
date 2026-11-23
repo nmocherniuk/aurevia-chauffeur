@@ -7,9 +7,15 @@ export type BookingFormState = {
   tripType: TripType | "";
   from?: string;
   to?: string;
-  /** Set when user picks a Nominatim result (stored as strings for Formik). */
+  /**
+   * Set when the user picks a Google suggestion (strings for Formik):
+   * placeId + coordinates returned by our backend details lookup.
+   * Cleared as soon as the text is edited by hand.
+   */
+  fromPlaceId?: string;
   fromLat?: string;
   fromLng?: string;
+  toPlaceId?: string;
   toLat?: string;
   toLng?: string;
   date: string;

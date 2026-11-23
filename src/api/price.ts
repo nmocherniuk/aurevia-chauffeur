@@ -1,14 +1,20 @@
 import { api } from "./api";
 import axios from "axios";
 
+/**
+ * One-way: both addresses as selected places (placeId + the coordinates our
+ * backend returned). The backend re-verifies them and computes the distance
+ * with Google Routes — the client never sends a distance.
+ */
 export type GetPriceBody = {
     vehicleId: string;
     tripType: "one_way" | "hourly";
-    distanceKm?: number;
+    fromPlaceId?: string;
     fromLat?: number;
-    fromLon?: number;
+    fromLng?: number;
+    toPlaceId?: string;
     toLat?: number;
-    toLon?: number;
+    toLng?: number;
     durationMin?: number;
 };
 

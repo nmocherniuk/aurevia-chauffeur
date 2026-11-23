@@ -25,6 +25,8 @@ export const VehicleStep: FC<FormStepProps> = ({
   const selectedVehicleId = (getValue("car", false) as string) || "";
   const carType = (getValue("carType", false) as string) || "";
   const tripType = (getValue("tripType", false) as string) || "";
+  const fromPlaceId = (getValue("fromPlaceId", false) as string) || "";
+  const toPlaceId = (getValue("toPlaceId", false) as string) || "";
   const fromLat = (getValue("fromLat", false) as string) || "";
   const fromLng = (getValue("fromLng", false) as string) || "";
   const toLat = (getValue("toLat", false) as string) || "";
@@ -84,7 +86,7 @@ export const VehicleStep: FC<FormStepProps> = ({
   const canQuote = useMemo(() => {
     if (!selectedVehicleId) return false;
     if (!date || !time) return false;
-    if (!fromLat || !fromLng) return false;
+    if (!fromPlaceId || !fromLat || !fromLng) return false;
 
     if (tripType === "hourly") {
       if (!endTime) return false;
@@ -93,7 +95,7 @@ export const VehicleStep: FC<FormStepProps> = ({
     }
 
     if (tripType === "one_way") {
-      if (!toLat || !toLng) return false;
+      if (!toPlaceId || !toLat || !toLng) return false;
       return true;
     }
 
@@ -101,6 +103,8 @@ export const VehicleStep: FC<FormStepProps> = ({
   }, [
     selectedVehicleId,
     tripType,
+    fromPlaceId,
+    toPlaceId,
     fromLat,
     fromLng,
     toLat,
@@ -140,10 +144,12 @@ export const VehicleStep: FC<FormStepProps> = ({
         : {
             vehicleId: selectedVehicleId,
             tripType: "one_way",
+            fromPlaceId,
             fromLat: Number(fromLat),
-            fromLon: Number(fromLng),
+            fromLng: Number(fromLng),
+            toPlaceId,
             toLat: Number(toLat),
-            toLon: Number(toLng),
+            toLng: Number(toLng),
           },
       ac.signal,
     )
@@ -169,7 +175,7 @@ export const VehicleStep: FC<FormStepProps> = ({
       ac.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [canQuote, selectedVehicleId, fromLat, fromLng, toLat, toLng, date, time, tripType, endTime]);
+  }, [canQuote, selectedVehicleId, fromPlaceId, toPlaceId, fromLat, fromLng, toLat, toLng, date, time, tripType, endTime]);
 
   const priceHint = selectedVehicleId
     ? isLoadingPrice
