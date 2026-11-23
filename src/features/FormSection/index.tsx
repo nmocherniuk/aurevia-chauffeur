@@ -136,8 +136,6 @@ const FormSection: FC = () => {
           validateOnBlur={false}
           validateOnChange={false}
           onSubmit={async (values, { resetForm }) => {
-            console.log("values", values);
-
             const bookingAt = dayjs
               .tz(`${values.date} ${values.time}`, SERVICE_TZ)
               .toISOString();
@@ -179,9 +177,6 @@ const FormSection: FC = () => {
                 durationMin: durationMinParsed,
                 status: "assigned" as BookingStatus,
               };
-
-              console.log("values", values);
-              console.log("body", body);
 
               try {
                 await createBooking(body);
