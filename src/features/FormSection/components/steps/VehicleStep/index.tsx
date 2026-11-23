@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useMemo, useRef, useState } from "react";
 import SelectWithError from "@/src/components/SelectWithError";
+import axios from "axios";
 import { getPrice } from "@/src/api/price";
 import { hourlyDurationMinutes } from "@/src/features/FormSection/utils/hourlyDuration";
 import {
@@ -8,6 +9,8 @@ import {
 } from "@/src/features/FormSection/utils/vehicleOptions";
 import { useVehiclesStore } from "@/src/store/vehiclesStore";
 import { useContent } from "@/src/providers/LocaleProvider";
+import dayjs from "@/src/lib/dayjs";
+import { SERVICE_TZ } from "@/src/features/FormSection/constants";
 import type { FormStepProps } from "../types";
 
 export const VehicleStep: FC<FormStepProps> = ({
@@ -38,6 +41,9 @@ export const VehicleStep: FC<FormStepProps> = ({
   const price = (getValue("price", false) as string) || "";
   const distanceKm = (getValue("distanceKm", false) as string) || "";
   const [isLoadingPrice, setIsLoadingPrice] = useState(false);
+  /** Why the quote failed (shown instead of the neutral hint). */
+  const [priceError, setPriceError] = useState<string | null>(null);
+  const priceLoadingInForm = getValue("priceLoading", true) === true;
   const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -114,17 +120,25 @@ export const VehicleStep: FC<FormStepProps> = ({
     endTime,
   ]);
 
+  // Mirror loading state into Formik only when it actually differs.
+  // `setValue` is a new function on every render and Formik re-renders on every
+  // setFieldValue (even with the same value), so depending on it here caused an
+  // infinite render loop (React error #185).
   useEffect(() => {
-    setValue("priceLoading", isLoadingPrice);
-  }, [isLoadingPrice, setValue]);
+    if (priceLoadingInForm !== isLoadingPrice) {
+      setValue("priceLoading", isLoadingPrice);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoadingPrice, priceLoadingInForm]);
 
   useEffect(() => {
     abortRef.current?.abort();
     abortRef.current = null;
 
+    setPriceError(null);
+
     if (!canQuote) {
       setIsLoadingPrice(false);
-      setValue("priceLoading", false);
       if (price) setValue("price", "");
       if (distanceKm) setValue("distanceKm", "");
       return;
@@ -134,12 +148,18 @@ export const VehicleStep: FC<FormStepProps> = ({
     abortRef.current = ac;
     setIsLoadingPrice(true);
 
+    // Trip date/time (Paris), same as the booking submit — night/holiday
+    // surcharges must depend on when the trip happens, not on "now".
+    const tripAt = dayjs.tz(`${date} ${time}`, SERVICE_TZ);
+    const bookingAt = tripAt.isValid() ? tripAt.toISOString() : undefined;
+
     void getPrice(
       tripType === "hourly"
         ? {
             vehicleId: selectedVehicleId,
             tripType: "hourly",
             durationMin: hourlyDurationMinutes(time, endTime) ?? undefined,
+            bookingAt,
           }
         : {
             vehicleId: selectedVehicleId,
@@ -150,6 +170,7 @@ export const VehicleStep: FC<FormStepProps> = ({
             toPlaceId,
             toLat: Number(toLat),
             toLng: Number(toLng),
+            bookingAt,
           },
       ac.signal,
     )
@@ -162,10 +183,20 @@ export const VehicleStep: FC<FormStepProps> = ({
           setValue("distanceKm", "");
         }
       })
-      .catch(() => {
+      .catch((error: unknown) => {
         if (ac.signal.aborted) return;
         setValue("price", "");
         setValue("distanceKm", "");
+        const code = axios.isAxiosError(error)
+          ? (error.response?.data as { code?: unknown } | undefined)?.code
+          : undefined;
+        setPriceError(
+          code === "INVALID_LOCATION" &&
+            axios.isAxiosError(error) &&
+            /service area/i.test(String((error.response?.data as { message?: unknown })?.message ?? ""))
+            ? t.vehicle.outsideServiceArea
+            : t.vehicle.priceUnavailable,
+        );
       })
       .finally(() => {
         if (!ac.signal.aborted) setIsLoadingPrice(false);
@@ -182,7 +213,7 @@ export const VehicleStep: FC<FormStepProps> = ({
       ? t.vehicle.calculatingPrice
       : price
         ? t.vehicle.priceForSelected
-        : t.vehicle.selectTripForPrice
+        : priceError ?? t.vehicle.selectTripForPrice
     : t.vehicle.selectVehicleForPrice;
 
   return (
@@ -246,7 +277,16 @@ export const VehicleStep: FC<FormStepProps> = ({
               <>—</>
             )}
           </span>
-          <span className="text-sm font-light text-text-primary">{priceHint}</span>
+          <span
+            className={
+              priceError && !isLoadingPrice && !price
+                ? "text-sm font-light text-text-error"
+                : "text-sm font-light text-text-primary"
+            }
+            role={priceError ? "alert" : undefined}
+          >
+            {priceHint}
+          </span>
           {errors["price"] ? (
             <span
               className="text-xs text-text-error text-center"

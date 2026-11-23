@@ -55,6 +55,9 @@ export const bookingFormContent = {
     priceForSelected: "Prix pour le véhicule sélectionné",
     selectTripForPrice: "Sélectionnez un trajet pour voir le prix",
     selectVehicleForPrice: "Sélectionnez un véhicule pour voir le prix",
+    outsideServiceArea:
+      "Cette adresse est hors de notre zone de service (France / Côte d'Azur). Veuillez choisir une autre adresse.",
+    priceUnavailable: "Le prix n'a pas pu être calculé. Réessayez ou choisissez une autre adresse.",
   },
   passenger: {
     firstName: { label: "Prénom", placeholder: "Prénom" },

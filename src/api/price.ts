@@ -16,6 +16,8 @@ export type GetPriceBody = {
     toLat?: number;
     toLng?: number;
     durationMin?: number;
+    /** Trip date/time (ISO). Drives night/holiday surcharges; backend defaults to "now" without it. */
+    bookingAt?: string;
 };
 
 export type PublicPriceQuote = {
