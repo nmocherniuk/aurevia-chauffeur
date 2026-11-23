@@ -4,16 +4,13 @@ import React, { useCallback, useId, useRef, useState, useMemo } from "react";
 import { cn } from "@/src/lib/utils";
 import { useDebouncedValue } from "@/src/hooks/useDebouncedValue";
 import { useClickOutside } from "@/src/components/CustomSelect/hooks/useClickOutside";
-import type { NominatimSearchHit } from "@/src/lib/places/nominatimTypes";
-import { formatLocationSuggestion } from "@/src/lib/places/formatLocationSuggestion";
+import type { PlaceSuggestion, SelectedPlace } from "@/src/lib/geo";
+import { getPlaceLocation, MIN_PLACE_QUERY_CHARS } from "@/src/api/places";
+import { useLocale } from "@/src/providers/LocaleProvider";
 import { Location } from "@/src/components/SVGManager/Location";
 import { usePlacesSearch } from "./usePlacesSearch";
 
-export type SelectedPlace = {
-  label: string;
-  lat: number;
-  lng: number;
-};
+export type { SelectedPlace };
 
 export type LocationAutocompleteInputProps = {
   name: string;
@@ -29,19 +26,17 @@ export type LocationAutocompleteInputProps = {
   onFocus: () => void;
 };
 
-const DEBOUNCE_MS = 400;
+const DEBOUNCE_MS = 300;
 
-function hitToPlace(hit: NominatimSearchHit): SelectedPlace | null {
-  const lat = Number.parseFloat(hit.lat);
-  const lng = Number.parseFloat(hit.lon);
-  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
-  const { title, subtitle } = formatLocationSuggestion(hit);
-  const label = subtitle ? `${title}, ${subtitle}` : title;
-  return {
-    label: label.trim() || hit.display_name.trim(),
-    lat,
-    lng,
-  };
+function newSessionToken(): string {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+}
+
+function hitLabel(hit: PlaceSuggestion): string {
+  return hit.fullText.trim() || [hit.label, hit.secondaryText].filter(Boolean).join(", ");
 }
 
 export function LocationAutocompleteInput({
@@ -64,16 +59,29 @@ export function LocationAutocompleteInput({
   const [focused, setFocused] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [pickError, setPickError] = useState<string | null>(null);
+  const locale = useLocale();
+
+  // One session per field instance (from / to each have their own), rotated
+  // after a pick. An abandoned session simply expires on Google's side.
+  const sessionRef = useRef<string | null>(null);
+  const getSessionToken = useCallback(() => {
+    if (!sessionRef.current) sessionRef.current = newSessionToken();
+    return sessionRef.current;
+  }, []);
 
   const debounced = useDebouncedValue(value, DEBOUNCE_MS);
-  const { hits, loading, showNoResults } = usePlacesSearch(debounced);
+  const { hits, loading, error: searchError, showNoResults } = usePlacesSearch(
+    debounced,
+    getSessionToken,
+  );
 
-  const queryReady = debounced.trim().length >= 2;
+  const queryReady = debounced.trim().length >= MIN_PLACE_QUERY_CHARS;
   const panelVisible =
     open &&
     focused &&
     queryReady &&
-    (loading || hits.length > 0 || showNoResults);
+    (loading || hits.length > 0 || showNoResults || Boolean(searchError));
 
   useClickOutside(containerRef, panelVisible, () => {
     setOpen(false);
@@ -86,14 +94,28 @@ export function LocationAutocompleteInput({
   }, [hits, activeIndex]);
 
   const pick = useCallback(
-    (hit: NominatimSearchHit) => {
-      const place = hitToPlace(hit);
-      if (!place) return;
-      onSelect(place);
+    (hit: PlaceSuggestion) => {
+      const session = getSessionToken();
       setOpen(false);
       setActiveIndex(-1);
+      setPickError(null);
+      getPlaceLocation({ placeId: hit.placeId, lang: locale, session })
+        .then((location) => {
+          // Session ends with the details lookup; next search starts a new one.
+          sessionRef.current = null;
+          onSelect({
+            placeId: hit.placeId,
+            label: hitLabel(hit),
+            secondaryText: hit.secondaryText || undefined,
+            location,
+          });
+        })
+        .catch((e: unknown) => {
+          setPickError(e instanceof Error ? e.message : "Could not resolve the selected address");
+          setOpen(true);
+        });
     },
-    [onSelect],
+    [onSelect, getSessionToken, locale],
   );
 
   const handleMouseLeaveList = useCallback(() => setActiveIndex(-1), []);
@@ -199,6 +221,8 @@ export function LocationAutocompleteInput({
               aria-describedby={describedBy}
               onChange={(e) => {
                 onChangeText(e.target.value);
+                setPickError(null);
+                if (!e.target.value.trim()) sessionRef.current = null;
                 setOpen(true);
               }}
               onFocus={() => {
@@ -240,6 +264,12 @@ export function LocationAutocompleteInput({
                 </div>
               ) : null}
 
+              {!loading && searchError ? (
+                <div className="px-3 py-2.5 text-sm text-text-error" role="alert">
+                  {searchError}
+                </div>
+              ) : null}
+
               {!loading && showNoResults ? (
                 <div className="px-3 py-2.5 text-sm text-grey">
                   No results found
@@ -249,11 +279,12 @@ export function LocationAutocompleteInput({
               {!loading &&
                 hits.map((hit, index) => {
                   const active = index === effectiveActiveIndex;
-                  const { title, subtitle } = formatLocationSuggestion(hit);
+                  const title = hit.label;
+                  const subtitle = hit.secondaryText;
                   const optionLabel = subtitle ? `${title}, ${subtitle}` : title;
                   return (
                     <li
-                      key={`${hit.lat}-${hit.lon}-${hit.display_name.slice(0, 32)}`}
+                      key={hit.placeId}
                       id={`${listboxId}-opt-${index}`}
                       role="option"
                       aria-selected={active}
@@ -308,7 +339,7 @@ export function LocationAutocompleteInput({
         className="h-[14px] pl-1 text-xs leading-normal text-text-error"
         aria-live="polite"
       >
-        {error ?? null}
+        {error ?? pickError ?? null}
       </div>
     </div>
   );

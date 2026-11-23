@@ -22,6 +22,7 @@ export const JourneyStep: FC<FormStepProps> = ({
       setValue("tripType", next);
       if (next === "hourly") {
         setValue("to", "");
+        setValue("toPlaceId", "");
         setValue("toLat", "");
         setValue("toLng", "");
       } else {
@@ -95,13 +96,15 @@ export const JourneyStep: FC<FormStepProps> = ({
             value={(getValue("from", false) as string) || ""}
             onChangeText={(text) => {
               setValue("from", text);
+              setValue("fromPlaceId", "");
               setValue("fromLat", "");
               setValue("fromLng", "");
             }}
             onSelect={(place) => {
               setValue("from", place.label);
-              setValue("fromLat", String(place.lat));
-              setValue("fromLng", String(place.lng));
+              setValue("fromPlaceId", place.placeId);
+              setValue("fromLat", String(place.location.lat));
+              setValue("fromLng", String(place.location.lng));
             }}
             onBlur={handleBlur("from")}
             onFocus={handleFocus("from")}
@@ -117,13 +120,15 @@ export const JourneyStep: FC<FormStepProps> = ({
             value={(getValue("from", false) as string) || ""}
             onChangeText={(text) => {
               setValue("from", text);
+              setValue("fromPlaceId", "");
               setValue("fromLat", "");
               setValue("fromLng", "");
             }}
             onSelect={(place) => {
               setValue("from", place.label);
-              setValue("fromLat", String(place.lat));
-              setValue("fromLng", String(place.lng));
+              setValue("fromPlaceId", place.placeId);
+              setValue("fromLat", String(place.location.lat));
+              setValue("fromLng", String(place.location.lng));
             }}
             onBlur={handleBlur("from")}
             onFocus={handleFocus("from")}
@@ -136,13 +141,15 @@ export const JourneyStep: FC<FormStepProps> = ({
             value={(getValue("to", false) as string) || ""}
             onChangeText={(text) => {
               setValue("to", text);
+              setValue("toPlaceId", "");
               setValue("toLat", "");
               setValue("toLng", "");
             }}
             onSelect={(place) => {
               setValue("to", place.label);
-              setValue("toLat", String(place.lat));
-              setValue("toLng", String(place.lng));
+              setValue("toPlaceId", place.placeId);
+              setValue("toLat", String(place.location.lat));
+              setValue("toLng", String(place.location.lng));
             }}
             onBlur={handleBlur("to")}
             onFocus={handleFocus("to")}

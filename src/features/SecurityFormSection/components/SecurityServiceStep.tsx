@@ -104,8 +104,8 @@ export const SecurityServiceStep: FC<FormStepProps> = ({
           }}
           onSelect={(place) => {
             setValue("location", place.label);
-            setValue("locationLat", String(place.lat));
-            setValue("locationLng", String(place.lng));
+            setValue("locationLat", String(place.location.lat));
+            setValue("locationLng", String(place.location.lng));
           }}
           onBlur={handleBlur("location")}
           onFocus={handleFocus("location")}

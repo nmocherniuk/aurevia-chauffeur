@@ -17,6 +17,7 @@ import { BookingStatus, createBooking } from "@/src/api/booking";
 import dayjs from "@/src/lib/dayjs";
 import { mapTripTypeToApi, SERVICE_TZ, VEHICLE_STEP_INDEX } from "./constants";
 import { hourlyDurationMinutes } from "./utils/hourlyDuration";
+import { geoPointFromStrings } from "@/src/lib/geo";
 import {
   BookingSuccessView,
   BOOKING_SUCCESS_SECTION_ID,
@@ -31,6 +32,16 @@ import { scrollToBookingFormSmoothAfterNav } from "@/src/lib/scrollToBookingForm
 import { dayjsLocales, type Locale } from "@/src/i18n/config";
 import { toEmailLocale } from "@/src/lib/email-locale";
 import { useContent, useLocale } from "@/src/providers/LocaleProvider";
+
+/** Formik string fields → `{ placeId, location: { lat, lng } }` for the API, or undefined. */
+function toPlaceRef(placeId: unknown, lat: unknown, lng: unknown) {
+  if (typeof placeId !== "string" || !placeId) return undefined;
+  const location = geoPointFromStrings(
+    typeof lat === "string" ? lat : undefined,
+    typeof lng === "string" ? lng : undefined,
+  );
+  return location ? { placeId, location } : undefined;
+}
 
 const FormSection: FC = () => {
   const locale = useLocale();
@@ -158,6 +169,13 @@ const FormSection: FC = () => {
 
                 to: values.to,
                 from: values.from,
+                // Selected places; the backend re-verifies coordinates and
+                // computes the distance with the same Routes call as the quote.
+                fromPlace: toPlaceRef(values.fromPlaceId, values.fromLat, values.fromLng),
+                toPlace:
+                  values.tripType === "hourly"
+                    ? undefined
+                    : toPlaceRef(values.toPlaceId, values.toLat, values.toLng),
                 durationMin: durationMinParsed,
                 status: "assigned" as BookingStatus,
               };

@@ -28,8 +28,9 @@ export function getStepSchemas(v: BookingValidation): StepSchema[] {
       .string()
       .required(v.fromRequired)
       .test("from-picked", v.fromPicked, function () {
-        const lat = (this.parent as Record<string, unknown>).fromLat;
-        return typeof lat === "string" && lat.length > 0;
+        const p = this.parent as Record<string, unknown>;
+        return typeof p.fromPlaceId === "string" && p.fromPlaceId.length > 0 &&
+          typeof p.fromLat === "string" && p.fromLat.length > 0;
       }),
     to: yup.string().when("tripType", {
       is: "hourly",
@@ -38,8 +39,9 @@ export function getStepSchemas(v: BookingValidation): StepSchema[] {
         schema
           .required(v.toRequired)
           .test("to-picked", v.toPicked, function () {
-            const lat = (this.parent as Record<string, unknown>).toLat;
-            return typeof lat === "string" && lat.length > 0;
+            const p = this.parent as Record<string, unknown>;
+            return typeof p.toPlaceId === "string" && p.toPlaceId.length > 0 &&
+              typeof p.toLat === "string" && p.toLat.length > 0;
           }),
     }),
     endTime: yup.string().when("tripType", {
